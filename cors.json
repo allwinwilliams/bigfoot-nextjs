@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["http://localhost:3001", "https://bigfoot-nextjs.vercel.app", "https://bigfoot.land"],
+    "method": ["GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"],
+    "maxAgeSeconds": 3600
+  }
+]

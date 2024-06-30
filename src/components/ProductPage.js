@@ -7,6 +7,9 @@ import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid,
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { db, storage } from '../utils/firebaseConfig'; // Import the Firebase config
+import { collection, addDoc } from 'firebase/firestore'; // Import Firestore functions
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 const ProductPage = () => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
@@ -35,7 +38,6 @@ const ProductPage = () => {
       style: 'type1',
     };
 
-    // Check if the URL params are set, if not, update the URL
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
       router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
     }
@@ -100,6 +102,38 @@ const ProductPage = () => {
     setTimeout(() => setTooltipOpen(false), 2000);
   };
 
+  const handleBuyNow = async () => {
+    try {
+      const canvas = document.getElementById('p5-canvas');
+      const canvasDataUrl = canvas.toDataURL('image/png');
+
+      // Create a storage reference
+      const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
+      
+      // Upload the canvas image as a base64 string
+      await uploadString(storageRef, canvasDataUrl, 'data_url');
+      
+      // Get the download URL of the uploaded image
+      const imageUrl = await getDownloadURL(storageRef);
+
+      // Prepare the data to store in Firestore
+      const dataToStore = {
+        color,
+        size,
+        songId,
+        songName: songData?.name || '',
+        style: sketchType,
+        imageUrl,
+      };
+
+      // Add the data to Firestore
+      await addDoc(collection(db, 'orders'), dataToStore);
+      alert('Order placed successfully!');
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Failed to place order: ' + error.message);
+    }
+  };
   return (
     <Box sx={{ padding: 3 }}>
       <Typography variant="h4" gutterBottom>
@@ -170,7 +204,7 @@ const ProductPage = () => {
               <Typography variant="subtitle1">Artist: {songData.artists.map(artist => artist.name).join(', ')}</Typography>
             </Box>
           )}
-          <Button variant="contained" color="primary" fullWidth size="large" sx={{ mb: 2 }}>
+          <Button variant="contained" color="primary" fullWidth size="large" sx={{ mb: 2 }} onClick={handleBuyNow}>
             Buy Now
           </Button>
           <Tooltip title="URL copied" open={tooltipOpen} arrow>
