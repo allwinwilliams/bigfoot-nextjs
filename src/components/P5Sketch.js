@@ -4,7 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 
-const P5Sketch = ({ canvasRef, onP5Update }) => {
+const P5Sketch = ({ canvasRef, onP5Update, songData }) => {
   const sketchRef = useRef();
 
   useEffect(() => {
@@ -22,7 +22,14 @@ const P5Sketch = ({ canvasRef, onP5Update }) => {
           p.background(255);
           p.fill(0);
           p.textSize(32);
-          p.text('Hello, p5.js!', 10, 30);
+          if (songData) {
+            const { name, artists } = songData;
+            const artistNames = artists.map(artist => artist.name).join(', ');
+            p.text(`Song: ${name}`, 10, 50);
+            p.text(`Artist: ${artistNames}`, 10, 100);
+          } else {
+            p.text('Hello, p5.js!', 10, 30);
+          }
 
           p.fill(255, 0, 0);
           p.ellipse(p.width / 2, p.height / 2, 50, 50);
@@ -39,7 +46,7 @@ const P5Sketch = ({ canvasRef, onP5Update }) => {
         }
       };
     }
-  }, [canvasRef, onP5Update]);
+  }, [canvasRef, onP5Update, songData]);
 
   return null;
 };

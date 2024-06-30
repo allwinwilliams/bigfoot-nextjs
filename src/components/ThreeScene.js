@@ -11,7 +11,7 @@ import dynamic from 'next/dynamic';
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color }) => {
+const ThreeScene = ({ color, songData }) => {
   const [texture, setTexture] = useState(null);
   const canvasRef = useRef();
 
@@ -33,6 +33,7 @@ const ThreeScene = ({ color }) => {
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
 
     if (canvasRef.current) {
+      console.log('Drawing p5 canvas on combined canvas');
       ctx.drawImage(canvasRef.current, 60, 2000, 1500, 2000);
     }
 
@@ -73,7 +74,7 @@ const ThreeScene = ({ color }) => {
         <TshirtModel color={color} texture={texture} />
         <OrbitControls />
       </Canvas>
-      <P5Sketch canvasRef={canvasRef} onP5Update={handleP5Update} />
+      <P5Sketch canvasRef={canvasRef} onP5Update={handleP5Update} songData={songData} />
     </div>
   );
 };
