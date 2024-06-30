@@ -1,19 +1,41 @@
-// src/components/ProductPage.js
 "use client";
 
-import React, { useContext, useState, useCallback } from 'react';
-import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import React, { useContext, useState, useEffect, useCallback, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, RadioGroup, FormControlLabel, Radio, Tooltip } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
-import dynamic from 'next/dynamic';
-
-const ThreeScene = dynamic(() => import('./ThreeScene'), { ssr: false });
+import ThreeScene from './ThreeScene';
 
 const ProductPage = () => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedColor, setSelectedColor] = useState('black');
-  const [selectedSize, setSelectedSize] = useState('M');
+  const [color, setColor] = useState(searchParams.get('color') || 'black');
+  const [size, setSize] = useState(searchParams.get('size') || 'M');
+  const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  useEffect(() => {
+    if (songId) {
+      fetchSongData(songId);
+    }
+  }, [songId]);
+
+  useEffect(() => {
+    const defaultParams = {
+      color: 'black',
+      size: 'M',
+      songId: '44JnQ7TIl4ieCbCQiEPQag',
+    };
+
+    // Check if the URL params are set, if not, update the URL
+    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId')) {
+      router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}`);
+    }
+  }, [searchParams, color, size, songId, router]);
 
   const searchTracks = async (query) => {
     const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
@@ -45,18 +67,28 @@ const ProductPage = () => {
   };
 
   const handleSelectSong = (song) => {
+    setSongId(song.id);
     changeSongId(song.id);
     fetchSongData(song.id);
     setSearchResults([]);
     setInputValue(song.name);
+    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}`);
   };
 
   const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
+    setColor(event.target.value);
+    router.push(`/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}`);
   };
 
   const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
+    setSize(event.target.value);
+    router.push(`/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}`);
+  };
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setTooltipOpen(true);
+    setTimeout(() => setTooltipOpen(false), 2000);
   };
 
   return (
@@ -66,7 +98,7 @@ const ProductPage = () => {
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <ThreeScene color={selectedColor} songData={songData} />
+          <ThreeScene color={color} songData={songData} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>
@@ -81,14 +113,14 @@ const ProductPage = () => {
           <Typography variant="h5" gutterBottom>
             Select Color
           </Typography>
-          <RadioGroup value={selectedColor} onChange={handleColorChange}>
+          <RadioGroup value={color} onChange={handleColorChange}>
             <FormControlLabel value="black" control={<Radio />} label="Black" />
             <FormControlLabel value="beige" control={<Radio />} label="Beige" />
           </RadioGroup>
           <Typography variant="h5" gutterBottom>
             Select Size
           </Typography>
-          <RadioGroup value={selectedSize} onChange={handleSizeChange}>
+          <RadioGroup value={size} onChange={handleSizeChange}>
             <FormControlLabel value="S" control={<Radio />} label="S" />
             <FormControlLabel value="M" control={<Radio />} label="M" />
             <FormControlLabel value="L" control={<Radio />} label="L" />
@@ -121,9 +153,14 @@ const ProductPage = () => {
               <Typography variant="subtitle1">Artist: {songData.artists.map(artist => artist.name).join(', ')}</Typography>
             </Box>
           )}
-          <Button variant="contained" color="primary" fullWidth>
+          <Button variant="contained" color="primary" fullWidth size="large" sx={{ mb: 2 }}>
             Buy Now
           </Button>
+          <Tooltip title="URL copied" open={tooltipOpen} arrow>
+            <Button variant="outlined" color="secondary" fullWidth size="large" onClick={handleShare}>
+              Share Now
+            </Button>
+          </Tooltip>
         </Grid>
       </Grid>
     </Box>
