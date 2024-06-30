@@ -8,21 +8,21 @@ import * as THREE from 'three';
 
 const TshirtModel = ({ color, texture }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
-  const textureRef = useRef(texture);
+  const modelRef = useRef();
 
   useEffect(() => {
     if (gltf && texture) {
       console.log('Model loaded and texture received:', texture);
+
       gltf.scene.traverse((child) => {
-        if (child.isMesh && child.name === "Tshirt_final1") {
+        if (child.isMesh && child.name === 'Tshirt_final1') {
+          console.log('Applying texture to mesh:', child);
           const material = new THREE.MeshStandardMaterial({
             side: THREE.DoubleSide,
-            color: 'white',
-            map: textureRef.current,
+            map: texture,
             roughness: 1,
             metalness: 0.2,
           });
-          console.log('Applying texture to mesh:', child);
           child.material = material;
           child.material.needsUpdate = true;
         }
@@ -33,17 +33,16 @@ const TshirtModel = ({ color, texture }) => {
   useEffect(() => {
     if (texture) {
       console.log('Updating texture:', texture);
-      textureRef.current = texture;
       gltf.scene.traverse((child) => {
-        if (child.isMesh && child.name === "Tshirt_final1") {
-          child.material.map = textureRef.current;
+        if (child.isMesh && child.name === 'Tshirt_final1') {
+          child.material.map = texture;
           child.material.needsUpdate = true;
         }
       });
     }
-  }, [texture, gltf]);
+  }, [texture]);
 
-  return gltf ? <primitive object={gltf.scene} /> : null;
+  return <primitive ref={modelRef} object={gltf.scene} position={[0, 1, 0]} scale={[10, 10, 10]} />;
 };
 
 export default TshirtModel;

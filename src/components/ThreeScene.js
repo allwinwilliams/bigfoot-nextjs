@@ -35,9 +35,12 @@ const ThreeScene = ({ color, songData }) => {
     if (canvasRef.current) {
       console.log('Drawing p5 canvas on combined canvas');
       ctx.drawImage(canvasRef.current, 60, 2000, 1500, 2000);
+    } else {
+      console.error('Canvas ref is not set');
     }
 
     const texture = new THREE.CanvasTexture(combinedCanvas);
+    texture.flipY = false; // Flip the Y-axis
     texture.needsUpdate = true;
     return texture;
   }, [color]);
@@ -47,8 +50,10 @@ const ThreeScene = ({ color, songData }) => {
       console.log('Canvas ref is set, creating texture');
       const texture = createCombinedTexture();
       setTexture(texture);
+    } else {
+      console.error('Canvas ref is not set in useEffect');
     }
-  }, [canvasRef, color, createCombinedTexture]);
+  }, [canvasRef.current, color, createCombinedTexture]);
 
   const handleP5Update = useCallback(() => {
     console.log('p5 sketch updated');
