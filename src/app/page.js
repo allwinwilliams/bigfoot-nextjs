@@ -1,9 +1,20 @@
-import ProductPage from '../components/ProductPage';
+import Link from 'next/link';
+import { Container, Typography, Button, Box } from '@mui/material';
 
 export default function HomePage() {
   return (
-    <div>
-      <ProductPage />
-    </div>
+    <Container maxWidth="md" sx={{ textAlign: 'center', mt: 8 }}>
+      <Typography variant="h2" gutterBottom>
+        BigFoot
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Express through Fashion
+      </Typography>
+      <Box mt={4}>
+        <Button variant="contained" color="primary" component={Link} href="/product">
+          Go to Product Page
+        </Button>
+      </Box>
+    </Container>
   );
 }
