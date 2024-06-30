@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useContext, useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
-import ThreeTshirt from './ThreeTshirt';
 
 const ProductPage = () => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedColor, setSelectedColor] = useState('black'); // State to hold the selected color
-  const [selectedSize, setSelectedSize] = useState('M'); // State to hold the selected size
-  const [p5UpdateTrigger, setP5UpdateTrigger] = useState(0); // State to trigger p5 updates
+  const [selectedColor, setSelectedColor] = useState('black');
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [p5UpdateTrigger, setP5UpdateTrigger] = useState(0);
 
   const searchTracks = async (query) => {
     const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
@@ -69,9 +69,7 @@ const ProductPage = () => {
         Customize Your T-Shirt
       </Typography>
       <Grid container spacing={4}>
-        <Grid item xs={12} md={6}>
-          <ThreeTshirt color={selectedColor} onP5Update={p5UpdateTrigger} />
-        </Grid>
+        
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>
             Product Title

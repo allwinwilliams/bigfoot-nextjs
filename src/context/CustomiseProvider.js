@@ -1,6 +1,3 @@
-// const CLIENT_ID = "b2cc0a3604154457ac2d7c216d8e55a1";
-// const CLIENT_SECRET = "38e579a2942f4930af3c4eed0737696a";
-
 "use client";
 
 import React, { createContext, useState, useEffect } from 'react';
@@ -56,3 +53,4 @@ export const CustomiseProvider = ({ children }) => {
     </CustomiseAppContext.Provider>
   );
 };
+
