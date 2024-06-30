@@ -2,14 +2,32 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Canvas, extend } from '@react-three/fiber';
+import { OrbitControls, SoftShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import TshirtModel from './TshirtModel';
 import dynamic from 'next/dynamic';
 
+// Ensure the ShadowMaterial is recognized by React Three Fiber
+extend({ ShadowMaterial: THREE.ShadowMaterial });
+
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
+
+function GroundPlane() {
+  const meshRef = useRef();
+  return (
+    <mesh
+      ref={meshRef}
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[0, -7, 0]}
+      receiveShadow={true}
+    >
+      <planeGeometry args={[500, 500]} />
+      <shadowMaterial attach="material" opacity={0.5} />
+    </mesh>
+  );
+}
 
 const ThreeScene = ({ color, songData }) => {
   const [texture, setTexture] = useState(null);
@@ -64,19 +82,31 @@ const ThreeScene = ({ color, songData }) => {
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <Canvas
-        shadows
+        shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 2, 5], fov: 50 }}
         style={{ height: '100%', width: '100%' }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={1.6} color="#ffffff" />
         <spotLight
-          position={[5, 10, 5]}
-          angle={0.3}
+          position={[1, 10, 1]}
+          angle={0.2}
           penumbra={1}
-          intensity={2}
+          intensity={100}
           castShadow
+          shadow-mapSize-width={4096}
+          shadow-mapSize-height={4096}
+          shadow-camera-far={50}
+          shadow-camera-near={0.5}
+          shadow-bias={-0.0001}
+          shadow-camera-left={-20}
+          shadow-camera-right={20}
+          shadow-camera-top={20}
+          shadow-camera-bottom={-20}
         />
+        <pointLight position={[4, 4, 4]} intensity={30} />
+        <SoftShadows size={200} focus={64} samples={60} />
         <TshirtModel color={color} texture={texture} />
+        {/* <GroundPlane /> */}
         <OrbitControls />
       </Canvas>
       <P5Sketch canvasRef={canvasRef} onP5Update={handleP5Update} songData={songData} />

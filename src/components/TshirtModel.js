@@ -4,10 +4,16 @@
 import React, { useRef, useEffect } from 'react';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { TextureLoader } from 'three';
 import * as THREE from 'three';
 
 const TshirtModel = ({ color, texture }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
+  const normalMapUrl = '/models/textures/normal-final.jpeg';
+  const normalMap = useLoader(TextureLoader, normalMapUrl);
+  normalMap.wrapS = THREE.RepeatWrapping;
+	normalMap.wrapT = THREE.RepeatWrapping;
+	normalMap.flipY = false; 
   const modelRef = useRef();
 
   useEffect(() => {
@@ -16,10 +22,13 @@ const TshirtModel = ({ color, texture }) => {
 
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
+          child.castShadow = true;
+			    // child.receiveShadow = true;
           console.log('Applying texture to mesh:', child);
           const material = new THREE.MeshStandardMaterial({
             side: THREE.DoubleSide,
             map: texture,
+            normalMap: normalMap,
             roughness: 1,
             metalness: 0.2,
           });
@@ -28,7 +37,7 @@ const TshirtModel = ({ color, texture }) => {
         }
       });
     }
-  }, [gltf, texture]);
+  }, [gltf, texture, normalMap]);
 
   useEffect(() => {
     if (texture) {

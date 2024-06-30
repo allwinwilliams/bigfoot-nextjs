@@ -15,7 +15,7 @@ const P5Sketch = ({ canvasRef, onP5Update, songData }) => {
           const canvas = p.createCanvas(1500, 2000);
           canvas.id('p5-canvas');
           canvasRef.current = canvas.canvas;
-          p.noLoop(); // Stop the draw loop
+          p.noLoop();
           onP5Update();
         };
 
@@ -52,7 +52,7 @@ const P5Sketch = ({ canvasRef, onP5Update, songData }) => {
   useEffect(() => {
     if (sketchRef.current && songData) {
       console.log('Redrawing p5 sketch with new song data');
-      sketchRef.current.redraw(); // Redraw the sketch when song data changes
+      sketchRef.current.redraw();
       onP5Update();
     }
   }, [songData, onP5Update]);
