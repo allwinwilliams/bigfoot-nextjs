@@ -16,6 +16,7 @@ const ThreeScene = ({ color }) => {
   const canvasRef = useRef();
 
   const createCombinedTexture = useCallback(() => {
+    console.log('Creating combined texture');
     const combinedCanvas = document.createElement('canvas');
     const ctx = combinedCanvas.getContext('2d');
     combinedCanvas.width = 4096;
@@ -32,7 +33,7 @@ const ThreeScene = ({ color }) => {
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
 
     if (canvasRef.current) {
-      ctx.drawImage(canvasRef.current, 302.5, 1220, 709.5, 1163);
+      ctx.drawImage(canvasRef.current, 60, 2000, 1500, 2000);
     }
 
     const texture = new THREE.CanvasTexture(combinedCanvas);
@@ -42,12 +43,14 @@ const ThreeScene = ({ color }) => {
 
   useEffect(() => {
     if (canvasRef.current) {
+      console.log('Canvas ref is set, creating texture');
       const texture = createCombinedTexture();
       setTexture(texture);
     }
   }, [canvasRef, color, createCombinedTexture]);
 
   const handleP5Update = useCallback(() => {
+    console.log('p5 sketch updated');
     const texture = createCombinedTexture();
     setTexture(texture);
   }, [createCombinedTexture]);

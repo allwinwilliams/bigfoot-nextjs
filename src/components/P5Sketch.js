@@ -11,7 +11,8 @@ const P5Sketch = ({ canvasRef, onP5Update }) => {
     if (typeof window !== 'undefined') {
       const sketch = (p) => {
         p.setup = () => {
-          const canvas = p.createCanvas(512, 512);
+          console.log('Setting up p5 sketch');
+          const canvas = p.createCanvas(1500, 2000);
           canvas.id('p5-canvas');
           canvasRef.current = canvas.canvas;
           onP5Update();
@@ -28,10 +29,12 @@ const P5Sketch = ({ canvasRef, onP5Update }) => {
         };
       };
 
+      console.log('Creating p5 instance');
       sketchRef.current = new p5(sketch);
 
       return () => {
         if (sketchRef.current) {
+          console.log('Removing p5 sketch');
           sketchRef.current.remove();
         }
       };
