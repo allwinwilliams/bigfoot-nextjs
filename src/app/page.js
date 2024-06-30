@@ -7,10 +7,10 @@ export default function HomePage() {
   return (
     <Container maxWidth="md" sx={{ textAlign: 'center', mt: 8 }}>
       <Typography variant="h2" gutterBottom>
-        Welcome to My Next.js App
+        Bigfoot
       </Typography>
       <Typography variant="body1" gutterBottom>
-        This is the index page.
+        Conceptual Luxury Casuals
       </Typography>
       <Box mt={4}>
         <Button variant="contained" color="primary" component={Link} href="/product">

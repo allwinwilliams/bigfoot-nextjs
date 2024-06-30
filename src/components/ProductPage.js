@@ -7,8 +7,9 @@ import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid,
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { db, storage } from '../utils/firebaseConfig'; // Import the Firebase config
-import { collection, addDoc } from 'firebase/firestore'; // Import Firestore functions
+import { fetchSongData } from '../utils/spotifyUtils'; // Import the utility function
+import { db, storage } from '../utils/firebaseConfig'; // Ensure these are correctly imported
+import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 const ProductPage = () => {
@@ -23,10 +24,12 @@ const ProductPage = () => {
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
   const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type1');
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [analysisData, setAnalysisData] = useState(null);
+  const [featuresData, setFeaturesData] = useState(null);
 
   useEffect(() => {
     if (songId) {
-      fetchSongData(songId);
+      fetchAllSongData(songId);
     }
   }, [songId]);
 
@@ -38,6 +41,7 @@ const ProductPage = () => {
       style: 'type1',
     };
 
+    // Check if the URL params are set, if not, update the URL
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
       router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
     }
@@ -53,14 +57,11 @@ const ProductPage = () => {
     setSearchResults(data.tracks.items);
   };
 
-  const fetchSongData = async (id) => {
-    const response = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
-    const data = await response.json();
-    changeSongData(data);
+  const fetchAllSongData = async (id) => {
+    const { trackData, analysisData, featuresData } = await fetchSongData(id, accessToken);
+    changeSongData(trackData);
+    setAnalysisData(analysisData);
+    setFeaturesData(featuresData);
   };
 
   const handleSearchChange = (e) => {
@@ -75,7 +76,7 @@ const ProductPage = () => {
   const handleSelectSong = (song) => {
     setSongId(song.id);
     changeSongId(song.id);
-    fetchSongData(song.id);
+    fetchAllSongData(song.id);
     setSearchResults([]);
     setInputValue(song.name);
     router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
@@ -106,15 +107,17 @@ const ProductPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-  
+
+      // Create a storage reference
       const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
-      
+
       // Upload the canvas image as a base64 string
       await uploadString(storageRef, canvasDataUrl, 'data_url');
+
+      // Get the download URL of the uploaded image
       const imageUrl = await getDownloadURL(storageRef);
-      
-      const timestamp = new Date().toISOString();
-  
+
+      // Prepare the data to store in Firestore
       const dataToStore = {
         color,
         size,
@@ -122,9 +125,10 @@ const ProductPage = () => {
         songName: songData?.name || '',
         style: sketchType,
         imageUrl,
-        timestamp,
+        timestamp: new Date().toISOString(),
       };
-  
+
+      // Add the data to Firestore
       await addDoc(collection(db, 'orders'), dataToStore);
       alert('Order placed successfully!');
     } catch (error) {
@@ -132,7 +136,7 @@ const ProductPage = () => {
       alert('Failed to place order: ' + error.message);
     }
   };
-  
+
   return (
     <Box sx={{ padding: 3 }}>
       <Typography variant="h4" gutterBottom>
@@ -140,7 +144,7 @@ const ProductPage = () => {
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <ThreeScene color={color} songData={songData} sketchType={sketchType} />
+          <ThreeScene color={color} songData={songData} sketchType={sketchType} analysisData={analysisData} featuresData={featuresData} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>

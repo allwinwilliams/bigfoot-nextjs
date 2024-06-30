@@ -14,7 +14,7 @@ extend({ ShadowMaterial: THREE.ShadowMaterial });
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color, songData, sketchType }) => {
+const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData }) => {
   const [texture, setTexture] = useState(null);
   const canvasRef = useRef();
 
@@ -94,7 +94,14 @@ const ThreeScene = ({ color, songData, sketchType }) => {
         {/* <GroundPlane /> */}
         <OrbitControls />
       </Canvas>
-      <P5Sketch canvasRef={canvasRef} onP5Update={handleP5Update} songData={songData} sketchType={sketchType} />
+      <P5Sketch
+        canvasRef={canvasRef}
+        onP5Update={handleP5Update}
+        songData={songData}
+        analysisData={analysisData}
+        featuresData={featuresData}
+        sketchType={sketchType}
+      />
     </div>
   );
 };
