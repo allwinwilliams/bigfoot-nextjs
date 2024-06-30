@@ -1,9 +1,10 @@
+// src/components/ProductPage.js
 "use client";
 
-import React, { useContext, useState, useCallback } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useContext, useState } from 'react';
 import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
+import ThreeScene from './ThreeScene';
 
 const ProductPage = () => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
@@ -11,7 +12,6 @@ const ProductPage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedColor, setSelectedColor] = useState('black');
   const [selectedSize, setSelectedSize] = useState('M');
-  const [p5UpdateTrigger, setP5UpdateTrigger] = useState(0);
 
   const searchTracks = async (query) => {
     const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
@@ -47,21 +47,15 @@ const ProductPage = () => {
     fetchSongData(song.id);
     setSearchResults([]);
     setInputValue(song.name);
-    setP5UpdateTrigger((prev) => prev + 1); // Trigger p5 update
   };
 
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
-    setP5UpdateTrigger((prev) => prev + 1); // Trigger p5 update
   };
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
   };
-
-  const handleP5Update = useCallback(() => {
-    setP5UpdateTrigger((prev) => prev + 1);
-  }, []);
 
   return (
     <Box sx={{ padding: 3 }}>
@@ -69,7 +63,9 @@ const ProductPage = () => {
         Customize Your T-Shirt
       </Typography>
       <Grid container spacing={4}>
-        
+        <Grid item xs={12} md={6}>
+          <ThreeScene color={selectedColor} />
+        </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>
             Product Title
