@@ -14,22 +14,7 @@ extend({ ShadowMaterial: THREE.ShadowMaterial });
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-// function GroundPlane() {
-//   const meshRef = useRef();
-//   return (
-//     <mesh
-//       ref={meshRef}
-//       rotation={[-Math.PI / 2, 0, 0]}
-//       position={[0, -2, 0]}
-//       receiveShadow={true}
-//     >
-//       <planeGeometry args={[200, 200]} />
-//       <shadowMaterial attach="material" opacity={0.5} />
-//     </mesh>
-//   );
-// }
-
-const ThreeScene = ({ color, songData }) => {
+const ThreeScene = ({ color, songData, sketchType }) => {
   const [texture, setTexture] = useState(null);
   const canvasRef = useRef();
 
@@ -109,7 +94,7 @@ const ThreeScene = ({ color, songData }) => {
         {/* <GroundPlane /> */}
         <OrbitControls />
       </Canvas>
-      <P5Sketch canvasRef={canvasRef} onP5Update={handleP5Update} songData={songData} />
+      <P5Sketch canvasRef={canvasRef} onP5Update={handleP5Update} songData={songData} sketchType={sketchType} />
     </div>
   );
 };

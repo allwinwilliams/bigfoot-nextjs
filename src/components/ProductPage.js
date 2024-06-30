@@ -1,10 +1,12 @@
+// src/components/ProductPage.js
 "use client";
 
-import React, { useContext, useState, useEffect, useCallback, Suspense } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, RadioGroup, FormControlLabel, Radio, Tooltip } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const ProductPage = () => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
@@ -16,6 +18,7 @@ const ProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
+  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type1');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   useEffect(() => {
@@ -29,13 +32,14 @@ const ProductPage = () => {
       color: 'black',
       size: 'M',
       songId: '44JnQ7TIl4ieCbCQiEPQag',
+      style: 'type1',
     };
 
     // Check if the URL params are set, if not, update the URL
-    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId')) {
-      router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}`);
+    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
+      router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
     }
-  }, [searchParams, color, size, songId, router]);
+  }, [searchParams, color, size, songId, sketchType, router]);
 
   const searchTracks = async (query) => {
     const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
@@ -72,17 +76,22 @@ const ProductPage = () => {
     fetchSongData(song.id);
     setSearchResults([]);
     setInputValue(song.name);
-    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}`);
+    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
   };
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    router.push(`/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}`);
+    router.push(`/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}&style=${sketchType}`);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    router.push(`/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}`);
+    router.push(`/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}&style=${sketchType}`);
+  };
+
+  const handleSketchTypeChange = (event) => {
+    setSketchType(event.target.value);
+    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`);
   };
 
   const handleShare = () => {
@@ -98,7 +107,7 @@ const ProductPage = () => {
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <ThreeScene color={color} songData={songData} />
+          <ThreeScene color={color} songData={songData} sketchType={sketchType} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>
@@ -125,6 +134,14 @@ const ProductPage = () => {
             <FormControlLabel value="M" control={<Radio />} label="M" />
             <FormControlLabel value="L" control={<Radio />} label="L" />
             <FormControlLabel value="XL" control={<Radio />} label="XL" />
+          </RadioGroup>
+          <Typography variant="h5" gutterBottom>
+            Select Sketch Style
+          </Typography>
+          <RadioGroup value={sketchType} onChange={handleSketchTypeChange}>
+            <FormControlLabel value="type1" control={<Radio />} label="Style 1" />
+            <FormControlLabel value="type2" control={<Radio />} label="Style 2" />
+            <FormControlLabel value="type3" control={<Radio />} label="Style 3" />
           </RadioGroup>
           <Typography variant="h5" gutterBottom>
             Search for a Spotify Song

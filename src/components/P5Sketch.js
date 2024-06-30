@@ -3,39 +3,27 @@
 
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
+import { sketchType1, sketchType2, sketchType3 } from '../utils/sketchFunctions';
 
-const P5Sketch = ({ canvasRef, onP5Update, songData }) => {
+const P5Sketch = ({ canvasRef, onP5Update, songData, sketchType = 'type1' }) => {
   const sketchRef = useRef();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const sketch = (p) => {
-        p.setup = () => {
-          console.log('Setting up p5 sketch');
-          const canvas = p.createCanvas(1500, 2000);
-          canvas.id('p5-canvas');
-          canvasRef.current = canvas.canvas;
-          p.noLoop();
-          onP5Update();
-        };
+      let sketch;
 
-        p.draw = () => {
-          p.background(255);
-          p.fill(0);
-          p.textSize(32);
-          if (songData) {
-            const { name, artists } = songData;
-            const artistNames = artists.map(artist => artist.name).join(', ');
-            p.text(`Song: ${name}`, 10, 50);
-            p.text(`Artist: ${artistNames}`, 10, 100);
-          } else {
-            p.text('Hello, p5.js!', 10, 30);
-          }
-
-          p.fill(255, 0, 0);
-          p.ellipse(p.width / 2, p.height / 2, 50, 50);
-        };
-      };
+      switch (sketchType) {
+        case 'type2':
+          sketch = (p) => sketchType2(p, canvasRef, onP5Update, songData);
+          break;
+        case 'type3':
+          sketch = (p) => sketchType3(p, canvasRef, onP5Update, songData);
+          break;
+        case 'type1':
+        default:
+          sketch = (p) => sketchType1(p, canvasRef, onP5Update, songData);
+          break;
+      }
 
       console.log('Creating p5 instance');
       sketchRef.current = new p5(sketch);
@@ -47,7 +35,7 @@ const P5Sketch = ({ canvasRef, onP5Update, songData }) => {
         }
       };
     }
-  }, [canvasRef, onP5Update, songData]);
+  }, [canvasRef, onP5Update, songData, sketchType]);
 
   useEffect(() => {
     if (sketchRef.current && songData) {
