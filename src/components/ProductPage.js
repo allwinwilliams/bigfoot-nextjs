@@ -106,17 +106,15 @@ const ProductPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-
-      // Create a storage reference
+  
       const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
       
       // Upload the canvas image as a base64 string
       await uploadString(storageRef, canvasDataUrl, 'data_url');
-      
-      // Get the download URL of the uploaded image
       const imageUrl = await getDownloadURL(storageRef);
-
-      // Prepare the data to store in Firestore
+      
+      const timestamp = new Date().toISOString();
+  
       const dataToStore = {
         color,
         size,
@@ -124,9 +122,9 @@ const ProductPage = () => {
         songName: songData?.name || '',
         style: sketchType,
         imageUrl,
+        timestamp,
       };
-
-      // Add the data to Firestore
+  
       await addDoc(collection(db, 'orders'), dataToStore);
       alert('Order placed successfully!');
     } catch (error) {
@@ -134,6 +132,7 @@ const ProductPage = () => {
       alert('Failed to place order: ' + error.message);
     }
   };
+  
   return (
     <Box sx={{ padding: 3 }}>
       <Typography variant="h4" gutterBottom>
