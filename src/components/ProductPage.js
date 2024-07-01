@@ -7,7 +7,7 @@ import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid,
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { fetchSongData } from '../utils/spotifyUtils'; // Import the utility function
+import { fetchAllSongData } from '../utils/spotifyUtils'; // Import the utility function
 import { db, storage } from '../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
@@ -30,7 +30,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchAllData = async () => {
       if (songId && accessToken) {
-        const { trackData, analysisData, featuresData } = await fetchSongData(songId, accessToken);
+        const { trackData, analysisData, featuresData } = await fetchAllSongData(songId, accessToken);
         changeSongData(trackData);
         setAnalysisData(analysisData);
         setFeaturesData(featuresData);

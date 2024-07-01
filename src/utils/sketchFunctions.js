@@ -37,7 +37,9 @@ export const sketchType2 = (p, canvasRef, onP5Update, songData, analysisData, fe
     const drawingHeight = 800;
     const canvasWidth = 1500;
     const canvasHeight = 1400;
-  
+    console.log("songData", songData);
+    console.log("analysisData", analysisData);
+    console.log("featuresData", featuresData);
     p.setup = () => {
       console.log('Setting up p5 sketch type 2');
       const canvas = p.createCanvas(canvasWidth, canvasHeight);

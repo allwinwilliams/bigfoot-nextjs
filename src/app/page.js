@@ -17,6 +17,20 @@ export default function HomePage() {
           Go to Product Page
         </Button>
       </Box>
+      <Box mt={4}>
+        <Button variant="outlined" color="primary" component={Link} href="/static-pages/privacypolicy">
+          Privacy Policy
+        </Button>
+        <Button variant="outlined" color="primary" component={Link} href="/static-pages/returnspolicy">
+          Returns Policy
+        </Button>
+        <Button variant="outlined" color="primary" component={Link} href="/static-pages/shippingdetails">
+          Shipping Details
+        </Button>
+        <Button variant="outlined" color="primary" component={Link} href="/static-pages/termsandconditions">
+          Terms And Conditions
+        </Button>
+      </Box>
     </Container>
   );
 }

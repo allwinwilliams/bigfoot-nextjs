@@ -1,6 +1,6 @@
 // src/utils/spotifyUtils.js
 
-export const fetchSongData = async (id, accessToken) => {
+export const fetchAllSongData = async (id, accessToken) => {
   const requestOptions = {
     method: 'GET',
     headers: { 'Authorization': `Bearer ${accessToken}` },
