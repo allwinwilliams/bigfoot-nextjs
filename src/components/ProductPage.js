@@ -28,10 +28,17 @@ const ProductPage = () => {
   const [featuresData, setFeaturesData] = useState(null);
 
   useEffect(() => {
-    if (songId) {
-      fetchAllSongData(songId);
-    }
-  }, [songId]);
+    const fetchAllData = async () => {
+      if (songId && accessToken) {
+        const { trackData, analysisData, featuresData } = await fetchSongData(songId, accessToken);
+        changeSongData(trackData);
+        setAnalysisData(analysisData);
+        setFeaturesData(featuresData);
+      }
+    };
+
+    fetchAllData();
+  }, [songId, accessToken]);
 
   useEffect(() => {
     const defaultParams = {
@@ -55,13 +62,6 @@ const ProductPage = () => {
     });
     const data = await response.json();
     setSearchResults(data.tracks.items);
-  };
-
-  const fetchAllSongData = async (id) => {
-    const { trackData, analysisData, featuresData } = await fetchSongData(id, accessToken);
-    changeSongData(trackData);
-    setAnalysisData(analysisData);
-    setFeaturesData(featuresData);
   };
 
   const handleSearchChange = (e) => {

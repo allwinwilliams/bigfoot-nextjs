@@ -56,7 +56,6 @@ export const sketchType2 = (p, canvasRef, onP5Update, songData, analysisData, fe
       const rowHeight = drawingHeight / 12;
       const hue = p.map(featuresData.valence, 0, 1, 0, 360); // Hue based on valence
   
-      // Initialize an array to accumulate pitch values
       const pitchSums = Array(12).fill(0);
   
       analysisData.sections.forEach((section, i) => {
