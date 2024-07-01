@@ -22,7 +22,7 @@ const ProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
-  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type1');
+  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type2');
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [analysisData, setAnalysisData] = useState(null);
   const [featuresData, setFeaturesData] = useState(null);
@@ -45,7 +45,7 @@ const ProductPage = () => {
       color: 'black',
       size: 'M',
       songId: '44JnQ7TIl4ieCbCQiEPQag',
-      style: 'type1',
+      style: 'type2',
     };
 
     // Check if the URL params are set, if not, update the URL
@@ -175,11 +175,11 @@ const ProductPage = () => {
           <Typography variant="h5" gutterBottom>
             Select Sketch Style
           </Typography>
-          <RadioGroup value={sketchType} onChange={handleSketchTypeChange}>
-            <FormControlLabel value="type1" control={<Radio />} label="Style 1" />
+          {/* <RadioGroup value={sketchType} onChange={handleSketchTypeChange}>
+            <FormControlLabel value="type2" control={<Radio />} label="Style 1" />
             <FormControlLabel value="type2" control={<Radio />} label="Style 2" />
             <FormControlLabel value="type3" control={<Radio />} label="Style 3" />
-          </RadioGroup>
+          </RadioGroup> */}
           <Typography variant="h5" gutterBottom>
             Search for a Spotify Song
           </Typography>
