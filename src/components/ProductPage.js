@@ -131,100 +131,8 @@ const ProductPage = () => {
       // Add the data to Firestore
       await addDoc(collection(db, 'orders'), dataToStore);
 
-      // Initialize the Shopify Buy Button
-      const scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-      
-      const loadScript = (url, callback) => {
-        const script = document.createElement('script');
-        script.src = url;
-        script.async = true;
-        script.onload = callback;
-        document.head.appendChild(script);
-      };
-
-      const ShopifyBuyInit = () => {
-        const client = ShopifyBuy.buildClient({
-          domain: 'b5a634-d3.myshopify.com',
-          storefrontAccessToken: 'f1cc2cc2e680f74e9706d0353d4a9105',
-        });
-        ShopifyBuy.UI.onReady(client).then((ui) => {
-          ui.createComponent('product', {
-            id: '8785976164608',
-            node: document.getElementById('shopify-buy-now'),
-            moneyFormat: 'Rs.%20%7B%7Bamount%7D%7D',
-            options: {
-              "product": {
-                "styles": {
-                  "product": {
-                    "@media (min-width: 601px)": {
-                      "max-width": "calc(25% - 20px)",
-                      "margin-left": "20px",
-                      "margin-bottom": "50px"
-                    }
-                  }
-                },
-                "buttonDestination": "checkout",
-                "contents": {
-                  "img": false,
-                  "title": false,
-                  "price": false
-                },
-                "text": {
-                  "button": "Buy now"
-                }
-              },
-              "productSet": {
-                "styles": {
-                  "products": {
-                    "@media (min-width: 601px)": {
-                      "margin-left": "-20px"
-                    }
-                  }
-                }
-              },
-              "modalProduct": {
-                "contents": {
-                  "img": false,
-                  "imgWithCarousel": true,
-                  "button": false,
-                  "buttonWithQuantity": true
-                },
-                "styles": {
-                  "product": {
-                    "@media (min-width: 601px)": {
-                      "max-width": "100%",
-                      "margin-left": "0px",
-                      "margin-bottom": "0px"
-                    }
-                  }
-                },
-                "text": {
-                  "button": "Add to cart"
-                }
-              },
-              "option": {},
-              "cart": {
-                "text": {
-                  "total": "Subtotal",
-                  "button": "Checkout"
-                },
-                "popup": false
-              },
-              "toggle": {}
-            },
-          });
-        });
-      };
-
-      if (window.ShopifyBuy) {
-        if (window.ShopifyBuy.UI) {
-          ShopifyBuyInit();
-        } else {
-          loadScript(scriptURL, ShopifyBuyInit);
-        }
-      } else {
-        loadScript(scriptURL, ShopifyBuyInit);
-      }
+      // Redirect to Shopify checkout link
+      window.location.href = 'https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button';
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Failed to place order: ' + error.message);
@@ -304,7 +212,6 @@ const ProductPage = () => {
           <Button variant="contained" color="primary" fullWidth size="large" sx={{ mb: 2 }} onClick={handleBuyNow}>
             Buy Now
           </Button>
-          <div id="shopify-buy-now" style={{ display: 'none' }}></div>
           <Tooltip title="URL copied" open={tooltipOpen} arrow>
             <Button variant="outlined" color="secondary" fullWidth size="large" onClick={handleShare}>
               Share Now
