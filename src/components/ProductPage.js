@@ -146,11 +146,13 @@ const ProductPage = () => {
   };
 
   return (
-    <Box sx={{ padding: 3 }}>
-      <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-        Bigfoot Clothing
-      </Typography>
-      <Grid container spacing={4}>
+    <Box sx={{ padding: 5 }}>
+      <Box sx={{paddingY: 4}}>
+        <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+          Song Data Generated Art T-shirt - Oversized Fit
+        </Typography>
+      </Box>
+      <Grid container spacing={8}>
         <Grid item xs={12} md={6}>
           <ThreeScene
             color={color}
@@ -161,128 +163,139 @@ const ProductPage = () => {
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-          Song Data Generated Art T-shirt - Oversized Fit
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
-          </Typography>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              Price
+          <Box
+            sx={{
+              backgroundColor: '#f5f5f5',
+              borderRadius: '16px',
+              padding: 4,
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+              Customise your tshirt
             </Typography>
-            <Typography variant="h4" component="div" sx={{ fontWeight: 'bold' }}>
-              ₹3,299
-              <Typography
-                variant="body1"
-                component="span"
-                sx={{ textDecoration: 'line-through', fontSize: '1rem', marginLeft: '8px', verticalAlign: 'middle' }}
-              >
-                ₹4,199
-              </Typography>
+            <Typography variant="body1" gutterBottom>
+              This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
             </Typography>
-          </Box>
-          <Typography variant="h5" gutterBottom>
-            Select Color
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-            {['black', 'beige'].map((option) => (
-              <Chip
-                key={option}
-                label={option}
-                clickable
-                color={color === option ? 'primary' : 'default'}
-                variant={color === option ? 'filled' : 'outlined'}
-                onClick={() => handleColorChange({ target: { value: option } })}
-                sx={{
-                  padding: '24px 24px',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  width: '120px',
-                  borderRadius: '9999px',
-                }}
-              />
-            ))}
-          </Box>
-          <Typography variant="h5" gutterBottom>
-            Select Size
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-            {['S', 'M', 'L', 'XL'].map((option) => (
-              <Chip
-                key={option}
-                label={option}
-                clickable
-                color={size === option ? 'primary' : 'default'}
-                variant={size === option ? 'filled' : 'outlined'}
-                onClick={() => handleSizeChange({ target: { value: option } })}
-                sx={{
-                  padding: '24px 24px',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  width: '120px',
-                  borderRadius: '9999px',
-                }}
-              />
-            ))}
-          </Box>
-          <Typography variant="h5" gutterBottom>
-            Select Sketch Style
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-            {['type1', 'type2', 'type3'].map((option) => (
-              <Chip
-                key={option}
-                label={option}
-                clickable
-                color={sketchType === option ? 'primary' : 'default'}
-                variant={sketchType === option ? 'filled' : 'outlined'}
-                onClick={() => handleSketchTypeChange({ target: { value: option } })}
-                sx={{
-                  padding: '24px 24px',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  width: '120px',
-                  borderRadius: '9999px',
-                }}
-              />
-            ))}
-          </Box>
-          <Typography variant="h5" gutterBottom>
-            Search for a Spotify Song
-          </Typography>
-          <TextField
-            label="Search for a Song"
-            variant="outlined"
-            value={inputValue}
-            onChange={handleSearchChange}
-            fullWidth
-            sx={{ mb: 2 }}
-          />
-          {searchResults.length > 0 && (
-            <List sx={{ maxHeight: 200, overflow: 'auto', mb: 2 }}>
-              {searchResults.map((song) => (
-                <ListItem button key={song.id} onClick={() => handleSelectSong(song)}>
-                  <ListItemText primary={song.name} secondary={song.artists.map(artist => artist.name).join(', ')} />
-                </ListItem>
-              ))}
-            </List>
-          )}
-          {songData && (
             <Box sx={{ mb: 2 }}>
-              <Typography variant="h6">Selected Song:</Typography>
-              <Typography variant="subtitle1">Name: {songData.name}</Typography>
-              <Typography variant="subtitle1">Artist: {songData.artists.map(artist => artist.name).join(', ')}</Typography>
+              <Typography variant="h6" gutterBottom>
+                Price
+              </Typography>
+              <Typography variant="h4" component="div" sx={{ fontWeight: 'bold' }}>
+                ₹3,299
+                <Typography
+                  variant="body1"
+                  component="span"
+                  sx={{ textDecoration: 'line-through', fontSize: '1rem', marginLeft: '8px', verticalAlign: 'middle' }}
+                >
+                  ₹4,199
+                </Typography>
+              </Typography>
             </Box>
-          )}
-          <Button variant="contained" color="primary" fullWidth size="large" sx={{ mb: 2 }} onClick={handleBuyNow}>
-            Buy Now
-          </Button>
-          <Tooltip title="URL copied" open={tooltipOpen} arrow>
-            <Button variant="outlined" color="secondary" fullWidth size="large" onClick={handleShare}>
-              Share Now
+          
+            <Typography variant="h6" gutterBottom>
+              Search for a Spotify Song
+            </Typography>
+            <TextField
+              label="Search for a Song"
+              variant="outlined"
+              value={inputValue}
+              onChange={handleSearchChange}
+              fullWidth
+              sx={{ mb: 2 }}
+            />
+            {searchResults.length > 0 && (
+              <List sx={{ maxHeight: 200, overflow: 'auto', mb: 2 }}>
+                {searchResults.map((song) => (
+                  <ListItem button key={song.id} onClick={() => handleSelectSong(song)}>
+                    <ListItemText primary={song.name} secondary={song.artists.map(artist => artist.name).join(', ')} />
+                  </ListItem>
+                ))}
+              </List>
+            )}
+            {songData && (
+              <Box sx={{ mb: 2 }}>
+                <Typography variant="h6">Selected Song:</Typography>
+                <Typography variant="subtitle1">Name: {songData.name}</Typography>
+                <Typography variant="subtitle1">Artist: {songData.artists.map(artist => artist.name).join(', ')}</Typography>
+              </Box>
+            )}
+            
+            <Typography variant="h6" gutterBottom>
+              Select Color
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              {['black', 'beige'].map((option) => (
+                <Chip
+                  key={option}
+                  label={option}
+                  clickable
+                  color={color === option ? 'primary' : 'default'}
+                  variant={color === option ? 'filled' : 'outlined'}
+                  onClick={() => handleColorChange({ target: { value: option } })}
+                  sx={{
+                    padding: '24px 24px',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    width: '120px',
+                    borderRadius: '9999px',
+                  }}
+                />
+              ))}
+            </Box>
+            <Typography variant="h6" gutterBottom>
+              Select Size
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              {['S', 'M', 'L', 'XL'].map((option) => (
+                <Chip
+                  key={option}
+                  label={option}
+                  clickable
+                  color={size === option ? 'primary' : 'default'}
+                  variant={size === option ? 'filled' : 'outlined'}
+                  onClick={() => handleSizeChange({ target: { value: option } })}
+                  sx={{
+                    padding: '24px 24px',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    width: '120px',
+                    borderRadius: '9999px',
+                  }}
+                />
+              ))}
+            </Box>
+            {/* <Typography variant="h6" gutterBottom>
+              Select Sketch Style
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              {['type1', 'type2', 'type3'].map((option) => (
+                <Chip
+                  key={option}
+                  label={option}
+                  clickable
+                  color={sketchType === option ? 'primary' : 'default'}
+                  variant={sketchType === option ? 'filled' : 'outlined'}
+                  onClick={() => handleSketchTypeChange({ target: { value: option } })}
+                  sx={{
+                    padding: '24px 24px',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    width: '120px',
+                    borderRadius: '9999px',
+                  }}
+                />
+              ))}
+            </Box> */}
+            <Button variant="contained" color="primary" fullWidth size="large" sx={{ mb: 2 }} onClick={handleBuyNow}>
+              Buy Now
             </Button>
-          </Tooltip>
+            <Tooltip title="URL copied" open={tooltipOpen} arrow>
+              <Button variant="outlined" color="secondary" fullWidth size="large" onClick={handleShare}>
+                Share Now
+              </Button>
+            </Tooltip>
+          </Box>
         </Grid>
       </Grid>
     </Box>

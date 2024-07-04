@@ -1,4 +1,3 @@
-// src/components/ThreeScene.js
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
@@ -84,7 +83,7 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
     <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 5, 15], fov: 60 }}
+        camera={{ position: [0, 5, 18], fov: 60 }}
         style={{ height: '100%', width: '100%' }}
       >
         <ambientLight intensity={1.6} color="#ffffff" />
@@ -128,9 +127,12 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
         .three-scene-container {
           height: 100%;
           width: 100%;
+          border-radius: 16px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
           .three-scene-container {
             min-height: 500px;
             height: 60vh; /* Adjust as needed for more height */
