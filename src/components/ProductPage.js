@@ -107,16 +107,16 @@ const ProductPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-
+  
       // Create a storage reference
       const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
-
+  
       // Upload the canvas image as a base64 string
       await uploadString(storageRef, canvasDataUrl, 'data_url');
-
+  
       // Get the download URL of the uploaded image
       const imageUrl = await getDownloadURL(storageRef);
-
+  
       // Prepare the data to store in Firestore
       const dataToStore = {
         color,
@@ -127,12 +127,13 @@ const ProductPage = () => {
         imageUrl,
         timestamp: new Date().toISOString(),
       };
-
-      // Add the data to Firestore
-      await addDoc(collection(db, 'orders'), dataToStore);
-
-      // Redirect to Shopify checkout link
-      window.location.href = 'https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button';
+  
+      // Add the data to Firestore and get the document ID
+      const docRef = await addDoc(collection(db, 'orders'), dataToStore);
+      const docId = docRef.id;
+  
+      // Redirect to Shopify checkout link with the note parameter
+      window.location.href = `https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button&note=${docId}`;
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Failed to place order: ' + error.message);
