@@ -3,7 +3,12 @@
 
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, RadioGroup, FormControlLabel, Radio, Tooltip } from '@mui/material';
+import 
+  { Box, TextField, Button, Typography,
+    List, ListItem, ListItemText, Grid,
+    RadioGroup, FormControlLabel, Radio,
+    Tooltip, Chip }
+  from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -142,47 +147,107 @@ const ProductPage = () => {
 
   return (
     <Box sx={{ padding: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        Customize Your T-Shirt
+      <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+        Bigfoot Clothing
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <ThreeScene color={color} songData={songData} sketchType={sketchType} analysisData={analysisData} featuresData={featuresData} />
+          <ThreeScene
+            color={color}
+            songData={songData}
+            sketchType={sketchType}
+            analysisData={analysisData}
+            featuresData={featuresData}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h5" gutterBottom>
-            Product Title
+          <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+          Song Data Generated Art T-shirt - Oversized Fit
           </Typography>
           <Typography variant="body1" gutterBottom>
             This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
           </Typography>
-          <Typography variant="h6" gutterBottom>
-            Price: ₹999
-          </Typography>
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              Price
+            </Typography>
+            <Typography variant="h4" component="div" sx={{ fontWeight: 'bold' }}>
+              ₹3,299
+              <Typography
+                variant="body1"
+                component="span"
+                sx={{ textDecoration: 'line-through', fontSize: '1rem', marginLeft: '8px', verticalAlign: 'middle' }}
+              >
+                ₹4,199
+              </Typography>
+            </Typography>
+          </Box>
           <Typography variant="h5" gutterBottom>
             Select Color
           </Typography>
-          <RadioGroup value={color} onChange={handleColorChange}>
-            <FormControlLabel value="black" control={<Radio />} label="Black" />
-            <FormControlLabel value="beige" control={<Radio />} label="Beige" />
-          </RadioGroup>
+          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+            {['black', 'beige'].map((option) => (
+              <Chip
+                key={option}
+                label={option}
+                clickable
+                color={color === option ? 'primary' : 'default'}
+                variant={color === option ? 'filled' : 'outlined'}
+                onClick={() => handleColorChange({ target: { value: option } })}
+                sx={{
+                  padding: '24px 24px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  width: '120px',
+                  borderRadius: '9999px',
+                }}
+              />
+            ))}
+          </Box>
           <Typography variant="h5" gutterBottom>
             Select Size
           </Typography>
-          <RadioGroup value={size} onChange={handleSizeChange}>
-            <FormControlLabel value="S" control={<Radio />} label="S" />
-            <FormControlLabel value="M" control={<Radio />} label="M" />
-            <FormControlLabel value="L" control={<Radio />} label="L" />
-            <FormControlLabel value="XL" control={<Radio />} label="XL" />
-          </RadioGroup>
+          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+            {['S', 'M', 'L', 'XL'].map((option) => (
+              <Chip
+                key={option}
+                label={option}
+                clickable
+                color={size === option ? 'primary' : 'default'}
+                variant={size === option ? 'filled' : 'outlined'}
+                onClick={() => handleSizeChange({ target: { value: option } })}
+                sx={{
+                  padding: '24px 24px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  width: '120px',
+                  borderRadius: '9999px',
+                }}
+              />
+            ))}
+          </Box>
           <Typography variant="h5" gutterBottom>
             Select Sketch Style
           </Typography>
-          <RadioGroup value={sketchType} onChange={handleSketchTypeChange}>
-            <FormControlLabel value="type1" control={<Radio />} label="Style 1" />
-            <FormControlLabel value="type2" control={<Radio />} label="Style 2" />
-            <FormControlLabel value="type3" control={<Radio />} label="Style 3" />
-          </RadioGroup>
+          <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+            {['type1', 'type2', 'type3'].map((option) => (
+              <Chip
+                key={option}
+                label={option}
+                clickable
+                color={sketchType === option ? 'primary' : 'default'}
+                variant={sketchType === option ? 'filled' : 'outlined'}
+                onClick={() => handleSketchTypeChange({ target: { value: option } })}
+                sx={{
+                  padding: '24px 24px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  width: '120px',
+                  borderRadius: '9999px',
+                }}
+              />
+            ))}
+          </Box>
           <Typography variant="h5" gutterBottom>
             Search for a Spotify Song
           </Typography>
