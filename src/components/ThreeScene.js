@@ -81,7 +81,7 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
   };
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 5, 15], fov: 60 }}
@@ -124,6 +124,19 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
         featuresData={featuresData}
         sketchType={sketchType}
       />
+      <style jsx>{`
+        .three-scene-container {
+          height: 100%;
+          width: 100%;
+        }
+
+        @media (max-width: 600px) {
+          .three-scene-container {
+            min-height: 500px;
+            height: 60vh; /* Adjust as needed for more height */
+          }
+        }
+      `}</style>
     </div>
   );
 };
