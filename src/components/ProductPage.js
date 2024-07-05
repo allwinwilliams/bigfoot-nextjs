@@ -4,10 +4,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import 
-  { Box, TextField, Button, Typography,
+  { 
+    Box, TextField, Button, Typography,
     List, ListItem, ListItemText, Grid,
     RadioGroup, FormControlLabel, Radio,
-    Tooltip, Chip }
+    Tooltip, Chip, CircularProgress 
+  }
   from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
@@ -21,6 +23,8 @@ const ProductPage = () => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [buyNowLoading, setBuyNowLoading] = useState(false);
 
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -109,20 +113,15 @@ const ProductPage = () => {
   };
 
   const handleBuyNow = async () => {
+    setBuyNowLoading(true);
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-  
-      // Create a storage reference
+      
       const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
-  
-      // Upload the canvas image as a base64 string
       await uploadString(storageRef, canvasDataUrl, 'data_url');
-  
-      // Get the download URL of the uploaded image
       const imageUrl = await getDownloadURL(storageRef);
-  
-      // Prepare the data to store in Firestore
+      
       const dataToStore = {
         color,
         size,
@@ -132,16 +131,16 @@ const ProductPage = () => {
         imageUrl,
         timestamp: new Date().toISOString(),
       };
-  
-      // Add the data to Firestore and get the document ID
+      
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
-  
-      // Redirect to Shopify checkout link with the note parameter
+      
       window.location.href = `https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button&note=${docId}`;
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Failed to place order: ' + error.message);
+    } finally {
+      setBuyNowLoading(false);
     }
   };
 
@@ -226,31 +225,30 @@ const ProductPage = () => {
               )}
               {songData && (
                 <Box
-                sx={{
-                  mb: 2,
-                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
-                  borderRadius: '16px',
-                  backgroundColor: '#fffff',
-                  padding: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <img
-                  src={songData.album.images[0].url}
-                  alt={songData.name}
-                  style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
-                />
-                <Box sx={{ flexGrow: 1 }}>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    {songData.name.length > 32 ? `${songData.name.slice(0, 32)}...` : songData.name}
-                  </Typography>
-                    
-                  <Typography variant="subtitle1">
-                    By {songData.artists.map((artist) => artist.name).join(', ')}
-                  </Typography>
+                  sx={{
+                    mb: 2,
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
+                    borderRadius: '16px',
+                    backgroundColor: '#fffff',
+                    padding: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <img
+                    src={songData.album.images[0].url}
+                    alt={songData.name}
+                    style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
+                  />
+                  <Box sx={{ flexGrow: 1 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
+                      {songData.name}
+                    </Typography>
+                    <Typography variant="subtitle1" sx={{ overflow: 'hidden', color: '#777777', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
+                      By {songData.artists.map((artist) => artist.name).join(', ')}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
               )}
               
               <Typography variant="h6" gutterBottom>
@@ -309,8 +307,9 @@ const ProductPage = () => {
                   borderRadius: '16px'
                 }}
                 onClick={handleBuyNow}
+                disabled={buyNowLoading}
               >
-                Buy Now @ ₹3,299
+                {buyNowLoading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Buy Now @ ₹3,299'}
               </Button>
               <Tooltip title="URL copied" open={tooltipOpen} arrow>
                 <Button
@@ -352,6 +351,54 @@ const ProductPage = () => {
         }}
       >
         <Typography>This is another section</Typography>
+      </Box>
+      <Box
+        marginTop={4}
+        sx={{
+          boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
+          borderRadius: '16px',
+          padding: 3,
+          textAlign: 'center',
+          color: 'white', // Ensure text is visible on gradient
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'linear-gradient(331deg, #00937e, #7500cb)',
+          backgroundSize: '400% 400%',
+          animation: 'GradientAnimation 6s ease infinite',
+        }}
+      >
+        <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
+          Why Choose BigFoot?
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          Well there are so many reason but here are a few
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img
+            src="/song-tshirt/compare.png"
+            alt="Example"
+            style={{ 
+              width: '100%', 
+              maxWidth: '800px', 
+              height: 'auto', 
+              borderRadius: '8px', 
+              marginTop: '16px' 
+            }}
+          />
+        </Box>
+        <style jsx global>{`
+          @keyframes GradientAnimation {
+            0% {
+              background-position: 43% 0%;
+            }
+            50% {
+              background-position: 58% 100%;
+            }
+            100% {
+              background-position: 43% 0%;
+            }
+          }
+        `}</style>
       </Box>
     </Box>
   );
