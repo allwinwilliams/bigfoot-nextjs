@@ -151,6 +151,9 @@ const ProductPage = () => {
         <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
           Song Data Generated Art T-shirt - Oversized Fit
         </Typography>
+        <Typography variant="body1" gutterBottom>
+          This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -173,11 +176,9 @@ const ProductPage = () => {
           <Grid item xs={12} md={6}>
             <Box sx={{ padding: 4 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise your tshirt
+                Customise with Your Song
               </Typography>
-              <Typography variant="body1" gutterBottom>
-                This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
-              </Typography>
+              
 
               {/* <Box sx={{ mb: 2 }}>
                 <Typography variant="h6" gutterBottom>
@@ -195,16 +196,24 @@ const ProductPage = () => {
                 </Typography>
               </Box> */}
             
-              <Typography variant="h6" gutterBottom>
-                Search for a Spotify Song
-              </Typography>
+              {/* <Typography variant="h6" gutterBottom>
+                Search Your Song
+              </Typography> */}
               <TextField
                 label="Search for a Song"
                 variant="outlined"
                 value={inputValue}
                 onChange={handleSearchChange}
                 fullWidth
-                sx={{ mb: 2 }}
+                sx={{ 
+                  mb: 2,
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '16px',
+                  },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderRadius: '16px',
+                  }
+                }}
               />
               {searchResults.length > 0 && (
                 <List sx={{ maxHeight: 200, overflow: 'auto', mb: 2 }}>
@@ -216,15 +225,36 @@ const ProductPage = () => {
                 </List>
               )}
               {songData && (
-                <Box sx={{ mb: 2 }}>
-                  <Typography variant="h6">Selected Song:</Typography>
-                  <Typography variant="subtitle1">Name: {songData.name}</Typography>
-                  <Typography variant="subtitle1">Artist: {songData.artists.map(artist => artist.name).join(', ')}</Typography>
+                <Box
+                sx={{
+                  mb: 2,
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
+                  borderRadius: '16px',
+                  backgroundColor: '#fffff',
+                  padding: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <img
+                  src={songData.album.images[0].url}
+                  alt={songData.name}
+                  style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
+                />
+                <Box sx={{ flexGrow: 1 }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                    {songData.name.length > 32 ? `${songData.name.slice(0, 32)}...` : songData.name}
+                  </Typography>
+                    
+                  <Typography variant="subtitle1">
+                    By {songData.artists.map((artist) => artist.name).join(', ')}
+                  </Typography>
                 </Box>
+              </Box>
               )}
               
               <Typography variant="h6" gutterBottom>
-                Select Color
+                Color
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 {['black', 'beige'].map((option) => (
@@ -246,7 +276,7 @@ const ProductPage = () => {
                 ))}
               </Box>
               <Typography variant="h6" gutterBottom>
-                Select Size
+                Size
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 {['S', 'M', 'L', 'XL'].map((option) => (
