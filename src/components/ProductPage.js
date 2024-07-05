@@ -13,7 +13,13 @@ import
   from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
+
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import BuildIcon from '@mui/icons-material/Build';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import BrushIcon from '@mui/icons-material/Brush';
+
 import { fetchAllSongData } from '../utils/spotifyUtils'; // Import the utility function
 import { db, storage } from '../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
@@ -145,8 +151,15 @@ const ProductPage = () => {
   };
 
   return (
-    <Box sx={{ padding: 5 }}>
-      <Box sx={{ paddingY: 4 }}>
+    <Box
+      sx={{
+        maxWidth: 1400,
+        marginX: 'auto',
+        paddingX: { xs: 2, md: 10 },
+        paddingY: 5,
+      }}
+    >
+      <Box sx={{ paddingY: 4, textAlign: 'center' }}>
         <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
           Song Data Generated Art T-shirt - Oversized Fit
         </Typography>
@@ -173,7 +186,7 @@ const ProductPage = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Box sx={{ padding: 4 }}>
+            <Box sx={{ paddingX: 4, paddingY: 2 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
                 Customise with Your Song
               </Typography>
@@ -332,19 +345,54 @@ const ProductPage = () => {
         </Grid>
       </Box>
       <Box
-        marginTop={4}
+        marginTop={8}
         sx={{
           borderRadius: '16px',
-          backgroundColor: '#eeeeee',
+          backgroundColor: '#fafafa',
           padding: 3,
+          textAlign: 'center',
+          // boxShadow: '0 0 16px rgba(0, 0, 0, 0.08)',
+          bored: '1px solid rgba(0, 0, 0, 0.12)',
         }}
       >
-        <Typography>This is a section</Typography>
+        <Typography variant="h5" 
+          sx={{
+            fontWeight: 'bold',
+            mb: 4,
+        }}>
+          What we offer?
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3}>
+            <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Free Shipping All Over India
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <BuildIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Made to Order
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Premium Quality Fabric
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <BrushIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Customised Designs
+            </Typography>
+          </Grid>
+        </Grid>
       </Box>
       <Box
         marginTop={4}
         sx={{
-          boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
+          // boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
           borderRadius: '16px',
           backgroundColor: '#f3f3f3',
           padding: 3,
@@ -353,7 +401,7 @@ const ProductPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img
             src="/song-tshirt/understand.png"
-            alt="Example"
+            alt="Can I understand the design? Yes, it's all based on data"
             style={{ 
               width: '100%', 
               maxWidth: '800px', 
@@ -374,40 +422,64 @@ const ProductPage = () => {
           color: 'white',
           position: 'relative',
           overflow: 'hidden',
-          background: 'linear-gradient(331deg, #00937e, #7500cb)',
-          backgroundSize: '400% 400%',
-          animation: 'GradientAnimation 6s ease infinite',
+          background: 'linear-gradient(144deg, #00ded2, #7f00ef, #d6007d)',
+          backgroundSize: '300% 300%',
+          animation: 'backgroundMovement 8s ease infinite',
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
           Why BigFoot?
         </Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          Well there are so many reason but here are a few
+          Well there are so many reasons but here are a few
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img
             src="/song-tshirt/compare.png"
             alt="Example"
-            style={{ 
-              width: '100%', 
-              maxWidth: '800px', 
-              height: 'auto', 
-              borderRadius: '8px', 
-              marginTop: '16px' 
+            style={{
+              width: '100%',
+              maxWidth: '800px',
+              height: 'auto',
+              borderRadius: '8px',
+              marginTop: '16px'
             }}
           />
         </Box>
         <style jsx global>{`
-          @keyframes GradientAnimation {
+          @-webkit-keyframes backgroundMovement {
             0% {
-              background-position: 43% 0%;
+              background-position: 48% 0%;
             }
             50% {
-              background-position: 58% 100%;
+              background-position: 53% 100%;
             }
             100% {
-              background-position: 43% 0%;
+              background-position: 48% 0%;
+            }
+          }
+
+          @-moz-keyframes backgroundMovement {
+            0% {
+              background-position: 48% 0%;
+            }
+            50% {
+              background-position: 53% 100%;
+            }
+            100% {
+              background-position: 48% 0%;
+            }
+          }
+
+          @keyframes backgroundMovement {
+            0% {
+              background-position: 48% 0%;
+            }
+            50% {
+              background-position: 53% 100%;
+            }
+            100% {
+              background-position: 48% 0%;
             }
           }
         `}</style>
