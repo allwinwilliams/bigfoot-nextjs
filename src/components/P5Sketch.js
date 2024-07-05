@@ -46,7 +46,11 @@ const P5Sketch = ({ canvasRef, onP5Update, songData, analysisData, featuresData,
   }, [songData, onP5Update, analysisData, featuresData]);
 
   return (
-    <div ref={canvasRef} />
+    <div
+      ref={canvasRef} 
+    >
+    </div>
+    
   );
 };
 

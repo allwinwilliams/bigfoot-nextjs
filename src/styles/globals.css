@@ -13,3 +13,7 @@ body {
     text-wrap: balance;
   }
 }
+
+#p5-canvas{
+  display: none;
+}

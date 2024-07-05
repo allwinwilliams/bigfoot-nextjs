@@ -16,7 +16,7 @@ const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData }) => {
   const [texture, setTexture] = useState(null);
   const canvasRef = useRef();
-
+  
   const createCombinedTexture = useCallback(() => {
     console.log('Creating combined texture');
     const combinedCanvas = document.createElement('canvas');

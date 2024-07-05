@@ -346,11 +346,23 @@ const ProductPage = () => {
         sx={{
           boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
           borderRadius: '16px',
-          backgroundColor: '#fffff',
+          backgroundColor: '#f3f3f3',
           padding: 3,
         }}
       >
-        <Typography>This is another section</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img
+            src="/song-tshirt/understand.png"
+            alt="Example"
+            style={{ 
+              width: '100%', 
+              maxWidth: '800px', 
+              height: 'auto', 
+              borderRadius: '8px', 
+              marginTop: '16px' 
+            }}
+          />
+        </Box>
       </Box>
       <Box
         marginTop={4}
@@ -359,7 +371,7 @@ const ProductPage = () => {
           borderRadius: '16px',
           padding: 3,
           textAlign: 'center',
-          color: 'white', // Ensure text is visible on gradient
+          color: 'white',
           position: 'relative',
           overflow: 'hidden',
           background: 'linear-gradient(331deg, #00937e, #7500cb)',
@@ -368,7 +380,7 @@ const ProductPage = () => {
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
-          Why Choose BigFoot?
+          Why BigFoot?
         </Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>
           Well there are so many reason but here are a few
