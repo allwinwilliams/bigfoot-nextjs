@@ -84,7 +84,7 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 5, 18], fov: 60 }}
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: '100%', width: '100%', background: '#f5f5f5' }}
       >
         <ambientLight intensity={1.6} color="#ffffff" />
         <SoftShadows size={500} focus={64} samples={60} />
@@ -128,7 +128,6 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
           height: 100%;
           width: 100%;
           border-radius: 16px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           overflow: hidden;
         }
 
