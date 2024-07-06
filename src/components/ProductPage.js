@@ -125,10 +125,11 @@ const ProductPage = () => {
       </Box>
       <Box
         sx={{
-          boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
           borderRadius: '16px',
           backgroundColor: '#ffffff',
           padding: 0,
+          marginY: 4,
         }}
       >
         <Grid container spacing={0}>
@@ -227,11 +228,7 @@ const ProductPage = () => {
                   />
                 ))}
               </Box>
-              <Box
-                 sx={{
-                  mt: 4,
-                }}
-              >
+              <Box sx={{ mt: 4 }}>
                 <Button
                   variant="contained"
                   color="primary"
@@ -239,9 +236,10 @@ const ProductPage = () => {
                   size="large"
                   sx={{
                     mb: 2,
-                    padding: '16px',
+                    padding: '12px',
                     fontWeight: 'bold',
                     borderRadius: '16px',
+                    textTransform: 'none',
                   }}
                   onClick={handleBuyNow}
                   disabled={buyNowLoading}
@@ -255,9 +253,10 @@ const ProductPage = () => {
                     fullWidth
                     size="large"
                     sx={{
-                      padding: '16px',
+                      padding: '12px',
                       fontWeight: 'bold',
                       borderRadius: '16px',
+                      textTransform: 'none',
                     }}
                     onClick={handleShare}
                   >

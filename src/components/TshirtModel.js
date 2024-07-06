@@ -18,13 +18,13 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
 
   useEffect(() => {
     if (gltf && texture) {
-      console.log('Model loaded and texture received:', texture);
+      console.log('Model loaded and texture received');
 
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
           child.castShadow = true;
 			    // child.receiveShadow = true;
-          console.log('Applying texture to mesh:', child);
+          console.log('Applying texture to mesh');
           const material = new THREE.MeshStandardMaterial({
             side: THREE.DoubleSide,
             map: texture,
@@ -41,7 +41,7 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
 
   useEffect(() => {
     if (texture) {
-      console.log('Updating texture:', texture);
+      console.log('Updating texture');
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
           child.material.map = texture;
@@ -74,11 +74,10 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
           modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2);
         },
       });
-      console.log("Scale", modelRef.current.scale);
       gsap.to(modelRef.current.scale, {
-        x: 5,
-        y: 5,
-        z: 5,
+        x: 3,
+        y: 3,
+        z: 3,
         duration: 1,
         yoyo: true,
         repeat: 1,
@@ -87,7 +86,7 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
     }
   }, [triggerLoadingAnimation]);
 
-  return <primitive ref={modelRef} object={gltf.scene} position={[0, 1, 0]} scale={[10, 10, 10]} />;
+  return <primitive ref={modelRef} object={gltf.scene} position={[0, 1, 0]} scale={[5, 5, 5]} />;
 };
 
 export default TshirtModel;
