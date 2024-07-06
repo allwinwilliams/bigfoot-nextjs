@@ -23,14 +23,14 @@ const ProductPage = () => {
   const searchParams = useSearchParams();
 
   const [buyNowLoading, setBuyNowLoading] = useState(false);
+  const [songLoading, setSongLoading] = useState(false);
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
   const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type2');
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  const [analysisData, setAnalysisData] = useState(null);
-  const [featuresData, setFeaturesData] = useState(null);
+
 
   // useEffect(() => {
   //   const fetchAllData = async () => {
@@ -88,7 +88,7 @@ const ProductPage = () => {
         color,
         size,
         songId,
-        songName: songData?.name || '',
+        songName: songData.details?.name || '',
         style: sketchType,
         imageUrl,
         timestamp: new Date().toISOString(),
@@ -161,6 +161,8 @@ const ProductPage = () => {
                 color={color}
                 size={size}
                 sketchType={sketchType}
+                songLoading={songLoading}
+                setSongLoading={setSongLoading}
               />
               <Typography variant="h6" gutterBottom>
                 Color

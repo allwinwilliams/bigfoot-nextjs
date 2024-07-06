@@ -5,12 +5,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, TextField, Typography, Paper,
-  List, ListItem, ListItemText,
+  List, ListItem, ListItemText, CircularProgress
 } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import { fetchAllSongData } from '../utils/spotifyUtils';
 
-const SpotifySearch = ({ color, size, sketchType }) => {
+const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading }) => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -18,8 +18,7 @@ const SpotifySearch = ({ color, size, sketchType }) => {
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
-  const [analysisData, setAnalysisData] = useState(null);
-  const [featuresData, setFeaturesData] = useState(null);
+//   const [loading, setSongLoading] = useState(false);
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -29,6 +28,8 @@ const SpotifySearch = ({ color, size, sketchType }) => {
           changeSongData({details: trackData, analysis: analysisData, features: featuresData});
         } catch (error) {
           console.error('Error fetching song data:', error);
+        } finally {
+          setSongLoading(false); // Reset loading state after data is fetched
         }
       }
     };
@@ -60,6 +61,7 @@ const SpotifySearch = ({ color, size, sketchType }) => {
     changeSongId(song.id);
     setSearchResults([]);
     setInputValue(song.name);
+    setSongLoading(true); // Set loading state to true when a new song is selected
     router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
   };
 
@@ -108,7 +110,7 @@ const SpotifySearch = ({ color, size, sketchType }) => {
           </List>
         </Paper>
       )}
-      {songData && (
+      {songLoading ? (
         <Box
           sx={{
             mb: 2,
@@ -120,11 +122,20 @@ const SpotifySearch = ({ color, size, sketchType }) => {
             alignItems: 'center',
           }}
         >
-          <img
-            src={songData.details.album.images[0].url}
-            alt={songData.details.name}
-            style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
-          />
+          <Box
+            sx={{
+              width: '60px',
+              height: '60px',
+              borderRadius: '8px',
+              backgroundColor: '#f0f0f0',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: '16px',
+            }}
+          >
+            <CircularProgress size={24} />
+          </Box>
           <Box sx={{ flexGrow: 1, minWidth: 0 }}>
             <Typography
               variant="subtitle1"
@@ -136,22 +147,56 @@ const SpotifySearch = ({ color, size, sketchType }) => {
                 width: '100%',
               }}
             >
-              {songData.details.name}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                overflow: 'hidden',
-                color: '#777777',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                width: '100%',
-              }}
-            >
-              By {songData.details.artists.map((artist) => artist.name).join(', ')}
+              Loading song...
             </Typography>
           </Box>
         </Box>
+      ) : (
+        songData && (
+          <Box
+            sx={{
+              mb: 2,
+              boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
+              borderRadius: '16px',
+              backgroundColor: '#fffff',
+              padding: 2,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={songData.details.album.images[0].url}
+              alt={songData.details.name}
+              style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
+            />
+            <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontWeight: 'bold',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  width: '100%',
+                }}
+              >
+                {songData.details.name}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  overflow: 'hidden',
+                  color: '#777777',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  width: '100%',
+                }}
+              >
+                By {songData.details.artists.map((artist) => artist.name).join(', ')}
+              </Typography>
+            </Box>
+          </Box>
+        )
       )}
     </Box>
   );
