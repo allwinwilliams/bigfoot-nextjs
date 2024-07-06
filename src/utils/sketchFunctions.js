@@ -204,15 +204,16 @@ export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
         p.fill(fillColor);
         p.noStroke();
         p.textAlign(p.CENTER);
-        p.textSize(36);
+        p.textSize(40);
         p.textStyle(p.BOLD);
         p.text(name, canvasWidth / 2, centerY + drawingHeight + 80);
   
-        p.textSize(24);
+        p.textSize(30);
         p.textStyle(p.NORMAL);
-        p.text(artistNames, canvasWidth / 2, centerY + drawingHeight + 120);
+        p.text(artistNames, canvasWidth / 2, centerY + drawingHeight + 130);
   
-        p.textSize(16);
+        p.textSize(18);
+        p.textStyle(p.BOLD);
         p.text(`0:00`, centerX, centerY + drawingHeight + 20);
         p.text(`${durationFormatted}`, centerX + drawingWidth - 20, centerY + drawingHeight + 20);
       } else {

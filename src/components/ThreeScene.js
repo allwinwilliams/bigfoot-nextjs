@@ -128,7 +128,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           maxPolarAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 10}
           enableZoom={true}
-          maxDistance={60}
+          maxDistance={20}
           minDistance={2}
         />
       </Canvas>
@@ -155,8 +155,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
 
         .icon-container {
           position: absolute;
-          bottom: 24px;
-          right: 24px;
+          bottom: 32px;
+          right: 32px;
         }
 
         @media (max-width: 900px) {

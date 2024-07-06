@@ -153,7 +153,7 @@ const ProductPage = () => {
           <Grid
             item
             sx={{
-              padding: 4
+              padding: { xs: 2, md: 4 },
             }}
             xs={12}
             md={6}
