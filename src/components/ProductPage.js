@@ -240,6 +240,7 @@ const ProductPage = () => {
                 {[
                   { value: 'type3', label: 'Minimal' },
                   { value: 'type1', label: 'Maximal' },
+                  { value: 'type2', label: 'Analysis' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
