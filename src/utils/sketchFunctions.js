@@ -51,7 +51,6 @@ export const sketchType2 = (p, canvasRef, onP5Update, songData, analysisData, fe
     };
   
     p.draw = () => {
-      p.background(0);
       if (!analysisData || !featuresData) return;
   
       const sectionWidth = drawingWidth / analysisData.sections.length;

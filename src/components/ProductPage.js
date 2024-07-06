@@ -3,24 +3,17 @@
 
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import 
-  { 
-    Box, TextField, Button, Typography,
-    List, ListItem, ListItemText, Grid,
-    RadioGroup, FormControlLabel, Radio,
-    Tooltip, Chip, CircularProgress 
-  }
-  from '@mui/material';
+import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, Tooltip, Chip, CircularProgress } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
+import SpotifySearch from './SpotifySearch';  // Import the new component
+import { fetchAllSongData } from '@/utils/spotifyUtils';
 
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import BuildIcon from '@mui/icons-material/Build';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BrushIcon from '@mui/icons-material/Brush';
 
-import { fetchAllSongData } from '../utils/spotifyUtils'; // Import the utility function
 import { db, storage } from '../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
@@ -32,8 +25,6 @@ const ProductPage = () => {
 
   const [buyNowLoading, setBuyNowLoading] = useState(false);
 
-  const [inputValue, setInputValue] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
@@ -63,53 +54,19 @@ const ProductPage = () => {
       style: 'type2',
     };
 
-    // Check if the URL params are set, if not, update the URL
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
       router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
     }
   }, [searchParams, color, size, songId, sketchType, router]);
 
-  const searchTracks = async (query) => {
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
-    const data = await response.json();
-    setSearchResults(data.tracks.items);
-  };
-
-  const handleSearchChange = (e) => {
-    setInputValue(e.target.value);
-    if (e.target.value) {
-      searchTracks(e.target.value);
-    } else {
-      setSearchResults([]);
-    }
-  };
-
-  const handleSelectSong = (song) => {
-    setSongId(song.id);
-    changeSongId(song.id);
-    fetchAllSongData(song.id);
-    setSearchResults([]);
-    setInputValue(song.name);
-    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
-  };
-
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    router.push(`/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}&style=${sketchType}`);
+    router.replace(`/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}&style=${sketchType}`, undefined, { scroll: false });
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    router.push(`/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}&style=${sketchType}`);
-  };
-
-  const handleSketchTypeChange = (event) => {
-    setSketchType(event.target.value);
-    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`);
+    router.replace(`/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}&style=${sketchType}`, undefined, { scroll: false });
   };
 
   const handleShare = () => {
@@ -171,12 +128,21 @@ const ProductPage = () => {
         sx={{
           boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
           borderRadius: '16px',
-          backgroundColor: '#fffff',
+          backgroundColor: '#ffffff',
           padding: 3,
         }}
       >
         <Grid container spacing={8}>
-          <Grid item xs={12} md={6}>
+          <Grid 
+            item 
+            xs={12} 
+            md={6}
+            sx={{ 
+              display: { xs: 'block', md: 'flex' }, 
+              justifyContent: 'center', 
+              alignItems: 'center' 
+            }}
+          >
             <ThreeScene
               color={color}
               songData={songData}
@@ -185,85 +151,31 @@ const ProductPage = () => {
               featuresData={featuresData}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ paddingX: 4, paddingY: 2 }}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              paddingX: '60px !important',
+              boxSizing: 'border-box',
+              '@media (min-width: 900px)': {
+                paddingLeft: '24px !important',
+              },
+            }}
+          >
+            <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 2 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
                 Customise with Your Song
               </Typography>
-              
-
-              {/* <Box sx={{ mb: 2 }}>
-                <Typography variant="h6" gutterBottom>
-                  Price
-                </Typography>
-                <Typography variant="h4" component="div" sx={{ fontWeight: 'bold' }}>
-                  ₹3,299
-                  <Typography
-                    variant="body1"
-                    component="span"
-                    sx={{ textDecoration: 'line-through', fontSize: '1rem', marginLeft: '8px', verticalAlign: 'middle' }}
-                  >
-                    ₹4,199
-                  </Typography>
-                </Typography>
-              </Box> */}
-            
-              {/* <Typography variant="h6" gutterBottom>
-                Search Your Song
-              </Typography> */}
-              <TextField
-                label="Search for a Song"
-                variant="outlined"
-                value={inputValue}
-                onChange={handleSearchChange}
-                fullWidth
-                sx={{ 
-                  mb: 2,
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: '16px',
-                  },
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderRadius: '16px',
-                  }
-                }}
+              <SpotifySearch
+                color={color}
+                size={size}
+                sketchType={sketchType}
+                accessToken={accessToken}
+                songId={songId}
+                changeSongId={changeSongId}
+                changeSongData={changeSongData}
               />
-              {searchResults.length > 0 && (
-                <List sx={{ maxHeight: 200, overflow: 'auto', mb: 2 }}>
-                  {searchResults.map((song) => (
-                    <ListItem button key={song.id} onClick={() => handleSelectSong(song)}>
-                      <ListItemText primary={song.name} secondary={song.artists.map(artist => artist.name).join(', ')} />
-                    </ListItem>
-                  ))}
-                </List>
-              )}
-              {songData && (
-                <Box
-                  sx={{
-                    mb: 2,
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
-                    borderRadius: '16px',
-                    backgroundColor: '#fffff',
-                    padding: 2,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  <img
-                    src={songData.album.images[0].url}
-                    alt={songData.name}
-                    style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
-                  />
-                  <Box sx={{ flexGrow: 1 }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
-                      {songData.name}
-                    </Typography>
-                    <Typography variant="subtitle1" sx={{ overflow: 'hidden', color: '#777777', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
-                      By {songData.artists.map((artist) => artist.name).join(', ')}
-                    </Typography>
-                  </Box>
-                </Box>
-              )}
-              
               <Typography variant="h6" gutterBottom>
                 Color
               </Typography>
@@ -317,7 +229,7 @@ const ProductPage = () => {
                   mb: 2,
                   padding: '16px',
                   fontWeight: 'bold',
-                  borderRadius: '16px'
+                  borderRadius: '16px',
                 }}
                 onClick={handleBuyNow}
                 disabled={buyNowLoading}
@@ -333,7 +245,7 @@ const ProductPage = () => {
                   sx={{
                     padding: '16px',
                     fontWeight: 'bold',
-                    borderRadius: '16px'
+                    borderRadius: '16px',
                   }}
                   onClick={handleShare}
                 >
@@ -351,8 +263,6 @@ const ProductPage = () => {
           backgroundColor: '#fafafa',
           padding: 3,
           textAlign: 'center',
-          // boxShadow: '0 0 16px rgba(0, 0, 0, 0.08)',
-          bored: '1px solid rgba(0, 0, 0, 0.12)',
         }}
       >
         <Typography variant="h5" 
@@ -392,7 +302,6 @@ const ProductPage = () => {
       <Box
         marginTop={4}
         sx={{
-          // boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
           borderRadius: '16px',
           backgroundColor: '#f3f3f3',
           padding: 3,
@@ -411,6 +320,48 @@ const ProductPage = () => {
             }}
           />
         </Box>
+      </Box>
+      <Box
+        marginTop={4}
+        sx={{
+          borderRadius: '16px',
+          paddingY: 3,
+        }}
+      >
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                backgroundColor: '#f5f5f5',
+                borderRadius: '16px',
+                padding: 3,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
+                Direct To Garment(DTG) Print
+              </Typography>
+              <Typography variant="body1">
+                Using Direct To Garment(DTG) printing technque we ensure highest quality print for each of your order
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                backgroundColor: '#b0b0b0',
+                borderRadius: '16px',
+                padding: 3,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
+                Soft Touch Knitting
+              </Typography>
+              <Typography variant="body1">
+                With new and innovating knitting technque the fabric is truly a kind of it's own.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
       <Box
         marginTop={4}
