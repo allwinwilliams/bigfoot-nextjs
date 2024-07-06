@@ -58,7 +58,7 @@ const SpotifySearch = ({ color, size, sketchType }) => {
     fetchAllSongData(song.id);
     setSearchResults([]);
     setInputValue(song.name);
-    router.push(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
+    router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
   };
 
   return (
@@ -123,14 +123,32 @@ const SpotifySearch = ({ color, size, sketchType }) => {
             alt={songData.name}
             style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
           />
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
-              {songData.name}
-            </Typography>
-            <Typography variant="subtitle1" sx={{ overflow: 'hidden', color: '#777777', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
-              By {songData.artists.map((artist) => artist.name).join(', ')}
-            </Typography>
-          </Box>
+            <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+                <Typography
+                    variant="subtitle1"
+                    sx={{
+                    fontWeight: 'bold',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    width: '100%',
+                    }}
+                >
+                    {songData.name}
+                </Typography>
+                <Typography
+                    variant="subtitle1"
+                    sx={{
+                    overflow: 'hidden',
+                    color: '#777777',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    width: '100%',
+                    }}
+                >
+                    By {songData.artists.map((artist) => artist.name).join(', ')}
+                </Typography>
+            </Box>
         </Box>
       )}
     </Box>
