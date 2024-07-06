@@ -1,3 +1,4 @@
+// src/components/SpotifySearch.js
 "use client";
 
 import React, { useContext, useState, useEffect } from 'react';
@@ -23,10 +24,12 @@ const SpotifySearch = ({ color, size, sketchType }) => {
   useEffect(() => {
     const fetchAllData = async () => {
       if (songId && accessToken) {
-        const { trackData, analysisData, featuresData } = await fetchAllSongData(songId, accessToken);
-        changeSongData(trackData);
-        setAnalysisData(analysisData);
-        setFeaturesData(featuresData);
+        try {
+          const { trackData, analysisData, featuresData } = await fetchAllSongData(songId, accessToken);
+          changeSongData({details: trackData, analysis: analysisData, features: featuresData});
+        } catch (error) {
+          console.error('Error fetching song data:', error);
+        }
       }
     };
 
@@ -55,7 +58,6 @@ const SpotifySearch = ({ color, size, sketchType }) => {
   const handleSelectSong = (song) => {
     setSongId(song.id);
     changeSongId(song.id);
-    fetchAllSongData(song.id);
     setSearchResults([]);
     setInputValue(song.name);
     router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
@@ -119,36 +121,36 @@ const SpotifySearch = ({ color, size, sketchType }) => {
           }}
         >
           <img
-            src={songData.album.images[0].url}
-            alt={songData.name}
+            src={songData.details.album.images[0].url}
+            alt={songData.details.name}
             style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
           />
-            <Box sx={{ flexGrow: 1, minWidth: 0 }}>
-                <Typography
-                    variant="subtitle1"
-                    sx={{
-                    fontWeight: 'bold',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    width: '100%',
-                    }}
-                >
-                    {songData.name}
-                </Typography>
-                <Typography
-                    variant="subtitle1"
-                    sx={{
-                    overflow: 'hidden',
-                    color: '#777777',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    width: '100%',
-                    }}
-                >
-                    By {songData.artists.map((artist) => artist.name).join(', ')}
-                </Typography>
-            </Box>
+          <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 'bold',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                width: '100%',
+              }}
+            >
+              {songData.details.name}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                overflow: 'hidden',
+                color: '#777777',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                width: '100%',
+              }}
+            >
+              By {songData.details.artists.map((artist) => artist.name).join(', ')}
+            </Typography>
+          </Box>
         </Box>
       )}
     </Box>

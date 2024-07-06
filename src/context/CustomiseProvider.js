@@ -10,8 +10,8 @@ export const CustomiseProvider = ({ children }) => {
   const [songData, setSongData] = useState(null);
 
   useEffect(() => {
-    const CLIENT_ID = "b2cc0a3604154457ac2d7c216d8e55a1";
-    const CLIENT_SECRET = "38e579a2942f4930af3c4eed0737696a";
+    const CLIENT_ID = "369a2f566ad84700a32d5b3aa06333b6";
+    const CLIENT_SECRET = "07542d7e749745a8a5cfea0a6202a3df";
     
     if (!accessToken) {
       const authParameters = new URLSearchParams();
@@ -48,6 +48,7 @@ export const CustomiseProvider = ({ children }) => {
       songData,
       changeSongId,
       changeSongData,
+      setAccessToken
     }}>
       {children}
     </CustomiseAppContext.Provider>

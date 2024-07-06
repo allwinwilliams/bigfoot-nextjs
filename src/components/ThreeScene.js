@@ -13,7 +13,7 @@ extend({ ShadowMaterial: THREE.ShadowMaterial });
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData }) => {
+const ThreeScene = ({ color, songData, sketchType }) => {
   const [texture, setTexture] = useState(null);
   const canvasRef = useRef();
   
@@ -28,7 +28,7 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
       'red': '#FF0000',
       'blue': '#0000FF',
       'beige': '#E1C699',
-      'black': '#050505'
+      'black': '#070707'
     };
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
@@ -104,7 +104,7 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
           shadow-camera-top={50}
           shadow-camera-bottom={-50}
         />
-        <pointLight position={[4, 4, 4]} intensity={30} />
+        <pointLight position={[10, 10,0]} intensity={30} />
         <TshirtModel color={color} texture={texture} />
         <GroundPlane />
         <OrbitControls
@@ -118,9 +118,8 @@ const ThreeScene = ({ color, songData, sketchType, analysisData, featuresData })
       <P5Sketch
         canvasRef={canvasRef}
         onP5Update={handleP5Update}
+        color={color}
         songData={songData}
-        analysisData={analysisData}
-        featuresData={featuresData}
         sketchType={sketchType}
       />
       <style jsx>{`

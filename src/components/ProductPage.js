@@ -1,12 +1,11 @@
-// src/components/ProductPage.js
 "use client";
 
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Box, TextField, Button, Typography, List, ListItem, ListItemText, Grid, Tooltip, Chip, CircularProgress } from '@mui/material';
+import { Box, Typography, Grid, Chip, Button, Tooltip, CircularProgress } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
-import SpotifySearch from './SpotifySearch';  // Import the new component
+import SpotifySearch from './SpotifySearch'; // Ensure correct import
 import { fetchAllSongData } from '@/utils/spotifyUtils';
 
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -19,7 +18,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 const ProductPage = () => {
-  const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
+  const { songData } = useContext(CustomiseAppContext);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -33,18 +32,18 @@ const ProductPage = () => {
   const [analysisData, setAnalysisData] = useState(null);
   const [featuresData, setFeaturesData] = useState(null);
 
-  useEffect(() => {
-    const fetchAllData = async () => {
-      if (songId && accessToken) {
-        const { trackData, analysisData, featuresData } = await fetchAllSongData(songId, accessToken);
-        changeSongData(trackData);
-        setAnalysisData(analysisData);
-        setFeaturesData(featuresData);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchAllData = async () => {
+  //     if (songId && accessToken) {
+  //       const { trackData, analysisData, featuresData } = await fetchAllSongData(songId, accessToken);
+  //       changeSongData(trackData);
+  //       setAnalysisData(analysisData);
+  //       setFeaturesData(featuresData);
+  //     }
+  //   };
 
-    fetchAllData();
-  }, [songId, accessToken]);
+  //   fetchAllData();
+  // }, [songId, accessToken, changeSongData]);
 
   useEffect(() => {
     const defaultParams = {
@@ -113,7 +112,7 @@ const ProductPage = () => {
         maxWidth: 1400,
         marginX: 'auto',
         paddingX: { xs: 2, md: 10 },
-        paddingY: 5,
+        paddingY: 8,
       }}
     >
       <Box sx={{ paddingY: 4, textAlign: 'center' }}>
@@ -132,7 +131,7 @@ const ProductPage = () => {
           padding: 3,
         }}
       >
-        <Grid container spacing={8}>
+        <Grid container spacing={4}>
           <Grid 
             item 
             xs={12} 
@@ -147,20 +146,12 @@ const ProductPage = () => {
               color={color}
               songData={songData}
               sketchType={sketchType}
-              analysisData={analysisData}
-              featuresData={featuresData}
             />
           </Grid>
           <Grid
             item
             xs={12}
             md={6}
-            sx={{
-              boxSizing: 'border-box',
-              '@media (min-width: 900px)': {
-                paddingLeft: '24px !important',
-              },
-            }}
           >
             <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 2 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
@@ -170,28 +161,26 @@ const ProductPage = () => {
                 color={color}
                 size={size}
                 sketchType={sketchType}
-                accessToken={accessToken}
-                songId={songId}
-                changeSongId={changeSongId}
-                changeSongData={changeSongData}
               />
               <Typography variant="h6" gutterBottom>
                 Color
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                {['black', 'beige'].map((option) => (
+                {[
+                  { value: 'black', label: 'Space Black' },
+                  { value: 'beige', label: 'Beach Sand' },
+                ].map((option) => (
                   <Chip
-                    key={option}
-                    label={option}
+                    key={option.value}
+                    label={option.label}
                     clickable
-                    color={color === option ? 'primary' : 'default'}
-                    variant={color === option ? 'filled' : 'outlined'}
-                    onClick={() => handleColorChange({ target: { value: option } })}
+                    color={color === option.value ? 'primary' : 'default'}
+                    variant={color === option.value ? 'filled' : 'outlined'}
+                    onClick={() => handleColorChange({ target: { value: option.value } })}
                     sx={{
-                      padding: '24px 24px',
+                      padding: '24px 16px',
                       fontSize: '16px',
                       fontWeight: 'bold',
-                      width: '120px',
                       borderRadius: '9999px',
                     }}
                   />
@@ -210,47 +199,53 @@ const ProductPage = () => {
                     variant={size === option ? 'filled' : 'outlined'}
                     onClick={() => handleSizeChange({ target: { value: option } })}
                     sx={{
-                      padding: '24px 24px',
+                      padding: '24px 8px',
                       fontSize: '16px',
                       fontWeight: 'bold',
-                      width: '120px',
+                      width: '100%',
                       borderRadius: '9999px',
                     }}
                   />
                 ))}
               </Box>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                size="large"
-                sx={{
-                  mb: 2,
-                  padding: '16px',
-                  fontWeight: 'bold',
-                  borderRadius: '16px',
+              <Box
+                 sx={{
+                  mt: 4,
                 }}
-                onClick={handleBuyNow}
-                disabled={buyNowLoading}
               >
-                {buyNowLoading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Buy Now @ ₹3,299'}
-              </Button>
-              <Tooltip title="URL copied" open={tooltipOpen} arrow>
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   color="primary"
                   fullWidth
                   size="large"
                   sx={{
+                    mb: 2,
                     padding: '16px',
                     fontWeight: 'bold',
                     borderRadius: '16px',
                   }}
-                  onClick={handleShare}
+                  onClick={handleBuyNow}
+                  disabled={buyNowLoading}
                 >
-                  Share Now
+                  {buyNowLoading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Buy Now @ ₹3,299'}
                 </Button>
-              </Tooltip>
+                <Tooltip title="URL copied" open={tooltipOpen} arrow>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    fullWidth
+                    size="large"
+                    sx={{
+                      padding: '16px',
+                      fontWeight: 'bold',
+                      borderRadius: '16px',
+                    }}
+                    onClick={handleShare}
+                  >
+                    Share Now
+                  </Button>
+                </Tooltip>
+              </Box>
             </Box>
           </Grid>
         </Grid>
@@ -374,7 +369,7 @@ const ProductPage = () => {
           overflow: 'hidden',
           background: 'linear-gradient(144deg, #00ded2, #7f00ef, #d6007d)',
           backgroundSize: '300% 300%',
-          animation: 'backgroundMovement 8s ease infinite',
+          animation: 'backgroundMovement 4s ease infinite',
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
