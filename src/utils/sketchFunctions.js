@@ -139,7 +139,7 @@ export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
   };
   
 
-  export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
+export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1000;
     const drawingHeight = 200; // Height for the vertical lines
     const canvasWidth = 1500;
@@ -189,7 +189,7 @@ export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
           const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
           const lineWidth = p.map(segment.duration, 0, totalDuration, 0, drawingWidth);
           const loudness = segment.loudness_max;
-          const lineHeight = p.map(loudness, -60, 0, 0, drawingHeight);
+          const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
           p.stroke(strokeColor);
           p.strokeWeight(lineWidth);
           p.line(x, centerY + (drawingHeight / 2) - lineHeight / 2, x, centerY + (drawingHeight / 2) + lineHeight / 2);

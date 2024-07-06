@@ -6,6 +6,8 @@ import { OrbitControls, SoftShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import TshirtModel from './TshirtModel';
 import dynamic from 'next/dynamic';
+import { IconButton } from '@mui/material';
+import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 
 // Ensure the ShadowMaterial is recognized by React Three Fiber
 extend({ ShadowMaterial: THREE.ShadowMaterial });
@@ -15,6 +17,7 @@ const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
 const ThreeScene = ({ color, songData, sketchType }) => {
   const [texture, setTexture] = useState(null);
+  const [triggerAnimation, setTriggerAnimation] = useState(false);
   const canvasRef = useRef();
   
   const createCombinedTexture = useCallback(() => {
@@ -63,6 +66,13 @@ const ThreeScene = ({ color, songData, sketchType }) => {
     setTexture(texture);
   }, [createCombinedTexture]);
 
+  const handleIconClick = () => {
+    setTriggerAnimation(true);
+    setTimeout(() => {
+      setTriggerAnimation(false); // Reset the trigger
+    }, 3000); // Reset after 3 seconds
+  };
+
   const GroundPlane = () => {
     const meshRef = useRef();
 
@@ -104,8 +114,8 @@ const ThreeScene = ({ color, songData, sketchType }) => {
           shadow-camera-top={50}
           shadow-camera-bottom={-50}
         />
-        <pointLight position={[10, 10,0]} intensity={30} />
-        <TshirtModel color={color} texture={texture} />
+        <pointLight position={[10, 10, 0]} intensity={30} />
+        <TshirtModel color={color} texture={texture} triggerAnimation={triggerAnimation} />
         <GroundPlane />
         <OrbitControls
           maxPolarAngle={Math.PI / 1.2}
@@ -122,17 +132,30 @@ const ThreeScene = ({ color, songData, sketchType }) => {
         songData={songData}
         sketchType={sketchType}
       />
+      <div className="icon-container">
+        <IconButton aria-label="3D info" onClick={handleIconClick}>
+          <ThreeDRotationIcon />
+        </IconButton>
+      </div>
       <style jsx>{`
         .three-scene-container {
+          position: relative;
           height: 100%;
           width: 100%;
-          border-radius: 16px;
+          border-radius: 16px 0 0 16px;
           overflow: hidden;
+        }
+
+        .icon-container {
+          position: absolute;
+          bottom: 24px;
+          right: 24px;
         }
 
         @media (max-width: 900px) {
           .three-scene-container {
             min-height: 500px;
+            border-radius: 16px 16px 0 0;
             height: 60vh; /* Adjust as needed for more height */
           }
         }

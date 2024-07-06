@@ -14,7 +14,7 @@ const theme = createTheme({
       default: '#ffffff', // Set background color to white
     },
     text: {
-      primary: '#000000', // Set text color to black
+      primary: '#111111', // Set text color to black
     },
   },
   typography: {

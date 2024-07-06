@@ -112,10 +112,10 @@ const ProductPage = () => {
         maxWidth: 1400,
         marginX: 'auto',
         paddingX: { xs: 2, md: 10 },
-        paddingY: 8,
+        paddingY: 1,
       }}
     >
-      <Box sx={{ paddingY: 4, textAlign: 'center' }}>
+      <Box sx={{ paddingY: 2, textAlign: 'center' }}>
         <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
           Song Data Generated Art T-shirt - Oversized Fit
         </Typography>
@@ -128,10 +128,10 @@ const ProductPage = () => {
           boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
           borderRadius: '16px',
           backgroundColor: '#ffffff',
-          padding: 3,
+          padding: 0,
         }}
       >
-        <Grid container spacing={4}>
+        <Grid container spacing={0}>
           <Grid 
             item 
             xs={12} 
@@ -150,6 +150,9 @@ const ProductPage = () => {
           </Grid>
           <Grid
             item
+            sx={{
+              padding: 4
+            }}
             xs={12}
             md={6}
           >
@@ -185,6 +188,19 @@ const ProductPage = () => {
                       fontWeight: 'bold',
                       borderRadius: '9999px',
                     }}
+                    icon={
+                      <Box
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          backgroundColor: option.value,
+                          border: '1px solid',
+                          borderColor: color === option.value ? '#444444' : '#eaeaea',
+                          borderRadius: '50%',
+                          mr: 1, // Add margin to the right to space out the circle and label
+                        }}
+                      />
+                    }
                   />
                 ))}
               </Box>

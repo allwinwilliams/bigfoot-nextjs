@@ -1,4 +1,3 @@
-// src/components/TshirtModel.js
 "use client";
 
 import React, { useRef, useEffect } from 'react';
@@ -6,8 +5,9 @@ import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { TextureLoader } from 'three';
 import * as THREE from 'three';
+import { gsap } from 'gsap';
 
-const TshirtModel = ({ color, texture }) => {
+const TshirtModel = ({ color, texture, triggerAnimation }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
   const normalMapUrl = '/models/textures/normal-final.jpeg';
   const normalMap = useLoader(TextureLoader, normalMapUrl);
@@ -50,6 +50,19 @@ const TshirtModel = ({ color, texture }) => {
       });
     }
   }, [texture]);
+
+  useEffect(() => {
+    if (triggerAnimation && modelRef.current) {
+      gsap.to(modelRef.current.rotation, {
+        y: modelRef.current.rotation.y + Math.PI * 2,
+        duration: 4,
+        ease: "power1.inOut",
+        onComplete: () => {
+          modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2); // Reset rotation to avoid overflow
+        },
+      });
+    }
+  }, [triggerAnimation]);
 
   return <primitive ref={modelRef} object={gltf.scene} position={[0, 1, 0]} scale={[10, 10, 10]} />;
 };
