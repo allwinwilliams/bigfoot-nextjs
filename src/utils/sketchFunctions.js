@@ -29,7 +29,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
   
         const totalDuration = analysisData.track.duration;
         const centerX = (canvasWidth - drawingWidth) / 2;
-        const centerY = (canvasHeight - drawingHeight) / 4;
+        const centerY = (canvasHeight - drawingHeight) / 5;
   
         // Determine the base hue from valence
         const baseHue = p.map(featuresData.valence, 0, 1, 220, 30); // 30 (orange) to 270 (purple)
@@ -57,9 +57,9 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
   
           // Adjust color visibility for the beige variant
           if (color === 'beige') {
-            strokeColor = p.color(hue, 70, 30); // Adjusted color with higher brightness and saturation
+            strokeColor = p.color(hue, 70, 25); // Adjusted color with higher brightness and saturation
           } else {
-            strokeColor = p.color(hue, 100, 50); // Default color
+            strokeColor = p.color(hue, 100, 30); // Default color
           }
   
           p.stroke(strokeColor);

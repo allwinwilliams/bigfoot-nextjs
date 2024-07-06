@@ -28,7 +28,7 @@ const ProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
-  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type2');
+  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type1');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
 
@@ -50,7 +50,7 @@ const ProductPage = () => {
       color: 'black',
       size: 'M',
       songId: '44JnQ7TIl4ieCbCQiEPQag',
-      style: 'type2',
+      style: 'type1',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
@@ -61,6 +61,11 @@ const ProductPage = () => {
   const handleColorChange = (event) => {
     setColor(event.target.value);
     router.replace(`/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}&style=${sketchType}`, undefined, { scroll: false });
+  };
+
+  const handleStyleChange = (event) => {
+    setSketchType(event.target.value);
+    router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`, undefined, { scroll: false });
   };
 
   const handleSizeChange = (event) => {
@@ -228,6 +233,30 @@ const ProductPage = () => {
                   />
                 ))}
               </Box>
+              <Typography variant="h6" gutterBottom>
+                Style
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                {[
+                  { value: 'type3', label: 'Minimal' },
+                  { value: 'type1', label: 'Maximal' },
+                ].map((option) => (
+                  <Chip
+                    key={option.value}
+                    label={option.label}
+                    clickable
+                    color={sketchType === option.value ? 'primary' : 'default'}
+                    variant={sketchType === option.value ? 'filled' : 'outlined'}
+                    onClick={() => handleStyleChange({ target: { value: option.value } })}
+                    sx={{
+                      padding: '24px 16px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      borderRadius: '9999px',
+                    }}
+                  />
+                ))}
+              </Box>
               <Box sx={{ mt: 4 }}>
                 <Button
                   variant="contained"
@@ -296,6 +325,49 @@ const ProductPage = () => {
             </Typography>
             <Typography variant="subtitle1">
               Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box
+        marginTop={8}
+        sx={{
+          borderRadius: '16px',
+          backgroundColor: '#fafafa',
+          padding: 3,
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h5" 
+          sx={{
+            fontWeight: 'bold',
+            mb: 4,
+        }}>
+          What we offer?
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={3}>
+            <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Free Shipping All Over India
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <BuildIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Made to Order
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Premium Quality Fabric
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <BrushIcon sx={{ fontSize: 50, mb: 2 }} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              Customised Designs
             </Typography>
           </Grid>
         </Grid>
