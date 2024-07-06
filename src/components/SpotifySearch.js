@@ -5,8 +5,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, TextField, Typography, Paper,
-  List, ListItem, ListItemText, CircularProgress
+  List, ListItem, ListItemText, CircularProgress,
+  InputAdornment
 } from '@mui/material';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import { fetchAllSongData } from '../utils/spotifyUtils';
 
@@ -68,21 +71,28 @@ const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading })
   return (
     <Box sx={{ position: 'relative' }}>
       <TextField
-        label="Search for a Song"
+        placeholder="Search your song.."
         variant="outlined"
         value={inputValue}
         onChange={handleSearchChange}
         fullWidth
         sx={{
-          mb: 2,
-          '& .MuiOutlinedInput-root': {
+            mb: 2,
+            '& .MuiOutlinedInput-root': {
             borderRadius: '16px',
-          },
-          '& .MuiOutlinedInput-notchedOutline': {
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
             borderRadius: '16px',
-          }
+            },
         }}
-      />
+        InputProps={{
+            startAdornment: (
+            <InputAdornment position="start">
+                <MusicNoteIcon sx={{ color: 'grey' }} />
+            </InputAdornment>
+            ),
+        }}
+        />
       {searchResults.length > 0 && (
         <Paper
           sx={{

@@ -114,7 +114,8 @@ const ThreeScene = ({ color, songData, sketchType }) => {
           shadow-camera-top={50}
           shadow-camera-bottom={-50}
         />
-        <pointLight position={[10, 10, 0]} intensity={30} />
+        <pointLight position={[0, 4, 8]} intensity={40} />
+        <pointLight position={[0, 4, -6]} intensity={20} />
         <TshirtModel color={color} texture={texture} triggerAnimation={triggerAnimation} />
         <GroundPlane />
         <OrbitControls

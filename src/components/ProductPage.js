@@ -272,41 +272,30 @@ const ProductPage = () => {
         marginTop={8}
         sx={{
           borderRadius: '16px',
-          backgroundColor: '#fafafa',
+          backgroundColor: '#fff',
           padding: 3,
-          textAlign: 'center',
         }}
       >
-        <Typography variant="h5" 
-          sx={{
-            fontWeight: 'bold',
-            mb: 4,
-        }}>
-          What we offer?
-        </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
-            <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} />
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-              Free Shipping All Over India
-            </Typography>
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <img
+              src="/song-tshirt/customised-banner.jpg"
+              alt="Custom T-shirt"
+              style={{ width: '100%', borderRadius: '16px' }}
+            />
           </Grid>
-          <Grid item xs={12} md={3}>
-            <BuildIcon sx={{ fontSize: 50, mb: 2 }} />
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-              Made to Order
+          <Grid item xs={12} md={6}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 'bold',
+                mb: 2,
+              }}
+            >
+              Customise your T-shirt with your favorite song
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} />
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-              Premium Quality Fabric
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <BrushIcon sx={{ fontSize: 50, mb: 2 }} />
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-              Customised Designs
+            <Typography variant="subtitle1">
+              Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
             </Typography>
           </Grid>
         </Grid>
@@ -333,48 +322,7 @@ const ProductPage = () => {
           />
         </Box>
       </Box>
-      <Box
-        marginTop={4}
-        sx={{
-          borderRadius: '16px',
-          paddingY: 3,
-        }}
-      >
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                backgroundColor: '#f5f5f5',
-                borderRadius: '16px',
-                padding: 3,
-              }}
-            >
-              <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
-                Direct To Garment(DTG) Print
-              </Typography>
-              <Typography variant="body1">
-                Using Direct To Garment(DTG) printing technque we ensure highest quality print for each of your order
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                backgroundColor: '#b0b0b0',
-                borderRadius: '16px',
-                padding: 3,
-              }}
-            >
-              <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
-                Soft Touch Knitting
-              </Typography>
-              <Typography variant="body1">
-                With new and innovating knitting technque the fabric is truly a kind of it's own.
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
+     
       <Box
         marginTop={4}
         sx={{
@@ -446,6 +394,48 @@ const ProductPage = () => {
             }
           }
         `}</style>
+      </Box>
+      <Box
+        marginTop={4}
+        sx={{
+          borderRadius: '16px',
+          paddingY: 3,
+        }}
+      >
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                backgroundColor: '#f5f5f5',
+                borderRadius: '16px',
+                padding: 3,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
+                Direct To Garment(DTG) Print
+              </Typography>
+              <Typography variant="body1">
+                Using Direct To Garment(DTG) printing technque we ensure highest quality print for each of your order
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                backgroundColor: '#b0b0b0',
+                borderRadius: '16px',
+                padding: 3,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
+                Soft Touch Knitting
+              </Typography>
+              <Typography variant="body1">
+                With new and innovating knitting technque the fabric is truly a kind of it's own.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
