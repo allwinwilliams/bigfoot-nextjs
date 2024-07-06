@@ -7,7 +7,7 @@ import { TextureLoader } from 'three';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-const TshirtModel = ({ color, texture, triggerAnimation }) => {
+const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
   const normalMapUrl = '/models/textures/normal-final.jpeg';
   const normalMap = useLoader(TextureLoader, normalMapUrl);
@@ -55,14 +55,37 @@ const TshirtModel = ({ color, texture, triggerAnimation }) => {
     if (triggerAnimation && modelRef.current) {
       gsap.to(modelRef.current.rotation, {
         y: modelRef.current.rotation.y + Math.PI * 2,
-        duration: 4,
+        duration: 3,
         ease: "power1.inOut",
         onComplete: () => {
-          modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2); // Reset rotation to avoid overflow
+          modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2);
         },
       });
     }
   }, [triggerAnimation]);
+
+  useEffect(() => {
+    if (triggerLoadingAnimation && modelRef.current) {
+      gsap.to(modelRef.current.rotation, {
+        y: modelRef.current.rotation.y + Math.PI * 4,
+        duration: 2,
+        ease: "power1.inOut",
+        onComplete: () => {
+          modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2);
+        },
+      });
+      console.log("Scale", modelRef.current.scale);
+      gsap.to(modelRef.current.scale, {
+        x: 5,
+        y: 5,
+        z: 5,
+        duration: 1,
+        yoyo: true,
+        repeat: 1,
+        ease: "power1.inOut",
+      });
+    }
+  }, [triggerLoadingAnimation]);
 
   return <primitive ref={modelRef} object={gltf.scene} position={[0, 1, 0]} scale={[10, 10, 10]} />;
 };

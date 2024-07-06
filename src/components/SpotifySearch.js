@@ -21,7 +21,6 @@ const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading })
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
-//   const [loading, setSongLoading] = useState(false);
 
   useEffect(() => {
     const fetchAllData = async () => {

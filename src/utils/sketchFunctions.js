@@ -177,8 +177,8 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
           fillColor = p.color(255); // White fill color
           strokeColor = p.color(255); // White stroke color
         } else if (color === 'beige') {
-          fillColor = p.color(10); // Dark grey fill color
-          strokeColor = p.color(10); // Dark grey stroke color
+          fillColor = p.color(5); // Dark grey fill color
+          strokeColor = p.color(5); // Dark grey stroke color
         } else {
           fillColor = p.color(50); // Default fill color
           strokeColor = p.color(50); // Default stroke color
@@ -187,11 +187,11 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
         // Draw vertical lines for each segment
         analysisData.segments.forEach((segment) => {
           const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
-          const lineWidth = p.map(segment.duration, 0, totalDuration, 0, drawingWidth);
+        //   const lineWidth = p.map(segment.duration, 0, totalDuration, 0, drawingWidth);
           const loudness = segment.loudness_max;
           const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
           p.stroke(strokeColor);
-          p.strokeWeight(lineWidth);
+          p.strokeWeight(1);
           p.line(x, centerY + (drawingHeight / 2) - lineHeight / 2, x, centerY + (drawingHeight / 2) + lineHeight / 2);
         });
   
@@ -207,7 +207,7 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
         p.textStyle(p.NORMAL);
         p.text(artistNames, canvasWidth / 2, centerY + drawingHeight + 80);
       } else {
-        p.text('Yet another sketch type', 10, 30);
+        p.text('Loading...', canvasWidth/2, canvasHeight/2);
       }
     };
   };

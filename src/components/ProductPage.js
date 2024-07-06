@@ -146,6 +146,7 @@ const ProductPage = () => {
               color={color}
               songData={songData}
               sketchType={sketchType}
+              songLoading={songLoading}
             />
           </Grid>
           <Grid
@@ -172,8 +173,8 @@ const ProductPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 {[
-                  { value: 'black', label: 'Space Black' },
-                  { value: 'beige', label: 'Beach Sand' },
+                  { value: 'black', label: 'Black' },
+                  { value: 'beige', label: 'Sand' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

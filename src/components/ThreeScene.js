@@ -15,9 +15,10 @@ extend({ ShadowMaterial: THREE.ShadowMaterial });
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color, songData, sketchType }) => {
+const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
   const [texture, setTexture] = useState(null);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
+  const [triggerLoadingAnimation, setTriggerLoadingAnimation] = useState(false);
   const canvasRef = useRef();
   
   const createCombinedTexture = useCallback(() => {
@@ -116,7 +117,12 @@ const ThreeScene = ({ color, songData, sketchType }) => {
         />
         <pointLight position={[0, 4, 8]} intensity={40} />
         <pointLight position={[0, 4, -6]} intensity={20} />
-        <TshirtModel color={color} texture={texture} triggerAnimation={triggerAnimation} />
+        <TshirtModel
+          color={color}
+          texture={texture}
+          triggerAnimation={triggerAnimation}
+          triggerLoadingAnimation={songLoading}
+        />
         <GroundPlane />
         <OrbitControls
           maxPolarAngle={Math.PI / 1.2}
@@ -135,7 +141,7 @@ const ThreeScene = ({ color, songData, sketchType }) => {
       />
       <div className="icon-container">
         <IconButton aria-label="3D info" onClick={handleIconClick}>
-          <ThreeDRotationIcon />
+          <ThreeDRotationIcon sx={{ fontSize: 36 }} />
         </IconButton>
       </div>
       <style jsx>{`
