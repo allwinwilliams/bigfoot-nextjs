@@ -156,7 +156,6 @@ const ProductPage = () => {
             xs={12}
             md={6}
             sx={{
-              paddingX: '60px !important',
               boxSizing: 'border-box',
               '@media (min-width: 900px)': {
                 paddingLeft: '24px !important',
