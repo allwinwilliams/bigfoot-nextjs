@@ -49,7 +49,7 @@ export default function HomePage() {
             Bigfoot Clothing
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Conceptual Luxury Casuals
+            Conceptual Premium Casuals
           </Typography>
         </Box>
         <Paper elevation={4} sx={{

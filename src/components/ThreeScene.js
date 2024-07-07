@@ -111,12 +111,12 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
           shadow-camera-far={50}
-          shadow-camera-near={0.5}
+          shadow-camera-near={0.05}
           shadow-bias={-0.00001}
-          shadow-camera-left={-50}
-          shadow-camera-right={50}
-          shadow-camera-top={50}
-          shadow-camera-bottom={-50}
+          shadow-camera-left={-20}
+          shadow-camera-right={20}
+          shadow-camera-top={20}
+          shadow-camera-bottom={-20}
         />
         <pointLight position={[0, 2, 4]} intensity={20} />
         <pointLight position={[0, 2, -4]} intensity={20} />

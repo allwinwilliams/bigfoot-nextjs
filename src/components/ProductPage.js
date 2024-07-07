@@ -136,7 +136,7 @@ const ProductPage = () => {
     >
       <Box 
         sx={{
-          paddingY: 2,
+          paddingTop: 1,
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
@@ -157,7 +157,7 @@ const ProductPage = () => {
         <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
           Song Data Generated Art T-shirt - Oversized Fit
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1" sx={{ color: '#777777'}} gutterBottom>
           This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
         </Typography>
       </Box>
@@ -167,7 +167,7 @@ const ProductPage = () => {
           borderRadius: '16px',
           backgroundColor: '#ffffff',
           padding: 0,
-          marginY: 4,
+          marginY: 2,
         }}
       >
         <Grid container spacing={0}>
@@ -196,7 +196,7 @@ const ProductPage = () => {
             xs={12}
             md={6}
           >
-            <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 2 }}>
+            <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
                 Customise with Your Song
               </Typography>
@@ -274,7 +274,7 @@ const ProductPage = () => {
                 Select your size
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                {['S', 'M', 'L', 'XL'].map((option) => (
+                {['XS','S', 'M', 'L', 'XL'].map((option) => (
                   <Chip
                     key={option}
                     label={option}
@@ -293,23 +293,32 @@ const ProductPage = () => {
                 ))}
               </Box>
               <Box sx={{ mt: 4 }}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  sx={{
-                    mb: 2,
-                    padding: '12px',
-                    fontWeight: 'bold',
-                    borderRadius: '16px',
-                    textTransform: 'none',
-                  }}
-                  onClick={handleBuyNow}
-                  disabled={buyNowLoading}
-                >
-                  {buyNowLoading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Buy Now @ ₹3,299'}
-                </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                size="large"
+                sx={{
+                  mb: 2,
+                  padding: '12px',
+                  fontWeight: 'bold',
+                  borderRadius: '16px',
+                  textTransform: 'none',
+                }}
+                onClick={handleBuyNow}
+                disabled={buyNowLoading}
+              >
+                {buyNowLoading ? (
+                  <CircularProgress size={24} sx={{ color: 'white' }} />
+                ) : (
+                  <Box sx={{ textAlign: 'center' }}>
+                    Buy Now @ ₹1,399
+                    <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
+                      Limited Time Offer
+                    </Typography>
+                  </Box>
+                )}
+              </Button>
                 <Tooltip title="URL copied" open={tooltipOpen} arrow>
                   <Button
                     variant="outlined"

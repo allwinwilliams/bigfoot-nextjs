@@ -25,7 +25,7 @@ export default function ReturnsPolicy() {
           Bigfoot Clothing
         </Typography>
         <Typography variant="body1" gutterBottom>
-          Conceptual Luxury Casuals
+          Conceptual Premium Casuals
         </Typography>
       </Box>
       <Box sx={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>

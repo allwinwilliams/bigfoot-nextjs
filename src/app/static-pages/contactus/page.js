@@ -25,7 +25,7 @@ export default function ContactUs() {
             Bigfoot Clothing
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Conceptual Luxury Casuals
+            Conceptual Premium Casuals
           </Typography>
         </Box>
         <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
