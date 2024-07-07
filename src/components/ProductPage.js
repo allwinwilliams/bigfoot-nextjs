@@ -24,17 +24,17 @@ const ProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
-  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type1');
+  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type3');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
 
   const items = [
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'By Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type2' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'By Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
     { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
     { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type2' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
     { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
     { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
     { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
@@ -45,7 +45,7 @@ const ProductPage = () => {
       color: 'black',
       size: 'M',
       songId: '44JnQ7TIl4ieCbCQiEPQag',
-      style: 'type1',
+      style: 'type3',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
@@ -208,7 +208,7 @@ const ProductPage = () => {
                 setSongLoading={setSongLoading}
               />
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                Pick a color
+                Pick your color
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
@@ -251,7 +251,7 @@ const ProductPage = () => {
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
                   { value: 'type3', label: 'Minimal' },
-                  { value: 'type1', label: 'Maximal' },
+                  { value: 'type1', label: 'Analysis' },
                   // { value: 'type2', label: 'Seismograph' },
                 ].map((option) => (
                   <Chip
@@ -271,7 +271,7 @@ const ProductPage = () => {
                 ))}
               </Box>
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                Size
+                Select your size
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 {['S', 'M', 'L', 'XL'].map((option) => (
