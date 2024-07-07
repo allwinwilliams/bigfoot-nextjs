@@ -113,16 +113,16 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         p.fill(fillColor);
         p.noStroke();
         p.textAlign(p.CENTER);
-        p.textSize(36);
+        p.textSize(40);
         p.textStyle(p.BOLD);
         nameLines.forEach((line, index) => {
-          p.text(line, canvasWidth / 2, centerY + drawingHeight + 80 + index * 40);
+          p.text(line, canvasWidth / 2, centerY + drawingHeight + 100 + index * 40);
         });
   
-        p.textSize(20);
+        p.textSize(24);
         p.textStyle(p.NORMAL);
         artistLines.forEach((line, index) => {
-          p.text(line, canvasWidth / 2, centerY + drawingHeight + 130 + nameYOffset + index * 30);
+          p.text(line, canvasWidth / 2, centerY + drawingHeight + 150 + nameYOffset + index * 30);
         });
   
         if (explicit && explicitImage) {
@@ -131,8 +131,8 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
   
         p.textSize(24);
         p.textStyle(p.BOLD);
-        p.text(`0:00`, centerX, centerY + drawingHeight + 5);
-        p.text(`${durationFormatted}`, centerX + drawingWidth - 20, centerY + drawingHeight + 5);
+        p.text(`0:00`, centerX - 50, centerY + drawingHeight/2);
+        p.text(`${durationFormatted}`, centerX + drawingWidth + 20, centerY + drawingHeight/2);
       } else {
         p.textSize(32);
         p.text('Loading...', canvasWidth / 2, canvasHeight / 4);

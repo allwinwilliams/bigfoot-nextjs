@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
 import SongProductStaticContent from '../components/SongProductStaticContent';
+import CreateIcon from '@mui/icons-material/Create';
 
 export default function HomePage() {
   // Array of objects with image url, title, description, and link
@@ -26,15 +27,40 @@ export default function HomePage() {
       }}
     >
       <Container sx={{ mt: 8 }}>
-        <Box sx={{ paddingY: 2, textAlign: 'center' }}>
-          <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-            Bigfoot Clothing
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Conceptual Luxury Casuals
-          </Typography>
-        </Box>
-        <Paper elevation={4} sx={{ padding: 4, borderRadius: 2, mt: 4 }}>
+      <Box 
+        sx={{
+          paddingY: 2,
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <img
+          src='/logo.png'
+          alt='Bigfoot Logo'
+          style={{ width: 48, marginBottom: 8 }}
+        />
+        <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+          Bigfoot Clothing
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          Conceptual Luxury Casuals
+        </Typography>
+      </Box>
+        <Paper elevation={4} sx={{
+          padding: 4,
+          borderRadius: 4,
+          mt: 4,
+          boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
+          color: 'white',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'linear-gradient(144deg, #000511, #0f0f0f, #5e1ffd)',
+          backgroundSize: '400% 400%',
+          animation: 'backgroundMovement 7s ease infinite',  
+        }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
               <img
@@ -43,7 +69,8 @@ export default function HomePage() {
                 style={{ width: '100%', borderRadius: '16px' }}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6}
+            sx={{paddingX: 2}}>
               <Typography
                 variant="h4"
                 sx={{
@@ -56,17 +83,30 @@ export default function HomePage() {
               <Typography variant="subtitle1">
                 Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
               </Typography>
+              
               <Button 
-                variant="contained" 
-                color="primary" 
-                component={Link} 
-                href="/product" 
-                sx={{ mt: 2, padding: 2 }}
-              >
-                Craft Your Tshirt Now!
-              </Button>
+              variant="contained" 
+              color="primary" 
+              component={Link} 
+              href="/product" 
+              startIcon={<CreateIcon />}
+              sx={{ 
+                mt: 2, 
+                padding: 2, 
+                fontWeight: 'bold', 
+                fontFamily: 'Inter', 
+                textTransform: 'none',
+                background: 'linear-gradient(45deg, #fd1f4f 20%, #FF8E53 80%)',
+                backgroundSize: '400% 400%',
+                animation: 'backgroundMovement 4s ease infinite',  
+                borderRadius: 4,
+              }} 
+            >
+              Craft Your Tshirt Now!
+            </Button>
             </Grid>
           </Grid>
+          
         </Paper>
       </Container>
         {/* New Section with Cards */}
@@ -83,30 +123,35 @@ export default function HomePage() {
             '&:hover .scrollable-card': {
               animationPlayState: 'paused',
             },
+            padding: 2,
           }}
         >
           
           {items.map((item, index) => (
             <Card
-              key={index}
-              className="scrollable-card"
-              component={Link}
-              href={item.link}
-              sx={{
-                display: 'inline-block',
-                width: 350,
-                marginRight: 2,
-                animation: 'scroll 8s linear infinite',
-                '&:hover': {
-                  animationPlayState: 'paused',
-                },
-              }}
-            >
+                key={index}
+                className="scrollable-card"
+                component={Link}
+                href={item.link}
+                sx={{
+                  display: 'inline-block',
+                  width: 350,
+                  marginRight: 3,
+                  animation: 'scroll 8s linear infinite',
+                  '&:hover': {
+                    animationPlayState: 'paused',
+                  },
+                  padding: 2,
+                  boxShadow: '0 2px 16px rgba(0, 0, 0, 0.1)', // Softer shadow
+                  borderRadius: 4, // Optional: to make corners softer
+                }}
+              >
               <CardMedia
                 component="img"
                 height="200"
                 image={item.imgUrl}
                 alt={item.title}
+                sx={{borderRadius: 2}}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -122,36 +167,40 @@ export default function HomePage() {
         </Box>
         <Box
           sx={{
-            mt: 4,
             overflowX: 'auto',
             whiteSpace: 'nowrap',
             '&:hover .scrollable-card': {
               animationPlayState: 'paused',
             },
+            padding: 2,
           }}
         >
           
           {items.map((item, index) => (
             <Card
-              key={index}
-              className="scrollable-card"
-              component={Link}
-              href={item.link}
-              sx={{
-                display: 'inline-block',
-                width: 350,
-                marginRight: 2,
-                animation: 'scroll 8s linear infinite',
-                '&:hover': {
-                  animationPlayState: 'paused',
-                },
-              }}
-            >
+                key={index}
+                className="scrollable-card"
+                component={Link}
+                href={item.link}
+                sx={{
+                  display: 'inline-block',
+                  width: 350,
+                  marginRight: 3,
+                  animation: 'scroll 8s linear infinite',
+                  '&:hover': {
+                    animationPlayState: 'paused',
+                  },
+                  padding: 2,
+                  boxShadow: '0 2px 16px rgba(0, 0, 0, 0.1)', // Softer shadow
+                  borderRadius: 4, // Optional: to make corners softer
+                }}
+              >
               <CardMedia
                 component="img"
                 height="200"
                 image={item.imgUrl}
                 alt={item.title}
+                sx={{borderRadius: 2}}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -194,7 +243,16 @@ export default function HomePage() {
                   color="primary" 
                   component={Link} 
                   href="/product" 
-                  sx={{ mt: 2, padding: 2 }}
+                  startIcon={<CreateIcon />}
+                  sx={{ 
+                    mt: 2, 
+                    padding: 2, 
+                    fontWeight: 'bold', 
+                    fontFamily: 'Inter', 
+                    textTransform: 'none',
+                    background: 'linear-gradient(45deg, #fd1f4f 30%, #5e1ffd 90%)',
+                    borderRadius: 4,
+                  }} 
                 >
                   Craft Your Tshirt Now!
                 </Button>

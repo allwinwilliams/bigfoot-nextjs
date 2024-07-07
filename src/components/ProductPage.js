@@ -325,31 +325,36 @@ const ProductPage = () => {
             '&:hover .scrollable-card': {
               animationPlayState: 'paused',
             },
+            paddingY: 4,
           }}
         >
           
           {items.map((item, index) => (
             <Card
-              key={index}
-              className="scrollable-card"
-              component={Link}
-              href={item.link}
-              sx={{
-                display: 'inline-block',
-                width: 350,
-                marginRight: 2,
-                animation: 'scroll 10s linear infinite',
-                '&:hover': {
-                  animationPlayState: 'paused',
-                },
-              }}
-            >
+                key={index}
+                className="scrollable-card"
+                component={Link}
+                href={item.link}
+                sx={{
+                  display: 'inline-block',
+                  width: 350,
+                  marginRight: 2,
+                  animation: 'scroll 8s linear infinite',
+                  '&:hover': {
+                    animationPlayState: 'paused',
+                  },
+                  padding: 2,
+                  boxShadow: '0 2px 16px rgba(0, 0, 0, 0.1)', // Softer shadow
+                  borderRadius: 4, // Optional: to make corners softer
+                }}
+              >
               <CardMedia
                 component="img"
                 height="200"
                 image={item.imgUrl}
                 alt={item.title}
-              />
+                sx={{borderRadius: 2}}
+              />animation: 'backgroundMovement 4s ease infinite',  
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {item.title}
