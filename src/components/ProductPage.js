@@ -72,7 +72,7 @@ const ProductPage = () => {
   const handleShare = () => {
     const shareData = {
       title: 'Check out this T-Shirt',
-      text: 'I customised this with my song!',
+      text: 'I customised this T-Shirt with a song!! Check it out:',
       url: window.location.href,
     };
   

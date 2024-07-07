@@ -38,8 +38,26 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         const centerY = (canvasHeight - drawingHeight) / 5;
   
         // Determine the base hue from valence
-        const baseHue = p.map(featuresData.valence, 0, 1, 260, 10);
-  
+        // const baseHue = p.map(featuresData.valence, 0, 1, 260, 10);
+        // const baseHue = p.lerp(265, 41, featuresData.valence);
+        const hueStart = 265;
+        const hueEnd = 20;
+        let baseHue;
+
+        // Ensure the shortest path on the color wheel
+        if (hueStart > hueEnd) {
+            if (hueStart - hueEnd > 180) {
+                baseHue = p.lerp(hueStart, hueEnd + 360, featuresData.valence) % 360;
+            } else {
+                baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+            }
+            } else {
+            if (hueEnd - hueStart > 180) {
+                baseHue = p.lerp(hueStart + 360, hueEnd, featuresData.valence) % 360;
+            } else {
+                baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+            }
+        }
         let fillColor, strokeColor;
         if (color === 'black') {
           fillColor = p.color(255); // White fill color

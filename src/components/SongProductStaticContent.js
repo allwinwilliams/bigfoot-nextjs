@@ -17,27 +17,27 @@ export default function SongProductStaticContent() {
                 }}
             >
                 <Grid container spacing={4} alignItems="center">
-                <Grid item xs={12} md={6}>
-                    <img
-                    src="/song-tshirt/customised-banner.jpg"
-                    alt="Custom T-shirt"
-                    style={{ width: '100%', borderRadius: '16px' }}
-                    />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Typography
-                    variant="h4"
-                    sx={{
-                        fontWeight: 'bold',
-                        mb: 2,
-                    }}
-                    >
-                    Customise your T-shirt with your favorite song
-                    </Typography>
-                    <Typography variant="subtitle1">
-                    Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
-                    </Typography>
-                </Grid>
+                    <Grid item xs={12} md={6}>
+                        <img
+                        src="/song-tshirt/customised-banner.jpg"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', borderRadius: '16px' }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Typography
+                        variant="h4"
+                        sx={{
+                            fontWeight: 'bold',
+                            mb: 2,
+                        }}
+                        >
+                        Customise your T-shirt with your favorite song
+                        </Typography>
+                        <Typography variant="subtitle1">
+                        Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
+                        </Typography>
+                    </Grid>
                 </Grid>
             </Box>
             <Box

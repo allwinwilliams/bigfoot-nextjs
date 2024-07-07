@@ -1,6 +1,8 @@
 import '../styles/globals.css';
 import { CustomiseProvider } from '../context/CustomiseProvider';
 import ClientThemeProvider from './ClientThemeProvider';
+import Footer from '../components/Footer';
+import { Container } from '@mui/material';
 
 export default function RootLayout({ children }) {
   return (
@@ -14,6 +16,9 @@ export default function RootLayout({ children }) {
             {children}
           </ClientThemeProvider>
         </CustomiseProvider>
+        <Container>
+          <Footer />
+        </Container>
       </body>
     </html>
   );
