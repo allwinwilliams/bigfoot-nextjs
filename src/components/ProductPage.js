@@ -70,9 +70,23 @@ const ProductPage = () => {
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setTooltipOpen(true);
-    setTimeout(() => setTooltipOpen(false), 2000);
+    const shareData = {
+      title: 'Check out this T-Shirt',
+      text: 'I customised this with my song!',
+      url: window.location.href,
+    };
+  
+    if (navigator.share) {
+      navigator.share(shareData).then(() => {
+        console.log('Thanks for sharing!');
+      }).catch((error) => {
+        console.error('Error sharing:', error);
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      setTooltipOpen(true);
+      setTimeout(() => setTooltipOpen(false), 2000);
+    }
   };
 
   const handleBuyNow = async () => {

@@ -30,7 +30,7 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
             map: texture,
             normalMap: normalMap,
             roughness: 1,
-            metalness: 0.2,
+            metalness: 0,
           });
           child.material = material;
           child.material.needsUpdate = true;
