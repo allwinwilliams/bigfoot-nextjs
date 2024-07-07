@@ -91,7 +91,7 @@ export default function HomePage() {
               href="/product" 
               startIcon={<CreateIcon />}
               sx={{ 
-                mt: 2, 
+                mt: 4, 
                 padding: 2, 
                 fontWeight: 'bold', 
                 fontFamily: 'Inter', 
@@ -100,9 +100,10 @@ export default function HomePage() {
                 backgroundSize: '400% 400%',
                 animation: 'backgroundMovement 4s ease infinite',  
                 borderRadius: 4,
+                width: '100%'
               }} 
             >
-              Craft Your Tshirt Now!
+              Craft Your Own Tshirt
             </Button>
             </Grid>
           </Grid>

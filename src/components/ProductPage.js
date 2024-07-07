@@ -312,7 +312,7 @@ const ProductPage = () => {
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{marginX: 'auto', marginTop: 4}}>
+      <Box sx={{marginX: 'auto', textAlign:'center', marginTop: 4, paddingTop: 4}}>
             <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
               Thousands of options to choose from.. Make it truly yours..
             </Typography>
@@ -340,6 +340,7 @@ const ProductPage = () => {
                   width: 350,
                   marginRight: 2,
                   animation: 'scroll 8s linear infinite',
+                  textDecoration: 'none',
                   '&:hover': {
                     animationPlayState: 'paused',
                   },
@@ -354,7 +355,7 @@ const ProductPage = () => {
                 image={item.imgUrl}
                 alt={item.title}
                 sx={{borderRadius: 2}}
-              />animation: 'backgroundMovement 4s ease infinite',  
+              />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {item.title}
