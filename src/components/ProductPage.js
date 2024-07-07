@@ -187,7 +187,7 @@ const ProductPage = () => {
               <Typography variant="h6" gutterBottom>
                 Color
               </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
                   { value: 'black', label: 'Black' },
                   { value: 'beige', label: 'Sand' },
@@ -246,11 +246,11 @@ const ProductPage = () => {
               <Typography variant="h6" gutterBottom>
                 Style
               </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
                   { value: 'type3', label: 'Minimal' },
                   { value: 'type1', label: 'Maximal' },
-                  // { value: 'type2', label: 'Analysis' },
+                  { value: 'type2', label: 'Seismograph' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

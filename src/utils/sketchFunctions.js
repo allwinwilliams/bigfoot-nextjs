@@ -113,13 +113,13 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         p.fill(fillColor);
         p.noStroke();
         p.textAlign(p.CENTER);
-        p.textSize(40);
+        p.textSize(36);
         p.textStyle(p.BOLD);
         nameLines.forEach((line, index) => {
           p.text(line, canvasWidth / 2, centerY + drawingHeight + 80 + index * 40);
         });
   
-        p.textSize(30);
+        p.textSize(20);
         p.textStyle(p.NORMAL);
         artistLines.forEach((line, index) => {
           p.text(line, canvasWidth / 2, centerY + drawingHeight + 130 + nameYOffset + index * 30);
@@ -141,6 +141,137 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
+    const drawingWidth = 1000; // Width for the lines
+    const drawingHeight = 1500; // Height for the lines
+    const canvasWidth = 1500;
+    const canvasHeight = 2000; // Total canvas height
+    let explicitImage;
+  
+    p.preload = () => {
+      explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+    };
+  
+    p.setup = () => {
+      console.log('Setting up p5 sketch type 1');
+      const canvas = p.createCanvas(canvasWidth, canvasHeight);
+      canvas.id('p5-canvas');
+      canvasRef.current = canvas.canvas;
+      p.colorMode(p.HSL, 360, 100, 100);
+      p.noLoop();
+      onP5Update();
+    };
+  
+    p.draw = () => {
+      p.background(200);
+      p.fill(50);
+      p.textSize(32);
+  
+      if (songData) {
+        const songDetails = songData.details;
+        const analysisData = songData.analysis;
+        const featuresData = songData.features;
+  
+        const { name, artists, explicit } = songDetails;
+        const artistNames = artists.map(artist => artist.name).join(', ');
+  
+        const totalDuration = analysisData.track.duration;
+        const centerX = (canvasWidth - drawingWidth) / 2;
+        const centerY = (canvasHeight - drawingHeight) / 5;
+  
+        // Determine the base hue from valence
+        const baseHue = p.lerp(265, 41, featuresData.valence);
+  
+        let fillColor, strokeColor;
+        if (color === 'black') {
+          fillColor = p.color(255); // White fill color
+          strokeColor = p.color(255); // White stroke color
+        } else if (color === 'beige') {
+          fillColor = p.color(5); // Light grey fill color
+          strokeColor = p.color(5, 0, 0); // Light grey stroke color
+        } else {
+          fillColor = p.color(50); // Default fill color
+          strokeColor = p.color(50); // Default stroke color
+        }
+  
+        // Draw vertical lines for each segment
+        analysisData.segments.forEach((segment) => {
+          const y = p.map(segment.start, 0, totalDuration, centerY + drawingHeight, centerY);
+          const loudness = segment.loudness_max;
+          const lineWidth = p.map(loudness, -30, 5, 0, drawingWidth);
+  
+          // Map loudness to hue within the range of -50 to +50 around the base hue
+  
+          // Adjust color visibility for the beige variant
+          if (color === 'beige') {
+            strokeColor = p.color(5); // Adjusted color with higher brightness and saturation
+          } else {
+            strokeColor = p.color(255); // Default color
+          }
+  
+          p.stroke(strokeColor);
+          p.strokeWeight(2);
+          p.line(centerX + (drawingWidth / 2) - lineWidth / 2, y, centerX + (drawingWidth / 2) + lineWidth / 2, y);
+        });
+  
+        // Convert duration to MM:SS format
+        const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
+        const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
+        const durationFormatted = `${durationMinutes}:${durationSeconds}`;
+  
+        // Prepare the song name and artist names for display
+        const splitText = (text, maxLength) => {
+          if (text.length <= maxLength) {
+            return [text];
+          }
+          const regex = new RegExp(`.{1,${maxLength}}`, 'g');
+          return text.match(regex);
+        };
+  
+        const nameLines = splitText(name, 50);
+        const artistLines = splitText(artistNames, 60);
+        const nameYOffset = nameLines.length > 1 ? 60 : 0; // Additional offset if name is on two lines
+  
+        p.fill(fillColor);
+        p.noStroke();
+        p.textAlign(p.CENTER);
+  
+        // Write 0:00 at the top
+        p.textSize(18);
+        p.textStyle(p.BOLD);
+        p.text(`0:00`, canvasWidth / 2, centerY - 20);
+  
+        // Write the duration at the bottom
+        p.textSize(18);
+        p.textStyle(p.BOLD);
+        p.text(`${durationFormatted}`, canvasWidth / 2, centerY + drawingHeight + 40);
+  
+        // Write the song name below the duration
+        p.textSize(40);
+        p.textStyle(p.BOLD);
+        nameLines.forEach((line, index) => {
+          p.text(line, canvasWidth / 2, centerY + drawingHeight + 100 + index * 40);
+        });
+  
+        // Write the artist names below the song name
+        p.textSize(30);
+        p.textStyle(p.NORMAL);
+        artistLines.forEach((line, index) => {
+          p.text(line, canvasWidth / 2, centerY + drawingHeight + 130 + nameYOffset + index * 30);
+        });
+  
+        // Draw the explicit image if the song is explicit
+        if (explicit && explicitImage) {
+          p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 160 + nameYOffset, 100, 100); // Adjust the size and position as needed
+        }
+      } else {
+        p.textSize(32);
+        p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
+      }
+    };
+  };
+  
+  
+  export const analysisbackup = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1000;
     const drawingHeight = 800;
     const canvasWidth = 1500;
@@ -336,4 +467,5 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
       }
     };
-  };
+  }; 
+ 
