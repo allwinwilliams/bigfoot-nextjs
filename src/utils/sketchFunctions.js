@@ -1,5 +1,5 @@
 
-export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
+export const Maximal = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;
     const drawingHeight = 1200; // Height for the vertical lines
     const canvasWidth = 1500;
@@ -414,7 +414,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
 };
 
   
-  export const analysisbackup = (p, canvasRef, onP5Update, color, songData) => {
+  export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1000;
     const drawingHeight = 800;
     const canvasWidth = 1500;

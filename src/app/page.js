@@ -26,29 +26,32 @@ export default function HomePage() {
         minHeight: '100vh',
       }}
     >
-      <Container sx={{ mt: 8 }}>
-      <Box 
-        sx={{
-          paddingY: 2,
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <img
-          src='/logo.png'
-          alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
-        />
-        <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-          Bigfoot Clothing
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          Conceptual Luxury Casuals
-        </Typography>
-      </Box>
+      <Container sx={{ mt: 2 }}>
+        <Box 
+          sx={{
+            paddingY: 2,
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textDecoration: 'none'
+          }}
+          component={Link}
+          href={'/'}
+        >
+          <img
+            src='/logo.png'
+            alt='Bigfoot Logo'
+            style={{ width: 48, marginBottom: 8 }}
+          />
+          <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+            Bigfoot Clothing
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Conceptual Luxury Casuals
+          </Typography>
+        </Box>
         <Paper elevation={4} sx={{
           padding: 4,
           borderRadius: 4,
@@ -231,15 +234,18 @@ export default function HomePage() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <Typography
-                  variant="h4"
+                  variant="h3"
                   sx={{
                     fontWeight: 'bold',
                     mb: 2,
                   }}
                 >
-                  Customise your T-shirt with your favorite song
+                  Customise your <nobr>T-shirt</nobr> with songs
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle2"
+                sx={{
+                  color: 'rgba(0, 0, 0, 0.8)'
+                }}>
                   Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
                 </Typography>
                 <Button 

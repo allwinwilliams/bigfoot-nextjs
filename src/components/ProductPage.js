@@ -254,7 +254,7 @@ const ProductPage = () => {
                 {[
                   { value: 'type3', label: 'Minimal' },
                   { value: 'type1', label: 'Maximal' },
-                  { value: 'type2', label: 'Seismograph' },
+                  // { value: 'type2', label: 'Seismograph' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
