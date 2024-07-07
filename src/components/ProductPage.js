@@ -134,7 +134,26 @@ const ProductPage = () => {
         paddingY: 1,
       }}
     >
-      <Box sx={{ paddingY: 2, textAlign: 'center' }}>
+      <Box 
+        sx={{
+          paddingY: 2,
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textDecoration: 'none'
+        }}
+        component={Link}
+        href={'/'}
+      >
+        <img
+          src='/logo.png'
+          alt='Bigfoot Logo'
+          style={{ width: 48, marginBottom: 8 }}
+        />
+      </Box>
+      <Box sx={{ paddingY: 1, textAlign: 'center' }}>
         <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
           Song Data Generated Art T-shirt - Oversized Fit
         </Typography>
@@ -172,7 +191,7 @@ const ProductPage = () => {
           <Grid
             item
             sx={{
-              padding: { xs: 2, md: 4 },
+              padding: { xs: 2, md: 2 },
             }}
             xs={12}
             md={6}
@@ -188,8 +207,8 @@ const ProductPage = () => {
                 songLoading={songLoading}
                 setSongLoading={setSongLoading}
               />
-              <Typography variant="h6" gutterBottom>
-                Color
+              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                Pick a color
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
@@ -225,30 +244,9 @@ const ProductPage = () => {
                   />
                 ))}
               </Box>
-              <Typography variant="h6" gutterBottom>
-                Size
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                {['S', 'M', 'L', 'XL'].map((option) => (
-                  <Chip
-                    key={option}
-                    label={option}
-                    clickable
-                    color={size === option ? 'primary' : 'default'}
-                    variant={size === option ? 'filled' : 'outlined'}
-                    onClick={() => handleSizeChange({ target: { value: option } })}
-                    sx={{
-                      padding: '24px 8px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      width: '100%',
-                      borderRadius: '9999px',
-                    }}
-                  />
-                ))}
-              </Box>
-              <Typography variant="h6" gutterBottom>
-                Style
+              
+              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                Choose your style
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
@@ -267,6 +265,28 @@ const ProductPage = () => {
                       padding: '24px 16px',
                       fontSize: '16px',
                       fontWeight: 'bold',
+                      borderRadius: '9999px',
+                    }}
+                  />
+                ))}
+              </Box>
+              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                Size
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                {['S', 'M', 'L', 'XL'].map((option) => (
+                  <Chip
+                    key={option}
+                    label={option}
+                    clickable
+                    color={size === option ? 'primary' : 'default'}
+                    variant={size === option ? 'filled' : 'outlined'}
+                    onClick={() => handleSizeChange({ target: { value: option } })}
+                    sx={{
+                      padding: '24px 8px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      width: '100%',
                       borderRadius: '9999px',
                     }}
                   />
