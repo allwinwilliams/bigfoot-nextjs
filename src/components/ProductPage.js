@@ -2,7 +2,11 @@
 
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Box, Typography, Grid, Chip, Button, Tooltip, CircularProgress, Card, Link, CardMedia, CardContent } from '@mui/material';
+import 
+{ Box, Typography, Grid, Chip, Button,
+  Tooltip, CircularProgress, Card, Link,
+  CardMedia, CardContent, useTheme }
+from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
@@ -14,6 +18,8 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SongProductStaticContent from './SongProductStaticContent';
 
 const ProductPage = () => {
+  const theme = useTheme();
+
   const { songData } = useContext(CustomiseAppContext);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -154,11 +160,25 @@ const ProductPage = () => {
         />
       </Box>
       <Box sx={{ paddingY: 1, textAlign: 'center' }}>
-        <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+        <Typography 
+          variant="h4"
+          gutterBottom 
+          sx={{
+            fontSize: {
+              xs: '1.25rem',
+              sm: '1.5rem',
+              md: '2rem',
+            },
+            fontWeight: 'bold'
+          }}
+        >
           Song Data Generated Art T-shirt - Oversized Fit
         </Typography>
-        <Typography variant="body1" sx={{ color: '#777777'}} gutterBottom>
-          This is a customizable t-shirt with a design generated from a Spotify song. Choose your favorite song and see the magic!
+        <Typography 
+          variant='subtitle1'
+          sx={{color: '#777777', lineHeight: 1.25}}
+        >
+          This is a T-Shirt that is customised based a song. Select a song and see the magic
         </Typography>
       </Box>
       <Box
