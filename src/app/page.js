@@ -57,9 +57,9 @@ export default function HomePage() {
           color: 'white',
           position: 'relative',
           overflow: 'hidden',
-          background: 'linear-gradient(144deg, #000511, #0f0f0f, #5e1ffd)',
-          backgroundSize: '400% 400%',
-          animation: 'backgroundMovement 7s ease infinite',  
+          background: 'linear-gradient(144deg, #000511, #0f0f0f, #621f7d)',
+          backgroundSize: '400% 300%',
+          animation: 'backgroundMovement 6s ease infinite',  
         }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
@@ -72,15 +72,18 @@ export default function HomePage() {
             <Grid item xs={12} md={6}
             sx={{paddingX: 2}}>
               <Typography
-                variant="h4"
+                variant="h3"
                 sx={{
                   fontWeight: 'bold',
                   mb: 2,
                 }}
               >
-                Customise your T-shirt with your favorite song
+                Customise your <nobr>T-shirt</nobr> with songs
               </Typography>
-              <Typography variant="subtitle1">
+              <Typography variant="subtitle2"
+              sx={{
+                color: 'rgba(255, 255, 255, 0.8)'
+              }}>
                 Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
               </Typography>
               
@@ -217,7 +220,7 @@ export default function HomePage() {
         </Box>
         <Container>
           <SongProductStaticContent/>
-          <Paper elevation={4} sx={{ padding: 4, borderRadius: 2, mt: 4 }}>
+          <Paper elevation={4} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>
             <Grid container spacing={4} alignItems="center">
               <Grid item xs={12} md={6}>
                 <img
@@ -246,16 +249,19 @@ export default function HomePage() {
                   href="/product" 
                   startIcon={<CreateIcon />}
                   sx={{ 
-                    mt: 2, 
+                    mt: 4, 
                     padding: 2, 
                     fontWeight: 'bold', 
                     fontFamily: 'Inter', 
                     textTransform: 'none',
-                    background: 'linear-gradient(45deg, #fd1f4f 30%, #5e1ffd 90%)',
+                    background: 'linear-gradient(45deg, #fd1f4f 20%, #FF8E53 80%)',
+                    backgroundSize: '400% 400%',
+                    animation: 'backgroundMovement 4s ease infinite',  
                     borderRadius: 4,
+                    width: '100%'
                   }} 
                 >
-                  Craft Your Tshirt Now!
+                  Craft Your Own Tshirt
                 </Button>
               </Grid>
             </Grid>

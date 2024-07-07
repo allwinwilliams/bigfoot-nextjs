@@ -132,7 +132,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         p.textSize(24);
         p.textStyle(p.BOLD);
         p.text(`0:00`, centerX - 50, centerY + drawingHeight/2);
-        p.text(`${durationFormatted}`, centerX + drawingWidth + 20, centerY + drawingHeight/2);
+        p.text(`${durationFormatted}`, centerX + drawingWidth + 40, centerY + drawingHeight/2);
       } else {
         p.textSize(32);
         p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
