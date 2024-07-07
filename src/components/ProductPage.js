@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Box, Typography, Grid, Chip, Button, Tooltip, CircularProgress } from '@mui/material';
+import { Box, Typography, Grid, Chip, Button, Tooltip, CircularProgress, Card, Link, CardMedia, CardContent } from '@mui/material';
 import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
@@ -27,19 +27,18 @@ const ProductPage = () => {
   const [sketchType, setSketchType] = useState(searchParams.get('style') || 'type1');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
+  const initialLoad = useRef(true);
 
-  // useEffect(() => {
-  //   const fetchAllData = async () => {
-  //     if (songId && accessToken) {
-  //       const { trackData, analysisData, featuresData } = await fetchAllSongData(songId, accessToken);
-  //       changeSongData(trackData);
-  //       setAnalysisData(analysisData);
-  //       setFeaturesData(featuresData);
-  //     }
-  //   };
-
-  //   fetchAllData();
-  // }, [songId, accessToken, changeSongData]);
+  const items = [
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'By Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type2' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type2' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+  ];
 
   useEffect(() => {
     const defaultParams = {
@@ -52,18 +51,23 @@ const ProductPage = () => {
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
       router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
     }
+
+    if (initialLoad.current) {
+      window.scrollTo(0, 0);
+      initialLoad.current = false;
+    }
   }, [searchParams, color, size, songId, sketchType, router]);
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
     window.history.replaceState(null, '', `/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}&style=${sketchType}`);
   };
-  
+
   const handleStyleChange = (event) => {
     setSketchType(event.target.value);
     window.history.replaceState(null, '', `/product/tshirt/song?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`);
   };
-  
+
   const handleSizeChange = (event) => {
     setSize(event.target.value);
     window.history.replaceState(null, '', `/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}&style=${sketchType}`);
@@ -75,7 +79,7 @@ const ProductPage = () => {
       text: 'I customised this T-Shirt with a song!! Check it out:',
       url: window.location.href,
     };
-  
+
     if (navigator.share) {
       navigator.share(shareData).then(() => {
         console.log('Thanks for sharing!');
@@ -94,11 +98,11 @@ const ProductPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-      
+
       const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
-      
+
       const dataToStore = {
         color,
         size,
@@ -108,10 +112,10 @@ const ProductPage = () => {
         imageUrl,
         timestamp: new Date().toISOString(),
       };
-      
+
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
-      
+
       window.location.href = `https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button&note=${docId}`;
     } catch (error) {
       console.error('Error placing order:', error);
@@ -308,7 +312,67 @@ const ProductPage = () => {
           </Grid>
         </Grid>
       </Box>
+      <Box sx={{marginX: 'auto', marginTop: 4}}>
+            <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+              Thousands of options to choose from.. Make it truly yours..
+            </Typography>
+        </Box>
+        <Box
+          sx={{
+            mt: 4,
+            overflowX: 'auto',
+            whiteSpace: 'nowrap',
+            '&:hover .scrollable-card': {
+              animationPlayState: 'paused',
+            },
+          }}
+        >
+          
+          {items.map((item, index) => (
+            <Card
+              key={index}
+              className="scrollable-card"
+              component={Link}
+              href={item.link}
+              sx={{
+                display: 'inline-block',
+                width: 350,
+                marginRight: 2,
+                animation: 'scroll 10s linear infinite',
+                '&:hover': {
+                  animationPlayState: 'paused',
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="200"
+                image={item.imgUrl}
+                alt={item.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {item.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+          
+        </Box>
       <SongProductStaticContent />
+      <style jsx>{`
+        @keyframes scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-100%);
+          }
+        }
+      `}</style>
     </Box>
   );
 };

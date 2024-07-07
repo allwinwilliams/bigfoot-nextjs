@@ -22,6 +22,11 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
   const canvasRef = useRef();
   
   const createCombinedTexture = useCallback(() => {
+    if (!(canvasRef.current instanceof HTMLCanvasElement)) {
+      console.error('canvasRef.current is not an HTMLCanvasElement');
+      return null;
+    }
+
     console.log('Creating combined texture');
     const combinedCanvas = document.createElement('canvas');
     const ctx = combinedCanvas.getContext('2d');
@@ -38,12 +43,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     ctx.fillStyle = fillColor;
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
 
-    if (canvasRef.current) {
-      console.log('Drawing p5 canvas on combined canvas');
-      ctx.drawImage(canvasRef.current, 60, 2000, 1500, 2000);
-    } else {
-      console.error('Canvas ref is not set');
-    }
+    console.log('Drawing p5 canvas on combined canvas');
+    ctx.drawImage(canvasRef.current, 60, 2000, 1500, 2000);
 
     const texture = new THREE.CanvasTexture(combinedCanvas);
     texture.flipY = false; // Flip the Y-axis
@@ -51,8 +52,16 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     return texture;
   }, [color]);
 
+  const handleP5Update = useCallback(() => {
+    console.log('p5 sketch updated');
+    if (canvasRef.current instanceof HTMLCanvasElement) {
+      const texture = createCombinedTexture();
+      setTexture(texture);
+    }
+  }, [createCombinedTexture]);
+
   useEffect(() => {
-    if (canvasRef.current) {
+    if (canvasRef.current instanceof HTMLCanvasElement) {
       console.log('Canvas ref is set, creating texture');
       const texture = createCombinedTexture();
       setTexture(texture);
@@ -60,12 +69,6 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       console.error('Canvas ref is not set in useEffect');
     }
   }, [canvasRef.current, color, createCombinedTexture]);
-
-  const handleP5Update = useCallback(() => {
-    console.log('p5 sketch updated');
-    const texture = createCombinedTexture();
-    setTexture(texture);
-  }, [createCombinedTexture]);
 
   const handleIconClick = () => {
     setTriggerAnimation(true);

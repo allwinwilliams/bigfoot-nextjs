@@ -7,14 +7,14 @@ import SongProductStaticContent from '../components/SongProductStaticContent';
 export default function HomePage() {
   // Array of objects with image url, title, description, and link
   const items = [
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 1', description: 'Description 1', link: '/product?tshirt=song&color=red&songId=1' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 2', description: 'Description 2', link: '/product?tshirt=song&color=blue&songId=2' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 3', description: 'Description 3', link: '/product?tshirt=song&color=green&songId=3' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 4', description: 'Description 4', link: '/product?tshirt=song&color=yellow&songId=4' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 5', description: 'Description 5', link: '/product?tshirt=song&color=purple&songId=5' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 6', description: 'Description 6', link: '/product?tshirt=song&color=orange&songId=6' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 7', description: 'Description 7', link: '/product?tshirt=song&color=pink&songId=7' },
-    { imgUrl: 'https://via.placeholder.com/400', title: 'Product 8', description: 'Description 8', link: '/product?tshirt=song&color=black&songId=8' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'By Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type2' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type2' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type3' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=type1' },
   ];
 
   return (
@@ -94,9 +94,9 @@ export default function HomePage() {
               href={item.link}
               sx={{
                 display: 'inline-block',
-                width: 400,
+                width: 350,
                 marginRight: 2,
-                animation: 'scroll 10s linear infinite',
+                animation: 'scroll 8s linear infinite',
                 '&:hover': {
                   animationPlayState: 'paused',
                 },
@@ -118,6 +118,52 @@ export default function HomePage() {
               </CardContent>
             </Card>
           ))}
+          
+        </Box>
+        <Box
+          sx={{
+            mt: 4,
+            overflowX: 'auto',
+            whiteSpace: 'nowrap',
+            '&:hover .scrollable-card': {
+              animationPlayState: 'paused',
+            },
+          }}
+        >
+          
+          {items.map((item, index) => (
+            <Card
+              key={index}
+              className="scrollable-card"
+              component={Link}
+              href={item.link}
+              sx={{
+                display: 'inline-block',
+                width: 350,
+                marginRight: 2,
+                animation: 'scroll 8s linear infinite',
+                '&:hover': {
+                  animationPlayState: 'paused',
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="200"
+                image={item.imgUrl}
+                alt={item.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {item.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+          
         </Box>
         <Container>
           <SongProductStaticContent/>
