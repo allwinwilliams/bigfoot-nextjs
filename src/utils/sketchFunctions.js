@@ -1,8 +1,14 @@
+
 export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;
     const drawingHeight = 1200; // Height for the vertical lines
     const canvasWidth = 1500;
     const canvasHeight = 2000; // Total canvas height
+    let explicitImage;
+  
+    p.preload = () => {
+      explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+    };
   
     p.setup = () => {
       console.log('Setting up p5 sketch type 1');
@@ -24,7 +30,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         const analysisData = songData.analysis;
         const featuresData = songData.features;
   
-        const { name, artists } = songDetails;
+        const { name, artists, explicit } = songDetails;
         const artistNames = artists.map(artist => artist.name).join(', ');
   
         const totalDuration = analysisData.track.duration;
@@ -101,10 +107,14 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
           p.text(line, canvasWidth / 2, centerY + drawingHeight + 130 + nameYOffset + index * 30);
         });
   
+        if (explicit && explicitImage) {
+          p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
+        }
+  
         p.textSize(18);
         p.textStyle(p.BOLD);
-        p.text(`0:00`, centerX, centerY + drawingHeight + 20);
-        p.text(`${durationFormatted}`, centerX + drawingWidth - 20, centerY + drawingHeight + 20);
+        p.text(`0:00`, centerX, centerY + drawingHeight + 10);
+        p.text(`${durationFormatted}`, centerX + drawingWidth - 10, centerY + drawingHeight + 20);
       } else {
         p.textSize(32);
         p.text('Loading...', canvasWidth / 2, canvasHeight / 4);

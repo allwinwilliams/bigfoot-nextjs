@@ -86,7 +86,7 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
     }
   }, [triggerLoadingAnimation]);
 
-  return <primitive ref={modelRef} object={gltf.scene} position={[0, 1, 0]} scale={[5, 5, 5]} />;
+  return <primitive ref={modelRef} object={gltf.scene} position={[0, 0, 0]} scale={[2, 2, 2]} />;
 };
 
 export default TshirtModel;

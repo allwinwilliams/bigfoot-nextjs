@@ -74,14 +74,14 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     }, 3000); // Reset after 3 seconds
   };
 
-  const GroundPlane = () => {
+  const GroundPlane = ({position}) => {
     const meshRef = useRef();
 
     return (
       <mesh
         ref={meshRef}
         rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -4, 0]}
+        position={position}
         receiveShadow={true}
       >
         <planeGeometry args={[50, 50]} />
@@ -94,42 +94,44 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 2, 8], fov: 70 }}
+        camera={{ position: [0, 0.5, 4], fov: 70 }}
         style={{ height: '100%', width: '100%', background: '#f3f3f3' }}
       >
         <ambientLight intensity={1.6} color="#ffffff" />
         <SoftShadows size={500} focus={64} samples={60} />
         <spotLight
-          position={[0, 12, 0]}
-          angle={0.5}
-          penumbra={1}
-          intensity={100}
+          position={[0, 3.5, 0]}
+          angle={0.75}
+          penumbra={0.8}
+          intensity={20}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
-          shadow-camera-far={100}
+          shadow-camera-far={50}
           shadow-camera-near={0.5}
-          shadow-bias={-0.0001}
+          shadow-bias={-0.00001}
           shadow-camera-left={-50}
           shadow-camera-right={50}
           shadow-camera-top={50}
           shadow-camera-bottom={-50}
         />
-        <pointLight position={[0, 2, 6]} intensity={40} />
-        <pointLight position={[0, 2, -6]} intensity={30} />
+        <pointLight position={[0, 2, 4]} intensity={30} />
+        <pointLight position={[0, 2, -4]} intensity={30} />
         <TshirtModel
           color={color}
           texture={texture}
           triggerAnimation={triggerAnimation}
           triggerLoadingAnimation={songLoading}
         />
-        <GroundPlane />
+        <GroundPlane 
+          position={[0, -1.7, 0]}
+        />
         <OrbitControls
           maxPolarAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 10}
           enableZoom={true}
           maxDistance={20}
-          minDistance={2}
+          minDistance={0.8}
         />
       </Canvas>
       <P5Sketch
