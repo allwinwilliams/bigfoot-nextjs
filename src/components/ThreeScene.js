@@ -100,7 +100,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
         <ambientLight intensity={1.6} color="#ffffff" />
         <SoftShadows size={500} focus={64} samples={60} />
         <spotLight
-          position={[0, 3.5, 0]}
+          position={[0, 4, 0]}
           angle={0.75}
           penumbra={0.8}
           intensity={20}
@@ -115,8 +115,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           shadow-camera-top={50}
           shadow-camera-bottom={-50}
         />
-        <pointLight position={[0, 2, 4]} intensity={30} />
-        <pointLight position={[0, 2, -4]} intensity={30} />
+        <pointLight position={[0, 2, 4]} intensity={20} />
+        <pointLight position={[0, 2, -4]} intensity={20} />
         <TshirtModel
           color={color}
           texture={texture}

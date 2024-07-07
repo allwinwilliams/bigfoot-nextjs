@@ -38,7 +38,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         const centerY = (canvasHeight - drawingHeight) / 5;
   
         // Determine the base hue from valence
-        const baseHue = p.map(featuresData.valence, 0, 1, 220, 30); // 30 (orange) to 270 (purple)
+        const baseHue = p.map(featuresData.valence, 0, 1, 260, 10);
   
         let fillColor, strokeColor;
         if (color === 'black') {
@@ -63,7 +63,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
   
           // Adjust color visibility for the beige variant
           if (color === 'beige') {
-            strokeColor = p.color(hue, 70, 25); // Adjusted color with higher brightness and saturation
+            strokeColor = p.color(hue, 65, 25); // Adjusted color with higher brightness and saturation
           } else {
             strokeColor = p.color(hue, 100, 30); // Default color
           }
@@ -108,13 +108,13 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         });
   
         if (explicit && explicitImage) {
-          p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
+          p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 180 + nameYOffset, 100, 100); // Adjust the size and position as needed
         }
   
-        p.textSize(18);
+        p.textSize(24);
         p.textStyle(p.BOLD);
-        p.text(`0:00`, centerX, centerY + drawingHeight + 10);
-        p.text(`${durationFormatted}`, centerX + drawingWidth - 10, centerY + drawingHeight + 20);
+        p.text(`0:00`, centerX, centerY + drawingHeight + 5);
+        p.text(`${durationFormatted}`, centerX + drawingWidth - 20, centerY + drawingHeight + 5);
       } else {
         p.textSize(32);
         p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
