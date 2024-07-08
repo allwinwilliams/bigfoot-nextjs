@@ -98,7 +98,7 @@ const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading })
           sx={{
             position: 'absolute',
             width: '100%',
-            maxHeight: 200,
+            maxHeight: 240,
             overflow: 'auto',
             zIndex: 10,
             mt: 1,

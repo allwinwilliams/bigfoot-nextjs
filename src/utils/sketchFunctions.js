@@ -419,8 +419,8 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
   const canvasWidth = 1500;
   const canvasHeight = 2000; // Total canvas height
   const topSectionHeight = 600;
-  const gapBetweenSections = 100;
-  const textGap = 50;
+  const gapBetweenSections = 50; // Reduced gap between sections
+  const textGap = 50; // Reduced text gap
 
   let explicitImage;
 
@@ -449,11 +449,11 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       fillColor = p.color(255); // White fill color
       strokeColor = p.color(255); // White stroke color
     } else if (color === 'beige') {
-      fillColor = p.color(10); // Dark grey fill color
-      strokeColor = p.color(10); // Dark grey stroke color
+      fillColor = p.color(5); // Dark grey fill color
+      strokeColor = p.color(5); // Dark grey stroke color
     } else {
-      fillColor = p.color(10); // Default fill color
-      strokeColor = p.color(10); // Default stroke color
+      fillColor = p.color(5); // Default fill color
+      strokeColor = p.color(5); // Default stroke color
     }
 
     if (songData) {
@@ -470,7 +470,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       const loudnessSectionY = topSectionHeight + gapBetweenSections;
 
       // Determine the base hue from valence
-      const baseHue = p.map(featuresData.valence, 0, 1, 240, 60); // Blue (240) to Yellow (60)
+      const baseHue = p.map(featuresData.valence, 0, 1, 240, 20); // Blue (240) to Yellow (20)
       const hueRange = p.map(featuresData.energy, 0, 1, 20, 50); // Determine hue range based on energy
 
       // Helper function to split text into lines of a given max length without breaking words
@@ -523,8 +523,8 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
             brightness = p.map(pitch, 0, 1, 70, 40); // White to base hue
             p.stroke(hue, 100, brightness);
           } else if (color === 'beige') {
-            brightness = p.map(pitch, 0, 1, 1, 30); // Dark grey to base hue
-            p.stroke(hue, 50, brightness);
+            brightness = p.map(pitch, 0, 1, 5, 35); // Dark grey to base hue
+            p.stroke(hue, 70, brightness);
           }
 
           p.strokeWeight(2);
@@ -536,7 +536,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       analysisData.segments.forEach((segment) => {
         const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
         const loudness = segment.loudness_max;
-        const lineHeight = p.map(loudness, -30, 5, 0, 250); // Max height of 250px for loudness
+        const lineHeight = p.map(loudness, -30, 5, 0, 180); // Max height of 250px for loudness
         p.stroke(strokeColor);
         p.strokeWeight(2);
         p.line(x, loudnessSectionY + (drawingHeight / 2) - lineHeight / 2, x, loudnessSectionY + (drawingHeight / 2) + lineHeight / 2);
@@ -555,13 +555,13 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       p.textSize(32);
       p.textStyle(p.BOLD);
       nameLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight/1.4 + textGap + index * 38);
+        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight / 1.5 + textGap + index * 38);
       });
 
       p.textSize(24);
       p.textStyle(p.NORMAL);
       artistLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight/1.4 + textGap + 20 + nameLines.length * 38 + index * 30);
+        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight / 1.5 + textGap + 8 + nameLines.length * 38 + index * 30);
       });
 
       p.textSize(18);
@@ -571,7 +571,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
 
       // Draw the explicit image if the song is explicit
       if (explicit && explicitImage) {
-        p.image(explicitImage, canvasWidth / 2 - 50, loudnessSectionY + drawingHeight + textGap + 70 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
+        p.image(explicitImage, canvasWidth / 2 - 50, loudnessSectionY + drawingHeight / 1.5 + textGap + 10 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
       }
     } else {
       p.textSize(32);
@@ -810,7 +810,7 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
 
       // Draw the explicit image if the song is explicit
       if (explicit && explicitImage) {
-        p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 120 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
+        p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 150 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
       }
     } else {
       p.textSize(32);
