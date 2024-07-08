@@ -539,11 +539,14 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       analysisData.segments.forEach((segment) => {
         const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
         const loudness = segment.loudness_max;
-        const lineHeight = p.map(loudness, -30, 5, 10, 150); 
-        let brightness = p.map(loudness,  -30, 5, 60, 20); // Max height of 250px for loudness
-        p.stroke(baseHue, 100, brightness);
-        p.strokeWeight(2);
-        p.line(x, loudnessSectionY + (drawingHeight / 2) - lineHeight / 2, x, loudnessSectionY + (drawingHeight / 2) + lineHeight / 2);
+        if(loudness > -30){
+          const lineHeight = p.map(loudness, -30, 5, 10, 120); 
+          let brightness = p.map(loudness,  -30, 5, 60, 20); // Max height of 250px for loudness
+          let moveHue = p.map(loudness,  -30, 5, -hueRange, hueRange);
+          p.stroke(baseHue + moveHue, 100, brightness);
+          p.strokeWeight(3);
+          p.line(x, loudnessSectionY + (drawingHeight / 2) - lineHeight / 2 - 50, x, loudnessSectionY + (drawingHeight / 2) + lineHeight / 2);
+        }
       });
 
       // Convert duration to MM:SS format
@@ -559,23 +562,23 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       p.textSize(32);
       p.textStyle(p.BOLD);
       nameLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight / 1.5 + textGap + index * 38);
+        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight / 1.6 + textGap + index * 38);
       });
 
       p.textSize(24);
       p.textStyle(p.NORMAL);
       artistLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight / 1.5 + textGap + 8 + nameLines.length * 38 + index * 30);
+        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight / 1.6 + textGap + 8 + nameLines.length * 38 + index * 30);
       });
 
       p.textSize(18);
       p.textStyle(p.BOLD);
-      p.text(`0:00`, centerX - 40, loudnessSectionY + drawingHeight / 2 + 10);
-      p.text(`${durationFormatted}`, centerX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight / 2 + 10);
+      p.text(`0:00`, centerX - 40, loudnessSectionY + drawingHeight / 2 - 20);
+      p.text(`${durationFormatted}`, centerX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight / 2 - 20);
 
       // Draw the explicit image if the song is explicit
       if (explicit && explicitImage) {
-        p.image(explicitImage, canvasWidth / 2 - 50, loudnessSectionY + drawingHeight / 1.5 + textGap + 10 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
+        p.image(explicitImage, canvasWidth / 2 - 50, loudnessSectionY + drawingHeight / 1.6 + textGap + 10 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
       }
     } else {
       p.textSize(32);
