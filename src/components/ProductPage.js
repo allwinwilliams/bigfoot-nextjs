@@ -56,13 +56,18 @@ const ProductPage = () => {
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
       router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
+    } else {
+      setColor(searchParams.get('color') || defaultParams.color);
+      setSize(searchParams.get('size') || defaultParams.size);
+      setSongId(searchParams.get('songId') || defaultParams.songId);
+      setSketchType(searchParams.get('style') || defaultParams.style);
     }
 
     if (initialLoad.current) {
       window.scrollTo(0, 0);
       initialLoad.current = false;
     }
-  }, [searchParams, color, size, songId, sketchType, router]);
+  }, [searchParams, router]);
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
