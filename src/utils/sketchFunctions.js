@@ -471,6 +471,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
 
       // Determine the base hue from valence
       const baseHue = p.map(featuresData.valence, 0, 1, 240, 60); // Blue (240) to Yellow (60)
+      const hueRange = p.map(featuresData.energy, 0, 1, 20, 50); // Determine hue range based on energy
 
       // Helper function to split text into lines of a given max length without breaking words
       const splitText = (text, maxLength) => {
@@ -513,21 +514,19 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         pitchIndices.forEach((index) => {
           const pitch = segment.pitches[index];
           const y = index * rowHeight;
-          const lineHeight = p.map(pitch, 0, 1, 20, 70); // Pitch height from 40px to 200px
+          const lineHeight = p.map(pitch, 0, 1, 20, 70); // Pitch height from 20px to 70px
 
-          let hue = baseHue;
+          let hue = baseHue + p.map(pitch, 0, 1, -hueRange, hueRange);
           let brightness;
-          
+
           if (color === 'black') {
-            brightness = p.map(pitch, 0, 1, 80, 50); // White to base hue
-            p.stroke(hue, 90, brightness);
+            brightness = p.map(pitch, 0, 1, 70, 40); // White to base hue
+            p.stroke(hue, 100, brightness);
           } else if (color === 'beige') {
-            hue = baseHue;
-            brightness = p.map(pitch, 0, 1, 10, 40); // Dark grey to base hue
+            brightness = p.map(pitch, 0, 1, 1, 30); // Dark grey to base hue
             p.stroke(hue, 50, brightness);
           }
 
-          
           p.strokeWeight(2);
           p.line(x, y + rowHeight / 2 - lineHeight / 2, x, y + rowHeight / 2 + lineHeight / 2);
         });
@@ -539,7 +538,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         const loudness = segment.loudness_max;
         const lineHeight = p.map(loudness, -30, 5, 0, 250); // Max height of 250px for loudness
         p.stroke(strokeColor);
-        p.strokeWeight(1);
+        p.strokeWeight(2);
         p.line(x, loudnessSectionY + (drawingHeight / 2) - lineHeight / 2, x, loudnessSectionY + (drawingHeight / 2) + lineHeight / 2);
       });
 
