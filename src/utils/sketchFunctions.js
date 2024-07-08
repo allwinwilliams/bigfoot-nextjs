@@ -510,15 +510,16 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
         const pitchIndices = segment.pitches
           .map((pitch, index) => ({ pitch, index }))
           .sort((a, b) => b.pitch - a.pitch)
-          .slice(0, 3)
+          .slice(0, 1)
           .map(p => p.index);
 
         pitchIndices.forEach((index) => {
           const pitch = segment.pitches[index];
+          const loudness = segment.loudness_max;
           const y = index * rowHeight;
-          const lineHeight = p.map(pitch, 0, 1, 20, 70); // Pitch height from 20px to 70px
+          const lineHeight = p.map(loudness, -30, 5, 20, 70); // Pitch height from 20px to 70px
 
-          let hue = baseHue + p.map(pitch, 0, 1, -hueRange, hueRange);
+          let hue = baseHue + p.map(loudness,  -30, 5, -hueRange, hueRange);
           let brightness;
 
           if (color === 'black') {
@@ -529,7 +530,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
             p.stroke(hue, 80, brightness);
           }
 
-          p.strokeWeight(5);
+          p.strokeWeight(8);
           p.line(x, y + rowHeight / 2 - lineHeight / 2, x, y + rowHeight / 2 + lineHeight / 2);
         });
       });
@@ -538,8 +539,9 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       analysisData.segments.forEach((segment) => {
         const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
         const loudness = segment.loudness_max;
-        const lineHeight = p.map(loudness, -30, 5, 0, 180); // Max height of 250px for loudness
-        p.stroke(strokeColor);
+        const lineHeight = p.map(loudness, -30, 5, 10, 150); 
+        let brightness = p.map(loudness,  -30, 5, 60, 20); // Max height of 250px for loudness
+        p.stroke(baseHue, 100, brightness);
         p.strokeWeight(2);
         p.line(x, loudnessSectionY + (drawingHeight / 2) - lineHeight / 2, x, loudnessSectionY + (drawingHeight / 2) + lineHeight / 2);
       });
