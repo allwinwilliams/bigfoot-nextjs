@@ -413,8 +413,175 @@ export const Maximal = (p, canvasRef, onP5Update, color, songData) => {
   };
 };
 
-  
 export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
+  const drawingWidth = 1000;
+  const drawingHeight = 800; // Height for the vertical lines
+  const canvasWidth = 1500;
+  const canvasHeight = 2000; // Total canvas height
+  const topSectionHeight = 600;
+  const gapBetweenSections = 100;
+  const textGap = 50;
+
+  let explicitImage;
+
+  p.preload = () => {
+    explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+  };
+
+  p.setup = () => {
+    console.log('Setting up p5 sketch type 1');
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.colorMode(p.HSL, 360, 100, 100);
+    p.noLoop();
+    onP5Update();
+  };
+
+  p.draw = () => {
+    p.background(200);
+    p.fill(50);
+    p.textSize(32);
+
+    let fillColor, strokeColor;
+
+    if (color === 'black') {
+      fillColor = p.color(255); // White fill color
+      strokeColor = p.color(255); // White stroke color
+    } else if (color === 'beige') {
+      fillColor = p.color(10); // Dark grey fill color
+      strokeColor = p.color(10); // Dark grey stroke color
+    } else {
+      fillColor = p.color(10); // Default fill color
+      strokeColor = p.color(10); // Default stroke color
+    }
+
+    if (songData) {
+      const songDetails = songData.details;
+      const analysisData = songData.analysis;
+      const featuresData = songData.features;
+
+      const { name, artists, explicit } = songDetails;
+      const artistNames = artists.map(artist => artist.name).join(', ');
+
+      const totalDuration = analysisData.track.duration;
+      const centerX = (canvasWidth - drawingWidth) / 2;
+      const centerY = topSectionHeight + (canvasHeight - drawingHeight) / 4;
+      const loudnessSectionY = topSectionHeight + gapBetweenSections;
+
+      // Determine the base hue from valence
+      const baseHue = p.map(featuresData.valence, 0, 1, 240, 60); // Blue (240) to Yellow (60)
+
+      // Helper function to split text into lines of a given max length without breaking words
+      const splitText = (text, maxLength) => {
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = '';
+
+        words.forEach(word => {
+          if ((currentLine + word).length <= maxLength) {
+            currentLine += `${word} `;
+          } else {
+            lines.push(currentLine.trim());
+            currentLine = `${word} `;
+          }
+        });
+
+        if (currentLine.length > 0) {
+          lines.push(currentLine.trim());
+        }
+
+        return lines;
+      };
+
+      const nameLines = splitText(name, 60);
+      const artistLines = splitText(artistNames, 60);
+
+      // Draw pitch values in the top 600px section
+      const rowHeight = 75;
+
+      analysisData.segments.forEach((segment) => {
+        const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
+
+        // Get top 3 pitches
+        const pitchIndices = segment.pitches
+          .map((pitch, index) => ({ pitch, index }))
+          .sort((a, b) => b.pitch - a.pitch)
+          .slice(0, 3)
+          .map(p => p.index);
+
+        pitchIndices.forEach((index) => {
+          const pitch = segment.pitches[index];
+          const y = index * rowHeight;
+          const lineHeight = p.map(pitch, 0, 1, 20, 70); // Pitch height from 40px to 200px
+
+          let hue = baseHue;
+          let brightness;
+          
+          if (color === 'black') {
+            brightness = p.map(pitch, 0, 1, 80, 50); // White to base hue
+            p.stroke(hue, 90, brightness);
+          } else if (color === 'beige') {
+            hue = baseHue;
+            brightness = p.map(pitch, 0, 1, 10, 40); // Dark grey to base hue
+            p.stroke(hue, 50, brightness);
+          }
+
+          
+          p.strokeWeight(2);
+          p.line(x, y + rowHeight / 2 - lineHeight / 2, x, y + rowHeight / 2 + lineHeight / 2);
+        });
+      });
+
+      // Draw vertical lines for each segment in the lower section
+      analysisData.segments.forEach((segment) => {
+        const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
+        const loudness = segment.loudness_max;
+        const lineHeight = p.map(loudness, -30, 5, 0, 250); // Max height of 250px for loudness
+        p.stroke(strokeColor);
+        p.strokeWeight(1);
+        p.line(x, loudnessSectionY + (drawingHeight / 2) - lineHeight / 2, x, loudnessSectionY + (drawingHeight / 2) + lineHeight / 2);
+      });
+
+      // Convert duration to MM:SS format
+      const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
+      const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
+      const durationFormatted = `${durationMinutes}:${durationSeconds}`;
+
+      // Write the song name, artist names, and duration below the vertical lines
+      p.fill(fillColor);
+      p.noStroke();
+      p.textAlign(p.CENTER);
+
+      p.textSize(32);
+      p.textStyle(p.BOLD);
+      nameLines.forEach((line, index) => {
+        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight/1.4 + textGap + index * 38);
+      });
+
+      p.textSize(24);
+      p.textStyle(p.NORMAL);
+      artistLines.forEach((line, index) => {
+        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight/1.4 + textGap + 20 + nameLines.length * 38 + index * 30);
+      });
+
+      p.textSize(18);
+      p.textStyle(p.BOLD);
+      p.text(`0:00`, centerX - 40, loudnessSectionY + drawingHeight / 2 + 10);
+      p.text(`${durationFormatted}`, centerX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight / 2 + 10);
+
+      // Draw the explicit image if the song is explicit
+      if (explicit && explicitImage) {
+        p.image(explicitImage, canvasWidth / 2 - 50, loudnessSectionY + drawingHeight + textGap + 70 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
+      }
+    } else {
+      p.textSize(32);
+      p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
+    }
+  };
+};
+
+export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
   const drawingWidth = 800; // Reduced by 20%
   const drawingHeight = 640; // Reduced by 20%
   const canvasWidth = 1500;
@@ -484,7 +651,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       if (color === 'black') {
         p.stroke(255);
       } else if (color === 'beige') {
-        p.stroke(10);
+        p.stroke(5);
       } else {
         p.stroke(255);
       }
@@ -494,14 +661,14 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
 
     p.noStroke();
     // Write "BIGFOOT" after the vertical lines
-    p.fill(color === 'beige' ? p.color(20) : p.color(255)); // Very dark grey for beige
+    p.fill(color === 'beige' ? p.color(5) : p.color(255)); // Very dark grey for beige
     p.textAlign(p.LEFT);
     p.textSize(38); // Reduced by 20%
     p.textStyle(p.BOLD);
     p.text("BIGFOOT", 20, lineStartY + 200); // Reduced by 20%
 
     // Display song name and artist names on the right side
-    p.fill(color === 'beige' ? p.color(10) : p.color(255)); // Darker text for beige
+    p.fill(color === 'beige' ? p.color(5) : p.color(255)); // Darker text for beige
     p.textSize(19); // Reduced by 20%
     p.textStyle(p.BOLD);
     p.text(songDetails.name, drawingWidth + 56, lineStartY - 20); // Reduced by 20%

@@ -92,31 +92,30 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       </mesh>
     );
   };
-
-  return (
-    <div className="three-scene-container">
+  return(
+  <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 0.5, 4], fov: 70 }}
-        style={{ height: '100%', width: '100%', background: '#f3f3f3' }}
+        camera={{ position: [0, 0.5, 4], fov: 100, near: 0.001, far: 100 }}
+        style={{ height: '100%', width: '100%', background: '#f7f7f7' }}
       >
         <ambientLight intensity={1.6} color="#ffffff" />
         <SoftShadows size={500} focus={64} samples={60} />
         <spotLight
           position={[0, 4, 0]}
-          angle={0.75}
-          penumbra={0.8}
+          angle={0.65}
+          penumbra={0.9}
           intensity={20}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
           shadow-camera-far={50}
-          shadow-camera-near={0.05}
+          shadow-camera-near={0.001}
           shadow-bias={-0.00001}
-          shadow-camera-left={-20}
-          shadow-camera-right={20}
-          shadow-camera-top={20}
-          shadow-camera-bottom={-20}
+          shadow-camera-left={-30}
+          shadow-camera-right={30}
+          shadow-camera-top={30}
+          shadow-camera-bottom={-30}
         />
         <pointLight position={[0, 2, 4]} intensity={20} />
         <pointLight position={[0, 2, -4]} intensity={20} />
@@ -126,9 +125,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           triggerAnimation={triggerAnimation}
           triggerLoadingAnimation={songLoading}
         />
-        <GroundPlane 
-          position={[0, -1.7, 0]}
-        />
+        <GroundPlane position={[0, -1.7, 0]} />
         <OrbitControls
           maxPolarAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 10}

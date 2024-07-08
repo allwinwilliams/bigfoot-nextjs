@@ -148,7 +148,7 @@ export default function HomePage() {
                   '&:hover': {
                     animationPlayState: 'paused',
                   },
-                  padding: 2,
+                  // padding: 2,
                   boxShadow: '0 2px 16px rgba(0, 0, 0, 0.1)', // Softer shadow
                   borderRadius: 4, // Optional: to make corners softer
                 }}
@@ -197,7 +197,7 @@ export default function HomePage() {
                   '&:hover': {
                     animationPlayState: 'paused',
                   },
-                  padding: 2,
+                  // padding: 2,
                   boxShadow: '0 2px 16px rgba(0, 0, 0, 0.1)', // Softer shadow
                   borderRadius: 4, // Optional: to make corners softer
                 }}
