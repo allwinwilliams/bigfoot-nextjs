@@ -445,16 +445,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
 
     let fillColor, strokeColor;
 
-    if (color === 'black') {
-      fillColor = p.color(255); // White fill color
-      strokeColor = p.color(255); // White stroke color
-    } else if (color === 'beige') {
-      fillColor = p.color(5); // Dark grey fill color
-      strokeColor = p.color(5); // Dark grey stroke color
-    } else {
-      fillColor = p.color(5); // Default fill color
-      strokeColor = p.color(5); // Default stroke color
-    }
+    
 
     if (songData) {
       const songDetails = songData.details;
@@ -471,7 +462,18 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
 
       // Determine the base hue from valence
       const baseHue = p.map(featuresData.valence, 0, 1, 240, 20); // Blue (240) to Yellow (20)
-      const hueRange = p.map(featuresData.energy, 0, 1, 20, 50); // Determine hue range based on energy
+      const hueRange = p.map(featuresData.energy, 0, 1, 25, 75); // Determine hue range based on energy
+
+      if (color === 'black') {
+        fillColor = p.color(200); // White fill color
+        strokeColor = p.color(baseHue + hueRange/1.8, 90, 40); // White stroke color
+      } else if (color === 'beige') {
+        fillColor = p.color(20); // Dark grey fill color
+        strokeColor = p.color(baseHue + hueRange/3, 80, 30); // Dark grey stroke color
+      } else {
+        fillColor = p.color(5); // Default fill color
+        strokeColor = p.color(5); // Default stroke color
+      }
 
       // Helper function to split text into lines of a given max length without breaking words
       const splitText = (text, maxLength) => {
@@ -524,10 +526,10 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
             p.stroke(hue, 100, brightness);
           } else if (color === 'beige') {
             brightness = p.map(pitch, 0, 1, 5, 35); // Dark grey to base hue
-            p.stroke(hue, 70, brightness);
+            p.stroke(hue, 80, brightness);
           }
 
-          p.strokeWeight(2);
+          p.strokeWeight(5);
           p.line(x, y + rowHeight / 2 - lineHeight / 2, x, y + rowHeight / 2 + lineHeight / 2);
         });
       });
@@ -696,7 +698,7 @@ export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
   //minimal
 export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
   const drawingWidth = 1000;
-  const drawingHeight = 200; // Height for the vertical lines
+  const drawingHeight = 160; // Height for the vertical lines
   const canvasWidth = 1500;
   const canvasHeight = 2000; // Total canvas height
   
