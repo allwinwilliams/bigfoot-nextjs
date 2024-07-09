@@ -468,7 +468,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       // Determine range based on danceability x energy
       const danceability = featuresData.danceability;
       const energy = featuresData.energy;
-      const rangeFactor = Math.round(danceability * energy * 3) + 1;
+      const rangeFactor = Math.round(danceability * energy * 7) + 1;
 
       // Get hue range
       const hueRange = hueValues.slice(
@@ -537,6 +537,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
           let brightness = p.map(pitch, 0, 1, 5, 30); // Brightness based on pitch
           let saturation = p.map(pitch, 0, 1, 50, 100); // Saturation based on pitch
 
+          p.strokeCap(p.SQUARE);
           p.stroke(hue, saturation, brightness);
 
           p.strokeWeight(12);
