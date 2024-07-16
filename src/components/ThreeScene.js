@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Canvas, extend } from '@react-three/fiber';
 import { OrbitControls, SoftShadows } from '@react-three/drei';
 import * as THREE from 'three';
+import { useLoader } from '@react-three/fiber';
 import TshirtModel from './TshirtModel';
 import dynamic from 'next/dynamic';
 import { IconButton } from '@mui/material';
@@ -49,6 +50,11 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     const texture = new THREE.CanvasTexture(combinedCanvas);
     texture.flipY = false; // Flip the Y-axis
     texture.needsUpdate = true;
+
+    // const sampleDesignUrl = '/models/textures/UV.png';
+    // const sampleTexture = useLoader(THREE.TextureLoader, sampleDesignUrl);
+    // sampleTexture.flipY = false;
+
     return texture;
   }, [color]);
 
@@ -96,7 +102,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
   <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 0.5, 1.8], fov: 100, near: 0.001, far: 100 }}
+        camera={{ position: [0, 0.5, 2], fov: 100, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#f7f7f7' }}
       >
         <ambientLight intensity={1.6} color="#ffffff" />

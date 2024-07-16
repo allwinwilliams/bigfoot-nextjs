@@ -933,7 +933,7 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
         const loudness = segment.loudness_max;
         const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
         p.stroke(strokeColor);
-        p.strokeWeight(1);
+        p.strokeWeight(2);
         p.line(x, centerY + (drawingHeight / 2) - lineHeight / 2, x, centerY + (drawingHeight / 2) + lineHeight / 2);
       });
 
