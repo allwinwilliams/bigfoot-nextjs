@@ -275,9 +275,9 @@ const ProductPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'type3', label: 'Minimal' },
-                  { value: 'type1', label: 'Analysis' },
-                  // { value: 'type2', label: 'Seismograph' },
+                  { value: 'minimal', label: 'Minimal' },
+                  { value: 'analysis', label: 'Analysis' },
+                  { value: 'standout', label: 'Stand Out' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

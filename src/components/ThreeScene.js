@@ -45,7 +45,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
 
     console.log('Drawing p5 canvas on combined canvas');
-    ctx.drawImage(canvasRef.current, 60, 2000, 1500, 2000);
+    ctx.drawImage(canvasRef.current, 60, 2000, 2600, 2000);
 
     const texture = new THREE.CanvasTexture(combinedCanvas);
     texture.flipY = false; // Flip the Y-axis

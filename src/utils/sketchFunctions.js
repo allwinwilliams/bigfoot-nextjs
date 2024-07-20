@@ -1,5 +1,5 @@
 
-export const Maximal = (p, canvasRef, onP5Update, color, songData) => {
+export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;
     const drawingHeight = 1200; // Height for the vertical lines
     const canvasWidth = 1500;
@@ -283,7 +283,7 @@ export const Maximal = (p, canvasRef, onP5Update, color, songData) => {
     };
   };
 
-  export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
+export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
   const drawingWidth = 1000; // Width for the lines
   const drawingHeight = 1500; // Height for the lines
   const canvasWidth = 1500;
@@ -413,21 +413,24 @@ export const Maximal = (p, canvasRef, onP5Update, color, songData) => {
   };
 };
 
-export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
+export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   const drawingWidth = 1000;
   const drawingHeight = 900; // Height for the vertical lines
-  const canvasWidth = 1500;
+  const canvasWidth = 2600;
   const canvasHeight = 2000; // Total canvas height
+  const drawingX = 250; // X position for the drawing
   const topSectionHeight = 600;
   const gapBetweenSections = 30; // Reduced gap between sections
   const textGap = 30; // Reduced text gap
 
   let explicitImage;
+  let scancodeImage; // Variable to store the scancode image
 
   const hueValues = [270, 248, 212, 202, 191, 119, 61, 47, 30, 5];
 
   p.preload = () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+    scancodeImage = p.loadImage('/song-tshirt/scancode.png');
   };
 
   p.setup = () => {
@@ -456,7 +459,7 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       const artistNames = artists.map(artist => artist.name).join(', ');
 
       const totalDuration = analysisData.track.duration;
-      const centerX = (canvasWidth - drawingWidth) / 2;
+      const centerX = drawingX;
       const centerY = topSectionHeight + (canvasHeight - drawingHeight) / 4;
       const loudnessSectionY = topSectionHeight + gapBetweenSections;
 
@@ -558,27 +561,43 @@ export const sketchType1 = (p, canvasRef, onP5Update, color, songData) => {
       p.textSize(36);
       p.textStyle(p.BOLD);
       nameLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight/1.8 + textGap + index * 40 - 60);
+        p.text(line, drawingX + drawingWidth / 2, loudnessSectionY + drawingHeight / 1.8 + textGap + index * 40 - 60);
       });
 
       p.textSize(24);
       p.textStyle(p.NORMAL);
       artistLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, loudnessSectionY + drawingHeight/1.8 + textGap + 8 + nameLines.length * 40 + index * 62 - 60);
+        p.text(line, drawingX + drawingWidth / 2, loudnessSectionY + drawingHeight / 1.8 + textGap + 8 + nameLines.length * 40 + index * 62 - 60);
       });
 
       p.textSize(18);
       p.textStyle(p.BOLD);
-      p.text(`0:00`, centerX - 40, loudnessSectionY + drawingHeight/2 - 80);
-      p.text(`${durationFormatted}`, centerX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight/2 - 80);
+      p.text(`0:00`, drawingX - 40, loudnessSectionY + drawingHeight / 2 - 80);
+      p.text(`${durationFormatted}`, drawingX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight / 2 - 80);
 
       // Draw the explicit image if the song is explicit
       if (explicit && explicitImage) {
-        p.image(explicitImage, canvasWidth / 2 - 50, loudnessSectionY + drawingHeight/2 + textGap + 10 + nameLines.length * 82 + artistLines.length * 30, 100, 100);
+        p.image(explicitImage, drawingX + drawingWidth / 2 - 50, loudnessSectionY + drawingHeight / 2 + textGap + 10 + nameLines.length * 82 + artistLines.length * 30, 100, 100);
       }
     } else {
       p.textSize(32);
-      p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
+      p.textAlign(p.CENTER);
+      p.text('Loading...', 650, canvasHeight / 4); // Centered within a 1300px width starting from left
+    }
+
+    // Draw QRCode section
+    drawQRCodeSection(1740, 400, 800, 500);
+  };
+
+  const drawQRCodeSection = (x, y, width, height) => {
+    p.fill(255, 0, 0, 0);
+    p.noStroke();
+    p.rect(x, y, width, height);
+
+    if (scancodeImage) {
+      const imgX = x + 50;
+      const imgY = y + 50;
+      p.image(scancodeImage, imgX, imgY);
     }
   };
 };
@@ -849,21 +868,20 @@ export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
   }
 };
  
-  //minimal
-export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
-  const drawingWidth = 1000;
-  const drawingHeight = 160; // Height for the vertical lines
-  const canvasWidth = 1500;
-  const canvasHeight = 2000; // Total canvas height
-  
-  let explicitImage;
-  
+//minimal
+export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
+  const canvasWidth = 2600;
+  const canvasHeight = 2000;
+
+  let explicitImage, scancodeImage;
+
   p.preload = () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+    scancodeImage = p.loadImage('/song-tshirt/scancode.png');
   };
 
   p.setup = () => {
-    console.log('Setting up p5 sketch type 3');
+    console.log('Setting up minimalSketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -871,11 +889,24 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
     p.noLoop();
     onP5Update();
   };
-  
-  p.draw = () => {
-    p.background(200);
-    p.fill(50);
-    p.textSize(32);
+
+  const drawSongDataSection = (x, y, drawingWidth, drawingHeight) => {
+    if (!songData) {
+      p.fill(50);
+      p.textSize(32);
+      p.textAlign(p.CENTER);
+      p.text('Loading...', x + drawingWidth / 2, y + drawingHeight / 2);
+      return;
+    }
+
+    const songDetails = songData.details;
+    const analysisData = songData.analysis;
+    const featuresData = songData.features;
+
+    const { name, artists, explicit } = songDetails;
+    const artistNames = artists.map(artist => artist.name).join(', ');
+
+    const totalDuration = analysisData.track.duration;
 
     let fillColor, strokeColor;
 
@@ -890,89 +921,160 @@ export const sketchType3 = (p, canvasRef, onP5Update, color, songData) => {
       strokeColor = p.color(50); // Default stroke color
     }
 
-    if (songData) {
-      const songDetails = songData.details;
-      const analysisData = songData.analysis;
-      const featuresData = songData.features;
+    const splitText = (text, maxLength) => {
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
 
-      const { name, artists, explicit } = songDetails;
-      const artistNames = artists.map(artist => artist.name).join(', ');
-
-      const totalDuration = analysisData.track.duration;
-      const centerX = (canvasWidth - drawingWidth) / 2;
-      const centerY = (canvasHeight - drawingHeight) / 4;
-
-      // Helper function to split text into lines of a given max length without breaking words
-      const splitText = (text, maxLength) => {
-        const words = text.split(' ');
-        const lines = [];
-        let currentLine = '';
-
-        words.forEach(word => {
-          if ((currentLine + word).length <= maxLength) {
-            currentLine += `${word} `;
-          } else {
-            lines.push(currentLine.trim());
-            currentLine = `${word} `;
-          }
-        });
-
-        if (currentLine.length > 0) {
+      words.forEach(word => {
+        if ((currentLine + word).length <= maxLength) {
+          currentLine += `${word} `;
+        } else {
           lines.push(currentLine.trim());
+          currentLine = `${word} `;
         }
-
-        return lines;
-      };
-
-      const nameLines = splitText(name, 60);
-      const artistLines = splitText(artistNames, 60);
-
-      // Draw vertical lines for each segment
-      analysisData.segments.forEach((segment) => {
-        const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
-        const loudness = segment.loudness_max;
-        const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
-        p.stroke(strokeColor);
-        p.strokeWeight(2);
-        p.line(x, centerY + (drawingHeight / 2) - lineHeight / 2, x, centerY + (drawingHeight / 2) + lineHeight / 2);
       });
 
-      // Convert duration to MM:SS format
-      const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
-      const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
-      const durationFormatted = `${durationMinutes}:${durationSeconds}`;
-
-      // Write the song name, artist names, and duration below the vertical lines
-      p.fill(fillColor);
-      p.noStroke();
-      p.textAlign(p.CENTER);
-
-      p.textSize(32);
-      p.textStyle(p.BOLD);
-      nameLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, centerY + drawingHeight + 65 + index * 38);
-      });
-
-      p.textSize(24);
-      p.textStyle(p.NORMAL);
-      artistLines.forEach((line, index) => {
-        p.text(line, canvasWidth / 2, centerY + drawingHeight + 65 + nameLines.length * 38 + index * 28);
-      });
-
-      p.textSize(18);
-      p.textStyle(p.BOLD);
-      p.text(`0:00`, centerX - 40, centerY + drawingHeight / 2 + 10);
-      p.text(`${durationFormatted}`, centerX + 55 + drawingWidth - 20, centerY + drawingHeight / 2 + 10);
-
-      // Draw the explicit image if the song is explicit
-      if (explicit && explicitImage) {
-        p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 150 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
+      if (currentLine.length > 0) {
+        lines.push(currentLine.trim());
       }
-    } else {
-      p.textSize(32);
-      p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
+
+      return lines;
+    };
+
+    const nameLines = splitText(name, 60);
+    const artistLines = splitText(artistNames, 60);
+
+    // Draw vertical lines for each segment
+    analysisData.segments.forEach((segment) => {
+      const xPos = p.map(segment.start, 0, totalDuration, x, x + drawingWidth);
+      const loudness = segment.loudness_max;
+      const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
+      p.stroke(strokeColor);
+      p.strokeWeight(2);
+      p.line(xPos, y + (drawingHeight / 2) - lineHeight / 2, xPos, y + (drawingHeight / 2) + lineHeight / 2);
+    });
+
+    // Convert duration to MM:SS format
+    const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
+    const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
+    const durationFormatted = `${durationMinutes}:${durationSeconds}`;
+
+    // Write the song name, artist names, and duration below the vertical lines
+    p.fill(fillColor);
+    p.noStroke();
+    p.textAlign(p.CENTER);
+
+    p.textSize(32);
+    p.textStyle(p.BOLD);
+    nameLines.forEach((line, index) => {
+      p.text(line, x + drawingWidth / 2, y + drawingHeight + 65 + index * 38);
+    });
+
+    p.textSize(24);
+    p.textStyle(p.NORMAL);
+    artistLines.forEach((line, index) => {
+      p.text(line, x + drawingWidth / 2, y + drawingHeight + 65 + nameLines.length * 38 + index * 28);
+    });
+
+    p.textSize(18);
+    p.textStyle(p.BOLD);
+    p.text(`0:00`, x - 40, y + drawingHeight / 2 + 10);
+    p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 10);
+
+    // Draw the explicit image if the song is explicit
+    if (explicit && explicitImage) {
+      p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
     }
   };
-};
+
+  const drawQRCodeSection = (x, y, width, height) => {
+    p.fill(255, 0, 0, 0);
     
- 
+    p.noStroke();
+    p.rect(x, y, width, height);
+
+    if (scancodeImage) {
+      const imgX = x + 50;
+      const imgY = y + 50;
+      p.image(scancodeImage, imgX, imgY);
+    }
+  };
+
+  p.draw = () => {
+    p.background(200);
+
+    // Draw the song data section
+    drawSongDataSection(250, 200, 1000, 160);
+
+    // Draw the QR Code section
+    drawQRCodeSection(1740, 400, 800, 500);
+  };
+};
+
+// standout
+export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
+  const canvasWidth = 2600;
+  const canvasHeight = 2000;
+
+  // Section details
+  const sections = {
+    VisualAnalysis: { x: 90, y: 200, w: 1300, h: 700 },
+    SongDetails: { x: 90, y: 900, w: 1300, h: 300 },
+    Ranges: { x: 90, y: 1200, w: 800, h: 500 },
+    Legend: { x: 890, y: 1200, w: 500, h: 500 },
+    ScanCode: { x: 1740, y: 400, w: 800, h: 500 },
+  };
+
+  p.setup = () => {
+    console.log('Setting up standoutSketch');
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.colorMode(p.HSL, 360, 100, 100);
+    p.noLoop();
+    onP5Update();
+  };
+
+  p.draw = () => {
+    p.background(255);
+
+    // Draw each section with a different background color
+    drawVisualAnalysis(p);
+    drawSongDetails(p);
+    drawRanges(p);
+    drawLegend(p);
+    drawScanCode(p);
+  };
+
+  // Section functions
+  const drawVisualAnalysis = (p) => {
+    const { x, y, w, h } = sections.VisualAnalysis;
+    p.fill(240, 100, 80); // Light blue
+    p.rect(x, y, w, h);
+  };
+
+  const drawSongDetails = (p) => {
+    const { x, y, w, h } = sections.SongDetails;
+    p.fill(120, 100, 80); // Light green
+    p.rect(x, y, w, h);
+  };
+
+  const drawRanges = (p) => {
+    const { x, y, w, h } = sections.Ranges;
+    p.fill(60, 100, 80); // Light yellow
+    p.rect(x, y, w, h);
+  };
+
+  const drawLegend = (p) => {
+    const { x, y, w, h } = sections.Legend;
+    p.fill(30, 100, 80); // Light orange
+    p.rect(x, y, w, h);
+  };
+
+  const drawScanCode = (p) => {
+    const { x, y, w, h } = sections.ScanCode;
+    p.fill(0, 100, 80); // Light red
+    p.rect(x, y, w, h);
+  };
+};
