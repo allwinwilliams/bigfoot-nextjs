@@ -1017,7 +1017,6 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   const canvasWidth = 2600;
   const canvasHeight = 2000;
 
-  // Section details
   const sections = {
     VisualAnalysis: { x: 90, y: 200, w: 1300, h: 700 },
     SongDetails: { x: 90, y: 900, w: 1300, h: 300 },
@@ -1025,6 +1024,8 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     Legend: { x: 890, y: 1200, w: 500, h: 500 },
     ScanCode: { x: 1740, y: 400, w: 800, h: 500 },
   };
+
+  const baseHue = p.map(songData.features.valence, 0, 1, 200, 30);
 
   p.setup = () => {
     console.log('Setting up standoutSketch');
@@ -1039,7 +1040,8 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   p.draw = () => {
     p.background(255);
 
-    // Draw each section with a different background color
+    
+
     drawVisualAnalysis(p);
     drawSongDetails(p);
     drawRanges(p);
@@ -1047,44 +1049,47 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     drawScanCode(p);
   };
 
-  // Section functions
   const drawVisualAnalysis = (p) => {
     const { x, y, w, h } = sections.VisualAnalysis;
 
-    // Example song data
     const analysisData = songData.analysis;
     const totalDuration = analysisData.track.duration;
 
-    console.log(analysisData);
+    // Calculate the average of energy and danceability
+    const avgEnergyDanceability = (songData.features.energy + songData.features.danceability) / 2;
+
+    // Determine the hue range based on avgEnergyDanceability
+    const hueRange = p.map(avgEnergyDanceability, 0, 1, 40, 80);
 
     // Background color for the section
-    p.fill(0, 0, 20); // Light blue
-    p.rect(x, y, w, h);
+    // p.fill(0, 0, 20); // Light blue
+    // p.rect(x, y, w, h);
 
-    // Drawing rectangles for each section
     const gap = 10;
     const adjustedWidth = w - (gap * (analysisData.sections.length - 1));
 
-    // Draw horizontal lines at the bottom of the section
     const lineY = y + h - 50;
-    p.stroke(255); // White color for lines
+    p.stroke(150, 0, 20);
     p.strokeWeight(10);
     p.line(x, lineY, x + w, lineY);
 
     analysisData.sections.forEach((section, index) => {
         const sectionWidth = p.map(section.duration, 0, totalDuration, 0, adjustedWidth);
         const sectionX = x + p.map(section.start, 0, totalDuration, 0, adjustedWidth) + (index * gap);
-        const sectionHeight = p.map(section.loudness, -50, 0, 100, 550);
+        const sectionHeight = p.map(section.loudness, -50, 0, 50, 500);
 
         // Adjust y-position based on key value
-        const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150; // Map key value to range 400-600
+        const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150; // Map key value to range 100-200
         const sectionY = keyOffset + (h - sectionHeight) / 2; // Center vertically with key offset
 
+        // Determine hue based on base hue and hue range
+        const hue = (baseHue + p.random(-hueRange, hueRange)) % 360; // Adjust hue and keep it within the range of 0-360
+
         p.noStroke();
-        p.fill(180, 100, 80); // Different color for each section
+        p.fill(hue, 90, 50); // Adjusted color based on valence and duration
         p.rect(sectionX, sectionY, sectionWidth, sectionHeight);
 
-        p.stroke(255);
+        p.stroke(150, 0, 20);
         p.strokeWeight(10);
         p.line(sectionX, lineY, sectionX, lineY - 30);
     });
@@ -1092,7 +1097,6 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.line(x + w, lineY, x + w, lineY - 30);
     p.noStroke();
 
-    // Convert duration to MM:SS format
     const durationMinutes = Math.floor(totalDuration / 60);
     const durationSeconds = Math.floor((totalDuration % 60)).toString().padStart(2, '0');
     const durationFormatted = `${durationMinutes}:${durationSeconds}`;
@@ -1105,8 +1109,6 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.text(`${durationFormatted}`, x + w - 20, lineY + 40);
   };
 
-
-
   const drawSongDetails = (p) => {
     const { x, y, w, h } = sections.SongDetails;
   
@@ -1114,11 +1116,10 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const { name, artists, album } = songDetails;
     const artistNames = artists.map(artist => artist.name).join(', ');
   
-    // Extracting only the year from the release date
     const releaseDate = album && album.release_date ? album.release_date.substring(0, 4) : 'Unknown';
   
-    p.fill(20, 10, 10);
-    p.rect(x, y, w, h);
+    // p.fill(20, 10, 10);
+    // p.rect(x, y, w, h);
   
     const splitText = (text, maxLength) => {
       const words = text.split(' ');
@@ -1159,6 +1160,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.text(line, x + w - 10, y + 100 + index * 30);
     });
   
+    p.fill(baseHue, 90, 50);
     p.textStyle(p.NORMAL);
     p.text(releaseDate, x + w - 10, y + 100 + artistLines.length * 30 + 30);
   };
@@ -1171,30 +1173,28 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       { name: 'Energy', value: features.energy, lowLabel: 'Low energy', highLabel: 'High energy' },
       { name: 'Loudness', value: p.map(features.loudness, -60, 0, 0, 1), lowLabel: 'Quite', highLabel: 'Loud' },
       { name: 'Valence', value: features.valence, lowLabel: 'Sad', highLabel: 'Happy' },
-      { name: 'Acousticness', value: 1 - features.acousticness, lowLabel: 'Acoustic', highLabel: 'Digital' },
+      { name: 'Acousticness', value: 1 - features.acousticness, lowLabel: 'Acoustic', highLabel: 'Electronic' },
     ];
   
     const lineHeight = 10;
-    const gapBetweenLines = 40; // Gap between each line
-    const lineStartX = x + 200;
+    const gapBetweenLines = 70;
+    const lineStartX = x + 150;
     const lineEndX = x + w - 200;
     
-    p.fill(6, 10, 8);
-    p.rect(x, y, w, h);
+    // p.fill(6, 10, 8);
+    // p.rect(x, y, w, h);
   
     p.textSize(16);
     p.textAlign(p.LEFT);
     p.fill(0);
   
     parameters.forEach((param, index) => {
-      const lineY = y + 100 + index * gapBetweenLines;
+      const lineY = y + 20 + index * gapBetweenLines;
   
-      // Draw the horizontal line
-      p.stroke(50); // Grey color
+      p.stroke(150, 0, 20);
       p.strokeWeight(lineHeight);
       p.line(lineStartX, lineY, lineEndX, lineY);
   
-      // Draw the labels
       p.noStroke();
       p.fill(255);
       p.textAlign(p.RIGHT);
@@ -1202,8 +1202,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.textAlign(p.LEFT);
       p.text(param.highLabel, lineEndX + 40, lineY + 5);
   
-      // Draw the white circle at the value's position
-      p.fill(30, 70, 50);
+      p.fill(baseHue, 90, 50);
       const valueX = p.map(param.value, 0, 1, lineStartX, lineEndX);
       p.circle(valueX, lineY, 30);
     });
@@ -1211,9 +1210,67 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
 
   const drawLegend = (p) => {
     const { x, y, w, h } = sections.Legend;
-    p.fill(30, 100, 80); // Light orange
-    p.rect(x, y, w, h);
+  
+    const labels = ['Section', 'Duration', 'Loudness', 'Pitch', 'Emotions'];
+    const rowHeight = 60;
+    const gapBetweenRows = 10;
+    const visualWidth = 200; // Width of the visuals
+  
+    // p.fill(30, 100, 80);
+    // p.rect(x, y, w, h);
+  
+    p.textAlign(p.LEFT);
+    p.textSize(24);
+    p.fill(100); // Grey color for text
+  
+    labels.forEach((label, index) => {
+      const rowY = y + index * (rowHeight + gapBetweenRows) + rowHeight / 2;
+  
+      // Draw text
+      p.text(label, x + visualWidth + 130, rowY + 10);
+  
+      // Draw visual
+      const visualX = x + 100;
+      const visualY = rowY - rowHeight / 4;
+  
+      switch (label) {
+        case 'Section':
+          p.fill(255); // White color for sections
+          p.rect(visualX + 150, visualY, 50, rowHeight / 2);
+          break;
+        case 'Duration':
+          p.fill(255); // White color for duration
+          const durations = [10, 30, 50, 70]; // Adjust these lengths to fit within 200px
+          let offsetX = visualX;
+          durations.forEach((duration, i) => {
+            p.rect(offsetX, visualY, duration, rowHeight / 2);
+            offsetX += duration + 10; // Adjust the gap between rectangles
+          });
+          break;
+        case 'Loudness':
+          p.fill(255); // White color for loudness
+          for (let i = 0; i < 5; i++) {
+            p.rect(visualX + i * 40, visualY - i * 6 + 20, visualWidth / 6, 10 + i * 6);
+          }
+          break;
+        case 'Pitch':
+          p.fill(255); // White color for pitch
+          for (let i = 0; i < 5; i++) {
+            p.rect(visualX + i * 40, visualY - i * 4, visualWidth / 6, visualWidth / 5);
+          }
+          break;
+        case 'Emotions':
+          const hueRange = 40; // Fixed range for legend
+          for (let i = 0; i < 5; i++) {
+            const hue = (baseHue + p.map(i, 0, 4, -hueRange, hueRange)) % 360;
+            p.fill(hue, 100, 50);
+            p.rect(visualX + i * 40, visualY, visualWidth / 6, rowHeight / 2);
+          }
+          break;
+      }
+    });
   };
+  
 
   const drawScanCode = (p) => {
     const { x, y, w, h } = sections.ScanCode;
