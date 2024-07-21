@@ -982,7 +982,6 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.text(`0:00`, x - 40, y + drawingHeight / 2 + 10);
     p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 10);
 
-    // Draw the explicit image if the song is explicit
     if (explicit && explicitImage) {
       p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
     }
@@ -1025,7 +1024,12 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     ScanCode: { x: 1740, y: 400, w: 800, h: 500 },
   };
 
-  const baseHue = p.map(songData.features.valence, 0, 1, 200, 30);
+  let baseHue;
+  let explicitImage;
+
+  p.preload = () => {
+    explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+  };
 
   p.setup = () => {
     console.log('Setting up standoutSketch');
@@ -1040,68 +1044,81 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   p.draw = () => {
     p.background(255);
 
-    
-
+    if (!songData) {
+      p.fill(50);
+      p.textSize(32);
+      p.textAlign(p.CENTER);
+      p.text('Loading...', 500, 500);
+      return;
+    }
+    baseHue = p.map(songData.features.valence, 0, 1, 200, 30);
     drawVisualAnalysis(p);
     drawSongDetails(p);
     drawRanges(p);
     drawLegend(p);
     drawScanCode(p);
+    
   };
 
   const drawVisualAnalysis = (p) => {
     const { x, y, w, h } = sections.VisualAnalysis;
 
+    const { explicit } = songData.details;
+  
     const analysisData = songData.analysis;
     const totalDuration = analysisData.track.duration;
-
+  
     // Calculate the average of energy and danceability
     const avgEnergyDanceability = (songData.features.energy + songData.features.danceability) / 2;
-
+  
     // Determine the hue range based on avgEnergyDanceability
     const hueRange = p.map(avgEnergyDanceability, 0, 1, 40, 80);
-
-    // Background color for the section
-    // p.fill(0, 0, 20); // Light blue
-    // p.rect(x, y, w, h);
-
+  
+    // Calculate the minimum and maximum section durations
+    const minSectionDuration = Math.min(...analysisData.sections.map(section => section.duration));
+    const maxSectionDuration = Math.max(...analysisData.sections.map(section => section.duration));
+  
     const gap = 10;
     const adjustedWidth = w - (gap * (analysisData.sections.length - 1));
-
+  
     const lineY = y + h - 50;
     p.stroke(150, 0, 20);
     p.strokeWeight(10);
     p.line(x, lineY, x + w, lineY);
 
+    if (explicit && explicitImage) {
+      p.image(explicitImage, w / 2 + 50, 50, 100, 100);
+    }
+  
     analysisData.sections.forEach((section, index) => {
-        const sectionWidth = p.map(section.duration, 0, totalDuration, 0, adjustedWidth);
-        const sectionX = x + p.map(section.start, 0, totalDuration, 0, adjustedWidth) + (index * gap);
-        const sectionHeight = p.map(section.loudness, -50, 0, 50, 500);
-
-        // Adjust y-position based on key value
-        const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150; // Map key value to range 100-200
-        const sectionY = keyOffset + (h - sectionHeight) / 2; // Center vertically with key offset
-
-        // Determine hue based on base hue and hue range
-        const hue = (baseHue + p.random(-hueRange, hueRange)) % 360; // Adjust hue and keep it within the range of 0-360
-
-        p.noStroke();
-        p.fill(hue, 90, 50); // Adjusted color based on valence and duration
-        p.rect(sectionX, sectionY, sectionWidth, sectionHeight);
-
-        p.stroke(150, 0, 20);
-        p.strokeWeight(10);
-        p.line(sectionX, lineY, sectionX, lineY - 30);
+      const sectionWidth = p.map(section.duration, 0, totalDuration, 0, adjustedWidth);
+      const sectionX = x + p.map(section.start, 0, totalDuration, 0, adjustedWidth) + (index * gap);
+      const sectionHeight = p.map(section.loudness, -50, 0, 50, 500);
+  
+      // Adjust y-position based on key value
+      const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150; // Map key value to range 100-200
+      const sectionY = keyOffset + (h - sectionHeight) / 2; // Center vertically with key offset
+  
+      // Determine hue based on base hue and hue range
+      const hue = (baseHue + p.map(section.duration, minSectionDuration, maxSectionDuration, -hueRange, hueRange)) % 360; // Adjust hue and keep it within the range of 0-360
+  
+      p.noStroke();
+      p.fill(hue, 90, 50); // Adjusted color based on valence and duration
+      p.rect(sectionX, sectionY, sectionWidth, sectionHeight);
+  
+      p.stroke(150, 0, 20);
+      p.strokeWeight(10);
+      p.line(sectionX, lineY, sectionX, lineY - 30);
     });
-
+  
     p.line(x + w, lineY, x + w, lineY - 30);
     p.noStroke();
-
+  
     const durationMinutes = Math.floor(totalDuration / 60);
     const durationSeconds = Math.floor((totalDuration % 60)).toString().padStart(2, '0');
     const durationFormatted = `${durationMinutes}:${durationSeconds}`;
     console.log("Duration", durationFormatted);
-
+  
     p.fill(255);
     p.textSize(24);
     p.textStyle(p.BOLD);
@@ -1256,7 +1273,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
         case 'Pitch':
           p.fill(255); // White color for pitch
           for (let i = 0; i < 5; i++) {
-            p.rect(visualX + i * 40, visualY - i * 4, visualWidth / 6, visualWidth / 5);
+            p.rect(visualX + i * 40, visualY - i * 4, visualWidth / 6, visualWidth / 8);
           }
           break;
         case 'Emotions':
