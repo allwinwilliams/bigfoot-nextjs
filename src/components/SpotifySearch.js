@@ -1,4 +1,3 @@
-// src/components/SpotifySearch.js
 "use client";
 
 import React, { useContext, useState, useEffect } from 'react';

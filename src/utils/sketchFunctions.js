@@ -1050,20 +1050,163 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   // Section functions
   const drawVisualAnalysis = (p) => {
     const { x, y, w, h } = sections.VisualAnalysis;
-    p.fill(240, 100, 80); // Light blue
+
+    // Example song data
+    const analysisData = songData.analysis;
+    const totalDuration = analysisData.track.duration;
+
+    console.log(analysisData);
+
+    // Background color for the section
+    p.fill(0, 0, 20); // Light blue
     p.rect(x, y, w, h);
+
+    // Drawing rectangles for each section
+    const gap = 10;
+    const adjustedWidth = w - (gap * (analysisData.sections.length - 1));
+
+    // Draw horizontal lines at the bottom of the section
+    const lineY = y + h - 50;
+    p.stroke(255); // White color for lines
+    p.strokeWeight(10);
+    p.line(x, lineY, x + w, lineY);
+
+    analysisData.sections.forEach((section, index) => {
+        const sectionWidth = p.map(section.duration, 0, totalDuration, 0, adjustedWidth);
+        const sectionX = x + p.map(section.start, 0, totalDuration, 0, adjustedWidth) + (index * gap);
+        const sectionHeight = p.map(section.loudness, -50, 0, 100, 550);
+
+        // Adjust y-position based on key value
+        const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150; // Map key value to range 400-600
+        const sectionY = keyOffset + (h - sectionHeight) / 2; // Center vertically with key offset
+
+        p.noStroke();
+        p.fill(180, 100, 80); // Different color for each section
+        p.rect(sectionX, sectionY, sectionWidth, sectionHeight);
+
+        p.stroke(255);
+        p.strokeWeight(10);
+        p.line(sectionX, lineY, sectionX, lineY - 30);
+    });
+
+    p.line(x + w, lineY, x + w, lineY - 30);
+    p.noStroke();
+
+    // Convert duration to MM:SS format
+    const durationMinutes = Math.floor(totalDuration / 60);
+    const durationSeconds = Math.floor((totalDuration % 60)).toString().padStart(2, '0');
+    const durationFormatted = `${durationMinutes}:${durationSeconds}`;
+    console.log("Duration", durationFormatted);
+
+    p.fill(255);
+    p.textSize(24);
+    p.textStyle(p.BOLD);
+    p.text(`0:00`, x - 20, lineY + 40);
+    p.text(`${durationFormatted}`, x + w - 20, lineY + 40);
   };
+
+
 
   const drawSongDetails = (p) => {
     const { x, y, w, h } = sections.SongDetails;
-    p.fill(120, 100, 80); // Light green
+  
+    const songDetails = songData.details;
+    const { name, artists, album } = songDetails;
+    const artistNames = artists.map(artist => artist.name).join(', ');
+  
+    // Extracting only the year from the release date
+    const releaseDate = album && album.release_date ? album.release_date.substring(0, 4) : 'Unknown';
+  
+    p.fill(20, 10, 10);
     p.rect(x, y, w, h);
+  
+    const splitText = (text, maxLength) => {
+      const words = text.split(' ');
+      const lines = [];
+      let currentLine = '';
+  
+      words.forEach(word => {
+        if ((currentLine + word).length <= maxLength) {
+          currentLine += `${word} `;
+        } else {
+          lines.push(currentLine.trim());
+          currentLine = `${word} `;
+        }
+      });
+  
+      if (currentLine.length > 0) {
+        lines.push(currentLine.trim());
+      }
+  
+      return lines;
+    };
+  
+    const nameLines = splitText(name, 30);
+    const artistLines = splitText(artistNames, 30);
+  
+    p.fill(255);
+    p.textSize(48);
+    p.textStyle(p.BOLD);
+    p.textAlign(p.LEFT);
+    nameLines.forEach((line, index) => {
+      p.text(line, x + 10, y + 100 + index * 60);
+    });
+  
+    p.textSize(24);
+    p.textStyle(p.BOLD);
+    p.textAlign(p.RIGHT);
+    artistLines.forEach((line, index) => {
+      p.text(line, x + w - 10, y + 100 + index * 30);
+    });
+  
+    p.textStyle(p.NORMAL);
+    p.text(releaseDate, x + w - 10, y + 100 + artistLines.length * 30 + 30);
   };
 
   const drawRanges = (p) => {
     const { x, y, w, h } = sections.Ranges;
-    p.fill(60, 100, 80); // Light yellow
+    const features = songData.features;
+    const parameters = [
+      { name: 'Danceability', value: features.danceability, lowLabel: 'Low Dance', highLabel: 'Danceable' },
+      { name: 'Energy', value: features.energy, lowLabel: 'Low energy', highLabel: 'High energy' },
+      { name: 'Loudness', value: p.map(features.loudness, -60, 0, 0, 1), lowLabel: 'Quite', highLabel: 'Loud' },
+      { name: 'Valence', value: features.valence, lowLabel: 'Sad', highLabel: 'Happy' },
+      { name: 'Acousticness', value: 1 - features.acousticness, lowLabel: 'Acoustic', highLabel: 'Digital' },
+    ];
+  
+    const lineHeight = 10;
+    const gapBetweenLines = 40; // Gap between each line
+    const lineStartX = x + 200;
+    const lineEndX = x + w - 200;
+    
+    p.fill(6, 10, 8);
     p.rect(x, y, w, h);
+  
+    p.textSize(16);
+    p.textAlign(p.LEFT);
+    p.fill(0);
+  
+    parameters.forEach((param, index) => {
+      const lineY = y + 100 + index * gapBetweenLines;
+  
+      // Draw the horizontal line
+      p.stroke(50); // Grey color
+      p.strokeWeight(lineHeight);
+      p.line(lineStartX, lineY, lineEndX, lineY);
+  
+      // Draw the labels
+      p.noStroke();
+      p.fill(255);
+      p.textAlign(p.RIGHT);
+      p.text(param.lowLabel, lineStartX - 40, lineY + 5);
+      p.textAlign(p.LEFT);
+      p.text(param.highLabel, lineEndX + 40, lineY + 5);
+  
+      // Draw the white circle at the value's position
+      p.fill(30, 70, 50);
+      const valueX = p.map(param.value, 0, 1, lineStartX, lineEndX);
+      p.circle(valueX, lineY, 30);
+    });
   };
 
   const drawLegend = (p) => {

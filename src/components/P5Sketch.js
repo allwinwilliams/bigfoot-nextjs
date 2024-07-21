@@ -5,7 +5,7 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import { analysisSketch, minimalSketch, standoutSketch } from '../utils/sketchFunctions';
 
-const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'type1' }) => {
+const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minimal' }) => {
   const sketchRef = useRef();
 
   useEffect(() => {
