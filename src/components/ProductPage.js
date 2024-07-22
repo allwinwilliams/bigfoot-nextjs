@@ -11,6 +11,7 @@ import { CustomiseAppContext } from '../context/CustomiseProvider';
 import ThreeScene from './ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
 import { fetchAllSongData } from '@/utils/spotifyUtils';
+import AutoScrollCards from './AutoScrollCards';
 
 import { db, storage } from '../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
@@ -34,17 +35,6 @@ const ProductPage = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
-
-  const items = [
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'By Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=standout' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=standout' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=beige&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=standout' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Thriller', description: 'Micheal Jackson', link: '/product?color=black&size=M&songId=3S2R0EVwBSAVMd5UMgKTL0&style=standout' },
-  ];
 
   useEffect(() => {
     const defaultParams = {
@@ -366,73 +356,8 @@ const ProductPage = () => {
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{marginX: 'auto', textAlign:'center', marginTop: 4, paddingTop: 4}}>
-            <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-              Thousands of options to choose from.. Make it truly yours..
-            </Typography>
-        </Box>
-        <Box
-          sx={{
-            mt: 4,
-            overflowX: 'auto',
-            whiteSpace: 'nowrap',
-            '&:hover .scrollable-card': {
-              animationPlayState: 'paused',
-            },
-            paddingY: 4,
-          }}
-        >
-          
-          {items.map((item, index) => (
-            <Card
-                key={index}
-                className="scrollable-card"
-                component={Link}
-                href={item.link}
-                sx={{
-                  display: 'inline-block',
-                  width: 350,
-                  marginRight: 2,
-                  animation: 'scroll 8s linear infinite',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    animationPlayState: 'paused',
-                  },
-                  padding: 2,
-                  boxShadow: '0 2px 16px rgba(0, 0, 0, 0.1)', // Softer shadow
-                  borderRadius: 4, // Optional: to make corners softer
-                }}
-              >
-              <CardMedia
-                component="img"
-                height="200"
-                image={item.imgUrl}
-                alt={item.title}
-                sx={{borderRadius: 2}}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {item.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-          
-        </Box>
+      <AutoScrollCards />
       <SongProductStaticContent />
-      <style jsx>{`
-        @keyframes scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-100%);
-          }
-        }
-      `}</style>
     </Box>
   );
 };

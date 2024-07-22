@@ -1068,13 +1068,10 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const analysisData = songData.analysis;
     const totalDuration = analysisData.track.duration;
   
-    // Calculate the average of energy and danceability
     const avgEnergyDanceability = (songData.features.energy + songData.features.danceability) / 2;
   
-    // Determine the hue range based on avgEnergyDanceability
     const hueRange = p.map(avgEnergyDanceability, 0, 1, 40, 80);
   
-    // Calculate the minimum and maximum section durations
     const minSectionDuration = Math.min(...analysisData.sections.map(section => section.duration));
     const maxSectionDuration = Math.max(...analysisData.sections.map(section => section.duration));
   
@@ -1095,11 +1092,9 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       const sectionX = x + p.map(section.start, 0, totalDuration, 0, adjustedWidth) + (index * gap);
       const sectionHeight = p.map(section.loudness, -50, 0, 50, 500);
   
-      // Adjust y-position based on key value
-      const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150; // Map key value to range 100-200
-      const sectionY = keyOffset + (h - sectionHeight) / 2; // Center vertically with key offset
+      const keyOffset = section.key !== -1 ? p.map(section.key, 0, 11, 100, 200) : 150;
+      const sectionY = keyOffset + (h - sectionHeight) / 2;
   
-      // Determine hue based on base hue and hue range
       const hue = (baseHue + p.map(section.duration, minSectionDuration, maxSectionDuration, -hueRange, hueRange)) % 360; // Adjust hue and keep it within the range of 0-360
   
       p.noStroke();
@@ -1119,7 +1114,11 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const durationFormatted = `${durationMinutes}:${durationSeconds}`;
     console.log("Duration", durationFormatted);
   
-    p.fill(255);
+    if(color == "black"){
+      p.fill(255, 0, 100);
+    } else if(color == "beige"){
+      p.fill(0, 0, 0);
+    }
     p.textSize(24);
     p.textStyle(p.BOLD);
     p.text(`0:00`, x - 20, lineY + 40);
@@ -1162,7 +1161,11 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const nameLines = splitText(name, 30);
     const artistLines = splitText(artistNames, 30);
   
-    p.fill(255);
+    if(color == "black"){
+      p.fill(255, 0, 100);
+    } else if(color == "beige"){
+      p.fill(0, 0, 10);
+    }
     p.textSize(48);
     p.textStyle(p.BOLD);
     p.textAlign(p.LEFT);
@@ -1209,11 +1212,16 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       const lineY = y + 20 + index * gapBetweenLines;
   
       p.stroke(150, 0, 20);
+      
       p.strokeWeight(lineHeight);
       p.line(lineStartX, lineY, lineEndX, lineY);
   
       p.noStroke();
-      p.fill(255);
+      if(color == "black"){
+        p.fill(150, 0, 20);
+      } else if(color == "beige"){
+        p.fill(0, 0, 10);
+      }
       p.textAlign(p.RIGHT);
       p.text(param.lowLabel, lineStartX - 40, lineY + 5);
       p.textAlign(p.LEFT);
@@ -1238,12 +1246,16 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   
     p.textAlign(p.LEFT);
     p.textSize(24);
-    p.fill(100); // Grey color for text
+    
   
     labels.forEach((label, index) => {
       const rowY = y + index * (rowHeight + gapBetweenRows) + rowHeight / 2;
   
-      // Draw text
+      if(color == "black"){
+        p.fill(150, 0, 70);
+      } else if(color == "beige"){
+        p.fill(0, 0, 10);
+      }
       p.text(label, x + visualWidth + 130, rowY + 10);
   
       // Draw visual
@@ -1252,11 +1264,11 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   
       switch (label) {
         case 'Section':
-          p.fill(255); // White color for sections
+          
           p.rect(visualX + 150, visualY, 50, rowHeight / 2);
           break;
         case 'Duration':
-          p.fill(255); // White color for duration
+          
           const durations = [10, 30, 50, 70]; // Adjust these lengths to fit within 200px
           let offsetX = visualX;
           durations.forEach((duration, i) => {
@@ -1265,13 +1277,13 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
           });
           break;
         case 'Loudness':
-          p.fill(255); // White color for loudness
+          
           for (let i = 0; i < 5; i++) {
             p.rect(visualX + i * 40, visualY - i * 6 + 20, visualWidth / 6, 10 + i * 6);
           }
           break;
         case 'Pitch':
-          p.fill(255); // White color for pitch
+          
           for (let i = 0; i < 5; i++) {
             p.rect(visualX + i * 40, visualY - i * 4, visualWidth / 6, visualWidth / 8);
           }
