@@ -5,6 +5,7 @@ import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent
 import SongProductStaticContent from '../components/SongProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/AutoScrollCards';
+import Header from '@/components/Header';
 export default function HomePage() {
   // Array of objects with image url, title, description, and link
   
@@ -17,31 +18,7 @@ export default function HomePage() {
       }}
     >
       <Container sx={{ mt: 2 }}>
-        <Box 
-          sx={{
-            paddingY: 2,
-            textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textDecoration: 'none'
-          }}
-          component={Link}
-          href={'/'}
-        >
-          <img
-            src='/logo.png'
-            alt='Bigfoot Logo'
-            style={{ width: 48, marginBottom: 8 }}
-          />
-          <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-            Bigfoot Clothing
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Conceptual Premium Casuals
-          </Typography>
-        </Box>
+        <Header />
         <Paper elevation={4} sx={{
           padding: 4,
           borderRadius: 4,

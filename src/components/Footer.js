@@ -21,7 +21,7 @@ const Footer = () => {
           Bigfoot Clothing
         </Typography>
         <Typography variant="body2">
-          Conceptual Luxury Casuals
+          Conceptual Fashion
         </Typography>
       </Box>
       <Box>
@@ -50,6 +50,19 @@ const Footer = () => {
           }}
         >
           Product
+        </Link>
+        <Link
+          href="/static-pages/contact"
+          variant="body2"
+          display="block"
+          sx={{
+            mb: 1,
+            textDecoration: 'none',
+            color: 'inherit',
+            fontWeight: 'medium'
+          }}
+        >
+          Contact Us
         </Link>
         <Link
           href="/static-pages/privacypolicy"

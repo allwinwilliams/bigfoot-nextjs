@@ -1,33 +1,9 @@
 import { Container, Box, Typography, Link } from "@mui/material";
-
+import Header from "@/components/Header";
 export default function PrivacyPolicy() {
   return (
     <Container sx={{ mt: 2 }}>
-      <Box 
-        sx={{
-          paddingY: 2,
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textDecoration: 'none'
-        }}
-        component={Link}
-        href={'/'}
-      >
-        <img
-          src='/logo.png'
-          alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
-        />
-        <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-          Bigfoot Clothing
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          Conceptual Premium Casuals
-        </Typography>
-      </Box>
+      <Header />
       <Box sx={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
         <Typography variant="h3" gutterBottom>Privacy Policy</Typography>
         <Typography variant="body1" paragraph>
