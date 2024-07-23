@@ -11,7 +11,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     };
   
     p.setup = () => {
-      console.log('Setting up p5 sketch type 1');
+      // console.log('Setting up p5 sketch type 1');
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
       canvasRef.current = canvas.canvas;
@@ -152,7 +152,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     };
   
     p.setup = () => {
-      console.log('Setting up p5 sketch type 1');
+      // console.log('Setting up p5 sketch type 1');
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
       canvasRef.current = canvas.canvas;
@@ -295,7 +295,7 @@ export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.setup = () => {
-    console.log('Setting up p5 sketch type 1');
+    // console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -434,7 +434,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.setup = () => {
-    console.log('Setting up p5 sketch type 1');
+  //  console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -618,7 +618,7 @@ export const frequencychroma = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.setup = () => {
-    console.log('Setting up p5 sketch type 1');
+  //  console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -761,10 +761,9 @@ export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
   const drawingHeight = 640; // Reduced by 20%
   const canvasWidth = 1500;
   const canvasHeight = 1400;
-  console.log("songData", songData);
 
   p.setup = () => {
-    console.log('Setting up p5 sketch type 1');
+  //  console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -881,7 +880,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.setup = () => {
-    console.log('Setting up minimalSketch');
+  //  console.log('Setting up minimalSketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -1032,7 +1031,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.setup = () => {
-    console.log('Setting up standoutSketch');
+  //  console.log('Setting up standoutSketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -1112,7 +1111,6 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const durationMinutes = Math.floor(totalDuration / 60);
     const durationSeconds = Math.floor((totalDuration % 60)).toString().padStart(2, '0');
     const durationFormatted = `${durationMinutes}:${durationSeconds}`;
-    console.log("Duration", durationFormatted);
   
     if(color == "black"){
       p.fill(255, 0, 100);
@@ -1204,7 +1202,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     // p.fill(6, 10, 8);
     // p.rect(x, y, w, h);
   
-    p.textSize(16);
+    p.textSize(20);
     p.textAlign(p.LEFT);
     p.fill(0);
   
@@ -1218,7 +1216,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   
       p.noStroke();
       if(color == "black"){
-        p.fill(150, 0, 20);
+        p.fill(150, 0, 60);
       } else if(color == "beige"){
         p.fill(0, 0, 10);
       }
@@ -1245,14 +1243,14 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     // p.rect(x, y, w, h);
   
     p.textAlign(p.LEFT);
-    p.textSize(24);
+    p.textSize(20);
     
   
     labels.forEach((label, index) => {
       const rowY = y + index * (rowHeight + gapBetweenRows) + rowHeight / 2;
   
       if(color == "black"){
-        p.fill(150, 0, 70);
+        p.fill(150, 0, 60);
       } else if(color == "beige"){
         p.fill(0, 0, 10);
       }

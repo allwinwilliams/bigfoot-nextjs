@@ -28,7 +28,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       return null;
     }
 
-    console.log('Creating combined texture');
+    // console.log('Creating combined texture');
     const combinedCanvas = document.createElement('canvas');
     const ctx = combinedCanvas.getContext('2d');
     combinedCanvas.width = 4096;
@@ -44,7 +44,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     ctx.fillStyle = fillColor;
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
 
-    console.log('Drawing p5 canvas on combined canvas');
+    // console.log('Drawing p5 canvas on combined canvas');
     ctx.drawImage(canvasRef.current, 60, 2000, 2600, 2000);
 
     const texture = new THREE.CanvasTexture(combinedCanvas);
@@ -59,7 +59,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
   }, [color]);
 
   const handleP5Update = useCallback(() => {
-    console.log('p5 sketch updated');
+    // console.log('p5 sketch updated');
     if (canvasRef.current instanceof HTMLCanvasElement) {
       const texture = createCombinedTexture();
       setTexture(texture);

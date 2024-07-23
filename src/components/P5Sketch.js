@@ -25,12 +25,12 @@ const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minima
           break;
       }
 
-      console.log('Creating p5 instance');
+      // console.log('Creating p5 instance');
       sketchRef.current = new p5(sketch);
 
       return () => {
         if (sketchRef.current) {
-          console.log('Removing p5 sketch');
+          // console.log('Removing p5 sketch');
           sketchRef.current.remove();
         }
       };
@@ -39,7 +39,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minima
 
   useEffect(() => {
     if (sketchRef.current && songData) {
-      console.log('Redrawing p5 sketch with new song data');
+      // console.log('Redrawing p5 sketch with new song data');
       sketchRef.current.redraw();
       onP5Update();
     }

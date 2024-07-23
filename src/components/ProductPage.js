@@ -83,7 +83,7 @@ const ProductPage = () => {
 
     if (navigator.share) {
       navigator.share(shareData).then(() => {
-        console.log('Thanks for sharing!');
+        // console.log('Thanks for sharing!');
       }).catch((error) => {
         console.error('Error sharing:', error);
       });

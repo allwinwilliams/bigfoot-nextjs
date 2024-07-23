@@ -18,13 +18,13 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
 
   useEffect(() => {
     if (gltf && texture) {
-      console.log('Model loaded and texture received');
+      // console.log('Model loaded and texture received');
 
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
           child.castShadow = true;
-			    // child.receiveShadow = true;
-          console.log('Applying texture to mesh');
+			    child.receiveShadow = true;
+          // console.log('Applying texture to mesh');
           const material = new THREE.MeshStandardMaterial({
             side: THREE.DoubleSide,
             map: texture,
@@ -41,7 +41,7 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
 
   useEffect(() => {
     if (texture) {
-      console.log('Updating texture');
+      // console.log('Updating texture');
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
           child.material.map = texture;
