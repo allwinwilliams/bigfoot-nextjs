@@ -188,38 +188,48 @@ export default function SongProductStaticContent() {
                 }}
             >
                 <Grid container spacing={4}>
-                <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6}>
                     <Box
-                    sx={{
-                        backgroundColor: '#f5f5f5',
+                        sx={{
+                        backgroundColor: '#eaeaea',
                         borderRadius: '16px',
                         padding: 3,
-                    }}
+                        }}
                     >
-                    <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
-                        Direct To Garment(DTG) Print
-                    </Typography>
-                    <Typography variant="body1">
-                        Using Direct To Garment(DTG) printing technque we ensure highest quality print for each of your order
-                    </Typography>
+                        <img
+                            src="/song-tshirt/dtg.png"
+                            alt="Direct To Garment"
+                            style={{ width: '100%', borderRadius: '16px' }}
+                        />
+                        <Typography variant="h6" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                        Direct To Garment (DTG) Print
+                        </Typography>
+                        <Typography variant="body1">
+                        Using Direct To Garment (DTG) printing technique we ensure highest quality print for each of your order.
+                        </Typography>
                     </Box>
-                </Grid>
-                <Grid item xs={12} md={6}>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
                     <Box
-                    sx={{
-                        backgroundColor: '#b0b0b0',
+                        sx={{
+                        backgroundColor: '#eaeaea',
                         borderRadius: '16px',
                         padding: 3,
-                    }}
+                        }}
                     >
-                    <Typography variant="h6" sx={{ fontWeight: '800', mb: 2 }}>
+                        <img
+                            src="/song-tshirt/fabric.png"
+                            alt="Soft Touch Knitting"
+                            style={{ width: '100%', borderRadius: '16px' }}
+                        />
+                        <Typography variant="h6" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
                         Soft Touch Knitting
-                    </Typography>
-                    <Typography variant="body1">
-                        With new and innovating knitting technque the fabric is truly a kind of it's own.
-                    </Typography>
+                        </Typography>
+                        <Typography variant="body1">
+                        With new and innovative knitting technique the fabric is truly a kind of its own.
+                        </Typography>
                     </Box>
-                </Grid>
+                    </Grid>
                 </Grid>
             </Box>
         </Box>
