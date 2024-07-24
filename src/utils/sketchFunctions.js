@@ -976,7 +976,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.text(line, x + drawingWidth / 2, y + drawingHeight + 75 + nameLines.length * 40 + index * 30);
     });
 
-    p.textSize(18);
+    p.textSize(20);
     p.textStyle(p.BOLD);
     p.text(`0:00`, x - 40, y + drawingHeight / 2 + 10);
     p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 10);
