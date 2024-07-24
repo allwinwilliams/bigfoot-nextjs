@@ -201,11 +201,11 @@ export default function SongProductStaticContent() {
                             alt="Direct To Garment"
                             style={{ width: '100%', borderRadius: '16px' }}
                         />
-                        <Typography variant="h6" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
-                        Direct To Garment (DTG) Print
+                        <Typography variant="h4" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                            Truly Customised
                         </Typography>
                         <Typography variant="body1">
-                        Using Direct To Garment (DTG) printing technique we ensure highest quality print for each of your order.
+                            Using Direct To Garment (DTG) printing technique we ensure highest quality print for each of your order.
                         </Typography>
                     </Box>
                     </Grid>
@@ -222,11 +222,11 @@ export default function SongProductStaticContent() {
                             alt="Soft Touch Knitting"
                             style={{ width: '100%', borderRadius: '16px' }}
                         />
-                        <Typography variant="h6" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
-                        Soft Touch Knitting
+                        <Typography variant="h4" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                            Highest Quality
                         </Typography>
                         <Typography variant="body1">
-                        With new and innovative knitting technique the fabric is truly a kind of its own.
+                            With new and innovative soft touch knitting technique the fabric is truly a kind of its own. You should wear it to feel it.
                         </Typography>
                     </Box>
                     </Grid>

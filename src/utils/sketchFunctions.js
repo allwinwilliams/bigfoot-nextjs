@@ -1097,7 +1097,12 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       const hue = (baseHue + p.map(section.duration, minSectionDuration, maxSectionDuration, -hueRange, hueRange)) % 360; // Adjust hue and keep it within the range of 0-360
   
       p.noStroke();
-      p.fill(hue, 90, 50); // Adjusted color based on valence and duration
+      
+      if(color == "black"){
+        p.fill(hue, 90, 50);
+      } else if(color == "beige"){
+        p.fill(hue, 70, 30);
+      }
       p.rect(sectionX, sectionY, sectionWidth, sectionHeight);
   
       p.stroke(150, 0, 20);
@@ -1225,7 +1230,11 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.textAlign(p.LEFT);
       p.text(param.highLabel, lineEndX + 40, lineY + 5);
   
-      p.fill(baseHue, 90, 50);
+      if(color == "black"){
+        p.fill(baseHue, 90, 50);
+      } else if(color == "beige"){
+        p.fill(baseHue, 70, 30);
+      }
       const valueX = p.map(param.value, 0, 1, lineStartX, lineEndX);
       p.circle(valueX, lineY, 30);
     });
@@ -1290,7 +1299,11 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
           const hueRange = 40; // Fixed range for legend
           for (let i = 0; i < 5; i++) {
             const hue = (baseHue + p.map(i, 0, 4, -hueRange, hueRange)) % 360;
-            p.fill(hue, 100, 50);
+            if(color == "black"){
+              p.fill(hue, 90, 50);
+            } else if(color == "beige"){
+              p.fill(hue, 70, 30);
+            }
             p.rect(visualX + i * 40, visualY, visualWidth / 6, rowHeight / 2);
           }
           break;
