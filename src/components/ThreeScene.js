@@ -38,7 +38,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       'red': '#FF0000',
       'blue': '#0000FF',
       'beige': '#E1C699',
-      'black': '#070707'
+      'black': '#0B0B0B'
     };
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
@@ -124,16 +124,16 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
   <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 0.5, 2], fov: 100, near: 0.001, far: 100 }}
+        camera={{ position: [0, 0.5, 3], fov: 70, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#f9f9f9' }}
       >
         <ambientLight intensity={2} color="#fafafa" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
-          position={[1, 2, 4]}
-          angle={2}
-          penumbra={1}
-          intensity={10}
+          position={[2, 3, 5]}
+          angle={1}
+          penumbra={0.9}
+          intensity={8}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
@@ -145,8 +145,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[-1, 1, 3]} intensity={8} />
-        <pointLight position={[0, 2, -4]} intensity={15} />
+        <pointLight position={[-2, 2, 4]} intensity={10} />
+        <pointLight position={[-1, 3, -3]} intensity={12} />
         <TshirtModel
           color={color}
           texture={texture}
@@ -159,7 +159,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           minPolarAngle={Math.PI / 10}
           enableZoom={true}
           maxDistance={20}
-          minDistance={0.8}
+          minDistance={0.6}
         />
       </Canvas>
       <P5Sketch

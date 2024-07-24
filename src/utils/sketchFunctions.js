@@ -1183,8 +1183,11 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.text(line, x + w - 10, y + 100 + index * 30);
     });
   
-    p.fill(baseHue, 90, 50);
-    p.textStyle(p.NORMAL);
+    if(color == "black"){
+      p.fill(baseHue, 90, 50);
+    } else if(color == "beige"){
+      p.fill(baseHue, 70, 30);
+    }
     p.text(releaseDate, x + w - 10, y + 100 + artistLines.length * 30 + 30);
   };
 

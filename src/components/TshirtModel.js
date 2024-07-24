@@ -29,8 +29,8 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
             side: THREE.DoubleSide,
             map: texture,
             normalMap: normalMap,
-            roughness: 0.9,
-            metalness: 0.6,
+            roughness: 0.8,
+            metalness: 0.5,
           });
           child.material = material;
           child.material.needsUpdate = true;
