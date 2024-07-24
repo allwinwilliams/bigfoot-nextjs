@@ -967,13 +967,13 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.textSize(32);
     p.textStyle(p.BOLD);
     nameLines.forEach((line, index) => {
-      p.text(line, x + drawingWidth / 2, y + drawingHeight + 65 + index * 38);
+      p.text(line, x + drawingWidth / 2, y + drawingHeight + 65 + index * 40);
     });
 
     p.textSize(24);
     p.textStyle(p.NORMAL);
     artistLines.forEach((line, index) => {
-      p.text(line, x + drawingWidth / 2, y + drawingHeight + 65 + nameLines.length * 38 + index * 28);
+      p.text(line, x + drawingWidth / 2, y + drawingHeight + 75 + nameLines.length * 40 + index * 30);
     });
 
     p.textSize(18);
@@ -982,7 +982,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 10);
 
     if (explicit && explicitImage) {
-      p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 38 + artistLines.length * 30, 100, 100);
+      p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 40 + artistLines.length * 30, 100, 100);
     }
   };
 

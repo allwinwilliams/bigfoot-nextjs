@@ -123,7 +123,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[0.5, 1, 3.5]} intensity={6} />
+        <pointLight position={[0.5, 1, 3]} intensity={8} />
         <pointLight position={[0, 2, -4]} intensity={5} />
         <TshirtModel
           color={color}

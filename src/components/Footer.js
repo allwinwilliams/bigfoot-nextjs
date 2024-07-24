@@ -17,7 +17,7 @@ const Footer = () => {
       }}
     >
       <Box>
-        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h4" gutterBottom>
           Bigfoot Clothing
         </Typography>
         <Typography variant="body2">
