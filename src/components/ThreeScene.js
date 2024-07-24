@@ -83,34 +83,56 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
     }, 3000); // Reset after 3 seconds
   };
 
-  const GroundPlane = ({position}) => {
-    const meshRef = useRef();
+  // const GroundPlane = ({position}) => {
+  //   const meshRef = useRef();
 
+  //   return (
+  //     <mesh
+  //       ref={meshRef}
+  //       rotation={[-Math.PI / 2, 0, 0]}
+  //       position={position}
+  //       receiveShadow={true}
+  //     >
+  //       <planeGeometry args={[50, 50]} />
+  //       <shadowMaterial attach="material" opacity={0.6} />
+  //     </mesh>
+  //   );
+  // };
+
+  const GroundPlane = ({ position }) => {
+    const meshRef = useRef();
+    const texture = useLoader(THREE.TextureLoader, '/song-tshirt/shadow.png');
+  
+    texture.wrapS = THREE.ClampToEdgeWrapping;
+    texture.wrapT = THREE.ClampToEdgeWrapping;
+    texture.repeat.set(1, 1);
+  
     return (
       <mesh
         ref={meshRef}
         rotation={[-Math.PI / 2, 0, 0]}
         position={position}
-        receiveShadow={true}
+        receiveShadow={false}
       >
-        <planeGeometry args={[50, 50]} />
-        <shadowMaterial attach="material" opacity={0.6} />
+        <planeGeometry args={[10, 10]} />
+        <meshStandardMaterial map={texture} transparent={true} />
       </mesh>
     );
   };
+
   return(
   <div className="three-scene-container">
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 0.5, 2], fov: 100, near: 0.001, far: 100 }}
-        style={{ height: '100%', width: '100%', background: '#f7f7f7' }}
+        style={{ height: '100%', width: '100%', background: '#f9f9f9' }}
       >
-        <ambientLight intensity={1.6} color="#ffffff" />
-        <SoftShadows size={500} focus={64} samples={60} />
+        <ambientLight intensity={2} color="#fafafa" />
+        {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
-          position={[0, 5, 0]}
-          angle={0.65}
-          penumbra={0.9}
+          position={[1, 2, 4]}
+          angle={2}
+          penumbra={1}
           intensity={10}
           castShadow
           shadow-mapSize-width={2048}
@@ -123,8 +145,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[0.5, 1, 3]} intensity={8} />
-        <pointLight position={[0, 2, -4]} intensity={5} />
+        <pointLight position={[-1, 1, 3]} intensity={8} />
+        <pointLight position={[0, 2, -4]} intensity={15} />
         <TshirtModel
           color={color}
           texture={texture}
