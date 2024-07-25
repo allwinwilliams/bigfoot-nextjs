@@ -3,7 +3,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import { analysisSketch, minimalSketch, standoutSketch } from '../utils/sketchFunctions';
+import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketchFunctions';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minimal' }) => {
   const sketchRef = useRef();
@@ -14,7 +14,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minima
 
       switch (sketchType) {
         case 'standout':
-          sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, songData);
+          sketch = (p) => maximal(p, canvasRef, onP5Update, color, songData);
           break;
         case 'analysis':
           sketch = (p) => analysisSketch(p, canvasRef, onP5Update, color, songData);

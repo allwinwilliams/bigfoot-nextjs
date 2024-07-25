@@ -2,7 +2,7 @@
 export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;
     const drawingHeight = 1200; // Height for the vertical lines
-    const canvasWidth = 1500;
+    const canvasWidth = 2600;
     const canvasHeight = 2000; // Total canvas height
     let explicitImage;
   
@@ -34,7 +34,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
         const artistNames = artists.map(artist => artist.name).join(', ');
   
         const totalDuration = analysisData.track.duration;
-        const centerX = (canvasWidth - drawingWidth) / 2;
+        const centerX = 100;
         const centerY = (canvasHeight - drawingHeight) / 5;
   
         // Determine the base hue from valence
@@ -116,17 +116,17 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
         p.textSize(40);
         p.textStyle(p.BOLD);
         nameLines.forEach((line, index) => {
-          p.text(line, canvasWidth / 2, centerY + drawingHeight + 100 + index * 40);
+          p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 100 + index * 40);
         });
   
         p.textSize(24);
         p.textStyle(p.NORMAL);
         artistLines.forEach((line, index) => {
-          p.text(line, canvasWidth / 2, centerY + drawingHeight + 150 + nameYOffset + index * 30);
+          p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 150 + nameYOffset + index * 30);
         });
   
         if (explicit && explicitImage) {
-          p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
+          p.image(explicitImage, drawingWidth / 2 - 50 + 100, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
         }
   
         p.textSize(24);
@@ -876,7 +876,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
   p.preload = () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
-    scancodeImage = p.loadImage('/song-tshirt/minimal-qr.png');
+    scancodeImage = p.loadImage('/song-tshirt/scancode.png');
   };
 
   p.setup = () => {
@@ -993,8 +993,8 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.rect(x, y, width, height);
 
     if (scancodeImage) {
-      const imgX = x + 50;
-      const imgY = y + 50;
+      const imgX = x + 0;
+      const imgY = y + 0;
       p.image(scancodeImage, imgX, imgY);
     }
     if (color === 'black') {
@@ -1006,7 +1006,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     }
     p.textSize(20);
     p.textStyle(p.BOLD);
-    p.text(`Scan to listen to what I am listening`, x + 220, y + 180);
+    p.text(`Scan to listen to what I am listening`, x + 220, y + 150);
   };
 
   p.draw = () => {

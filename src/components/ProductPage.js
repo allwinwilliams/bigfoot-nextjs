@@ -267,7 +267,7 @@ const ProductPage = () => {
                 {[
                   { value: 'minimal', label: 'Minimal' },
                   { value: 'analysis', label: 'Analysis' },
-                  { value: 'standout', label: 'Stand Out' },
+                  { value: 'standout', label: 'Concert' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

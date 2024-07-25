@@ -173,11 +173,15 @@ const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading })
               alignItems: 'center',
             }}
           >
-            <img
-              src={songData.details.album.images[0].url}
-              alt={songData.details.name}
-              style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
-            />
+            {
+              songData.details.album.images && songData.details.album.images.length > 0 
+              && (
+                <img
+                  src={songData.details.album.images[0].url}
+                  alt={songData.details.name}
+                  style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
+                />
+            )}
             <Box sx={{ flexGrow: 1, minWidth: 0 }}>
               <Typography
                 variant="subtitle1"

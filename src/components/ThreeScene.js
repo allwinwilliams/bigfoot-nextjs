@@ -41,7 +41,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       'red': '#FF0000',
       'blue': '#0000FF',
       'beige': '#E1C699',
-      'black': '#0B0B0B'
+      'black': '#090909'
     };
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
@@ -133,9 +133,9 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 0.5, 3], fov: 70, near: 0.001, far: 100 }}
-        style={{ height: '100%', width: '100%', background: '#f9f9f9' }}
+        style={{ height: '100%', width: '100%', background: '#f5f5f5' }}
       >
-        <ambientLight intensity={2} color="#fafafa" />
+        <ambientLight intensity={3} color="#fafafa" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
           position={[2, 3, 5]}
