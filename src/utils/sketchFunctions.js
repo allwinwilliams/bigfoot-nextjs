@@ -876,7 +876,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
   p.preload = () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
-    scancodeImage = p.loadImage('/song-tshirt/scancode.png');
+    scancodeImage = p.loadImage('/song-tshirt/minimal-qr.png');
   };
 
   p.setup = () => {
@@ -997,6 +997,16 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       const imgY = y + 50;
       p.image(scancodeImage, imgX, imgY);
     }
+    if (color === 'black') {
+      p.fill(255);
+    } else if (color === 'beige') {
+      p.fill(5);
+    } else {
+      p.fill(50);
+    }
+    p.textSize(20);
+    p.textStyle(p.BOLD);
+    p.text(`Scan to listen to what I am listening`, x + 220, y + 180);
   };
 
   p.draw = () => {
@@ -1006,7 +1016,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     drawSongDataSection(250, 200, 1000, 160);
 
     // Draw the QR Code section
-    drawQRCodeSection(1740, 400, 800, 500);
+    drawQRCodeSection(2100, 50, 500, 200);
   };
 };
 
