@@ -19,7 +19,7 @@ export default function SongProductStaticContent() {
                 <Grid container spacing={4} alignItems="center">
                     <Grid item xs={12} md={6}>
                         <img
-                        src="/song-tshirt/customised-banner.jpg"
+                        src="/song-tshirt/customised-banner.png"
                         alt="Custom T-shirt"
                         style={{ width: '100%', borderRadius: '16px' }}
                         />
