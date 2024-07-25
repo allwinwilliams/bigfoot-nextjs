@@ -7,8 +7,9 @@ import * as THREE from 'three';
 import { useLoader } from '@react-three/fiber';
 import TshirtModel from './TshirtModel';
 import dynamic from 'next/dynamic';
-import { IconButton } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
+import TouchAppIcon from '@mui/icons-material/TouchApp';
 
 // Ensure the ShadowMaterial is recognized by React Three Fiber
 extend({ ShadowMaterial: THREE.ShadowMaterial });
@@ -21,6 +22,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const [triggerLoadingAnimation, setTriggerLoadingAnimation] = useState(false);
   const canvasRef = useRef();
+
+  const [showTooltip, setShowTooltip] = useState(true);
   
   const createCombinedTexture = useCallback(() => {
     if (!(canvasRef.current instanceof HTMLCanvasElement)) {
@@ -75,6 +78,11 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
       console.error('Canvas ref is not set in useEffect');
     }
   }, [canvasRef.current, color, createCombinedTexture]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowTooltip(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleIconClick = () => {
     setTriggerAnimation(true);
@@ -174,6 +182,14 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           <ThreeDRotationIcon sx={{ fontSize: 36 }} />
         </IconButton>
       </div>
+      {showTooltip && (
+        <div className="tooltip-container">
+          <TouchAppIcon id="touch-icon" className="touch-icon" sx={{ fontSize: 36, color: 'white', animation: 'moveLeftRight 1s infinite alternate' }} />
+          <Typography variant="h6" color="white" sx={{ fontSize: '1rem', fontWeight: 'bold' }}>
+            Move around Tshirt in 3D
+          </Typography>
+        </div>
+      )}
       <style jsx>{`
         .three-scene-container {
           position: relative;
@@ -189,11 +205,38 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           right: 32px;
         }
 
+        @keyframes moveLeftRight {
+          0% { transform: translateX(-10px); }
+          100% { transform: translateX(10px); }
+        }
+
+        .tooltip-container {
+          position: absolute;
+          top: 16px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: rgba(0, 0, 0, 0.2);
+          padding: 10px 20px;
+          border-radius: 10px;
+          opacity: 0;
+          animation: fadeInOut 3s ease 2s;
+        }
+
+        @keyframes fadeInOut {
+          0% { opacity: 0; }
+          60% { opacity: 1; }
+          90% { opacity: 0; }
+          100% { display: none; }
+        }
+
         @media (max-width: 900px) {
           .three-scene-container {
             min-height: 500px;
             border-radius: 16px 16px 0 0;
-            height: 60vh; /* Adjust as needed for more height */
+            height: 60vh;
           }
         }
       `}</style>
