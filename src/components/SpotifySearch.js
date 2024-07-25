@@ -108,11 +108,15 @@ const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading })
           <List>
             {searchResults.map((song) => (
               <ListItem button key={song.id} onClick={() => handleSelectSong(song)}>
-                <img
-                  src={song.album.images[0].url}
-                  alt={song.name}
-                  style={{ width: '40px', height: '40px', borderRadius: '8px', marginRight: '16px' }}
-                />
+                {
+                song.album.images && song.album.images.length > 0 
+                && (
+                  <img
+                    src={song.album.images[0].url}
+                    alt={song.name}
+                    style={{ width: '40px', height: '40px', borderRadius: '8px', marginRight: '16px' }}
+                  />
+                )}
                 <ListItemText primary={song.name} secondary={song.artists.map(artist => artist.name).join(', ')} />
               </ListItem>
             ))}
