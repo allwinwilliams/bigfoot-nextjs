@@ -1205,7 +1205,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const { x, y, w, h } = sections.Ranges;
     const features = songData.features;
     const parameters = [
-      { name: 'Danceability', value: features.danceability, lowLabel: 'Low Dance', highLabel: 'Danceable' },
+      { name: 'Danceability', value: features.danceability, lowLabel: 'Sit down', highLabel: 'Dance' },
       { name: 'Energy', value: features.energy, lowLabel: 'Low energy', highLabel: 'High energy' },
       { name: 'Loudness', value: p.map(features.loudness, -60, 0, 0, 1), lowLabel: 'Quite', highLabel: 'Loud' },
       { name: 'Valence', value: features.valence, lowLabel: 'Sad', highLabel: 'Happy' },

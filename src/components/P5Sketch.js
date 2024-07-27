@@ -13,7 +13,10 @@ const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minima
       let sketch;
 
       switch (sketchType) {
-        case 'standout':
+        case 'drilldown':
+          sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, songData);
+          break;
+        case 'concert':
           sketch = (p) => maximal(p, canvasRef, onP5Update, color, songData);
           break;
         case 'analysis':
