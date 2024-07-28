@@ -7,18 +7,18 @@ import
   Tooltip, CircularProgress, Card, Link,
   CardMedia, CardContent, useTheme }
 from '@mui/material';
-import { CustomiseAppContext } from '../context/CustomiseProvider';
-import ThreeScene from './ThreeScene';
+import { CustomiseAppContext } from '../../context/CustomiseProvider';
+import ThreeScene from '../ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
 import { fetchAllSongData } from '@/utils/spotifyUtils';
 import AutoScrollCards from './AutoScrollCards';
 
-import { db, storage } from '../utils/firebaseConfig'; // Ensure these are correctly imported
+import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SongProductStaticContent from './SongProductStaticContent';
 
-const ProductPage = () => {
+const SongProductPage = () => {
   const theme = useTheme();
 
   const { songData } = useContext(CustomiseAppContext);
@@ -31,7 +31,7 @@ const ProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
-  const [sketchType, setSketchType] = useState(searchParams.get('style') || 'minimal');
+  const [style, setStyle] = useState(searchParams.get('style') || 'minimal');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
@@ -45,12 +45,12 @@ const ProductPage = () => {
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('songId') || !searchParams.get('style')) {
-      router.push(`/product/tshirt/song?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${sketchType || defaultParams.style}`);
+      router.push(`/product/songtshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&songId=${songId || defaultParams.songId}&style=${style || defaultParams.style}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
       setSongId(searchParams.get('songId') || defaultParams.songId);
-      setSketchType(searchParams.get('style') || defaultParams.style);
+      setStyle(searchParams.get('style') || defaultParams.style);
     }
 
     if (initialLoad.current) {
@@ -61,17 +61,17 @@ const ProductPage = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/tshirt/song?color=${event.target.value}&size=${size}&songId=${songId}&style=${sketchType}`);
+    window.history.replaceState(null, '', `/product/songtshirt?color=${event.target.value}&size=${size}&songId=${songId}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
-    setSketchType(event.target.value);
-    window.history.replaceState(null, '', `/product/tshirt/song?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`);
+    setStyle(event.target.value);
+    window.history.replaceState(null, '', `/product/songtshirt?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/tshirt/song?color=${color}&size=${event.target.value}&songId=${songId}&style=${sketchType}`);
+    window.history.replaceState(null, '', `/product/songtshirt?color=${color}&size=${event.target.value}&songId=${songId}&style=${style}`);
   };
 
   const handleShare = () => {
@@ -109,7 +109,7 @@ const ProductPage = () => {
         size,
         songId,
         songName: songData.details?.name || '',
-        style: sketchType,
+        style: style,
         imageUrl,
         timestamp: new Date().toISOString(),
       };
@@ -173,7 +173,7 @@ const ProductPage = () => {
           variant='subtitle1'
           sx={{color: '#777777', lineHeight: 1.25}}
         >
-          This is a T-Shirt that is customised based a song. Select a song and see the magic
+          Customise your T-Shirt design based on your favourite songs
         </Typography>
       </Box>
       <Box
@@ -198,9 +198,9 @@ const ProductPage = () => {
           >
             <ThreeScene
               color={color}
-              songData={songData}
-              sketchType={sketchType}
-              songLoading={songLoading}
+              data={{type: 'song', values: songData}}
+              style={style}
+              loading={songLoading}
             />
           </Grid>
           <Grid
@@ -218,7 +218,7 @@ const ProductPage = () => {
               <SpotifySearch
                 color={color}
                 size={size}
-                sketchType={sketchType}
+                style={style}
                 songLoading={songLoading}
                 setSongLoading={setSongLoading}
               />
@@ -274,8 +274,8 @@ const ProductPage = () => {
                     key={option.value}
                     label={option.label}
                     clickable
-                    color={sketchType === option.value ? 'primary' : 'default'}
-                    variant={sketchType === option.value ? 'filled' : 'outlined'}
+                    color={style === option.value ? 'primary' : 'default'}
+                    variant={style === option.value ? 'filled' : 'outlined'}
                     onClick={() => handleStyleChange({ target: { value: option.value } })}
                     sx={{
                       padding: '24px 16px',
@@ -363,4 +363,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default SongProductPage;

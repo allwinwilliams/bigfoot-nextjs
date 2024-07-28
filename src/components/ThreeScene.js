@@ -17,7 +17,7 @@ extend({ ShadowMaterial: THREE.ShadowMaterial });
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
+const ThreeScene = ({ color, data, style, loading }) => {
   const [texture, setTexture] = useState(null);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const [triggerLoadingAnimation, setTriggerLoadingAnimation] = useState(false);
@@ -159,7 +159,7 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
           color={color}
           texture={texture}
           triggerAnimation={triggerAnimation}
-          triggerLoadingAnimation={songLoading}
+          triggerLoadingAnimation={loading}
         />
         <GroundPlane position={[0, -1.7, 0]} />
         <OrbitControls
@@ -174,8 +174,8 @@ const ThreeScene = ({ color, songData, sketchType, songLoading }) => {
         canvasRef={canvasRef}
         onP5Update={handleP5Update}
         color={color}
-        songData={songData}
-        sketchType={sketchType}
+        data={data}
+        style={style}
       />
       <div className="icon-container">
         <IconButton aria-label="3D info" onClick={handleIconClick}>

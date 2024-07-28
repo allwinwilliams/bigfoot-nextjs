@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
-import { CustomiseAppContext } from '../context/CustomiseProvider';
-import { fetchAllSongData } from '../utils/spotifyUtils';
+import { CustomiseAppContext } from '../../context/CustomiseProvider';
+import { fetchAllSongData } from '../../utils/spotifyUtils';
 
-const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading }) => {
+const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
   const { accessToken, songData, changeSongId, changeSongData } = useContext(CustomiseAppContext);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -63,8 +63,8 @@ const SpotifySearch = ({ color, size, sketchType, songLoading, setSongLoading })
     setSearchResults([]);
     setInputValue(song.name);
     setSongLoading(true); // Set loading state to true when a new song is selected
-    // router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
-    window.history.replaceState(null, '', `/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${sketchType}`);
+    // router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${style}`);
+    window.history.replaceState(null, '', `/product/songtshirt?color=${color}&size=${size}&songId=${song.id}&style=${style}`);
   };
 
   return (

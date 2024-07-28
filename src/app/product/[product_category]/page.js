@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { useParams } from 'next/navigation';
 
-const SongProductPage = dynamic(() => import('../../components/SongTshirt/SongProductPage'), { ssr: false });
-const AIProductPage = dynamic(() => import('../../components/AITshirt/AIProductPage'), { ssr: false });
+const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
+const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
 
 export default function ProductType() {
   const { product_category } = useParams();

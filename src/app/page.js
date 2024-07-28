@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
-import SongProductStaticContent from '../components/SongProductStaticContent';
+import SongProductStaticContent from '../components/SongTshirt/SongProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
-import AutoScrollCards from '@/components/AutoScrollCards';
+import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
 export default function HomePage() {
   // Array of objects with image url, title, description, and link
@@ -79,7 +79,7 @@ export default function HomePage() {
                 variant="contained" 
                 color="primary" 
                 component={Link} 
-                href="/product" 
+                href="/product/songtshirt" 
                 startIcon={<CreateIcon />}
                 sx={{ 
                   mt: 4, 

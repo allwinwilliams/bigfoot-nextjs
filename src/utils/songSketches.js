@@ -978,8 +978,8 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
     p.textSize(20);
     p.textStyle(p.BOLD);
-    p.text(`0:00`, x - 40, y + drawingHeight / 2 + 10);
-    p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 10);
+    p.text(`0:00`, x - 40, y + drawingHeight / 2 + 7);
+    p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 7);
 
     if (explicit && explicitImage) {
       p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 40 + artistLines.length * 30, 100, 100);

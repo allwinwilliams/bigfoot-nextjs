@@ -3,29 +3,46 @@
 
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketchFunctions';
+import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/songSketches';
 
-const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minimal' }) => {
+const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => {
   const sketchRef = useRef();
-
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let sketch;
-
-      switch (sketchType) {
-        case 'drilldown':
-          sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, songData);
-          break;
-        case 'concert':
-          sketch = (p) => maximal(p, canvasRef, onP5Update, color, songData);
-          break;
-        case 'analysis':
-          sketch = (p) => analysisSketch(p, canvasRef, onP5Update, color, songData);
-          break;
-        case 'minimal':
-        default:
-          sketch = (p) => minimalSketch(p, canvasRef, onP5Update, color, songData);
-          break;
+      let {type, values} = data;
+      console.log("TYPE: ", type);
+      if(type == "song"){
+        switch (style) {
+          case 'drilldown':
+            sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'concert':
+            sketch = (p) => maximal(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'analysis':
+            sketch = (p) => analysisSketch(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'minimal':
+          default:
+            sketch = (p) => minimalSketch(p, canvasRef, onP5Update, color, values);
+            break;
+        }
+      }
+      if(type == "ai"){
+        switch (style) {
+          case 'lineart':
+            sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'horror':
+            sketch = (p) => maximal(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'anime':
+          default:
+            sketch = (p) => minimalSketch(p, canvasRef, onP5Update, color, values);
+            break;
+        }
       }
 
       // console.log('Creating p5 instance');
@@ -38,15 +55,15 @@ const P5Sketch = ({ canvasRef, onP5Update, color, songData, sketchType = 'minima
         }
       };
     }
-  }, [canvasRef, onP5Update, songData, sketchType]);
+  }, [canvasRef, onP5Update, data, style]);
 
   useEffect(() => {
-    if (sketchRef.current && songData) {
+    if (sketchRef.current && data) {
       // console.log('Redrawing p5 sketch with new song data');
       sketchRef.current.redraw();
       onP5Update();
     }
-  }, [songData, onP5Update]);
+  }, [data, onP5Update]);
 
   return (
     <div
