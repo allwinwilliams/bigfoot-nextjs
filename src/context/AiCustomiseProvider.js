@@ -5,7 +5,7 @@ import React, { createContext, useState } from 'react';
 export const AiCustomiseContext = createContext();
 
 export const AiCustomiseProvider = ({ children }) => {
-  const [apiKey, setApiKey] = useState('sk-proj-tPmVS51mZzKujPLnLuBfT3BlbkFJkEYd6WwuXUsYlsMjJzos');
+  const [apiKey, setApiKey] = useState(process.env.NEXT_PUBLIC_OPENAI_API_KEY || '');
   const [imageData, setImageData] = useState(null);
 
   const generateImage = async (prompt) => {
