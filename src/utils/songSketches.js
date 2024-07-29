@@ -1,287 +1,327 @@
+import { generateQRCodeForGoogleSearch } from './qrUtils';
 
 export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;
     const drawingHeight = 1200; // Height for the vertical lines
     const canvasWidth = 2600;
     const canvasHeight = 2000; // Total canvas height
-    let explicitImage;
-  
-    p.preload = () => {
-      explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
-    };
-  
-    p.setup = () => {
-      // console.log('Setting up p5 sketch type 1');
-      const canvas = p.createCanvas(canvasWidth, canvasHeight);
-      canvas.id('p5-canvas');
-      canvasRef.current = canvas.canvas;
-      p.colorMode(p.HSL, 360, 100, 100);
-      p.noLoop();
-      onP5Update();
-    };
-  
-    p.draw = () => {
-      p.background(200);
-      p.fill(50);
-      p.textSize(32);
-  
-      if (songData) {
-        const songDetails = songData.details;
-        const analysisData = songData.analysis;
-        const featuresData = songData.features;
-  
-        const { name, artists, explicit } = songDetails;
-        const artistNames = artists.map(artist => artist.name).join(', ');
-  
-        const totalDuration = analysisData.track.duration;
-        const centerX = 100;
-        const centerY = (canvasHeight - drawingHeight) / 5;
-  
-        // Determine the base hue from valence
-        // const baseHue = p.map(featuresData.valence, 0, 1, 260, 10);
-        // const baseHue = p.lerp(265, 41, featuresData.valence);
-        const hueStart = 265;
-        const hueEnd = 20;
-        let baseHue;
+    let explicitImage, qrCodeImage;
 
-        // Ensure the shortest path on the color wheel
-        if (hueStart > hueEnd) {
-            if (hueStart - hueEnd > 180) {
-                baseHue = p.lerp(hueStart, hueEnd + 360, featuresData.valence) % 360;
+    p.preload = async () => {
+        explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+
+        if (songData) {
+            const { name, artists } = songData.details;
+            const artistNames = artists.map(artist => artist.name).join(', ');
+            const searchPhrase = `${name} ${artistNames}`;
+
+            let qrColor;
+            if (color === 'black') {
+                qrColor = '#ffffff';
+            } else if (color === 'beige') {
+                qrColor = '#050505';
             } else {
-                baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+                qrColor = '#323232';
             }
-            } else {
-            if (hueEnd - hueStart > 180) {
-                baseHue = p.lerp(hueStart + 360, hueEnd, featuresData.valence) % 360;
-            } else {
-                baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
-            }
+
+            const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 480); // Generate at larger size
+            qrCodeImage = p.loadImage(qrCodeUrl);
         }
-        let fillColor, strokeColor;
-        if (color === 'black') {
-          fillColor = p.color(255); // White fill color
-          strokeColor = p.color(255); // White stroke color
-        } else if (color === 'beige') {
-          fillColor = p.color(10); // Light grey fill color
-          strokeColor = p.color(10, 0, 0); // Light grey stroke color
-        } else {
-          fillColor = p.color(50); // Default fill color
-          strokeColor = p.color(50); // Default stroke color
-        }
-  
-        // Draw vertical lines for each segment
-        analysisData.segments.forEach((segment) => {
-          const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
-          const loudness = segment.loudness_max;
-          const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
-  
-          // Map loudness to hue within the range of -50 to +50 around the base hue
-          const hue = p.map(loudness, -30, 5, baseHue - 50, baseHue + 50);
-  
-          // Adjust color visibility for the beige variant
-          if (color === 'beige') {
-            strokeColor = p.color(hue, 65, 25); // Adjusted color with higher brightness and saturation
-          } else {
-            strokeColor = p.color(hue, 100, 30); // Default color
-          }
-  
-          p.stroke(strokeColor);
-          p.strokeWeight(2);
-          p.line(x, centerY + (drawingHeight / 2) - lineHeight / 2, x, centerY + (drawingHeight / 2) + lineHeight / 2);
-        });
-  
-        // Convert duration to MM:SS format
-        const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
-        const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
-        const durationFormatted = `${durationMinutes}:${durationSeconds}`;
-  
-        // Prepare the song name and artist names for display
-        const splitText = (text, maxLength) => {
-          if (text.length <= maxLength) {
-            return [text];
-          }
-          const regex = new RegExp(`.{1,${maxLength}}`, 'g');
-          return text.match(regex);
-        };
-  
-        const nameLines = splitText(name, 70);
-        const artistLines = splitText(artistNames, 70);
-        const nameYOffset = nameLines.length > 1 ? 40 : 0; // Additional offset if name is on two lines
-  
-        // Write the song name, artist names, and duration below the vertical lines
-        p.fill(fillColor);
-        p.noStroke();
-        p.textAlign(p.CENTER);
-        p.textSize(40);
-        p.textStyle(p.BOLD);
-        nameLines.forEach((line, index) => {
-          p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 100 + index * 40);
-        });
-  
-        p.textSize(24);
-        p.textStyle(p.NORMAL);
-        artistLines.forEach((line, index) => {
-          p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 150 + nameYOffset + index * 30);
-        });
-  
-        if (explicit && explicitImage) {
-          p.image(explicitImage, drawingWidth / 2 - 50 + 100, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
-        }
-  
-        p.textSize(24);
-        p.textStyle(p.BOLD);
-        p.text(`0:00`, centerX - 50, centerY + drawingHeight/2 + 6);
-        p.text(`${durationFormatted}`, centerX + drawingWidth + 40, centerY + drawingHeight/2 + 6);
-      } else {
-        p.textSize(32);
-        p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
-      }
     };
+
+    p.setup = () => {
+        // console.log('Setting up p5 sketch type 1');
+        const canvas = p.createCanvas(canvasWidth, canvasHeight);
+        canvas.id('p5-canvas');
+        canvasRef.current = canvas.canvas;
+        p.colorMode(p.HSL, 360, 100, 100);
+        p.noLoop();
+        onP5Update();
+    };
+
+    p.draw = () => {
+        p.background(200);
+        p.fill(50);
+        p.textSize(32);
+
+        if (songData) {
+            const songDetails = songData.details;
+            const analysisData = songData.analysis;
+            const featuresData = songData.features;
+
+            const { name, artists, explicit } = songDetails;
+            const artistNames = artists.map(artist => artist.name).join(', ');
+
+            const totalDuration = analysisData.track.duration;
+            const centerX = 100;
+            const centerY = (canvasHeight - drawingHeight) / 5;
+
+            // Determine the base hue from valence
+            const hueStart = 265;
+            const hueEnd = 20;
+            let baseHue;
+
+            // Ensure the shortest path on the color wheel
+            if (hueStart > hueEnd) {
+                if (hueStart - hueEnd > 180) {
+                    baseHue = p.lerp(hueStart, hueEnd + 360, featuresData.valence) % 360;
+                } else {
+                    baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+                }
+            } else {
+                if (hueEnd - hueStart > 180) {
+                    baseHue = p.lerp(hueStart + 360, hueEnd, featuresData.valence) % 360;
+                } else {
+                    baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+                }
+            }
+
+            let fillColor, strokeColor;
+            if (color === 'black') {
+                fillColor = p.color(255); // White fill color
+                strokeColor = p.color(255); // White stroke color
+            } else if (color === 'beige') {
+                fillColor = p.color(10); // Light grey fill color
+                strokeColor = p.color(10, 0, 0); // Light grey stroke color
+            } else {
+                fillColor = p.color(50); // Default fill color
+                strokeColor = p.color(50); // Default stroke color
+            }
+
+            // Draw vertical lines for each segment
+            analysisData.segments.forEach((segment) => {
+                const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
+                const loudness = segment.loudness_max;
+                const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
+
+                // Map loudness to hue within the range of -50 to +50 around the base hue
+                const hue = p.map(loudness, -30, 5, baseHue - 50, baseHue + 50);
+
+                // Adjust color visibility for the beige variant
+                if (color === 'beige') {
+                    strokeColor = p.color(hue, 65, 25); // Adjusted color with higher brightness and saturation
+                } else {
+                    strokeColor = p.color(hue, 100, 30); // Default color
+                }
+
+                p.stroke(strokeColor);
+                p.strokeWeight(2);
+                p.line(x, centerY + (drawingHeight / 2) - lineHeight / 2, x, centerY + (drawingHeight / 2) + lineHeight / 2);
+            });
+
+            // Convert duration to MM:SS format
+            const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
+            const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
+            const durationFormatted = `${durationMinutes}:${durationSeconds}`;
+
+            // Prepare the song name and artist names for display
+            const splitText = (text, maxLength) => {
+                if (text.length <= maxLength) {
+                    return [text];
+                }
+                const regex = new RegExp(`.{1,${maxLength}}`, 'g');
+                return text.match(regex);
+            };
+
+            const nameLines = splitText(name, 70);
+            const artistLines = splitText(artistNames, 70);
+            const nameYOffset = nameLines.length > 1 ? 40 : 0; // Additional offset if name is on two lines
+
+            // Write the song name, artist names, and duration below the vertical lines
+            p.fill(fillColor);
+            p.noStroke();
+            p.textAlign(p.CENTER);
+            p.textSize(40);
+            p.textStyle(p.BOLD);
+            nameLines.forEach((line, index) => {
+                p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 100 + index * 40);
+            });
+
+            p.textSize(24);
+            p.textStyle(p.NORMAL);
+            artistLines.forEach((line, index) => {
+                p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 150 + nameYOffset + index * 30);
+            });
+
+            if (explicit && explicitImage) {
+                p.image(explicitImage, drawingWidth / 2 - 50 + 100, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
+            }
+
+            p.textSize(24);
+            p.textStyle(p.BOLD);
+            p.text(`0:00`, centerX - 50, centerY + drawingHeight / 2 + 6);
+            p.text(`${durationFormatted}`, centerX + drawingWidth + 40, centerY + drawingHeight / 2 + 6);
+
+            // Draw QR Code section
+            if (qrCodeImage) {
+                const imgX = 2080 + (400 - 240) / 2; // Center the scaled down image
+                const imgY = 250 + (500 - 240) / 2;
+                p.image(qrCodeImage, imgX, imgY, 240, 240); // Scale down to 240
+            }
+
+            let textColor;
+            if (color === 'black') {
+                textColor = p.color(255);
+            } else if (color === 'beige') {
+                textColor = p.color(5);
+            } else {
+                textColor = p.color(50);
+            }
+
+            p.fill(textColor);
+            p.textSize(28);
+            p.textStyle(p.BOLD);
+            p.textAlign(p.CENTER);
+            p.text(`vibe to my jam`, 2080 + 400 / 2, 250 + 500 - 80);
+        } else {
+            p.textSize(32);
+            p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
+        }
+    };
+};
+
+export const maxGlitch = (p, canvasRef, onP5Update, color, songData) => {
+  const drawingWidth = 1200;
+  const drawingHeight = 1200; // Height for the vertical lines
+  const canvasWidth = 1500;
+  const canvasHeight = 2000; // Total canvas height
+  let explicitImage;
+
+  p.preload = () => {
+    explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
   };
 
-  export const maxGlitch = (p, canvasRef, onP5Update, color, songData) => {
-    const drawingWidth = 1200;
-    const drawingHeight = 1200; // Height for the vertical lines
-    const canvasWidth = 1500;
-    const canvasHeight = 2000; // Total canvas height
-    let explicitImage;
-  
-    p.preload = () => {
-      explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
-    };
-  
-    p.setup = () => {
-      // console.log('Setting up p5 sketch type 1');
-      const canvas = p.createCanvas(canvasWidth, canvasHeight);
-      canvas.id('p5-canvas');
-      canvasRef.current = canvas.canvas;
-      p.colorMode(p.HSL, 360, 100, 100);
-      p.noLoop();
-      onP5Update();
-    };
-  
-    p.draw = () => {
-      p.background(200);
-      p.fill(50);
-      p.textSize(32);
-  
-      if (songData) {
-        const songDetails = songData.details;
-        const analysisData = songData.analysis;
-        const featuresData = songData.features;
-  
-        const { name, artists, explicit } = songDetails;
-        const artistNames = artists.map(artist => artist.name).join(', ');
-  
-        const totalDuration = analysisData.track.duration;
-        const centerX = (canvasWidth - drawingWidth) / 2;
-        const centerY = (canvasHeight - drawingHeight) / 5;
-  
-        // Determine the base hue from valence
-        const hueStart = 265;
-        const hueEnd = 20;
-        let baseHue;
-  
-        // Ensure the shortest path on the color wheel
-        if (hueStart > hueEnd) {
-          if (hueStart - hueEnd > 180) {
-            baseHue = p.lerp(hueStart, hueEnd + 360, featuresData.valence) % 360;
-          } else {
-            baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
-          }
-        } else {
-          if (hueEnd - hueStart > 180) {
-            baseHue = p.lerp(hueStart + 360, hueEnd, featuresData.valence) % 360;
-          } else {
-            baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
-          }
-        }
-        let fillColor, strokeColor;
-        if (color === 'black') {
-          fillColor = p.color(255); // White fill color
-          strokeColor = p.color(255); // White stroke color
-        } else if (color === 'beige') {
-          fillColor = p.color(10); // Light grey fill color
-          strokeColor = p.color(10, 0, 0); // Light grey stroke color
-        } else {
-          fillColor = p.color(50); // Default fill color
-          strokeColor = p.color(50); // Default stroke color
-        }
-  
-        // Draw vertical lines for each segment
-        analysisData.segments.forEach((segment) => {
-          const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
-          const loudness = segment.loudness_max;
-          const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
-  
-          // Map loudness to hue within the range of -50 to +50 around the base hue
-          const hue = p.map(loudness, -30, 5, baseHue - 50, baseHue + 50);
-  
-          // Adjust color visibility for the beige variant
-          if (color === 'beige') {
-            strokeColor = p.color(hue, 65, 25); // Adjusted color with higher brightness and saturation
-          } else {
-            strokeColor = p.color(hue, 100, 30); // Default color
-          }
-  
-          // Create gradient effect for the line
-          for (let i = 0; i < lineHeight; i++) {
-            const inter = p.map(i, 0, lineHeight, 0, 1);
-            const color = p.lerpColor(p.color(hue, 100, 10), strokeColor, inter);
-            p.stroke(color);
-            p.line(x, centerY + (drawingHeight / 2) - i, x, centerY + (drawingHeight / 2) - i - 1);
-          }
-        });
-  
-        // Convert duration to MM:SS format
-        const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
-        const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
-        const durationFormatted = `${durationMinutes}:${durationSeconds}`;
-  
-        // Prepare the song name and artist names for display
-        const splitText = (text, maxLength) => {
-          if (text.length <= maxLength) {
-            return [text];
-          }
-          const regex = new RegExp(`.{1,${maxLength}}`, 'g');
-          return text.match(regex);
-        };
-  
-        const nameLines = splitText(name, 70);
-        const artistLines = splitText(artistNames, 70);
-        const nameYOffset = nameLines.length > 1 ? 40 : 0; // Additional offset if name is on two lines
-  
-        // Write the song name, artist names, and duration below the vertical lines
-        p.fill(fillColor);
-        p.noStroke();
-        p.textAlign(p.CENTER);
-        p.textSize(36);
-        p.textStyle(p.BOLD);
-        nameLines.forEach((line, index) => {
-          p.text(line, canvasWidth / 2, centerY + drawingHeight + 80 + index * 40);
-        });
-  
-        p.textSize(20);
-        p.textStyle(p.NORMAL);
-        artistLines.forEach((line, index) => {
-          p.text(line, canvasWidth / 2, centerY + drawingHeight + 130 + nameYOffset + index * 30);
-        });
-  
-        if (explicit && explicitImage) {
-          p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 180 + nameYOffset, 100, 100); // Adjust the size and position as needed
-        }
-  
-        p.textSize(24);
-        p.textStyle(p.BOLD);
-        p.text(`0:00`, centerX, centerY + drawingHeight + 5);
-        p.text(`${durationFormatted}`, centerX + drawingWidth - 20, centerY + drawingHeight + 5);
-      } else {
-        p.textSize(32);
-        p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
-      }
-    };
+  p.setup = () => {
+    // console.log('Setting up p5 sketch type 1');
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.colorMode(p.HSL, 360, 100, 100);
+    p.noLoop();
+    onP5Update();
   };
+
+  p.draw = () => {
+    p.background(200);
+    p.fill(50);
+    p.textSize(32);
+
+    if (songData) {
+      const songDetails = songData.details;
+      const analysisData = songData.analysis;
+      const featuresData = songData.features;
+
+      const { name, artists, explicit } = songDetails;
+      const artistNames = artists.map(artist => artist.name).join(', ');
+
+      const totalDuration = analysisData.track.duration;
+      const centerX = (canvasWidth - drawingWidth) / 2;
+      const centerY = (canvasHeight - drawingHeight) / 5;
+
+      // Determine the base hue from valence
+      const hueStart = 265;
+      const hueEnd = 20;
+      let baseHue;
+
+      // Ensure the shortest path on the color wheel
+      if (hueStart > hueEnd) {
+        if (hueStart - hueEnd > 180) {
+          baseHue = p.lerp(hueStart, hueEnd + 360, featuresData.valence) % 360;
+        } else {
+          baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+        }
+      } else {
+        if (hueEnd - hueStart > 180) {
+          baseHue = p.lerp(hueStart + 360, hueEnd, featuresData.valence) % 360;
+        } else {
+          baseHue = p.lerp(hueStart, hueEnd, featuresData.valence);
+        }
+      }
+      let fillColor, strokeColor;
+      if (color === 'black') {
+        fillColor = p.color(255); // White fill color
+        strokeColor = p.color(255); // White stroke color
+      } else if (color === 'beige') {
+        fillColor = p.color(10); // Light grey fill color
+        strokeColor = p.color(10, 0, 0); // Light grey stroke color
+      } else {
+        fillColor = p.color(50); // Default fill color
+        strokeColor = p.color(50); // Default stroke color
+      }
+
+      // Draw vertical lines for each segment
+      analysisData.segments.forEach((segment) => {
+        const x = p.map(segment.start, 0, totalDuration, centerX, centerX + drawingWidth);
+        const loudness = segment.loudness_max;
+        const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
+
+        // Map loudness to hue within the range of -50 to +50 around the base hue
+        const hue = p.map(loudness, -30, 5, baseHue - 50, baseHue + 50);
+
+        // Adjust color visibility for the beige variant
+        if (color === 'beige') {
+          strokeColor = p.color(hue, 65, 25); // Adjusted color with higher brightness and saturation
+        } else {
+          strokeColor = p.color(hue, 100, 30); // Default color
+        }
+
+        // Create gradient effect for the line
+        for (let i = 0; i < lineHeight; i++) {
+          const inter = p.map(i, 0, lineHeight, 0, 1);
+          const color = p.lerpColor(p.color(hue, 100, 10), strokeColor, inter);
+          p.stroke(color);
+          p.line(x, centerY + (drawingHeight / 2) - i, x, centerY + (drawingHeight / 2) - i - 1);
+        }
+      });
+
+      // Convert duration to MM:SS format
+      const durationMinutes = Math.floor(songDetails.duration_ms / 60000);
+      const durationSeconds = Math.floor((songDetails.duration_ms % 60000) / 1000).toString().padStart(2, '0');
+      const durationFormatted = `${durationMinutes}:${durationSeconds}`;
+
+      // Prepare the song name and artist names for display
+      const splitText = (text, maxLength) => {
+        if (text.length <= maxLength) {
+          return [text];
+        }
+        const regex = new RegExp(`.{1,${maxLength}}`, 'g');
+        return text.match(regex);
+      };
+
+      const nameLines = splitText(name, 70);
+      const artistLines = splitText(artistNames, 70);
+      const nameYOffset = nameLines.length > 1 ? 40 : 0; // Additional offset if name is on two lines
+
+      // Write the song name, artist names, and duration below the vertical lines
+      p.fill(fillColor);
+      p.noStroke();
+      p.textAlign(p.CENTER);
+      p.textSize(36);
+      p.textStyle(p.BOLD);
+      nameLines.forEach((line, index) => {
+        p.text(line, canvasWidth / 2, centerY + drawingHeight + 80 + index * 40);
+      });
+
+      p.textSize(20);
+      p.textStyle(p.NORMAL);
+      artistLines.forEach((line, index) => {
+        p.text(line, canvasWidth / 2, centerY + drawingHeight + 130 + nameYOffset + index * 30);
+      });
+
+      if (explicit && explicitImage) {
+        p.image(explicitImage, canvasWidth / 2 - 50, centerY + drawingHeight + 180 + nameYOffset, 100, 100); // Adjust the size and position as needed
+      }
+
+      p.textSize(24);
+      p.textStyle(p.BOLD);
+      p.text(`0:00`, centerX, centerY + drawingHeight + 5);
+      p.text(`${durationFormatted}`, centerX + drawingWidth - 20, centerY + drawingHeight + 5);
+    } else {
+      p.textSize(32);
+      p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
+    }
+  };
+};
 
 export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
   const drawingWidth = 1000; // Width for the lines
@@ -872,15 +912,31 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   const canvasWidth = 2600;
   const canvasHeight = 2000;
 
-  let explicitImage, scancodeImage;
+  let explicitImage, qrCodeImage;
 
-  p.preload = () => {
+  p.preload = async () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
-    scancodeImage = p.loadImage('/song-tshirt/scancode.png');
+
+    if (songData) {
+      const { name, artists } = songData.details;
+      const artistNames = artists.map(artist => artist.name).join(', ');
+      const searchPhrase = `${name} ${artistNames}`;
+
+      let qrColor;
+      if (color === 'black') {
+        qrColor = '#ffffff'; // White
+      } else if (color === 'beige') {
+        qrColor = '#77301b'; // Dark grey
+      } else {
+        qrColor = '#323232'; // Default color
+      }
+
+      const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 480); // Generate at larger size
+      qrCodeImage = p.loadImage(qrCodeUrl);
+    }
   };
 
   p.setup = () => {
-  //  console.log('Setting up minimalSketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
     canvasRef.current = canvas.canvas;
@@ -913,8 +969,8 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       fillColor = p.color(255); // White fill color
       strokeColor = p.color(255); // White stroke color
     } else if (color === 'beige') {
-      fillColor = p.color('#77301b') // Dark grey fill color
-      strokeColor = p.color('#77301b') // Dark grey stroke color
+      fillColor = p.color('#77301b'); // Dark grey fill color
+      strokeColor = p.color('#77301b'); // Dark grey stroke color
     } else {
       fillColor = p.color(50); // Default fill color
       strokeColor = p.color(50); // Default stroke color
@@ -987,26 +1043,26 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   const drawQRCodeSection = (x, y, width, height) => {
-    p.fill(255, 0, 0, 0);
-    
-    p.noStroke();
-    p.rect(x, y, width, height);
+    if (qrCodeImage) {
+      const imgX = x + (width - 240) / 2; // Center the scaled down image
+      const imgY = y + (height - 240) / 2;
+      p.image(qrCodeImage, imgX, imgY, 240, 240); // Scale down to 240
+    }
 
-    if (scancodeImage) {
-      const imgX = x + 0;
-      const imgY = y + 0;
-      p.image(scancodeImage, imgX, imgY);
-    }
+    let textColor;
     if (color === 'black') {
-      p.fill(255);
+      textColor = p.color(255);
     } else if (color === 'beige') {
-      p.fill(5);
+      textColor = p.color('#77301b');
     } else {
-      p.fill(50);
+      textColor = p.color(50);
     }
-    p.textSize(20);
+
+    p.fill(textColor);
+    p.textSize(28);
     p.textStyle(p.BOLD);
-    p.text(`Scan to listen to what I am listening`, x + 220, y + 150);
+    p.textAlign(p.CENTER);
+    p.text(`vibe to my jam`, x + width / 2, y + height - 80);
   };
 
   p.draw = () => {
@@ -1016,10 +1072,9 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     drawSongDataSection(250, 200, 1000, 160);
 
     // Draw the QR Code section
-    drawQRCodeSection(2100, 50, 500, 200);
+    drawQRCodeSection(2060, 250, 500, 500);
   };
 };
-
 // standout
 export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   const canvasWidth = 2600;
