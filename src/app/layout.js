@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-import { CustomiseProvider } from '../context/CustomiseProvider';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
 import { Container } from '@mui/material';
@@ -14,11 +13,9 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <CustomiseProvider>
-          <ClientThemeProvider>
-            {children}
-          </ClientThemeProvider>
-        </CustomiseProvider>
+        <ClientThemeProvider>
+          {children}
+        </ClientThemeProvider>
         <Container>
           <Footer />
         </Container>

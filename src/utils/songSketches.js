@@ -131,8 +131,8 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
   
         p.textSize(24);
         p.textStyle(p.BOLD);
-        p.text(`0:00`, centerX - 50, centerY + drawingHeight/2);
-        p.text(`${durationFormatted}`, centerX + drawingWidth + 40, centerY + drawingHeight/2);
+        p.text(`0:00`, centerX - 50, centerY + drawingHeight/2 + 6);
+        p.text(`${durationFormatted}`, centerX + drawingWidth + 40, centerY + drawingHeight/2 + 6);
       } else {
         p.textSize(32);
         p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
@@ -913,8 +913,8 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       fillColor = p.color(255); // White fill color
       strokeColor = p.color(255); // White stroke color
     } else if (color === 'beige') {
-      fillColor = p.color(5); // Dark grey fill color
-      strokeColor = p.color(5); // Dark grey stroke color
+      fillColor = p.color('#77301b') // Dark grey fill color
+      strokeColor = p.color('#77301b') // Dark grey stroke color
     } else {
       fillColor = p.color(50); // Default fill color
       strokeColor = p.color(50); // Default stroke color
@@ -982,7 +982,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 7);
 
     if (explicit && explicitImage) {
-      p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 40 + artistLines.length * 30, 100, 100);
+      p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 40 + artistLines.length * 30, 100, 63);
     }
   };
 
@@ -1093,7 +1093,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.line(x, lineY, x + w, lineY);
 
     if (explicit && explicitImage) {
-      p.image(explicitImage, w / 2 + 50, 50, 100, 100);
+      p.image(explicitImage, w / 2 + 50, 50, 100, 63);
     }
   
     analysisData.sections.forEach((section, index) => {

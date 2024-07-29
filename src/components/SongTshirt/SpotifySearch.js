@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
-import { CustomiseAppContext } from '../../context/CustomiseProvider';
+import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
 import { fetchAllSongData } from '../../utils/spotifyUtils';
 
 const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {

@@ -7,13 +7,15 @@ import {
   Tooltip, CircularProgress, Card, Link,
   CardMedia, CardContent, useTheme, TextField, InputAdornment
 } from '@mui/material';
-import { CustomiseAppContext } from '../../context/CustomiseProvider';
+import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
 import ThreeScene from '../ThreeScene';
-import PromptIcon from '@mui/icons-material/ChatBubbleOutline'; // Example icon for the prompt
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+
 
 const AiProductPage = () => {
   const theme = useTheme();
@@ -22,7 +24,7 @@ const AiProductPage = () => {
   const searchParams = useSearchParams();
 
   const [buyNowLoading, setBuyNowLoading] = useState(false);
-  const [songLoading, setSongLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
@@ -73,6 +75,16 @@ const AiProductPage = () => {
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
     window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${size}&prompt=${event.target.value}&style=${style}`);
+  };
+
+  const generate = () => {
+    setLoading(true); // Set loading state to true when generating
+
+    // Logic for generating the canvas
+    console.log("Generating..");
+    setTimeout(() => {
+      setLoading(false); // Reset loading state after generation
+    }, 2000); // Simulate the generation process duration
   };
 
   const handleShare = () => {
@@ -200,7 +212,7 @@ const AiProductPage = () => {
               color={color}
               data={{type: 'ai', values: songData}}
               style={style}
-              songLoading={songLoading}
+              loading={loading}
             />
           </Grid>
           <Grid
@@ -213,7 +225,7 @@ const AiProductPage = () => {
           >
             <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise with Your Prompt
+                Customise with a prompt
               </Typography>
               <TextField
                 placeholder="Enter your prompt..."
@@ -222,22 +234,36 @@ const AiProductPage = () => {
                 onChange={handlePromptChange}
                 fullWidth
                 sx={{
-                  mb: 2,
-                  '& .MuiOutlinedInput-root': {
+                    mb: 2,
+                    '& .MuiOutlinedInput-root': {
                     borderRadius: '16px',
-                  },
-                  '& .MuiOutlinedInput-notchedOutline': {
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
                     borderRadius: '16px',
-                  },
+                    },
                 }}
                 InputProps={{
-                  startAdornment: (
+                    startAdornment: (
                     <InputAdornment position="start">
-                      <PromptIcon sx={{ color: 'grey' }} />
+                        <AutoAwesomeIcon sx={{ color: 'grey' }} />
                     </InputAdornment>
-                  ),
+                    ),
+                    endAdornment: (
+                    <Button onClick={generate} sx={{ textTransform: 'none' }}>
+                        Generate
+                    </Button>
+                    ),
                 }}
-              />
+                />
+                <Button
+                variant="contained"
+                color="primary"
+                onClick={generate}
+                sx={{ textTransform: 'none', marginTop: '16px' }}
+                >
+                <RefreshIcon sx={{ marginRight: '8px' }} />
+                More Option
+                </Button>
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                 Pick your color
               </Typography>

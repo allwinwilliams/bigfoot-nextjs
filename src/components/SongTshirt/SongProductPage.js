@@ -7,7 +7,7 @@ import
   Tooltip, CircularProgress, Card, Link,
   CardMedia, CardContent, useTheme }
 from '@mui/material';
-import { CustomiseAppContext } from '../../context/CustomiseProvider';
+import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
 import ThreeScene from '../ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
 import { fetchAllSongData } from '@/utils/spotifyUtils';

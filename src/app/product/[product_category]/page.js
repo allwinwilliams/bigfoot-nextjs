@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { useParams } from 'next/navigation';
+import { SongCustomiseProvider } from '../../../context/SongCustomiseProvider';
 
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
@@ -12,16 +13,20 @@ export default function ProductType() {
 
   let ComponentToRender;
   if (product_category === 'songtshirt') {
-    ComponentToRender = SongProductPage;
+    ComponentToRender = (
+      <SongCustomiseProvider>
+        <SongProductPage />
+      </SongCustomiseProvider>
+    );
   } else if (product_category === 'ai-tshirt') {
-    ComponentToRender = AIProductPage;
+    ComponentToRender = <AIProductPage />;
   } else {
     return <div>Invalid product category</div>; // Fallback for invalid product categories
   }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ComponentToRender />
+      {ComponentToRender}
     </Suspense>
   );
 }

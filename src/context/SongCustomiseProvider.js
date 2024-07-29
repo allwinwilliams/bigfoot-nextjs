@@ -4,7 +4,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const CustomiseAppContext = createContext();
 
-export const CustomiseProvider = ({ children }) => {
+export const SongCustomiseProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState('');
   const [songId, setSongId] = useState('');
   const [songData, setSongData] = useState(null);
