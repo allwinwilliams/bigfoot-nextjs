@@ -110,6 +110,7 @@ const SongProductPage = () => {
         songId,
         songName: songData.details?.name || '',
         style: style,
+        type: "song",
         imageUrl,
         timestamp: new Date().toISOString(),
       };

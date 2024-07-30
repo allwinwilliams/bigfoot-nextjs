@@ -8,11 +8,12 @@ import { aiBasicSketch } from '../utils/aiSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => {
   const sketchRef = useRef();
-  
+  let {type, values} = data;
+  console.log("VALUES", values);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let sketch;
-      let {type, values} = data;
+      
       console.log("TYPE: ", type);
       if(type == "song"){
         switch (style) {
@@ -56,7 +57,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => 
         }
       };
     }
-  }, [canvasRef, onP5Update, data, style]);
+  }, [canvasRef, onP5Update, type, values, style]);
 
   useEffect(() => {
     if (sketchRef.current && data) {

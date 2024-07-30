@@ -12,9 +12,15 @@ import ThreeScene from '../ThreeScene';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 
+import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
+import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+
+import Razorpay from 'razorpay';
+
 const AiProductPage = () => {
   const theme = useTheme();
-  const { imageData, generateImage, prompt, changePrompt } = useContext(AiCustomiseContext);
+  const { generateImage, prompt, details } = useContext(AiCustomiseContext);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -73,7 +79,7 @@ const AiProductPage = () => {
 
   const generate = async () => {
     setLoading(true);
-    changePrompt(inputPrompt); // Set the final prompt
+    // changePrompt(inputPrompt);
     await generateImage(inputPrompt); // Generate image with the new prompt
     setLoading(false);
   };
@@ -103,24 +109,103 @@ const AiProductPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-
-      const storageRef = ref(storage, `orders/${inputPrompt}-${Date.now()}.png`);
+  
+      const storageRef = ref(storage, `orders/AI-${Date.now()}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
-
+  
       const dataToStore = {
         color,
         size,
-        prompt: inputPrompt,
-        style,
+        prompt: prompt || '',
+        style: style,
+        type: "AI",
         imageUrl,
         timestamp: new Date().toISOString(),
       };
-
+  
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
-
-      window.location.href = `https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button&note=${docId}`;
+  
+      // Create Razorpay order by calling the API route
+      const response = await fetch('/api/create-razorpay-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          amount: 1399,
+          currency: 'INR',
+          receipt: `receipt_${docId}`,
+          notes: {},
+          line_items_total: 1399,
+          line_items: [
+            {
+              type: "e-commerce",
+              sku: "1g234",
+              variant_id: "12r34",
+              price: 3799,
+              offer_price: 1399,
+              tax_amount: 252,
+              quantity: 1,
+              name: "Custom T-Shirt",
+              description: "Custom T-Shirt with generated art",
+              weight: 500,
+              dimensions: {
+                length: 100,
+                width: 50,
+                height: 30
+              },
+              image_url: imageUrl,
+              product_url: window.location.href,
+              notes: {}
+            }
+          ]
+        })
+      });
+  
+      const orderData = await response.json();
+  
+      if (!orderData.id) {
+        throw new Error('Failed to create Razorpay order');
+      }
+  
+      // Payment options
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
+        one_click_checkout: true,
+        name: 'Bigfoot Clothing',
+        order_id: orderData.id,
+        show_coupons: false,
+        handler: function (response) {
+          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+          alert(`Order ID: ${response.razorpay_order_id}`);
+          alert(`Razorpay Signature: ${response.razorpay_signature}`);
+        },
+        prefill: {
+          // name: 'Customer Name',
+          // email: 'customer@example.com',
+          // contact: '9000090000'
+        },
+        notes: {
+          // address: 'Customer Address'
+        }
+      };
+  
+      // Ensure the Razorpay script is loaded
+      if (typeof window.Razorpay === 'undefined') {
+        console.error('Razorpay SDK not loaded');
+        throw new Error('Razorpay SDK not loaded');
+      }
+  
+      const rzp1 = new window.Razorpay(options);
+  
+      rzp1.on('payment.failed', function (response) {
+        alert(`Payment failed! Reason: ${response.error.description}`);
+        console.error('Payment failed details:', response);
+      });
+  
+      rzp1.open();
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Failed to place order: ' + error.message);
@@ -128,6 +213,8 @@ const AiProductPage = () => {
       setBuyNowLoading(false);
     }
   };
+  
+  
 
   return (
     <Box
@@ -201,7 +288,7 @@ const AiProductPage = () => {
           >
             <ThreeScene
               color={color}
-              data={{ type: 'ai', values: { imageData, prompt } }}
+              data={{ type: 'ai', values: details }}
               style={style}
               loading={loading}
             />

@@ -5,10 +5,12 @@ import React, { createContext, useState } from 'react';
 export const AiCustomiseContext = createContext();
 
 export const AiCustomiseProvider = ({ children }) => {
-  const [imageData, setImageData] = useState(null);
-  const [prompt, setPrompt] = useState(''); // Add prompt state
+  // const [imageData, setImageData] = useState(null);
+  // const [prompt, setPrompt] = useState('');
+  const [details, setDetails] = useState({prompt: '', imageData: ''});
 
   const generateImage = async (prompt) => {
+    setDetails({prompt: prompt, imageData: ''});
     const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
     try {
       const response = await fetch('https://api.openai.com/v1/images/generations', {
@@ -26,7 +28,7 @@ export const AiCustomiseProvider = ({ children }) => {
 
       const data = await response.json();
       if (data.data && data.data.length > 0) {
-        setImageData(data.data[0].url);
+        setDetails({prompt: prompt, imageData: data.data[0].url});
       } else {
         console.error("Failed to generate image", data);
       }
@@ -35,12 +37,12 @@ export const AiCustomiseProvider = ({ children }) => {
     }
   };
 
-  const changePrompt = (newPrompt) => {
-    setPrompt(newPrompt);
-  };
+  // const changePrompt = (newPrompt) => {
+  //   setPrompt(newPrompt);
+  // };
 
   return (
-    <AiCustomiseContext.Provider value={{ imageData, generateImage, prompt, changePrompt }}>
+    <AiCustomiseContext.Provider value={{ details, generateImage, details }}>
       {children}
     </AiCustomiseContext.Provider>
   );
