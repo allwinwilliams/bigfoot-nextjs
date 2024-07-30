@@ -78,7 +78,7 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
           p.textStyle(p.BOLD);
           console.log('Drawing text');
         console.log('Prompt:', prompt);
-        p.text(prompt, 740, 900);
+        p.text(prompt, 740, 950);
       }
   
       // Draw the image section

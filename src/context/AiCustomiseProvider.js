@@ -9,7 +9,7 @@ export const AiCustomiseProvider = ({ children }) => {
   // const [prompt, setPrompt] = useState('');
   const [details, setDetails, style] = useState({prompt: '', imageData: '', style: ''});
 
-  const generateImage = async (prompt, style = 'pop') => {
+  const generateImage = async (prompt, style = 'Popart') => {
     setDetails({prompt: prompt, imageData: ''});
     let constructedPrompt = `${prompt} in the style of ${style}`;
     console.log("constructedPrompt", constructedPrompt);
