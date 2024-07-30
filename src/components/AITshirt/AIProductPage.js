@@ -80,7 +80,7 @@ const AiProductPage = () => {
   const generate = async () => {
     setLoading(true);
     // changePrompt(inputPrompt);
-    await generateImage(inputPrompt);
+    await generateImage(inputPrompt, style);
     setLoading(false);
   };
 
@@ -387,9 +387,10 @@ const AiProductPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
+                  { value: 'pop', label: 'pop' },
+                  { value: 'hokusai', label: 'Hokusai' },
                   { value: 'anime', label: 'Anime' },
                   { value: 'lineart', label: 'Line Art' },
-                  { value: 'horror', label: 'Horror' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
@@ -478,7 +479,6 @@ const AiProductPage = () => {
           </Grid>
         </Grid>
       </Box>
-      
     </Box>
   );
 };

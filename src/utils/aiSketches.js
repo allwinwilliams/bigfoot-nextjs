@@ -73,7 +73,7 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
       if(prompt) {
         console.log('Prompt:', prompt);
         p.fill(255);
-        p.text(prompt, x + drawingWidth / 2 - 50, y + drawingHeight / 2 + 500);
+        p.text(prompt, x + drawingWidth / 2, y + drawingHeight / 2 + 340);
       }
     };
   

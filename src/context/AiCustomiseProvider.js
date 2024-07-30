@@ -11,6 +11,8 @@ export const AiCustomiseProvider = ({ children }) => {
 
   const generateImage = async (prompt, style = 'pop') => {
     setDetails({prompt: prompt, imageData: ''});
+    let constructedPrompt = `${prompt} in the style of ${style}`;
+    console.log("constructedPrompt", constructedPrompt);
     const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
     try {
       const response = await fetch('https://api.openai.com/v1/images/generations', {
@@ -20,7 +22,7 @@ export const AiCustomiseProvider = ({ children }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          prompt: `${prompt} in the style of ${style}`,
+          prompt: constructedPrompt,
           n: 1,
           size: "1024x1024"
         })
