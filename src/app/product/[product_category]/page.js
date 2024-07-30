@@ -8,6 +8,7 @@ import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
+const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/BasicTshirtPage'), { ssr: false });
 
 export default function ProductType() {
   const { product_category } = useParams();
@@ -24,6 +25,10 @@ export default function ProductType() {
       <AiCustomiseProvider>
         <AIProductPage />
       </AiCustomiseProvider>
+    );
+  } else if (product_category === 'basic-tshirt') {
+    ComponentToRender = (
+        <BasicProductPage />
     );
   } else {
     return <div>Invalid product category</div>; // Fallback for invalid product categories

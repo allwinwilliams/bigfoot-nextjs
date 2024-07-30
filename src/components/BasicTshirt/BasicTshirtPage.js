@@ -5,12 +5,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, Typography, Grid, Chip, Button,
   Tooltip, CircularProgress, Link,
-  useTheme, TextField, InputAdornment
+  useTheme
 } from '@mui/material';
-import { AiCustomiseContext } from '../../context/AiCustomiseProvider';
-import ThreeScene from '../ThreeScene';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
+import ThreeScene from '../ThreeScene';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
@@ -18,19 +16,18 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 import Razorpay from 'razorpay';
 
-const AiProductPage = () => {
+const BasicTshirtPage = () => {
   const theme = useTheme();
-  const { generateImage, prompt, details } = useContext(AiCustomiseContext);
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [renderCount, setRenderCount] = useState(0); // State variable to trigger re-render
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
-  const [inputPrompt, setInputPrompt] = useState(searchParams.get('prompt') || ''); // Local state for input
-  const [style, setStyle] = useState(searchParams.get('style') || 'anime');
+  const [style, setStyle] = useState(searchParams.get('style') || 'head');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
@@ -39,16 +36,14 @@ const AiProductPage = () => {
     const defaultParams = {
       color: 'black',
       size: 'M',
-      prompt: '',
-      style: 'anime',
+      style: 'head',
     };
 
-    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('prompt') || !searchParams.get('style')) {
-      router.push(`/product/ai-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&prompt=${inputPrompt || defaultParams.prompt}&style=${style || defaultParams.style}`);
+    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style')) {
+      router.push(`/product/basic-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&style=${style || defaultParams.style}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
-      setInputPrompt(searchParams.get('prompt') || defaultParams.prompt);
       setStyle(searchParams.get('style') || defaultParams.style);
     }
 
@@ -60,34 +55,30 @@ const AiProductPage = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${event.target.value}&size=${size}&prompt=${inputPrompt}&style=${style}`);
+    window.history.replaceState(null, '', `/product/basic-tshirt?color=${event.target.value}&size=${size}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${size}&prompt=${inputPrompt}&style=${event.target.value}`);
+    window.history.replaceState(null, '', `/product/basic-tshirt?color=${color}&size=${size}&style=${event.target.value}`);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${event.target.value}&prompt=${inputPrompt}&style=${style}`);
-  };
-
-  const handlePromptChange = (event) => {
-    setInputPrompt(event.target.value);
+    window.history.replaceState(null, '', `/product/basic-tshirt?color=${color}&size=${event.target.value}&style=${style}`);
   };
 
   const generate = async () => {
     setLoading(true);
-    // changePrompt(inputPrompt);
-    await generateImage(inputPrompt, style);
+    console.log("GENERATE AGAIN");
+    setRenderCount(renderCount + 1); // Trigger re-render
     setLoading(false);
   };
 
   const handleShare = () => {
     const shareData = {
       title: 'Check out this T-Shirt',
-      text: 'I customised this T-Shirt with a prompt!! Check it out:',
+      text: 'I customised this T-Shirt!! Check it out:',
       url: window.location.href,
     };
 
@@ -110,16 +101,15 @@ const AiProductPage = () => {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
   
-      const storageRef = ref(storage, `orders/AI-${Date.now()}.png`);
+      const storageRef = ref(storage, `orders/basic-${Date.now()}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
   
       const dataToStore = {
         color,
         size,
-        prompt: prompt || '',
         style: style,
-        type: "AI",
+        type: "Basic",
         imageUrl,
         timestamp: new Date().toISOString(),
       };
@@ -148,8 +138,8 @@ const AiProductPage = () => {
               offer_price: 1399,
               tax_amount: 252,
               quantity: 1,
-              name: `${style} T-Shirt - Customised`,
-              description: "Custom T-Shirt with generated artwork",
+              name: `Basic T-Shirt - ${style}`,
+              description: "Customised T-Shirt",
               weight: 500,
               dimensions: {
                 length: 100,
@@ -214,8 +204,6 @@ const AiProductPage = () => {
     }
   };
   
-  
-
   return (
     <Box
       sx={{
@@ -257,13 +245,13 @@ const AiProductPage = () => {
             fontWeight: 'bold'
           }}
         >
-          AI Generated Art T-shirt - Oversized Fit
+          Basic T-shirt - Oversized Fit
         </Typography>
         <Typography 
           variant='subtitle1'
           sx={{color: '#777777', lineHeight: 1.25}}
         >
-          Personalise your T-Shirt based on a prompt. Enter a prompt and see the magic.
+          Basics from Bigfoot. Create your basic.
         </Typography>
       </Box>
       <Box
@@ -288,9 +276,8 @@ const AiProductPage = () => {
           >
             <ThreeScene
               color={color}
-              // data={{ type: 'ai', values: details }}
-              type='ai'
-              values={details}
+              type='basic'
+              values={{renderCount}}
               style={style}
               loading={loading}
             />
@@ -305,45 +292,17 @@ const AiProductPage = () => {
           >
             <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise with a prompt
+                Customise your T-shirt
               </Typography>
-              <TextField
-                placeholder="Enter your prompt..."
+              <Button
                 variant="outlined"
-                value={inputPrompt}
-                onChange={handlePromptChange}
-                fullWidth
-                sx={{
-                    mb: 2,
-                    '& .MuiOutlinedInput-root': {
-                    borderRadius: '16px',
-                    },
-                    '& .MuiOutlinedInput-notchedOutline': {
-                    borderRadius: '16px',
-                    },
-                }}
-                InputProps={{
-                    startAdornment: (
-                    <InputAdornment position="start">
-                        <AutoAwesomeIcon sx={{ color: 'grey' }} />
-                    </InputAdornment>
-                    ),
-                    endAdornment: (
-                    <Button onClick={generate} sx={{ textTransform: 'none' }}>
-                        Generate
-                    </Button>
-                    ),
-                }}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={generate}
-                  sx={{ textTransform: 'none', marginTop: '16px' }}
-                >
+                color="primary"
+                onClick={generate}
+                sx={{ textTransform: 'none', marginTop: '16px', marginBottom: '16px', width: '100%', padding: 2 }}
+              >
                 <RefreshIcon sx={{ marginRight: '8px' }} />
-                More Option
-                </Button>
+                Generate Again
+              </Button>
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                 Pick your color
               </Typography>
@@ -388,10 +347,10 @@ const AiProductPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'Popart', label: 'Pop' },
-                  { value: 'Hokusai', label: 'Hokusai' },
-                  { value: 'Anime', label: 'Anime' },
-                  { value: 'Lineart', label: 'Line Art' },
+                  { value: 'head', label: 'Head' },
+                  { value: 'tip', label: 'Tip' },
+                  { value: 'loading', label: 'Loading...' },
+                  { value: 'pixel', label: 'Pixel' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
@@ -484,4 +443,4 @@ const AiProductPage = () => {
   );
 };
 
-export default AiProductPage;
+export default BasicTshirtPage;

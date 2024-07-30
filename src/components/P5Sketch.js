@@ -5,15 +5,13 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/songSketches';
 import { aiBasicSketch } from '../utils/aiSketches';
+import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/basicSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();
-  console.log("VALUES", values);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let sketch;
-      
-      console.log("TYPE: ", type);
       if(type == "song"){
         switch (style) {
           case 'drilldown':
@@ -42,6 +40,23 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
           case 'anime':
           default:
             sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
+            break;
+        }
+      }
+      if(type == "basic"){
+        switch (style) {
+          case 'pixel':
+            sketch = (p) => pixelSketch(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'tip':
+            sketch = (p) => tipSketch(p, canvasRef, onP5Update, color, values);
+            break;
+            case 'loading':
+            sketch = (p) => loadingSketch(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'head':
+          default:
+            sketch = (p) => headSketch(p, canvasRef, onP5Update, color, values);
             break;
         }
       }
