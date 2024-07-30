@@ -351,6 +351,7 @@ const AiProductPage = () => {
                 {[
                   { value: 'black', label: 'Black' },
                   { value: 'beige', label: 'Sand' },
+                  { value: 'white', label: 'White' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
@@ -387,10 +388,10 @@ const AiProductPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'pop', label: 'pop' },
-                  { value: 'hokusai', label: 'Hokusai' },
-                  { value: 'anime', label: 'Anime' },
-                  { value: 'lineart', label: 'Line Art' },
+                  { value: 'Popart', label: 'Pop' },
+                  { value: 'Hokusai', label: 'Hokusai' },
+                  { value: 'Anime', label: 'Anime' },
+                  { value: 'Lineart', label: 'Line Art' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

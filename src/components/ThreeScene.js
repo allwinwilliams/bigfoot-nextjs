@@ -41,7 +41,8 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
       'red': '#FF0000',
       'blue': '#0000FF',
       'beige': '#E1C699',
-      'black': '#090909'
+      'black': '#090909',
+      'white': '#FFFFFF',
     };
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
@@ -135,7 +136,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         camera={{ position: [0, 0.5, 3], fov: 70, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#f5f5f5' }}
       >
-        <ambientLight intensity={3} color="#fafafa" />
+        <ambientLight intensity={4} color="#fafafa" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
           position={[2, 3, 5]}

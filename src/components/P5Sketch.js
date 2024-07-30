@@ -56,7 +56,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
         }
       };
     }
-  }, [canvasRef, onP5Update, type, values, style]);
+  }, [canvasRef, onP5Update, type, values, color, style]);
 
   useEffect(() => {
     if (sketchRef.current && values) {
@@ -68,7 +68,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
       }
       onP5Update();
     }
-  }, [values, onP5Update]);
+  }, [values, color, onP5Update]);
 
   return (
     <div

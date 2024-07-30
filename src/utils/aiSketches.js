@@ -44,6 +44,8 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
         p.text('Loading...', x + drawingWidth / 2, y + drawingHeight / 2);
         return;
       }
+
+      
   
       console.log('Values in P5.js', values);
   
@@ -55,31 +57,29 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
       } else {
         console.error('Image is not loaded or img variable is null');
       }
-  
-      if (color === 'black') {
-        p.fill(p.color(255));
-      } else if (color === 'beige') {
-        p.fill(p.color('#77301b'));
-      } else {
-        p.fill(p.color(50));
-      }
-  
-      p.noStroke();
-      p.textAlign(p.CENTER);
-      p.textSize(32);
-      p.textStyle(p.BOLD);
-      console.log('Drawing text');
-  
-      if(prompt) {
-        console.log('Prompt:', prompt);
-        p.fill(255);
-        p.text(prompt, x + drawingWidth / 2, y + drawingHeight / 2 + 340);
-      }
     };
   
     p.draw = () => {
       console.log('Drawing p5 canvas');
       p.background(200);
+
+      if(prompt) {
+        if (color === 'black') {
+            p.fill(p.color(255));
+          } else if (color === 'beige' || color === 'white') {
+            p.fill(p.color(5));
+          } else {
+            p.fill(p.color(50));
+          }
+
+          p.noStroke();
+          p.textAlign(p.CENTER);
+          p.textSize(32);
+          p.textStyle(p.BOLD);
+          console.log('Drawing text');
+        console.log('Prompt:', prompt);
+        p.text(prompt, 740, 900);
+      }
   
       // Draw the image section
       drawImageSection(250, 100, 1000, 1000); // Adjusted drawing height to fit the canvas height
@@ -93,7 +93,7 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
           const newProxyUrl = `/api/proxy?url=${encodeURIComponent(imgUrl)}`;
           img = await p.loadImage(newProxyUrl, (loadedImg) => {
             img = loadedImg;
-            p.redraw()
+            p.redraw();
           }, () => {
             console.error('Failed to load new image');
           });
