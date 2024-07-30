@@ -4,22 +4,17 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, Typography, Grid, Chip, Button,
-  Tooltip, CircularProgress, Card, Link,
-  CardMedia, CardContent, useTheme, TextField, InputAdornment
+  Tooltip, CircularProgress, Link,
+  useTheme, TextField, InputAdornment
 } from '@mui/material';
-import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
+import { AiCustomiseContext } from '../../context/AiCustomiseProvider';
 import ThreeScene from '../ThreeScene';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 
-import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
-import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-
-
 const AiProductPage = () => {
   const theme = useTheme();
-  const { songData } = useContext(CustomiseAppContext);
+  const { imageData, generateImage, prompt, changePrompt } = useContext(AiCustomiseContext);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -28,7 +23,7 @@ const AiProductPage = () => {
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
-  const [prompt, setPrompt] = useState(searchParams.get('prompt') || ''); // Initialize prompt from search params
+  const [inputPrompt, setInputPrompt] = useState(searchParams.get('prompt') || ''); // Local state for input
   const [style, setStyle] = useState(searchParams.get('style') || 'anime');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -43,11 +38,11 @@ const AiProductPage = () => {
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('prompt') || !searchParams.get('style')) {
-      router.push(`/product/ai-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&prompt=${prompt || defaultParams.prompt}&style=${style || defaultParams.style}`);
+      router.push(`/product/ai-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&prompt=${inputPrompt || defaultParams.prompt}&style=${style || defaultParams.style}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
-      setPrompt(searchParams.get('prompt') || defaultParams.prompt);
+      setInputPrompt(searchParams.get('prompt') || defaultParams.prompt);
       setStyle(searchParams.get('style') || defaultParams.style);
     }
 
@@ -59,32 +54,28 @@ const AiProductPage = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${event.target.value}&size=${size}&prompt=${prompt}&style=${style}`);
+    window.history.replaceState(null, '', `/product/ai-tshirt?color=${event.target.value}&size=${size}&prompt=${inputPrompt}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${size}&prompt=${prompt}&style=${event.target.value}`);
+    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${size}&prompt=${inputPrompt}&style=${event.target.value}`);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${event.target.value}&prompt=${prompt}&style=${style}`);
+    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${event.target.value}&prompt=${inputPrompt}&style=${style}`);
   };
 
   const handlePromptChange = (event) => {
-    setPrompt(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${size}&prompt=${event.target.value}&style=${style}`);
+    setInputPrompt(event.target.value);
   };
 
-  const generate = () => {
-    setLoading(true); // Set loading state to true when generating
-
-    // Logic for generating the canvas
-    console.log("Generating..");
-    setTimeout(() => {
-      setLoading(false); // Reset loading state after generation
-    }, 2000); // Simulate the generation process duration
+  const generate = async () => {
+    setLoading(true);
+    changePrompt(inputPrompt); // Set the final prompt
+    await generateImage(inputPrompt); // Generate image with the new prompt
+    setLoading(false);
   };
 
   const handleShare = () => {
@@ -113,14 +104,14 @@ const AiProductPage = () => {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
 
-      const storageRef = ref(storage, `orders/${prompt}-${Date.now()}.png`);
+      const storageRef = ref(storage, `orders/${inputPrompt}-${Date.now()}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
 
       const dataToStore = {
         color,
         size,
-        prompt,
+        prompt: inputPrompt,
         style,
         imageUrl,
         timestamp: new Date().toISOString(),
@@ -210,7 +201,7 @@ const AiProductPage = () => {
           >
             <ThreeScene
               color={color}
-              data={{type: 'ai', values: songData}}
+              data={{ type: 'ai', values: { imageData, prompt } }}
               style={style}
               loading={loading}
             />
@@ -230,7 +221,7 @@ const AiProductPage = () => {
               <TextField
                 placeholder="Enter your prompt..."
                 variant="outlined"
-                value={prompt}
+                value={inputPrompt}
                 onChange={handlePromptChange}
                 fullWidth
                 sx={{

@@ -4,6 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/songSketches';
+import { aiBasicSketch } from '../utils/aiSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => {
   const sketchRef = useRef();
@@ -33,14 +34,14 @@ const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => 
       if(type == "ai"){
         switch (style) {
           case 'lineart':
-            sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, values);
+            sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
             break;
           case 'horror':
-            sketch = (p) => maximal(p, canvasRef, onP5Update, color, values);
+            sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
             break;
           case 'anime':
           default:
-            sketch = (p) => minimalSketch(p, canvasRef, onP5Update, color, values);
+            sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
             break;
         }
       }
