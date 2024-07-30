@@ -199,7 +199,9 @@ const SongProductPage = () => {
           >
             <ThreeScene
               color={color}
-              data={{type: 'song', values: songData}}
+              // data={{type: 'song', values: songData}}
+              type='song'
+              values={songData}
               style={style}
               loading={songLoading}
             />

@@ -80,7 +80,7 @@ const AiProductPage = () => {
   const generate = async () => {
     setLoading(true);
     // changePrompt(inputPrompt);
-    await generateImage(inputPrompt); // Generate image with the new prompt
+    await generateImage(inputPrompt);
     setLoading(false);
   };
 
@@ -288,7 +288,9 @@ const AiProductPage = () => {
           >
             <ThreeScene
               color={color}
-              data={{ type: 'ai', values: details }}
+              // data={{ type: 'ai', values: details }}
+              type='ai'
+              values={details}
               style={style}
               loading={loading}
             />
@@ -334,10 +336,10 @@ const AiProductPage = () => {
                 }}
                 />
                 <Button
-                variant="contained"
-                color="primary"
-                onClick={generate}
-                sx={{ textTransform: 'none', marginTop: '16px' }}
+                  variant="contained"
+                  color="primary"
+                  onClick={generate}
+                  sx={{ textTransform: 'none', marginTop: '16px' }}
                 >
                 <RefreshIcon sx={{ marginRight: '8px' }} />
                 More Option

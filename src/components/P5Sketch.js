@@ -6,9 +6,8 @@ import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/songSketches';
 import { aiBasicSketch } from '../utils/aiSketches';
 
-const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => {
+const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();
-  let {type, values} = data;
   console.log("VALUES", values);
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -60,12 +59,16 @@ const P5Sketch = ({ canvasRef, onP5Update, color, data, style = 'minimal' }) => 
   }, [canvasRef, onP5Update, type, values, style]);
 
   useEffect(() => {
-    if (sketchRef.current && data) {
-      // console.log('Redrawing p5 sketch with new song data');
-      sketchRef.current.redraw();
+    if (sketchRef.current && values) {
+      console.log('Redrawing p5 sketch with data');
+      if (type === 'ai' && sketchRef.current.myCustomRedrawAccordingToNewPropsHandler) {
+        sketchRef.current.myCustomRedrawAccordingToNewPropsHandler(values);
+      } else {
+        sketchRef.current.redraw();
+      }
       onP5Update();
     }
-  }, [data, onP5Update]);
+  }, [values, onP5Update]);
 
   return (
     <div

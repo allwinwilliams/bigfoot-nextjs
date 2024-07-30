@@ -7,9 +7,9 @@ export const AiCustomiseContext = createContext();
 export const AiCustomiseProvider = ({ children }) => {
   // const [imageData, setImageData] = useState(null);
   // const [prompt, setPrompt] = useState('');
-  const [details, setDetails] = useState({prompt: '', imageData: ''});
+  const [details, setDetails, style] = useState({prompt: '', imageData: '', style: ''});
 
-  const generateImage = async (prompt) => {
+  const generateImage = async (prompt, style = 'pop') => {
     setDetails({prompt: prompt, imageData: ''});
     const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
     try {
@@ -20,9 +20,9 @@ export const AiCustomiseProvider = ({ children }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          prompt: prompt,
-          n: 1, // Number of images to generate
-          size: "1024x1024" // Image size
+          prompt: `${prompt} in the style of ${style}`,
+          n: 1,
+          size: "1024x1024"
         })
       });
 
@@ -42,7 +42,7 @@ export const AiCustomiseProvider = ({ children }) => {
   // };
 
   return (
-    <AiCustomiseContext.Provider value={{ details, generateImage, details }}>
+    <AiCustomiseContext.Provider value={{ details, generateImage, prompt: details.prompt }}>
       {children}
     </AiCustomiseContext.Provider>
   );

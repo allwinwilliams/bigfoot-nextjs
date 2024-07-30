@@ -1,15 +1,26 @@
-export const aiBasicSketch = (p, canvasRef, onP5Update, color, data) => {
+export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 2600;
     const canvasHeight = 2000;
   
-    let explicitImage, img;
+    let img = null;
+    let prompt = values?.prompt;
+    let imgUrl = values?.imageData;
+  
+    const proxyUrl = imgUrl ? `/api/proxy?url=${encodeURIComponent(imgUrl)}` : null;
   
     p.preload = () => {
-      explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg', () => {
-        console.log('Explicit image loaded successfully');
-      }, () => {
-        console.error('Failed to load explicit image');
-      });
+  
+      if (proxyUrl) {
+        p.loadImage(proxyUrl, (loadedImg) => {
+          img = loadedImg;
+          console.log('AI image loaded successfully');
+          p.redraw();
+        }, () => {
+          console.error('Failed to load AI image');
+        });
+      } else {
+        console.error('Image URL is not provided');
+      }
     };
   
     p.setup = () => {
@@ -18,14 +29,15 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, data) => {
       canvas.id('p5-canvas');
       canvasRef.current = canvas.canvas;
       p.colorMode(p.HSL, 360, 100, 100);
-      p.noLoop();
+      p.noLoop(); // No continuous drawing, will draw manually when needed
       onP5Update();
+      p.redraw();
     };
   
     const drawImageSection = (x, y, drawingWidth, drawingHeight) => {
       console.log('Drawing image section');
-      if (!data) {
-        console.log('No data found');
+      if (!values) {
+        console.log('No values found');
         p.fill(50);
         p.textSize(32);
         p.textAlign(p.CENTER);
@@ -33,11 +45,13 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, data) => {
         return;
       }
   
-      console.log('Data in P5.js', data);
+      console.log('Values in P5.js', values);
   
       if (img) {
         console.log('Drawing image:', img);
-        p.image(img, x, y, drawingWidth, drawingHeight);
+        const imgX = x + (drawingWidth - 500) / 2;
+        const imgY = y + (drawingHeight - 500) / 2;
+        p.image(img, imgX, imgY, 500, 500);
       } else {
         console.error('Image is not loaded or img variable is null');
       }
@@ -52,20 +66,14 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, data) => {
   
       p.noStroke();
       p.textAlign(p.CENTER);
-      p.textSize(100);
+      p.textSize(32);
       p.textStyle(p.BOLD);
       console.log('Drawing text');
   
-      if (data && data.values) {
-        const { prompt } = data.values;
+      if(prompt) {
         console.log('Prompt:', prompt);
         p.fill(255);
-        p.text(prompt, x + drawingWidth / 2 - 50, 200);
-      }
-  
-      if (explicitImage) {
-        console.log('Drawing explicit image');
-        p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150, 100, 63);
+        p.text(prompt, x + drawingWidth / 2 - 50, y + drawingHeight / 2 + 500);
       }
     };
   
@@ -73,31 +81,29 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, data) => {
       console.log('Drawing p5 canvas');
       p.background(200);
   
-      // Draw the song data section
-      drawImageSection(250, 200, 1000, 1600); // Adjusted drawing height to fit the canvas height
+      // Draw the image section
+      drawImageSection(250, 100, 1000, 1000); // Adjusted drawing height to fit the canvas height
     };
   
-    p.myCustomRedraw = async () => {
-      console.log('Custom redraw function called');
-  
-      if (data && data.values && data.values.imageData) {
-        console.log('Data values found, loading image from URL:', data.values.imageData);
-        img = await new Promise((resolve, reject) => {
-          p.loadImage(data.values.imageData, (loadedImage) => {
-            console.log('Image loaded successfully:', loadedImage);
-            resolve(loadedImage);
-          }, (error) => {
-            console.error('Failed to load image:', error);
-            reject(error);
+    p.myCustomRedrawAccordingToNewPropsHandler = async (newValues) => {
+      console.log('New data received', newValues);
+      if (newValues.imageData && newValues.imageData !== imgUrl) {
+        imgUrl = newValues.imageData;
+        try {
+          const newProxyUrl = `/api/proxy?url=${encodeURIComponent(imgUrl)}`;
+          img = await p.loadImage(newProxyUrl, (loadedImg) => {
+            img = loadedImg;
+            p.redraw()
+          }, () => {
+            console.error('Failed to load new image');
           });
-        });
-  
-        p.redraw();
-      } else {
-        console.error('Data values are not present or invalid');
+        } catch (error) {
+          console.error('Failed to load new image', error);
+        }
       }
     };
   
-    p.myCustomRedraw(); // Call the custom redraw function when sketch is initialized
+    // Call the custom handler initially to handle the first load
+    p.myCustomRedrawAcc
   };
   

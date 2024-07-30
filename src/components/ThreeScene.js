@@ -17,7 +17,7 @@ extend({ ShadowMaterial: THREE.ShadowMaterial });
 // Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color, data, style, loading }) => {
+const ThreeScene = ({ color, type, values, style, loading }) => {
   const [texture, setTexture] = useState(null);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const [triggerLoadingAnimation, setTriggerLoadingAnimation] = useState(false);
@@ -174,7 +174,8 @@ const ThreeScene = ({ color, data, style, loading }) => {
         canvasRef={canvasRef}
         onP5Update={handleP5Update}
         color={color}
-        data={data}
+        type={type}
+        values={values}
         style={style}
       />
       <div className="icon-container">
