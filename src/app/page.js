@@ -100,8 +100,10 @@ export default function HomePage() {
             </Grid>
           </Paper>
         </Box>      
+
+        </Container>
         <AutoScrollCards />
-      </Container>
+      
       <Box
         sx={{
           background: 'linear-gradient(to bottom, #F2F2F2, #D9D9D9)',
