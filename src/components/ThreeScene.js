@@ -133,6 +133,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
   return(
   <div className="three-scene-container">
       <Canvas
+        id="three-canvas"
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 0.5, 3], fov: 70, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#fafafa' }}

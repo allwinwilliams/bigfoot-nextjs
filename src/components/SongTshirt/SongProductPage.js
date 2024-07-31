@@ -99,11 +99,14 @@ const SongProductPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
-
-      const storageRef = ref(storage, `orders/${songId}-${Date.now()}.png`);
+  
+      const threeCanvas = document.querySelector('#three-canvas canvas');
+      let threeCanvasDataUrl = threeCanvas.toDataURL('image/png') || "";
+  
+      const storageRef = ref(storage, `orders/song-${songId}-${Date.now()}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
-
+  
       const dataToStore = {
         color,
         size,
@@ -114,11 +117,97 @@ const SongProductPage = () => {
         imageUrl,
         timestamp: new Date().toISOString(),
       };
-
+  
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
-
-      window.location.href = `https://b5a634-d3.myshopify.com/cart/45690572636416:1?channel=buy_button&note=${docId}`;
+  
+      // Create Razorpay order by calling the API route
+      const response = await fetch('/api/create-razorpay-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          amount: 139900,
+          currency: 'INR',
+          receipt: `receipt_${docId}`,
+          notes: {
+            color,
+            size,
+            songId,
+            songName: songData.details?.name || '',
+            style: style,
+            type: "song",
+            imageUrl
+          },
+          line_items_total: 139900,
+          line_items: [
+            {
+              type: "e-commerce",
+              sku: "1g234",
+              variant_id: "12r34",
+              price: 139900,
+              tax_amount: 252,
+              quantity: 1,
+              name: `Song T-Shirt - ${songData.details?.name || ''}`,
+              description: "Customised T-Shirt",
+              weight: 500,
+              dimensions: {
+                length: 100,
+                width: 50,
+                height: 30
+              },
+              image_url: imageUrl,
+              product_url: window.location.href,
+              notes: {}
+            }
+          ]
+        })
+      });
+  
+      const orderData = await response.json();
+  
+      if (!orderData.id) {
+        throw new Error('Failed to create Razorpay order');
+      }
+  
+      // Payment options
+      const options = {
+        key_id: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
+        key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
+        one_click_checkout: true,
+        name: 'Bigfoot Clothing',
+        order_id: orderData.id,
+        show_coupons: true,
+        handler: function (response) {
+          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+          alert(`Order ID: ${response.razorpay_order_id}`);
+          alert(`Razorpay Signature: ${response.razorpay_signature}`);
+        },
+        prefill: {
+          // name: 'Customer Name',
+          // email: 'customer@example.com',
+          // contact: '9000090000'
+        },
+        notes: {
+          // address: 'Customer Address'
+        }
+      };
+  
+      // Ensure the Razorpay script is loaded
+      if (typeof window.Razorpay === 'undefined') {
+        console.error('Razorpay SDK not loaded');
+        throw new Error('Razorpay SDK not loaded');
+      }
+  
+      const rzp1 = new window.Razorpay(options);
+  
+      rzp1.on('payment.failed', function (response) {
+        alert(`Payment failed! Reason: ${response.error.description}`);
+        console.error('Payment failed details:', response);
+      });
+  
+      rzp1.open();
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Failed to place order: ' + error.message);
@@ -126,6 +215,7 @@ const SongProductPage = () => {
       setBuyNowLoading(false);
     }
   };
+  
 
   return (
     <Box

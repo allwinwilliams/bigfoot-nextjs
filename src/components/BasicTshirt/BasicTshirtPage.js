@@ -100,6 +100,9 @@ const BasicTshirtPage = () => {
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');
+
+      const threeCanvas = document.querySelector('#three-canvas canvas');
+      let threeCanvasDataUrl = threeCanvas.toDataURL('image/png') || "";
   
       const storageRef = ref(storage, `orders/basic-${Date.now()}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
@@ -140,8 +143,7 @@ const BasicTshirtPage = () => {
               type: "e-commerce",
               sku: "1g234",
               variant_id: "12r34",
-              price: 379900,
-              offer_price: 139900,
+              price: 139900,
               tax_amount: 252,
               quantity: 1,
               name: `Basic T-Shirt - ${style}`,
