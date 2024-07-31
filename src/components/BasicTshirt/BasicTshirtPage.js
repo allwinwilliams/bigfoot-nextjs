@@ -309,7 +309,7 @@ const BasicTshirtPage = () => {
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
                   { value: 'black', label: 'Black' },
-                  { value: 'beige', label: 'Sand' },
+                  { value: 'grey', label: 'Grey' },
                   { value: 'white', label: 'White' },
                 ].map((option) => (
                   <Chip

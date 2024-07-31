@@ -8,8 +8,7 @@ import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
 import { Margin, Opacity } from '@mui/icons-material';
 export default function HomePage() {
-  // Array of objects with image url, title, description, and link
-  
+  // Array of objects with image url, title, description, and link  
   return (
     <Box
       sx={{
@@ -100,11 +99,8 @@ export default function HomePage() {
               </Grid>
             </Grid>
           </Paper>
-        </Box>
-      
+        </Box>      
         <AutoScrollCards />
-
-
       </Container>
       <Box
         sx={{
@@ -130,19 +126,21 @@ export default function HomePage() {
               <Box>
                 <Box
                   sx={{
-                    transition: 'transform 0.8s',
+                    transition: 'transform 0.8s, opacity 0.8s',
+                    opacity: 0.95,
                     '&:hover': {
                       transform: 'scale(1.1)',
+                      opacity: 1.0,
                     },
                   }}
                 >
                   <img src="/landing-page/song.png" alt="Song customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Customise with Song
+                  Customise with a Song
                 </Typography>
                 <Typography variant="subtitle1">
-                  Enjoy free shipping across India on all orders.
+                  Select a song to visualise
                 </Typography>
               </Box>
             </Link>
@@ -152,9 +150,11 @@ export default function HomePage() {
               <Box>
                 <Box
                   sx={{
-                    transition: 'transform 0.8s',
+                    transition: 'transform 0.8s, opacity 0.8s',
+                    opacity: 0.95,
                     '&:hover': {
                       transform: 'scale(1.1)',
+                      opacity: 1.0,
                     },
                   }}
                 >
@@ -164,7 +164,7 @@ export default function HomePage() {
                   Draw with a prompt
                 </Typography>
                 <Typography variant="subtitle1">
-                  Each product is crafted specifically for you
+                  You art, Your prompt
                 </Typography>
               </Box>
             </Link>
@@ -178,20 +178,19 @@ export default function HomePage() {
                     opacity: 0.4,
                   }}
                 >
-                  <img src="/landing-page/song.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                   Coming Soon...
                 </Typography>
                 <Typography variant="subtitle1">
-                  Experience quality like never before
+                  We are cooking something for you 🧪
                 </Typography>
               </Box>
             </Link>
           </Grid>
         </Grid>
       </Box>
-
 
       <Container>
       
