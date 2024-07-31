@@ -399,18 +399,20 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
-      p.background(255);
-  
+      // p.background(255);
+      let gaps = p.random(4,8);
       for (let i = 0; i < squaresPerRow; i++) {
         for (let j = 0; j < squaresPerRow; j++) {
-          const x = startX + i * squareSize;
-          const y = startY + j * squareSize;
-          const hue = p.random(0, 360);
-          const saturation = p.random(80, 100);
-          const luminosity = p.random(30, 70);
-          p.fill(hue, saturation, luminosity);
-          p.noStroke();
-          p.rect(x, y, squareSize, squareSize);
+          if(gaps < p.random(10)){
+            const x = startX + i * squareSize;
+            const y = startY + j * squareSize;
+            const hue = p.random(0, 360);
+            const saturation = p.random(83, 100);
+            const luminosity = p.random(20, 50);
+            p.fill(hue, saturation, luminosity);
+            p.noStroke();
+            p.rect(x, y, squareSize, squareSize);
+          }
         }
       }
   
@@ -460,6 +462,6 @@ export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
       p.textAlign(p.CENTER, p.CENTER);
       p.textStyle(p.BOLD);
       p.textSize(40);
-      p.text('Loading...', 800, 600);
+      p.text('Loading...', 760, 600);
     };
 };

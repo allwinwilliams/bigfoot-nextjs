@@ -314,8 +314,13 @@ const BasicTshirtPage = () => {
                     borderRadius: '16px',
                 }}
               >
-                <RefreshIcon sx={{ marginRight: '8px' }} />
-                <strong>Generate Again</strong>
+                <Box sx={{ textAlign: 'center' }}>
+                    <RefreshIcon sx={{ marginRight: '8px' }} />
+                    <strong>Change</strong>
+                    <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
+                        Once the design is changed, you can't get it back
+                    </Typography>
+                </Box>
               </Button>
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                 Pick your color
@@ -364,7 +369,7 @@ const BasicTshirtPage = () => {
                   { value: 'head', label: 'Head' },
                   { value: 'tip', label: 'Tip' },
                   { value: 'loading', label: 'Loading...' },
-                  { value: 'pixel', label: '256' },
+                  { value: 'pixel', label: '16X16' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

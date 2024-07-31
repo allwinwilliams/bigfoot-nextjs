@@ -30,18 +30,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
         }
       }
       if(type == "ai"){
-        switch (style) {
-          case 'lineart':
-            sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
-            break;
-          case 'horror':
-            sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
-            break;
-          case 'anime':
-          default:
-            sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
-            break;
-        }
+        sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
       }
       if(type == "basic"){
         switch (style) {

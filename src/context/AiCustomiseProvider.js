@@ -22,9 +22,11 @@ export const AiCustomiseProvider = ({ children }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          model: "dall-e-3",
           prompt: constructedPrompt,
           n: 1,
-          size: "1024x1024"
+          size: "1024x1024",
+          quality: "standard",
         })
       });
 
