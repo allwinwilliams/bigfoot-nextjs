@@ -40,7 +40,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
     const colorMap = {
       'red': '#FF0000',
       'blue': '#0000FF',
-      'grey': '#444444',
+      'grey': '#333333',
       'beige': '#E1C699',
       'black': '#090909',
       'white': '#FFFFFF',
@@ -169,7 +169,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           minPolarAngle={Math.PI / 10}
           enableZoom={true}
           maxDistance={20}
-          minDistance={0.6}
+          minDistance={0.8}
         />
       </Canvas>
       <P5Sketch

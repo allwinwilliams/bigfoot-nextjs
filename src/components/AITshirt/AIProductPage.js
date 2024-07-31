@@ -10,6 +10,7 @@ import {
 import { AiCustomiseContext } from '../../context/AiCustomiseProvider';
 import ThreeScene from '../ThreeScene';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import NotesIcon from '@mui/icons-material/Notes';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
@@ -134,10 +135,17 @@ const AiProductPage = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          amount: 1399,
+          amount: 139900,
           currency: 'INR',
           receipt: `receipt_${docId}`,
-          notes: {},
+          notes: {
+            color,
+            size,
+            prompt: prompt || '',
+            style: style,
+            type: "AI",
+            imageUrl,
+          },
           line_items_total: 139900,
           line_items: [
             {
@@ -303,7 +311,16 @@ const AiProductPage = () => {
             xs={12}
             md={6}
           >
-            <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
+            <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 1 }}>
+              <Box sx={{ 
+                paddingX: 4, 
+                paddingY: 3, 
+                backgroundColor: '#fafafa', 
+                marginBottom: 2, 
+                borderRadius: 3, 
+                border: '1px solid #dbdbdb', 
+                boxShadow: '0 0 8px rgba(0,0,0,0.06)',
+                }}>
               <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
                 Customise with a prompt
               </Typography>
@@ -325,25 +342,40 @@ const AiProductPage = () => {
                 InputProps={{
                     startAdornment: (
                     <InputAdornment position="start">
-                        <AutoAwesomeIcon sx={{ color: 'grey' }} />
+                        <NotesIcon sx={{ color: 'grey' }} />
                     </InputAdornment>
-                    ),
-                    endAdornment: (
-                    <Button onClick={generate} sx={{ textTransform: 'none' }}>
-                        Generate
-                    </Button>
                     ),
                 }}
                 />
                 <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={generate}
+                  sx={{ textTransform: 'none',
+                      marginBottom: 1,
+                      width: '100%',
+                      padding: 2,
+                      borderRadius: '16px',
+                  }}
+                >
+                    <AutoAwesomeIcon sx={{ marginRight: '8px' }} />
+                    <strong>Generate Design</strong>
+                </Button>
+                <Button
                   variant="outlined"
                   color="primary"
                   onClick={generate}
-                  sx={{ textTransform: 'none', marginBottom: '16px', width: '100%', padding: 1 }}
+                  sx={{ textTransform: 'none',
+                      marginBottom: 1,
+                      width: '100%',
+                      padding: 2,
+                      borderRadius: '16px',
+                  }}
                 >
-                <RefreshIcon sx={{ marginRight: '8px' }} />
-                More Option
+                  <RefreshIcon sx={{ marginRight: '8px' }} />
+                  <strong>Try Again</strong>
                 </Button>
+              </Box>
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                 Pick your color
               </Typography>

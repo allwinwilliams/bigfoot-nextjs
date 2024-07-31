@@ -127,7 +127,13 @@ const BasicTshirtPage = () => {
           amount: 139900,
           currency: 'INR',
           receipt: `receipt_${docId}`,
-          notes: {},
+          notes: {
+            color,
+            size,
+            style: style,
+            type: "Basic",
+            imageUrl
+          },
           line_items_total: 139900,
           line_items: [
             {
@@ -166,7 +172,7 @@ const BasicTshirtPage = () => {
         one_click_checkout: true,
         name: 'Bigfoot Clothing',
         order_id: orderData.id,
-        show_coupons: false,
+        show_coupons: true,
         handler: function (response) {
           alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
           alert(`Order ID: ${response.razorpay_order_id}`);
@@ -298,10 +304,15 @@ const BasicTshirtPage = () => {
                 variant="outlined"
                 color="primary"
                 onClick={generate}
-                sx={{ textTransform: 'none', marginTop: '16px', marginBottom: '16px', width: '100%', padding: 2 }}
+                sx={{ textTransform: 'none',
+                    marginTop: '16px', marginBottom: '16px',
+                    width: '100%',
+                    padding: 2,
+                    borderRadius: '16px',
+                }}
               >
                 <RefreshIcon sx={{ marginRight: '8px' }} />
-                Generate Again
+                <strong>Generate Again</strong>
               </Button>
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                 Pick your color
@@ -350,7 +361,7 @@ const BasicTshirtPage = () => {
                   { value: 'head', label: 'Head' },
                   { value: 'tip', label: 'Tip' },
                   { value: 'loading', label: 'Loading...' },
-                  { value: 'pixel', label: 'Pixel' },
+                  { value: 'pixel', label: '256' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

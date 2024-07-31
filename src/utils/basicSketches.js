@@ -248,10 +248,10 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
 export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 2600;
     const canvasHeight = 2000;
-    const startX = 500;
-    const startY = 200;
-    const endX = 1000;
-    const endY = 600;
+    const startX = 550;
+    const startY = 250;
+    const endX = 950;
+    const endY = 450;
     const squaresPerRow = 16;
     const squareSize = (endX - startX) / squaresPerRow;
   
@@ -285,7 +285,7 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
   
       // Draw the text "BIGFOOT" at specified position
       if (color === 'black') {
-        p.fill(255);
+        p.fill(70);
       } else if (color === 'grey') {
         p.fill(5);
       } else if (color === 'white') {
@@ -296,7 +296,7 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
       p.textAlign(p.CENTER, p.CENTER);
       p.textStyle(p.BOLD);
       p.textSize(32);
-      p.text('BIGFOOT', 750, 800);
+      p.text('BIGFOOT', 750, 730);
     };
   };
 
