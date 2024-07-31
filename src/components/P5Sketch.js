@@ -3,9 +3,9 @@
 
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/songSketches';
-import { aiBasicSketch } from '../utils/aiSketches';
-import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/basicSketches';
+import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketches/songSketches';
+import { aiBasicSketch } from '../utils/sketches/aiSketches';
+import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();

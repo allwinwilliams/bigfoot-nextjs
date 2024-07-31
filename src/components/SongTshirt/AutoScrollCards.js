@@ -37,8 +37,12 @@ const AutoScrollCards = () => {
     0% {
       transform: translateX(0);
     }
-    100% {
+    50% {
       transform: translateX(calc(-100% + 100vw));
+    }
+
+    100% {
+      transform: translateX(0);
     }
   `;
 
@@ -46,16 +50,19 @@ const AutoScrollCards = () => {
     0% {
       transform: translateX(calc(-100% + 100vw));
     }
-    100% {
+    50% {
       transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% + 100vw));
     }
   `;
 
   return (
     <Box>
       <Box sx={{ marginX: 'auto', textAlign: 'center', marginTop: 8, paddingTop: 4 }}>
-        <Typography variant="h2" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
-          <strike>Thousands</strike> Millions of options to choose from.. Make it truly yours..
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', margin: 2 }}>
+          <strike>Thousands</strike> Millions of options to choose from...<br />Make it truly yours..
         </Typography>
         <Box
           sx={{
@@ -70,9 +77,10 @@ const AutoScrollCards = () => {
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              animation: `${scroll} 32s linear infinite`,
+              animation: `${scroll} 100s linear infinite`,
               '&:hover': {
                 // animationPlayState: 'paused',
+                // animationDuration: '160s'
               },
             }}
           >
@@ -87,7 +95,14 @@ const AutoScrollCards = () => {
                   marginRight: 4,
                   textDecoration: 'none',
                   padding: 2.5,
-                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.05)',
+                  paddingBottom: 0,
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.02)',
+                  border: '1px solid #eeeeee',
+                  transition: 'transform 0.9s, border-color 0.8s',
+                  '&:hover': {
+                    transform: 'scale(1.02)',  
+                    borderColor: '#777777',
+                  },
                   borderRadius: 4,
                 }}
               >
@@ -123,9 +138,11 @@ const AutoScrollCards = () => {
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              animation: `${reverseScroll} 32s linear infinite`,
+              animation: `${reverseScroll} 100s linear infinite`,
+              transition: ' 4s',
               '&:hover': {
                 // animationPlayState: 'paused',
+                // animationDuration: '160s'
               },
             }}
           >
@@ -140,7 +157,14 @@ const AutoScrollCards = () => {
                   marginRight: 4,
                   textDecoration: 'none',
                   padding: 2.5,
-                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.05)',
+                  paddingBottom: 0,
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.02)',
+                  border: '1px solid #eeeeee',
+                  transition: 'transform 0.9s, border-color 0.8s',
+                  '&:hover': {
+                    transform: 'scale(1.02)',  
+                    borderColor: '#777777',
+                  },
                   borderRadius: 4,
                 }}
               >

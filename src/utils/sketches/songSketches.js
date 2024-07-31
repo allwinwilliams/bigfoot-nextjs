@@ -1,4 +1,4 @@
-import { generateQRCodeForGoogleSearch } from './qrUtils';
+import { generateQRCodeForGoogleSearch } from '../qrUtils';
 
 export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;

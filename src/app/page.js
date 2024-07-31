@@ -107,17 +107,17 @@ export default function HomePage() {
       <Box
         sx={{
           background: 'linear-gradient(to bottom, #F9F9F9, #D9D9D9)',
-          padding: 10,
-          marginY: 16,
+          padding: {md: 12, xs: 4},
+          marginY: 12,
           maxWidth: '1600px',
           marginX: 'auto',
           textAlign: 'center',
         }}
       >
-        <Typography variant="h3"
+        <Typography variant="h2"
           sx={{
             fontWeight: 'bold',
-            mb: 4,
+            mb: 8,
             color: '#ababab'
           }}>
           The Range
@@ -128,10 +128,10 @@ export default function HomePage() {
               <Box>
                 <Box
                   sx={{
-                    transition: 'transform 0.8s, opacity 0.8s',
+                    transition: 'transform 0.9s, opacity 0.4s',
                     opacity: 0.95,
                     '&:hover': {
-                      transform: 'scale(1.1)',
+                      transform: 'scale(1.2)',
                       opacity: 1.0,
                     },
                   }}
@@ -152,10 +152,10 @@ export default function HomePage() {
               <Box>
                 <Box
                   sx={{
-                    transition: 'transform 0.8s, opacity 0.8s',
+                    transition: 'transform 0.9s, opacity 0.4s',
                     opacity: 0.95,
                     '&:hover': {
-                      transform: 'scale(1.1)',
+                      transform: 'scale(1.2)',
                       opacity: 1.0,
                     },
                   }}
@@ -183,7 +183,7 @@ export default function HomePage() {
                   <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Somethings
+                  Coming Soon
                 </Typography>
                 <Typography variant="subtitle1">
                   Way forward
@@ -203,10 +203,10 @@ export default function HomePage() {
                   <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Coming Soon...
+                  More...
                 </Typography>
                 <Typography variant="subtitle1">
-                  We are cooking something for you 🧪
+                  in our labs 🧪
                 </Typography>
               </Box>
             </Link>
