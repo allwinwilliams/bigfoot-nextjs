@@ -6,6 +6,7 @@ import SongProductStaticContent from '../components/SongTshirt/SongProductStatic
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
+import { Opacity } from '@mui/icons-material';
 export default function HomePage() {
   // Array of objects with image url, title, description, and link
   
@@ -19,7 +20,7 @@ export default function HomePage() {
     >
       <Container sx={{ mt: 2 }}>
         <Header />
-        <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 16 }}>
+        <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8 }}>
           <video
             autoPlay
             loop
@@ -40,14 +41,14 @@ export default function HomePage() {
           </video>
           <Paper elevation={4} sx={{
             padding: 4,
-            borderRadius: 4,
+            borderRadius: 16,
             mt: 4,
             boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
             color: 'white',
             position: 'relative',
             overflow: 'hidden',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background to ensure text visibility
-            zIndex: 1, // Ensure Paper is above the video
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1,
           }}>
             <Grid container spacing={4} alignItems="center" style={{zIndex: 999}}>
               <Grid item xs={12} md={6}>
@@ -102,6 +103,97 @@ export default function HomePage() {
         </Box>
       
         <AutoScrollCards />
+
+
+      </Container>
+      <Box
+        
+        sx={{
+          borderRadius: '16px',
+          background: 'linear-gradient(to bottom, #F2F2F2, #D9D9D9)',
+          padding: 8,
+          marginY: 16,
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h3"
+          sx={{
+            fontWeight: 'bold',
+            mb: 4,
+            color: '#ababab'
+          }}>
+          The Range
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Link href="/product/songtshirt" underline="none">
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                    },
+                  }}
+                >
+                  <img src="/landing-page/song.png" alt="Song customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                  Customise with Song
+                </Typography>
+                <Typography variant="subtitle1">
+                  Enjoy free shipping across India on all orders.
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Link href="/product/ai-tshirt" underline="none">
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                    },
+                  }}
+                >
+                  <img src="/landing-page/ai.png" alt="AI customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                  Draw with a prompt
+                </Typography>
+                <Typography variant="subtitle1">
+                  Each product is crafted specifically for you
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Link href="#" underline="none">
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.4,
+                  }}
+                >
+                  <img src="/landing-page/song.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                  Coming Soon...
+                </Typography>
+                <Typography variant="subtitle1">
+                  Experience quality like never before
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+        </Grid>
+      </Box>
+
+
+      <Container>
       
         <SongProductStaticContent/>
         <Paper elevation={4} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>

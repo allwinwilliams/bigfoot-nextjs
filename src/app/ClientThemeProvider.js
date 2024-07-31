@@ -10,13 +10,16 @@ import '@fontsource/inter';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#000000', // Set primary color to black
+      main: '#000000',
+    },
+    secondary: {
+      main: '#dbdbdb',
     },
     background: {
-      default: '#ffffff', // Set background color to white
+      default: '#ffffff',
     },
     text: {
-      primary: '#111111', // Set text color to black
+      primary: '#111111',
       secondary: '#333333',
     },
   },

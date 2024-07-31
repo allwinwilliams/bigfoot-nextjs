@@ -124,18 +124,18 @@ const BasicTshirtPage = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          amount: 1399,
+          amount: 139900,
           currency: 'INR',
           receipt: `receipt_${docId}`,
           notes: {},
-          line_items_total: 1399,
+          line_items_total: 139900,
           line_items: [
             {
               type: "e-commerce",
               sku: "1g234",
               variant_id: "12r34",
-              price: 3799,
-              offer_price: 1399,
+              price: 379900,
+              offer_price: 139900,
               tax_amount: 252,
               quantity: 1,
               name: `Basic T-Shirt - ${style}`,

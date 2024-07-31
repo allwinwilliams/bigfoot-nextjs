@@ -30,7 +30,7 @@ const AiProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [inputPrompt, setInputPrompt] = useState(searchParams.get('prompt') || ''); // Local state for input
-  const [style, setStyle] = useState(searchParams.get('style') || 'anime');
+  const [style, setStyle] = useState(searchParams.get('style') || 'Anime');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
@@ -40,7 +40,7 @@ const AiProductPage = () => {
       color: 'black',
       size: 'M',
       prompt: '',
-      style: 'anime',
+      style: 'Anime',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('prompt') || !searchParams.get('style')) {
@@ -138,15 +138,15 @@ const AiProductPage = () => {
           currency: 'INR',
           receipt: `receipt_${docId}`,
           notes: {},
-          line_items_total: 1399,
+          line_items_total: 139900,
           line_items: [
             {
               type: "e-commerce",
               sku: "1g234",
               variant_id: "12r34",
-              price: 3799,
-              offer_price: 1399,
-              tax_amount: 252,
+              price: 379900,
+              offer_price: 139900,
+              tax_amount: 25200,
               quantity: 1,
               name: `${style} T-Shirt - Customised`,
               description: "Custom T-Shirt with generated artwork",
@@ -336,10 +336,10 @@ const AiProductPage = () => {
                 }}
                 />
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   color="primary"
                   onClick={generate}
-                  sx={{ textTransform: 'none', marginTop: '16px' }}
+                  sx={{ textTransform: 'none', marginBottom: '16px', width: '100%', padding: 1 }}
                 >
                 <RefreshIcon sx={{ marginRight: '8px' }} />
                 More Option
