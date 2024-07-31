@@ -172,7 +172,7 @@ const BasicTshirtPage = () => {
         one_click_checkout: true,
         name: 'Bigfoot Clothing',
         order_id: orderData.id,
-        show_coupons: true,
+        show_coupons: false,
         handler: function (response) {
           alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
           alert(`Order ID: ${response.razorpay_order_id}`);
