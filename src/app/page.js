@@ -6,7 +6,7 @@ import SongProductStaticContent from '../components/SongTshirt/SongProductStatic
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
-import { Opacity } from '@mui/icons-material';
+import { Margin, Opacity } from '@mui/icons-material';
 export default function HomePage() {
   // Array of objects with image url, title, description, and link
   
@@ -107,12 +107,12 @@ export default function HomePage() {
 
       </Container>
       <Box
-        
         sx={{
-          borderRadius: '16px',
           background: 'linear-gradient(to bottom, #F2F2F2, #D9D9D9)',
-          padding: 8,
+          padding: 10,
           marginY: 16,
+          maxWidth: '1600px',
+          marginX: 'auto',
           textAlign: 'center',
         }}
       >
