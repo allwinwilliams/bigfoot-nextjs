@@ -168,11 +168,11 @@ const BasicTshirtPage = () => {
   
       // Payment options
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
+        key_id: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
         one_click_checkout: true,
         name: 'Bigfoot Clothing',
         order_id: orderData.id,
-        show_coupons: false,
+        show_coupons: true,
         handler: function (response) {
           alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
           alert(`Order ID: ${response.razorpay_order_id}`);
