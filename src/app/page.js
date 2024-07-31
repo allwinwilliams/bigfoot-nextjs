@@ -106,7 +106,7 @@ export default function HomePage() {
       
       <Box
         sx={{
-          background: 'linear-gradient(to bottom, #F2F2F2, #D9D9D9)',
+          background: 'linear-gradient(to bottom, #F9F9F9, #D9D9D9)',
           padding: 10,
           marginY: 16,
           maxWidth: '1600px',
@@ -123,7 +123,7 @@ export default function HomePage() {
           The Range
         </Typography>
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={6} md={3}>
             <Link href="/product/songtshirt" underline="none">
               <Box>
                 <Box
@@ -147,7 +147,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={6} md={3}>
             <Link href="/product/ai-tshirt" underline="none">
               <Box>
                 <Box
@@ -171,7 +171,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={6} md={3}>
             <Link href="#" underline="none">
               <Box>
                 <Box
@@ -181,6 +181,26 @@ export default function HomePage() {
                   }}
                 >
                   <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                  Somethings
+                </Typography>
+                <Typography variant="subtitle1">
+                  Way forward
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Link href="#" underline="none">
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.4,
+                  }}
+                >
+                  <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                   Coming Soon...
