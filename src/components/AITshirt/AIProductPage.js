@@ -329,6 +329,7 @@ const AiProductPage = () => {
                 variant="outlined"
                 value={inputPrompt}
                 onChange={handlePromptChange}
+                disabled={loading}
                 fullWidth
                 sx={{
                     mb: 2,
@@ -347,24 +348,54 @@ const AiProductPage = () => {
                     ),
                 }}
                 />
+                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Choose your style
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                  {[
+                    { value: 'Popart', label: 'Pop' },
+                    { value: 'Hokusai', label: 'Hokusai' },
+                    { value: 'Anime', label: 'Anime' },
+                    { value: 'Lineart', label: 'Line' },
+                  ].map((option) => (
+                    <Chip
+                      key={option.value}
+                      label={option.label}
+                      clickable
+                      disabled={loading}
+                      color={style === option.value ? 'primary' : 'default'}
+                      variant={style === option.value ? 'filled' : 'outlined'}
+                      onClick={() => handleStyleChange({ target: { value: option.value } })}
+                      sx={{
+                        padding: '24px 12px',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        borderRadius: '9999px',
+                      }}
+                    />
+                  ))}
+                </Box>
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={generate}
-                  sx={{ textTransform: 'none',
-                      marginBottom: 1,
-                      width: '100%',
-                      padding: 2,
-                      borderRadius: '16px',
+                  disabled={loading}
+                  sx={{
+                    textTransform: 'none',
+                    marginBottom: 1,
+                    width: '100%',
+                    padding: 2,
+                    borderRadius: '16px',
                   }}
                 >
                     <AutoAwesomeIcon sx={{ marginRight: '8px' }} />
-                    <strong>Generate Design</strong>
+                    <strong>{loading ? 'Generating... Please wait' : 'Generate'}</strong>
                 </Button>
                 <Button
                   variant="outlined"
                   color="primary"
                   onClick={generate}
+                  disabled={loading}
                   sx={{ textTransform: 'none',
                       marginBottom: 1,
                       width: '100%',
@@ -415,32 +446,7 @@ const AiProductPage = () => {
                 ))}
               </Box>
               
-              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                Choose your style
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                {[
-                  { value: 'Popart', label: 'Pop' },
-                  { value: 'Hokusai', label: 'Hokusai' },
-                  { value: 'Anime', label: 'Anime' },
-                  { value: 'Lineart', label: 'Line Art' },
-                ].map((option) => (
-                  <Chip
-                    key={option.value}
-                    label={option.label}
-                    clickable
-                    color={style === option.value ? 'primary' : 'default'}
-                    variant={style === option.value ? 'filled' : 'outlined'}
-                    onClick={() => handleStyleChange({ target: { value: option.value } })}
-                    sx={{
-                      padding: '24px 16px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      borderRadius: '9999px',
-                    }}
-                  />
-                ))}
-              </Box>
+              
               <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                 <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                   Select your size

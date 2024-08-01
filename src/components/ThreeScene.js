@@ -138,13 +138,13 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         camera={{ position: [0, 0.5, 3], fov: 70, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#fafafa' }}
       >
-        <ambientLight intensity={4} color="#fdfdfd" />
+        <ambientLight intensity={3} color="#fdfdfd" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
           position={[2, 3, 5]}
           angle={1}
           penumbra={0.9}
-          intensity={16}
+          intensity={12}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
