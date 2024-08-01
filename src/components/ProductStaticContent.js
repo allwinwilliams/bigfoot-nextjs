@@ -59,8 +59,8 @@ export default function ProductStaticContent() {
                 }}>
                 What we offer?
                 </Typography>
-                <Grid container spacing={4} sx={{padding: 8}}>
-                <Grid item xs={12} md={3}>
+                <Grid container spacing={4} sx={{padding: {md: 8, xs: 0}, paddingBottom: {md: 8, xs: 8}}}>
+                <Grid item xs={6} md={3}>
                     {/* <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} /> */}
                     <img
                         src="/landing-page/shipping.png"
@@ -71,7 +71,7 @@ export default function ProductStaticContent() {
                     Free Shipping
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={6} md={3}>
                     {/* <BuildIcon sx={{ fontSize: 50, mb: 2 }} /> */}
                     <img
                         src="/landing-page/cube.png"
@@ -82,7 +82,7 @@ export default function ProductStaticContent() {
                         Made to Order
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={6} md={3}>
                     {/* <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} /> */}
                     <img
                         src="/landing-page/check.png"
@@ -93,7 +93,7 @@ export default function ProductStaticContent() {
                         Premium Quality Fabric
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={6} md={3}>
                     {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
                     <img
                         src="/landing-page/paint.png"

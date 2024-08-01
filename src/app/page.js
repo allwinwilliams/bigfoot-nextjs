@@ -49,7 +49,7 @@ export default function HomePage() {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
             zIndex: 1,
           }}>
-            <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: {md: 20, xs: 10} }}>
+            <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: {md: 20, xs: 12} }}>
               <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <img
                   src="/song-tshirt/customised-banner.png"
@@ -396,13 +396,15 @@ export default function HomePage() {
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography
-                variant="h3"
+                variant="h4"
                 sx={{
                   fontWeight: 'bold',
                   mb: 2,
                 }}
               >
-                Pick a song. Write a prompt. Click a button.
+                Pick a song.<br/>
+                Write a prompt.<br/>
+                Click a button.<br/>
               </Typography>
               <Typography variant="subtitle2"
               sx={{
