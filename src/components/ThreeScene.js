@@ -169,7 +169,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           maxPolarAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 10}
           enableZoom={true}
-          maxDistance={20}
+          maxDistance={12}
           minDistance={0.8}
         />
       </Canvas>
