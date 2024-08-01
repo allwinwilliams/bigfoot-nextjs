@@ -12,16 +12,24 @@ const Footer = () => {
         textAlign: 'left',
         padding: 4,
         backgroundColor: '#f3f3f3',
-        borderRadius: 2,
+        borderRadius: 8,
         my: 4
       }}
     >
       <Box>
-        <Typography variant="h4" gutterBottom>
+        <img
+          src='/logo.png'
+          alt='Bigfoot Logo'
+          style={{ width: 48, marginBottom: 8 }}
+        />
+        <Typography variant="h5" gutterBottom>
           Bigfoot Clothing
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="subtitle1">
           Conceptual Fashion
+        </Typography>
+        <Typography variant="subtitle2" sx={{maxWidth: '260px', color: '#999999'}}>
+          We are a fashion tech brand aimed to enabling people to express themselves through fashion.
         </Typography>
       </Box>
       <Box>

@@ -9,7 +9,28 @@ import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
 import { Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
+import { keyframes } from '@mui/system';
+
+
 export default function HomePage() {
+
+  const colorChange = keyframes`
+    0% { background-color: red; }
+    25% { background-color: yellow; }
+    50% { background-color: green; }
+    75% { background-color: blue; }
+    100% { background-color: red; }
+  `;
+
+  const moveLight = keyframes`
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(5%, 0); }
+    40% { transform: translate(10%, 0); }
+    65% { transform: translate(-10%, 0); }
+    80% { transform: translate(15%, 0); }
+    90% { transform: translate(-10%, 0); }
+    100% { transform: translate(0, 0); }
+  `;
 
   useEffect(() => {
     const handleUserInteraction = () => {
@@ -39,9 +60,38 @@ export default function HomePage() {
         minHeight: '100vh',
       }}
     >
+      <Box sx={{ position: 'fixed', bottom: '-50px', left: '50%', transform: 'translateX(-50%)', width: '100%', height: '50px', zIndex: 9999, pointerEvents: 'none' }}>
+        <Box
+          id="animated-light"
+          sx={{
+            width: '200%',
+            height: '50px',
+            borderRadius: '32px',
+            filter: 'blur(10px)',
+            position: 'absolute',
+            animation: `${colorChange} 5s infinite, ${moveLight} 8s infinite`,
+          }}
+        ></Box>
+        <Box
+          id="animated-light2"
+          sx={{
+            width: '120%',
+            height: '50px',
+            borderRadius: '50%',
+            filter: 'blur(10px)',
+            position: 'absolute',
+            animation: `${colorChange} 2s infinite, ${moveLight} 4s infinite`,
+          }}
+        ></Box>
+      </Box>
       <Container sx={{ mt: 1 }}>
         <Header />
-        <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8 }}>
+        <Box sx={{
+          position: 'relative',
+          width: '100%',
+          backgroundColor: '#000000',
+          borderRadius: 16
+          }}>
           <video
             autoPlay
             loop
@@ -118,7 +168,10 @@ export default function HomePage() {
                       width: '100%',
                       background: 'white',
                       justifyContent: 'center',
-                      scrollBehavior: 'smooth'
+                      scrollBehavior: 'smooth',
+                      background: 'linear-gradient(0deg, #999999 0%, #FFFFFF 50%)',
+                      backgroundSize: '600% 600%',
+                      animation: 'backgroundMovement 4s ease infinite',  
                     }} 
                   >
                     Craft Yours Now
@@ -413,7 +466,7 @@ export default function HomePage() {
       </Box>    
       
         <SongProductStaticContent/>
-        <Paper elevation={4} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>
+        <Paper elevation={1} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
               <img
