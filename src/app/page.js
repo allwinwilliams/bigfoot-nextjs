@@ -74,7 +74,9 @@ export default function HomePage() {
                     textAlign: 'center',
                     mb: 4,
                   }}>
-                  Imagine wearing your favorite song or a drawing you created with a prompt or anything like that. <br /> Now you can!
+                  We wanted to share the joy of creation with you.<br />
+                  Imagine wearing your favorite song or a drawing you created with a prompt or anything like that.<br />
+                  Now you can! Bright your ideas to life with Bigfoot.
                 </Typography>
                   <Button 
                     variant="contained" 

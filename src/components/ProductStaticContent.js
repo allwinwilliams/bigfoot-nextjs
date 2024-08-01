@@ -4,6 +4,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import BuildIcon from '@mui/icons-material/Build';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BrushIcon from '@mui/icons-material/Brush';
+import { rotate } from 'three/examples/jsm/nodes/Nodes';
 
 export default function ProductStaticContent() {
     return(
@@ -17,12 +18,28 @@ export default function ProductStaticContent() {
                 }}
             >
                 <Grid container spacing={4} alignItems="center">
-                    <Grid item xs={12} md={6}>
-                        <img
+                <Grid item xs={12} md={6} sx={{ position: 'relative', display: 'flex', marginTop: 8, justifyContent: 'center', alignItems: 'center' }}>
+                    <img
                         src="/landing-page/philosophy.png"
                         alt="Our philosophy"
-                        style={{ width: '100%', borderRadius: '16px' }}
-                        />
+                        style={{ width: '65%', borderRadius: '16px', zIndex: 1 }}
+                    />
+                    <Box sx={{ position: 'absolute', top: '0%', right: '0%', width: '35%', borderRadius: '8px', overflow: 'hidden', zIndex: 0 }}>
+                        <video
+                        autoPlay
+                        loop
+                        muted
+                        style={{
+                            width: '80%',
+                            height: '80%',
+                            objectFit: 'cover',
+                            borderRadius: '8px',
+                        }}
+                        >
+                        <source src="https://videos.pexels.com/video-files/18069473/18069473-uhd_1440_2560_24fps.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Typography
@@ -47,7 +64,7 @@ export default function ProductStaticContent() {
                 marginTop={8}
                 sx={{
                 borderRadius: '16px',
-                backgroundColor: '#fafafa',
+                backgroundColor: '#EAEAEA',
                 padding: 3,
                 textAlign: 'center',
                 }}
@@ -116,18 +133,32 @@ export default function ProductStaticContent() {
                 padding: 3,
                 }}
             >
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img
-                    src="/song-tshirt/understand.png"
-                    alt="Can I understand the design? Yes, it's all based on data"
-                    style={{ 
-                    width: '100%', 
-                    maxWidth: '800px', 
-                    height: 'auto', 
-                    borderRadius: '8px', 
-                    marginTop: '16px' 
+                <Box
+                    sx={{
+                        textAlign: 'center',
+                        paddingY: 4,
                     }}
-                />
+                >
+                    <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#BBBBBB' }}>
+                        Can you you understand the design?
+                    </Typography>
+                    <Typography variant="h4" sx={{marginTop: 4}}>
+                        Yes, you Can.
+                    </Typography>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    
+                    <img
+                        src="/song-tshirt/understand.png"
+                        alt="Can I understand the design? Yes, it's all based on data"
+                        style={{ 
+                        width: '100%', 
+                        maxWidth: '800px', 
+                        height: 'auto', 
+                        borderRadius: '8px', 
+                        marginTop: '16px' 
+                        }}
+                    />
                 </Box>
             </Box>
             
