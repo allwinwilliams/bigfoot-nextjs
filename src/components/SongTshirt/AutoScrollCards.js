@@ -91,7 +91,7 @@ const AutoScrollCards = () => {
                 href={item.link}
                 sx={{
                   display: 'inline-block',
-                  width: 350,
+                  width: 330,
                   marginRight: 4,
                   textDecoration: 'none',
                   padding: 2.5,
@@ -153,7 +153,7 @@ const AutoScrollCards = () => {
                 href={item.link}
                 sx={{
                   display: 'inline-block',
-                  width: 350,
+                  width: 330,
                   marginRight: 4,
                   textDecoration: 'none',
                   padding: 2.5,

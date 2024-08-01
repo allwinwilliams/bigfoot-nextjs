@@ -19,8 +19,8 @@ export default function ProductStaticContent() {
                 <Grid container spacing={4} alignItems="center">
                     <Grid item xs={12} md={6}>
                         <img
-                        src="/song-tshirt/customised-banner.png"
-                        alt="Custom T-shirt"
+                        src="/landing-page/philosophy.png"
+                        alt="Our philosophy"
                         style={{ width: '100%', borderRadius: '16px' }}
                         />
                     </Grid>
@@ -30,12 +30,14 @@ export default function ProductStaticContent() {
                         sx={{
                             fontWeight: 'bold',
                             mb: 2,
+                            color: '#BBBBBB'
                         }}
                         >
-                        Customise your T-shirt with your favorite song
+                        Our Philosophy
                         </Typography>
-                        <Typography variant="subtitle1">
-                        Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
+                        <Typography variant="h2">
+                        Wear your sleeves literally.
+                        Your fashion is your expression. Own it.
                         </Typography>
                     </Grid>
                 </Grid>
