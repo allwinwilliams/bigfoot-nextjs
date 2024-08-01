@@ -5,7 +5,7 @@
 /* Remove the custom color scheme preference styles */
 body {
   color: #000000; /* Set text color to black */
-  background-color: #ffffff; /* Set background color to white */
+  background-color: #f7f8fa; /* Set background color to white */
 }
 
 html {

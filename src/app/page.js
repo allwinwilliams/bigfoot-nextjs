@@ -52,6 +52,7 @@ export default function HomePage() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
+              overflow: 'hidden',
               borderRadius: 16,
               zIndex: 0,
             }}
@@ -125,17 +126,12 @@ export default function HomePage() {
           </Paper>
         </Box>
 
-
-
-          
-
-        </Container>
-        <AutoScrollCards />
-      
+      </Container>
+      <AutoScrollCards />
       <Box
         id="the-range"
         sx={{
-          background: 'linear-gradient(to bottom, #FAFAFA, #D9D9D9)',
+          background: 'linear-gradient(to bottom, #f7f8fa, #C9C9C9)',
           padding: {md: 12, xs: 4},
           marginY: 12,
           maxWidth: '1600px',
@@ -182,7 +178,7 @@ export default function HomePage() {
                 <Box
                   sx={{
                     transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.95,
+                    opacity: 0.98,
                     '&:hover': {
                       transform: 'scale(1.2)',
                       opacity: 1.0,
@@ -264,7 +260,7 @@ export default function HomePage() {
           Your browser does not support the video tag.
         </video>
         <Paper elevation={4} sx={{
-          padding: 4,
+          padding: {md: 8, xs: 4},
           borderRadius: 4,
           mt: 4,
           boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
@@ -283,12 +279,12 @@ export default function HomePage() {
               />
             </Grid>
             <Grid item xs={12} md={6}
-            sx={{paddingX: 2}}>
+            sx={{padding: 4}}>
               <Typography
                 variant="h4"
                 sx={{
                   fontWeight: 'bold',
-                  mb: 2,
+                  my: 2,
                 }}
               >
                 Customise with Music.< br/>
@@ -347,7 +343,7 @@ export default function HomePage() {
           Your browser does not support the video tag.
         </video>
         <Paper elevation={4} sx={{
-          padding: 4,
+          padding: {md: 8, xs: 4},
           paddingBottom: 1,
           borderRadius: 4,
           mt: 4,

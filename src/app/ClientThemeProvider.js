@@ -16,7 +16,7 @@ const theme = createTheme({
       main: '#dbdbdb',
     },
     background: {
-      default: '#ffffff',
+      default: '#f7f8fa',
     },
     text: {
       primary: '#111111',
@@ -56,7 +56,7 @@ const ClientThemeProvider = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
+      <Box sx={{ color: 'black', minHeight: '100vh' }}>
         {children}
       </Box>
     </ThemeProvider>

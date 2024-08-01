@@ -13,7 +13,7 @@ export default function ProductStaticContent() {
                 marginTop={8}
                 sx={{
                 borderRadius: '16px',
-                backgroundColor: '#fff',
+                // backgroundColor: '#fff',
                 padding: 3,
                 }}
             >
@@ -59,7 +59,6 @@ export default function ProductStaticContent() {
                     </Grid>
                 </Grid>
             </Box>
-            
             <Box
                 marginTop={8}
                 sx={{
@@ -121,6 +120,100 @@ export default function ProductStaticContent() {
                     />
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     Customised Designs
+                    </Typography>
+                </Grid>
+                </Grid>
+            </Box>
+
+            <Box
+                marginTop={8}
+                sx={{
+                borderRadius: '16px',
+                backgroundColor: '#EAEAEA',
+                padding: 3,
+                textAlign: 'center',
+                }}
+            >
+                <Typography variant="h3" 
+                sx={{
+                    fontWeight: 'bold',
+                    mt: 4,
+                    paddingBottom: 2,
+                    color: '#BBBBBB'
+                }}>
+                    Softest fabric
+                </Typography>
+                <Typography variant="subtitle1" 
+                sx={{
+                    color: '#BBBBBB'
+                }}>
+                    We are sure you'll agree too
+                </Typography>
+                <Grid container spacing={4} sx={{padding: {md: 8, xs: 0}, paddingBottom: {md: 8, xs: 8}}}>
+                <Grid item xs={4} md={2}>
+                    {/* <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        Soft Touch Knitting
+                    </Typography>
+                </Grid>
+                <Grid item xs={4} md={2}>
+                    {/* <BuildIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        100% Cotton
+                    </Typography>
+                </Grid>
+                <Grid item xs={4} md={2}>
+                    {/* <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        Korean Fit
+                    </Typography>
+                </Grid>
+                <Grid item xs={4} md={2}>
+                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Craft you own"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        200GSM thickness
+                    </Typography>
+                </Grid>
+                <Grid item xs={4} md={2}>
+                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Craft you own"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        Bio-Washed
+                    </Typography>
+                </Grid>
+                <Grid item xs={4} md={2}>
+                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Craft you own"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        Eco-Friendly Dye
                     </Typography>
                 </Grid>
                 </Grid>
