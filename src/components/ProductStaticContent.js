@@ -129,7 +129,7 @@ export default function ProductStaticContent() {
                 marginTop={4}
                 sx={{
                 borderRadius: '16px',
-                backgroundColor: '#f3f3f3',
+                backgroundColor: '#FAFAFA',
                 padding: 3,
                 }}
             >
@@ -139,27 +139,36 @@ export default function ProductStaticContent() {
                         paddingY: 4,
                     }}
                 >
+                    
                     <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#BBBBBB' }}>
                         Can you you understand the design?
                     </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    
+                        <img
+                            src="https://cdn.pixabay.com/animation/2022/11/03/14/36/14-36-22-714_512.gif"
+                            alt="Can I understand the design? Yes, it's all based on data"
+                            style={{ 
+                            width: '100%', 
+                            maxWidth: '200px', 
+                            height: 'auto', 
+                            borderRadius: '8px', 
+                            marginTop: '16px' 
+                            }}
+                        />
+                    </Box>
                     <Typography variant="h4" sx={{marginTop: 4}}>
-                        Yes, you Can.
+                        Yes, you Can.<br/>
+                    </Typography>
+                    <Typography variant="h6" sx={{marginTop: 4, color: '#999999'}}>
+                        <br/>
+                        We are trying to give control to our customers in their designs through different means.
+                        <br/>
+                        <br/>
+                        Contact us at boredom.technologies@gmail.com for feedback, queries, bulk orders or just coffee, .
                     </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    
-                    <img
-                        src="/song-tshirt/understand.png"
-                        alt="Can I understand the design? Yes, it's all based on data"
-                        style={{ 
-                        width: '100%', 
-                        maxWidth: '800px', 
-                        height: 'auto', 
-                        borderRadius: '8px', 
-                        marginTop: '16px' 
-                        }}
-                    />
-                </Box>
+                
             </Box>
             
             <Box
@@ -177,7 +186,7 @@ export default function ProductStaticContent() {
                 animation: 'backgroundMovement 4s ease infinite',
                 }}
             >
-                <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
+                <Typography variant="h3" sx={{ fontWeight: 'bold', mt: 4, mb: 1, color: 'rgba(255,255,255,0.6)' }}>
                 Why BigFoot?
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 2 }}>
