@@ -35,6 +35,90 @@ export default function HomePage() {
               zIndex: 0,
             }}
           >
+            <source src="https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <Paper elevation={4} sx={{
+            padding: 8,
+            borderRadius: 4,
+            mt: 2,
+            boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
+            color: 'white',
+            position: 'relative',
+            overflow: 'hidden',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            zIndex: 1,
+          }}>
+            <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: 20 }}>
+              <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <img
+                  src="/song-tshirt/customised-banner.png"
+                  alt="Custom T-shirt"
+                  style={{ width: '150px', borderRadius: '16px' }}
+                />
+              </Grid>
+              <Grid item xs={12} md={8}>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 'bold',
+                    mb: 2,
+                    textAlign: 'center',
+                  }}
+                >
+                  Make it your own
+                </Typography>
+                <Typography variant="subtitle2"
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    textAlign: 'center',
+                    mb: 4,
+                  }}>
+                  Imagine wearing your favorite song or a drawing you created with a prompt or anything like that. <br /> Now you can!
+                </Typography>
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    component={Link} 
+                    href="#the-range" 
+                    startIcon={<CreateIcon />}
+                    sx={{ 
+                      mt: 0, 
+                      padding: 2, 
+                      fontWeight: 'bold', 
+                      fontFamily: 'Inter', 
+                      textTransform: 'none',
+                      borderRadius: 4,
+                      width: '100%',
+                      justifyContent: 'center',
+                      scrollBehavior: 'smooth'
+                    }} 
+                  >
+                    Craft Yours
+                  </Button>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Box>
+
+
+
+        <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8 }}>
+          <video
+            autoPlay
+            loop
+            muted
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: 16,
+              zIndex: 0,
+            }}
+          >
             <source src="/gradient-background.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -105,6 +189,7 @@ export default function HomePage() {
         <AutoScrollCards />
       
       <Box
+        id="the-range"
         sx={{
           background: 'linear-gradient(to bottom, #F9F9F9, #D9D9D9)',
           padding: {md: 12, xs: 4},

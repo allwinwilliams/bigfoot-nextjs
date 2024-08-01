@@ -68,16 +68,16 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
     if (triggerLoadingAnimation && modelRef.current) {
       gsap.to(modelRef.current.rotation, {
         y: modelRef.current.rotation.y - Math.PI * 4,
-        duration: 2,
+        duration: 3,
         ease: "power1.inOut",
         onComplete: () => {
           modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2);
         },
       });
       gsap.to(modelRef.current.scale, {
-        x: 3,
-        y: 3,
-        z: 3,
+        x: 0.5,
+        y: 0.5,
+        z: 0.5,
         duration: 1,
         yoyo: true,
         repeat: 1,

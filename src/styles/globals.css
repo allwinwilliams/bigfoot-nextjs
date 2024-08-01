@@ -8,6 +8,10 @@ body {
   background-color: #ffffff; /* Set background color to white */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
