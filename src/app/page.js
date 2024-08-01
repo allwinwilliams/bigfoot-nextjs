@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
 import SongProductStaticContent from '../components/ProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
@@ -8,7 +9,27 @@ import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
 import { Margin, Opacity } from '@mui/icons-material';
 export default function HomePage() {
-  // Array of objects with image url, title, description, and link  
+
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      const audio = new Audio('https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3');
+      audio.volume = 0.05;
+      audio.loop = true;
+      audio.play().then(() => {
+        console.log('Audio started playing');
+      }).catch(error => {
+        console.error('Error playing audio:', error);
+      });
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    document.addEventListener('click', handleUserInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+    };
+  }, []);
+
   return (
     <Box
       sx={{
@@ -92,6 +113,7 @@ export default function HomePage() {
                       textTransform: 'none',
                       borderRadius: 4,
                       width: '100%',
+                      background: 'white',
                       justifyContent: 'center',
                       scrollBehavior: 'smooth'
                     }} 
