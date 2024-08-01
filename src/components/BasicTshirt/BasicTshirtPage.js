@@ -13,6 +13,7 @@ import ThreeScene from '../ThreeScene';
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import SizeChart from '../SizeChart';
 
 import Razorpay from 'razorpay';
 
@@ -387,9 +388,12 @@ const BasicTshirtPage = () => {
                   />
                 ))}
               </Box>
-              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                Select your size
-              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Select your size
+                </Typography>
+                <SizeChart />
+              </Box>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 {['XS','S', 'M', 'L', 'XL'].map((option) => (
                   <Chip
