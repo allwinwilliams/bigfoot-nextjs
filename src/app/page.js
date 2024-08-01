@@ -358,7 +358,7 @@ export default function HomePage() {
               variant="contained" 
               color="primary" 
               component={Link} 
-              href="/product/songtshirt" 
+              href="/product/ai-tshirt" 
               startIcon={<CreateIcon />}
               sx={{ 
                 mt: 4, 
