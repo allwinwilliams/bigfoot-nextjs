@@ -8,6 +8,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
 import { Margin, Opacity } from '@mui/icons-material';
+import zIndex from '@mui/material/styles/zIndex';
 export default function HomePage() {
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function HomePage() {
         minHeight: '100vh',
       }}
     >
-      <Container sx={{ mt: 2 }}>
+      <Container sx={{ mt: 1 }}>
         <Header />
         <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8 }}>
           <video
@@ -71,10 +72,10 @@ export default function HomePage() {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
             zIndex: 1,
           }}>
-            <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: {md: 20, xs: 12} }}>
+            <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: {md: 20, xs: 10} }}>
               <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <img
-                  src="/song-tshirt/customised-banner.png"
+                  src="/landing-page/song-banner.png"
                   alt="Custom T-shirt"
                   style={{ width: '150px', borderRadius: '16px' }}
                 />
@@ -95,10 +96,11 @@ export default function HomePage() {
                     color: 'rgba(255, 255, 255, 0.8)',
                     textAlign: 'center',
                     mb: 4,
+                    paddingX: {md: 8, xs: 2}
                   }}>
-                  We wanted to share the joy of creation with you.<br />
-                  Imagine wearing your favorite song or a drawing you created with a prompt or anything like that.<br />
-                  Now you can! Bright your ideas to life with Bigfoot.
+                  We wanted to share the joy of creation with our customers.
+                  Imagine wearing your favorite song or a drawing you created with a prompt or anything like that.
+                  Now you can! Bring your ideas to life with Bigfoot.
                 </Typography>
                   <Button 
                     variant="contained" 
@@ -109,7 +111,7 @@ export default function HomePage() {
                     sx={{ 
                       mt: 0, 
                       padding: 2, 
-                      fontWeight: 'bold', 
+                      fontWeight: '600', 
                       fontFamily: 'Inter', 
                       textTransform: 'none',
                       borderRadius: 4,
@@ -119,7 +121,7 @@ export default function HomePage() {
                       scrollBehavior: 'smooth'
                     }} 
                   >
-                    Craft Yours
+                    Craft Yours Now
                   </Button>
               </Grid>
             </Grid>
@@ -178,7 +180,7 @@ export default function HomePage() {
                 <Box
                   sx={{
                     transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.98,
+                    opacity: 0.90,
                     '&:hover': {
                       transform: 'scale(1.2)',
                       opacity: 1.0,
@@ -256,11 +258,12 @@ export default function HomePage() {
             zIndex: 0,
           }}
         >
+          
           <source src="https://videos.pexels.com/video-files/4669695/4669695-uhd_2732_1440_25fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Paper elevation={4} sx={{
-          padding: {md: 8, xs: 4},
+          padding: {md: 10, xs: 4},
           borderRadius: 4,
           mt: 4,
           boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
@@ -268,16 +271,21 @@ export default function HomePage() {
           position: 'relative',
           overflow: 'hidden',
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 1,
+          zIndex: 0,
         }}>
-          <Grid container spacing={4} alignItems="center" style={{zIndex: 999}}>
-            <Grid item xs={12} md={6}>
+          <Grid container spacing={4} alignItems="righ" style={{zIndex: 999}}>
+            <Grid item xs={12} md={6} sx={{zIndex: 1000}}>
               <img
-                src="/song-tshirt/customised-banner.png"
+                src="/landing-page/song-banner.png"
                 alt="Custom T-shirt"
-                style={{ width: '100%', borderRadius: '16px' }}
+                style={{ 
+                  width: '550px',
+                  borderRadius: '16px',
+                  // position: 'absolute',
+                  bottom: '-60px', left: '-40px'  
+                }}
               />
-            </Grid>
+          </Grid>
             <Grid item xs={12} md={6}
             sx={{padding: 4}}>
               <Typography
@@ -320,10 +328,10 @@ export default function HomePage() {
             </Button>
             </Grid>
           </Grid>
-        </Paper>
+        </Paper>        
       </Box>    
 
-      <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8 }}>
+      <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, marginTop: 8 }}>
         <video
           autoPlay
           loop
@@ -409,7 +417,7 @@ export default function HomePage() {
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
               <img
-                src="/song-tshirt/customised-banner.png"
+                src="/landing-page/song-banner.png"
                 alt="Custom T-shirt"
                 style={{ width: '100%', borderRadius: '16px' }}
               />

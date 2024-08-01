@@ -22,16 +22,16 @@ export default function ProductStaticContent() {
                     <img
                         src="/landing-page/philosophy.png"
                         alt="Our philosophy"
-                        style={{ width: '65%', borderRadius: '16px', zIndex: 1 }}
+                        style={{ width: '70%', borderRadius: '16px', zIndex: 1 }}
                     />
-                    <Box sx={{ position: 'absolute', top: '0%', right: '0%', width: '35%', borderRadius: '8px', overflow: 'hidden', zIndex: 0 }}>
+                    <Box sx={{ position: 'absolute', top: '0%', right: '10%', width: '35%', borderRadius: '8px', overflow: 'hidden', zIndex: 0 }}>
                         <video
                         autoPlay
                         loop
                         muted
                         style={{
-                            width: '80%',
-                            height: '80%',
+                            width: '90%',
+                            height: '40%',
                             objectFit: 'cover',
                             borderRadius: '8px',
                         }}
@@ -52,9 +52,9 @@ export default function ProductStaticContent() {
                         >
                         Our Philosophy
                         </Typography>
-                        <Typography variant="h2">
-                        Wear your sleeves literally.
-                        Your fashion is your expression. Own it.
+                        <Typography variant="h3">
+                            Your fashion is your expression. Own it.
+                            Wear yourself on your sleeves, literally.
                         </Typography>
                     </Grid>
                 </Grid>
@@ -129,7 +129,7 @@ export default function ProductStaticContent() {
                 marginTop={8}
                 sx={{
                 borderRadius: '16px',
-                backgroundColor: '#EAEAEA',
+                backgroundColor: '#FFFFFF',
                 padding: 3,
                 textAlign: 'center',
                 }}

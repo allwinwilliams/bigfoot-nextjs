@@ -6,7 +6,8 @@ const Header = () => {
   return (
     <Box 
       sx={{
-        paddingY: 2,
+        paddingTop: 2,
+        paddingBottom: 0.5,
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
@@ -22,7 +23,7 @@ const Header = () => {
         alt='Bigfoot Logo'
         style={{ width: 48, marginBottom: 8 }}
       />
-      <Typography variant="h4" gutterBottom sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+      <Typography variant="h5" gutterBottom sx={{ }}>
         Bigfoot Clothing
       </Typography>
       <Typography variant="body1" gutterBottom>
