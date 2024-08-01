@@ -334,6 +334,8 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
       const xPos = 520, yPos = 200;
       const scale = 2; // Scaling factor
       let hue = p.random(360);
+      p.fill(hue, 90, 50);
+      p.rect(0 * scale + xPos - 15, 0 * scale + yPos - 15, 220 * scale, 250 * scale);
       shapes.forEach(shape => {
         if(shape.fill === "#0094FF"){
           p.fill(hue, 90, 50);

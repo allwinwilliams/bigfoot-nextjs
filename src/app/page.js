@@ -252,18 +252,23 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Link href="#" underline="none">
+            <Link href="/product/basic-tshirt" underline="none">
               <Box>
                 <Box
                   sx={{
                     transition: 'transform 0.8s',
-                    opacity: 0.4,
+                    opacity: 0.8,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
                   }}
+                  
                 >
                   <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Coming Soon
+                  Bigfoot Basics
                 </Typography>
                 <Typography variant="subtitle1">
                   Way forward
@@ -272,7 +277,7 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Link href="#" underline="none">
+            <Link href="" underline="none">
               <Box>
                 <Box
                   sx={{
