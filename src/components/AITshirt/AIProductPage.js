@@ -321,32 +321,33 @@ const AiProductPage = () => {
                 border: '1px solid #dbdbdb', 
                 boxShadow: '0 0 8px rgba(0,0,0,0.06)',
                 }}>
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise with a prompt
-              </Typography>
-              <TextField
-                placeholder="Enter your prompt..."
-                variant="outlined"
-                value={inputPrompt}
-                onChange={handlePromptChange}
-                disabled={loading}
-                fullWidth
-                sx={{
+                <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                  Customise with a prompt
+                </Typography>
+                <TextField
+                  placeholder="Enter your prompt..."
+                  variant="outlined"
+                  value={inputPrompt}
+                  onChange={handlePromptChange}
+                  disabled={loading}
+                  fullWidth
+                  inputProps={{ maxLength: 30 }}
+                  sx={{
                     mb: 2,
                     '& .MuiOutlinedInput-root': {
-                    borderRadius: '16px',
+                      borderRadius: '16px',
                     },
                     '& .MuiOutlinedInput-notchedOutline': {
-                    borderRadius: '16px',
+                      borderRadius: '16px',
                     },
-                }}
-                InputProps={{
+                  }}
+                  InputProps={{
                     startAdornment: (
-                    <InputAdornment position="start">
+                      <InputAdornment position="start">
                         <NotesIcon sx={{ color: 'grey' }} />
-                    </InputAdornment>
+                      </InputAdornment>
                     ),
-                }}
+                  }}
                 />
                 <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                   Choose your style

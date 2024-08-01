@@ -60,14 +60,14 @@ export default function HomePage() {
         minHeight: '100vh',
       }}
     >
-      <Box sx={{ position: 'fixed', bottom: '-50px', left: '50%', transform: 'translateX(-50%)', width: '100%', height: '50px', zIndex: 9999, pointerEvents: 'none' }}>
+      <Box sx={{ position: 'fixed', bottom: '-40px', left: '50%', transform: 'translateX(-50%)', width: '100%', height: '50px', zIndex: 9999, pointerEvents: 'none' }}>
         <Box
           id="animated-light"
           sx={{
             width: '200%',
             height: '50px',
             borderRadius: '32px',
-            filter: 'blur(10px)',
+            filter: 'blur(16px)',
             position: 'absolute',
             animation: `${colorChange} 5s infinite, ${moveLight} 8s infinite`,
           }}
@@ -78,7 +78,7 @@ export default function HomePage() {
             width: '120%',
             height: '50px',
             borderRadius: '50%',
-            filter: 'blur(10px)',
+            filter: 'blur(24px)',
             position: 'absolute',
             animation: `${colorChange} 2s infinite, ${moveLight} 4s infinite`,
           }}
@@ -257,7 +257,7 @@ export default function HomePage() {
                 <Box
                   sx={{
                     transition: 'transform 0.8s',
-                    opacity: 0.8,
+                    opacity: 0.96,
                     '&:hover': {
                       transform: 'scale(1.2)',
                       opacity: 1.0,
@@ -277,12 +277,16 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={3}>
-            <Link href="" underline="none">
+            {/* <Link href="" underline="none"> */}
               <Box>
                 <Box
                   sx={{
                     transition: 'transform 0.8s',
-                    opacity: 0.4,
+                    opacity: 0.6,
+                    '&:hover': {
+                        transform: 'rotate(360deg)',
+                        opacity: 1.0,
+                    },
                   }}
                 >
                   <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
@@ -294,7 +298,7 @@ export default function HomePage() {
                   in our labs 🧪
                 </Typography>
               </Box>
-            </Link>
+            {/* </Link> */}
           </Grid>
         </Grid>
       </Box>
