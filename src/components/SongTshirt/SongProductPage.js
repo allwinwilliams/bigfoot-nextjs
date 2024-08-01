@@ -18,6 +18,8 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SongProductStaticContent from '../ProductStaticContent';
 
+import SizeChart from '../SizeChart';
+
 const SongProductPage = () => {
   const theme = useTheme();
 

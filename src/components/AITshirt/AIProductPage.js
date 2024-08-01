@@ -16,8 +16,7 @@ import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-
-import Razorpay from 'razorpay';
+import SizeChart from '../SizeChart';
 
 const AiProductPage = () => {
   const theme = useTheme();
