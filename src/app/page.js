@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
-import SongProductStaticContent from '../components/SongTshirt/SongProductStaticContent';
+import SongProductStaticContent from '../components/ProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
 import Header from '@/components/Header';
@@ -111,7 +111,7 @@ export default function HomePage() {
       <Box
         id="the-range"
         sx={{
-          background: 'linear-gradient(to bottom, #F9F9F9, #D9D9D9)',
+          background: 'linear-gradient(to bottom, #FAFAFA, #D9D9D9)',
           padding: {md: 12, xs: 4},
           marginY: 12,
           maxWidth: '1600px',

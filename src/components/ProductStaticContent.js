@@ -5,7 +5,7 @@ import BuildIcon from '@mui/icons-material/Build';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BrushIcon from '@mui/icons-material/Brush';
 
-export default function SongProductStaticContent() {
+export default function ProductStaticContent() {
     return(
         <Box>
             <Box
@@ -50,35 +50,57 @@ export default function SongProductStaticContent() {
                 textAlign: 'center',
                 }}
             >
-                <Typography variant="h5" 
+                <Typography variant="h3" 
                 sx={{
                     fontWeight: 'bold',
-                    mb: 4,
+                    mt: 4,
+                    paddingBottom: 4,
+                    color: '#BBBBBB'
                 }}>
                 What we offer?
                 </Typography>
-                <Grid container spacing={4}>
+                <Grid container spacing={4} sx={{padding: 8}}>
                 <Grid item xs={12} md={3}>
-                    <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} />
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    Free Shipping All Over India
+                    {/* <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/shipping.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    Free Shipping
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <BuildIcon sx={{ fontSize: 50, mb: 2 }} />
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    Made to Order
+                    {/* <BuildIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/cube.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        Made to Order
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} />
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    Premium Quality Fabric
+                    {/* <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/check.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        Premium Quality Fabric
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <BrushIcon sx={{ fontSize: 50, mb: 2 }} />
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                    <img
+                        src="/landing-page/paint.png"
+                        alt="Craft you own"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     Customised Designs
                     </Typography>
                 </Grid>

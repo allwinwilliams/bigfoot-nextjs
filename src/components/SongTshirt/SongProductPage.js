@@ -16,7 +16,7 @@ import AutoScrollCards from './AutoScrollCards';
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-import SongProductStaticContent from './SongProductStaticContent';
+import SongProductStaticContent from '../ProductStaticContent';
 
 const SongProductPage = () => {
   const theme = useTheme();
