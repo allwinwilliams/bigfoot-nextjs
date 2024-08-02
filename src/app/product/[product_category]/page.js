@@ -9,6 +9,7 @@ import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
 const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/BasicTshirtPage'), { ssr: false });
+const EmojiProductPage = dynamic(() => import('../../../components/EmojiTshirt/EmojiTshirtPage'), { ssr: false });
 
 export default function ProductType() {
   const { product_category } = useParams();
@@ -30,7 +31,12 @@ export default function ProductType() {
     ComponentToRender = (
         <BasicProductPage />
     );
-  } else {
+  } else if (product_category === 'emoji-tshirt') {
+    ComponentToRender = (
+        <EmojiProductPage />
+    );
+  }
+   else {
     return <div>Invalid product category</div>; // Fallback for invalid product categories
   }
 

@@ -6,6 +6,7 @@ import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketches/songSketches';
 import { aiBasicSketch } from '../utils/sketches/aiSketches';
 import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
+import { emojiSketch } from '@/utils/sketches/emojiSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();
@@ -46,6 +47,17 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
           case 'head':
           default:
             sketch = (p) => headSketch(p, canvasRef, onP5Update, color, values);
+            break;
+        }
+      }
+      if(type == "emoji"){
+        switch (style) {
+          case 'out':
+            sketch = (p) => emojiSketch(p, canvasRef, onP5Update, color, values, "large");
+            break;
+          case 'small':
+          default:
+            sketch = (p) => emojiSketch(p, canvasRef, onP5Update, color, values, "tiny");
             break;
         }
       }
