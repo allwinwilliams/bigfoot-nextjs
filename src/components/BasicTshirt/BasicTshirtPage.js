@@ -15,6 +15,9 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SizeChart from '../SizeChart';
 
+import BuyNowButton from '../BuyNowButton';
+
+
 import Razorpay from 'razorpay';
 
 const BasicTshirtPage = () => {
@@ -93,124 +96,6 @@ const BasicTshirtPage = () => {
       navigator.clipboard.writeText(window.location.href);
       setTooltipOpen(true);
       setTimeout(() => setTooltipOpen(false), 2000);
-    }
-  };
-
-  const handleBuyNow = async () => {
-    setBuyNowLoading(true);
-    try {
-      const canvas = document.getElementById('p5-canvas');
-      const canvasDataUrl = canvas.toDataURL('image/png');
-
-      const threeCanvas = document.querySelector('#three-canvas canvas');
-      let threeCanvasDataUrl = threeCanvas.toDataURL('image/png') || "";
-  
-      const storageRef = ref(storage, `orders/basic-${Date.now()}.png`);
-      await uploadString(storageRef, canvasDataUrl, 'data_url');
-      const imageUrl = await getDownloadURL(storageRef);
-  
-      const dataToStore = {
-        color,
-        size,
-        style: style,
-        type: "Basic",
-        imageUrl,
-        timestamp: new Date().toISOString(),
-      };
-  
-      const docRef = await addDoc(collection(db, 'orders'), dataToStore);
-      const docId = docRef.id;
-  
-      // Create Razorpay order by calling the API route
-      const response = await fetch('/api/create-razorpay-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          amount: 139900,
-          currency: 'INR',
-          receipt: `receipt_${docId}`,
-          notes: {
-            color,
-            size,
-            style: style,
-            type: "Basic",
-            imageUrl
-          },
-          line_items_total: 139900,
-          line_items: [
-            {
-              type: "e-commerce",
-              sku: "1g234",
-              variant_id: "12r34",
-              price: 139900,
-              tax_amount: 252,
-              quantity: 1,
-              name: `Basic T-Shirt - ${style}`,
-              description: "Customised T-Shirt",
-              weight: 500,
-              dimensions: {
-                length: 100,
-                width: 50,
-                height: 30
-              },
-              image_url: imageUrl,
-              product_url: window.location.href,
-              notes: {}
-            }
-          ]
-        })
-      });
-  
-      const orderData = await response.json();
-  
-      if (!orderData.id) {
-        throw new Error('Failed to create Razorpay order');
-      }
-  
-      // Payment options
-      const options = {
-        key_id: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
-        key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
-        one_click_checkout: true,
-        name: 'Bigfoot Clothing',
-        order_id: orderData.id,
-        show_coupons: true,
-        handler: function (response) {
-          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-          alert(`Order ID: ${response.razorpay_order_id}`);
-          alert(`Razorpay Signature: ${response.razorpay_signature}`);
-        },
-        prefill: {
-          // name: 'Customer Name',
-          // email: 'customer@example.com',
-          // contact: '9000090000'
-        },
-        notes: {
-          // address: 'Customer Address'
-        }
-      };
-  
-      // Ensure the Razorpay script is loaded
-      if (typeof window.Razorpay === 'undefined') {
-        console.error('Razorpay SDK not loaded');
-        throw new Error('Razorpay SDK not loaded');
-      }
-  
-      const rzp1 = new window.Razorpay(options);
-  
-      rzp1.on('payment.failed', function (response) {
-        alert(`Payment failed! Reason: ${response.error.description}`);
-        console.error('Payment failed details:', response);
-      });
-  
-      rzp1.open();
-    } catch (error) {
-      console.error('Error placing order:', error);
-      alert('Failed to place order: ' + error.message);
-    } finally {
-      setBuyNowLoading(false);
     }
   };
   
@@ -414,32 +299,14 @@ const BasicTshirtPage = () => {
                 ))}
               </Box>
               <Box sx={{ mt: 4 }}>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                size="large"
-                sx={{
-                  mb: 2,
-                  padding: '12px',
-                  fontWeight: 'bold',
-                  borderRadius: '16px',
-                  textTransform: 'none',
-                }}
-                onClick={handleBuyNow}
-                disabled={buyNowLoading}
-              >
-                {buyNowLoading ? (
-                  <CircularProgress size={24} sx={{ color: 'white' }} />
-                ) : (
-                  <Box sx={{ textAlign: 'center' }}>
-                    Buy Now @ ₹1,399
-                    <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
-                      Limited Time Offer
-                    </Typography>
-                  </Box>
-                )}
-              </Button>
+              <BuyNowButton
+                color={color}
+                size={size}
+                style={style}
+                type="Basic"
+                storage={storage}
+                db={db}
+              />
                 <Tooltip title="URL copied" open={tooltipOpen} arrow>
                   <Button
                     variant="outlined"
