@@ -1,23 +1,20 @@
 "use client";
 
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, Typography, Grid, Chip, Button,
-  Tooltip, CircularProgress, Link,
-  useTheme, Tabs, Tab, TextField
+  Tooltip, Link, useTheme, Tabs, Tab, TextField
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 import ThreeScene from '../ThreeScene';
-
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SizeChart from '../SizeChart';
-
 import BuyNowButton from '../BuyNowButton';
-
 import Razorpay from 'razorpay';
+import debounce from 'lodash.debounce';
 
 const EmojiTshirtPage = () => {
   const theme = useTheme();
@@ -26,19 +23,17 @@ const EmojiTshirtPage = () => {
 
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [renderCount, setRenderCount] = useState(0); // State variable to trigger re-render
+  const [renderCount, setRenderCount] = useState(0);
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [style, setStyle] = useState(searchParams.get('style') || 'tiny');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
-  const [emojis, setEmojis] = useState([]);
-  const [filteredEmojis, setFilteredEmojis] = useState([]);
+  const [emojis, setEmojis] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [textInput, setTextInput] = useState('');
-
   const [tabValue, setTabValue] = useState(0);
 
   const initialLoad = useRef(true);
@@ -48,8 +43,17 @@ const EmojiTshirtPage = () => {
       try {
         const response = await fetch('https://emoji-api.com/emojis?access_key=9484793b8a1df1aab3b8cf10b2b7becc8236adfe');
         const data = await response.json();
-        setEmojis(data);
-        setFilteredEmojis(data);
+
+        // Group emojis by 'group' parameter
+        const groupedEmojis = data.reduce((acc, emoji) => {
+          if (!acc[emoji.group]) {
+            acc[emoji.group] = [];
+          }
+          acc[emoji.group].push(emoji);
+          return acc;
+        }, {});
+
+        setEmojis(groupedEmojis);
       } catch (error) {
         console.error('Failed to fetch emojis:', error);
       }
@@ -79,11 +83,6 @@ const EmojiTshirtPage = () => {
     }
   }, [searchParams, router]);
 
-  useEffect(() => {
-    const filtered = emojis.filter(emoji => emoji.unicodeName.toLowerCase().includes(searchTerm.toLowerCase()));
-    setFilteredEmojis(filtered);
-  }, [searchTerm, emojis]);
-
   const handleColorChange = (event) => {
     setColor(event.target.value);
     window.history.replaceState(null, '', `/product/emoji-tshirt?color=${event.target.value}&size=${size}&style=${style}`);
@@ -102,6 +101,21 @@ const EmojiTshirtPage = () => {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
+  const handleSearch = debounce((term) => {
+    setSearchTerm(term);
+  }, 300);
+
+  const filteredEmojis = useMemo(() => {
+    if (!emojis || !Object.keys(emojis).length) return [];
+
+    const currentGroup = Object.keys(emojis)[tabValue];
+    if (!currentGroup) return [];
+
+    return emojis[currentGroup].filter((emoji) =>
+      emoji.unicodeName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm, emojis, tabValue]);
 
   const generate = async () => {
     setLoading(true);
@@ -225,14 +239,13 @@ const EmojiTshirtPage = () => {
                 <TextField
                   label="Search Emoji"
                   variant="outlined"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => handleSearch(e.target.value)}
                   fullWidth
                 />
               </Box>
               <Tabs value={tabValue} onChange={handleTabChange} variant="scrollable" scrollButtons="auto">
-                {['Smileys & People', 'Animals & Nature', 'Food & Drink', 'Activities', 'Travel & Places', 'Objects', 'Symbols', 'Flags'].map((category, index) => (
-                  <Tab key={index} label={category} />
+                {Object.keys(emojis).map((group, index) => (
+                  <Tab key={index} label={group} />
                 ))}
               </Tabs>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2, height: 150, overflowY: 'scroll' }}>
@@ -286,7 +299,7 @@ const EmojiTshirtPage = () => {
                           border: '1px solid',
                           borderColor: color === option.value ? '#444444' : '#eaeaea',
                           borderRadius: '50%',
-                          mr: 1, // Add margin to the right to space out the circle and label
+                          mr: 1,
                         }}
                       />
                     }
