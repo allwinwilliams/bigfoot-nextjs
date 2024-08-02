@@ -55,6 +55,9 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
           case 'out':
             sketch = (p) => emojiSketch(p, canvasRef, onP5Update, color, values, "large");
             break;
+          case 'badge':
+            sketch = (p) => emojiSketch(p, canvasRef, onP5Update, color, values, "badge");
+            break;
           case 'small':
           default:
             sketch = (p) => emojiSketch(p, canvasRef, onP5Update, color, values, "tiny");

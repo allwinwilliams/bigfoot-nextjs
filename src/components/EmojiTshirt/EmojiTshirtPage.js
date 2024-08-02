@@ -301,6 +301,7 @@ const EmojiTshirtPage = () => {
                 {[
                   { value: 'tiny', label: 'Tiny' },
                   { value: 'out', label: 'Out there' },
+                  { value: 'badge', label: 'Side' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
