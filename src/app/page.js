@@ -280,7 +280,7 @@ export default function HomePage() {
             </Link>
           </Grid>
           
-          <Grid item xs={12} md={4} sx={{ display: { xs: 'flex', md: 'block' }, justifyContent: { xs: 'center' } }}>
+          <Grid item xs={6} md={4}>
             <Box>
               <Box
                 sx={{
@@ -302,7 +302,7 @@ export default function HomePage() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4} sx={{ display: { xs: 'flex', md: 'block' }, justifyContent: { xs: 'center' } }}>
+          <Grid item xs={6} md={4}>
             <Box>
               <Box
                 sx={{
