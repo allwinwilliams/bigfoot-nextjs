@@ -53,7 +53,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
             const artistNames = artists.map(artist => artist.name).join(', ');
 
             const totalDuration = analysisData.track.duration;
-            const centerX = 100;
+            const centerX = 160;
             const centerY = (canvasHeight - drawingHeight) / 5;
 
             // Determine the base hue from valence
@@ -134,17 +134,17 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
             p.textSize(40);
             p.textStyle(p.BOLD);
             nameLines.forEach((line, index) => {
-                p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 100 + index * 40);
+                p.text(line, centerX + drawingWidth / 2, centerY + drawingHeight + 100 + index * 40);
             });
 
             p.textSize(24);
             p.textStyle(p.NORMAL);
             artistLines.forEach((line, index) => {
-                p.text(line, drawingWidth / 2 + 100, centerY + drawingHeight + 150 + nameYOffset + index * 30);
+                p.text(line, centerX + drawingWidth / 2, centerY + drawingHeight + 160 + nameYOffset + index * 30);
             });
 
             if (explicit && explicitImage) {
-                p.image(explicitImage, drawingWidth / 2 - 50 + 100, centerY + drawingHeight + 200 + nameYOffset, 100, 100); // Adjust the size and position as needed
+                p.image(explicitImage, centerX + drawingWidth / 2 - 50, centerY + drawingHeight + 230 + nameYOffset, 100, 100); // Adjust the size and position as needed
             }
 
             p.textSize(24);
@@ -152,12 +152,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
             p.text(`0:00`, centerX - 50, centerY + drawingHeight / 2 + 6);
             p.text(`${durationFormatted}`, centerX + drawingWidth + 40, centerY + drawingHeight / 2 + 6);
 
-            // Draw QR Code section
-            if (qrCodeImage) {
-                const imgX = 2080 + (400 - 240) / 2; // Center the scaled down image
-                const imgY = 250 + (500 - 240) / 2;
-                p.image(qrCodeImage, imgX, imgY, 240, 240); // Scale down to 240
-            }
+            
 
             let textColor;
             if (color === 'black') {
@@ -168,11 +163,19 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
                 textColor = p.color(50);
             }
 
-            p.fill(textColor);
-            p.textSize(28);
-            p.textStyle(p.BOLD);
-            p.textAlign(p.CENTER);
-            p.text(`vibe to my jam`, 2080 + 400 / 2, 250 + 500 - 80);
+            // Draw QR Code section
+            if (qrCodeImage) {
+              const imgX = 2100 + (400 - 240) / 2; // Center the scaled down image
+              const imgY = 250 + (500 - 240) / 2;
+              p.image(qrCodeImage, imgX, imgY, 240, 240); // Scale down to 240
+              p.fill(textColor);
+              p.textSize(28);
+              p.textStyle(p.BOLD);
+              p.textAlign(p.CENTER);
+              p.text(`vibe to my jam`, 2100 + 400 / 2, 250 + 500 - 80);
+            }
+
+            
         } else {
             p.textSize(32);
             p.text('Loading...', canvasWidth / 2, canvasHeight / 4);
@@ -464,13 +467,30 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   const textGap = 30; // Reduced text gap
 
   let explicitImage;
-  let scancodeImage; // Variable to store the scancode image
+  let qrCodeImage;
 
   const hueValues = [270, 248, 212, 202, 191, 119, 61, 47, 30, 5];
 
-  p.preload = () => {
+  p.preload = async () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
-    scancodeImage = p.loadImage('/song-tshirt/scancode.png');
+    if(songData){
+      const { name, artists } = songData.details;
+      const artistNames = artists.map(artist => artist.name).join(', ');
+      const searchPhrase = `${name} ${artistNames}`;
+
+      let qrColor;
+      if (color === 'black') {
+          qrColor = '#ffffff';
+      } else if (color === 'beige') {
+          qrColor = '#050505';
+      } else {
+          qrColor = '#323232';
+      }
+
+      const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 240); // Generate at larger size
+      qrCodeImage = p.loadImage(qrCodeUrl);
+    }
+    
   };
 
   p.setup = () => {
@@ -520,14 +540,14 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
       );
 
       if (color === 'black') {
-        fillColor = p.color(200); // White fill color
-        strokeColor = p.color(baseHue, 90, 40); // White stroke color
+        fillColor = p.color(200);
+        strokeColor = p.color(baseHue, 90, 40);
       } else if (color === 'beige') {
-        fillColor = p.color(20); // Dark grey fill color
-        strokeColor = p.color(baseHue, 80, 30); // Dark grey stroke color
+        fillColor = p.color(5);
+        strokeColor = p.color(baseHue, 80, 30);
       } else {
-        fillColor = p.color(5); // Default fill color
-        strokeColor = p.color(5); // Default stroke color
+        fillColor = p.color(5);
+        strokeColor = p.color(5);
       }
 
       // Helper function to split text into lines of a given max length without breaking words
@@ -626,18 +646,16 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
     }
 
     // Draw QRCode section
-    drawQRCodeSection(1740, 400, 800, 500);
+    drawQRCodeSection(2150, 200, 800, 500);
   };
 
   const drawQRCodeSection = (x, y, width, height) => {
-    p.fill(255, 0, 0, 0);
-    p.noStroke();
-    p.rect(x, y, width, height);
-
-    if (scancodeImage) {
+    p.textSize(32);
+    if (qrCodeImage) {
       const imgX = x + 50;
       const imgY = y + 50;
-      p.image(scancodeImage, imgX, imgY);
+      p.image(qrCodeImage, imgX, imgY);
+      p.text("scan & listen with me", imgX+115, imgY + 300)
     }
   };
 };
@@ -1085,14 +1103,32 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     SongDetails: { x: 90, y: 900, w: 1300, h: 300 },
     Ranges: { x: 90, y: 1200, w: 800, h: 500 },
     Legend: { x: 890, y: 1200, w: 500, h: 500 },
-    ScanCode: { x: 1740, y: 400, w: 800, h: 500 },
+    ScanCode: { x: 2130, y: 100, w: 800, h: 500 },
   };
 
   let baseHue;
-  let explicitImage;
+  let explicitImage, qrCodeImage;
 
-  p.preload = () => {
+  p.preload = async () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
+    if(songData){
+      const { name, artists } = songData.details;
+      const artistNames = artists.map(artist => artist.name).join(', ');
+      const searchPhrase = `${name} ${artistNames}`;
+
+      let qrColor;
+      if (color === 'black') {
+          qrColor = '#ffffff';
+      } else if (color === 'beige') {
+          qrColor = '#050505';
+      } else {
+          qrColor = '#323232';
+      }
+
+      const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 240); // Generate at larger size
+      qrCodeImage = p.loadImage(qrCodeUrl);
+    }
+    
   };
 
   p.setup = () => {
@@ -1115,6 +1151,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.text('Loading...', 500, 500);
       return;
     }
+    
     baseHue = p.map(songData.features.valence, 0, 1, 200, 30);
     drawVisualAnalysis(p);
     drawSongDetails(p);
@@ -1379,10 +1416,14 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     });
   };
   
-
   const drawScanCode = (p) => {
     const { x, y, w, h } = sections.ScanCode;
-    p.fill(0, 100, 80); // Light red
-    p.rect(x, y, w, h);
+    if (qrCodeImage) {
+      const imgX = x + (400 - 200) / 2;
+      const imgY = y + (500 - 200) / 2;
+      p.image(qrCodeImage, imgX, imgY, 200, 200);
+      p.textSize(32);
+      p.text("scan to listen with me", imgX - 70, imgY + 270);
+  }
   };
 };
