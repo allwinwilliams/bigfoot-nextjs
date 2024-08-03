@@ -8,6 +8,7 @@ import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
+const RestrictedAIProductPage = dynamic(() => import('../../../components/AITshirt/RestrictedAIProductPage'), { ssr: false });
 const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/BasicTshirtPage'), { ssr: false });
 const EmojiProductPage = dynamic(() => import('../../../components/EmojiTshirt/EmojiTshirtPage'), { ssr: false });
 
@@ -25,6 +26,12 @@ export default function ProductType() {
     ComponentToRender = (
       <AiCustomiseProvider>
         <AIProductPage />
+      </AiCustomiseProvider>
+    );
+  } else if (product_category === 'prompt-generated-tshirt') {
+    ComponentToRender = (
+      <AiCustomiseProvider>
+        <RestrictedAIProductPage />
       </AiCustomiseProvider>
     );
   } else if (product_category === 'basic-tshirt') {

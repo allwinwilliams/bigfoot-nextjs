@@ -11,23 +11,31 @@ const Footer = () => {
         justifyContent: 'space-between',
         textAlign: 'left',
         padding: 4,
-        backgroundColor: '#f3f3f3',
+        backgroundColor: '#FEFEFE',
         borderRadius: 8,
         my: 4
       }}
     >
       <Box>
-        <img
-          src='/logo.png'
-          alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
-        />
-        <Typography variant="h5" gutterBottom>
-          Bigfoot Clothing
-        </Typography>
-        <Typography variant="subtitle1">
-          Conceptual Fashion
-        </Typography>
+          <Link
+          href="/"
+          sx={{
+            mb: 1,
+            textDecoration: 'none',
+            color: 'inherit',
+          }}>
+            <img
+              src='/logo.png'
+              alt='Bigfoot Logo'
+              style={{ width: 48, marginBottom: 8 }}
+            />
+            <Typography variant="h6" gutterBottom>
+              Bigfoot Clothing
+            </Typography>
+            <Typography variant="subtitle1">
+              Conceptual Fashion
+            </Typography>
+          </Link>
         <Typography variant="subtitle2" sx={{maxWidth: '260px', color: '#999999'}}>
           We are a fashion tech brand aimed to enabling people to express themselves through fashion.
         </Typography>
@@ -47,6 +55,19 @@ const Footer = () => {
           Home
         </Link>
         <Link
+          href="#"
+          variant="body2"
+          display="block"
+          sx={{
+            mb: 1,
+            textDecoration: 'none',
+            color: 'inherit',
+            fontWeight: 'medium'
+          }}
+        >
+          About Us
+        </Link>
+        <Link
           href="/product"
           variant="body2"
           display="block"
@@ -60,7 +81,7 @@ const Footer = () => {
           Product
         </Link>
         <Link
-          href="/static-pages/contact"
+          href="/static-pages/contactus"
           variant="body2"
           display="block"
           sx={{

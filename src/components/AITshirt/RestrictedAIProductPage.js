@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, Typography, Grid, Chip, Button,
   Tooltip, CircularProgress, Link,
-  useTheme, TextField, InputAdornment
+  useTheme, TextField, InputAdornment, MenuItem, FormControl, Select
 } from '@mui/material';
 import { AiCustomiseContext } from '../../context/AiCustomiseProvider';
 import ThreeScene from '../ThreeScene';
@@ -20,7 +20,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SizeChart from '../SizeChart';
 
-const AiProductPage = () => {
+const RestrictedAiProductPage = () => {
   const theme = useTheme();
   const { generateImage, prompt, details } = useContext(AiCustomiseContext);
   const router = useRouter();
@@ -31,8 +31,10 @@ const AiProductPage = () => {
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
-  const [inputPrompt, setInputPrompt] = useState(searchParams.get('prompt') || ''); // Local state for input
-  const [style, setStyle] = useState(searchParams.get('style') || 'Anime');
+  const [subject, setSubject] = useState(searchParams.get('subject') || 'A cat');
+  const [action, setAction] = useState(searchParams.get('action') || 'sitting on a');
+  const [location, setLocation] = useState(searchParams.get('location') || 'mountaintop');
+  const [style, setStyle] = useState(searchParams.get('style') || 'Hokusai');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
@@ -41,16 +43,20 @@ const AiProductPage = () => {
     const defaultParams = {
       color: 'black',
       size: 'M',
-      prompt: '',
-      style: 'Anime',
+      subject: 'A cat',
+      action: 'sitting on a',
+      location: 'mountaintop',
+      style: 'Hokusai',
     };
 
-    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('prompt') || !searchParams.get('style')) {
-      router.push(`/product/ai-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&prompt=${inputPrompt || defaultParams.prompt}&style=${style || defaultParams.style}`);
+    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('subject') || !searchParams.get('action') || !searchParams.get('location') || !searchParams.get('style')) {
+      router.push(`/product/prompt-generated-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&subject=${subject || defaultParams.subject}&action=${action || defaultParams.action}&location=${location || defaultParams.location}&style=${style || defaultParams.style}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
-      setInputPrompt(searchParams.get('prompt') || defaultParams.prompt);
+      setSubject(searchParams.get('subject') || defaultParams.subject);
+      setAction(searchParams.get('action') || defaultParams.action);
+      setLocation(searchParams.get('location') || defaultParams.location);
       setStyle(searchParams.get('style') || defaultParams.style);
     }
 
@@ -62,27 +68,37 @@ const AiProductPage = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${event.target.value}&size=${size}&prompt=${inputPrompt}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${event.target.value}&size=${size}&subject=${subject}&action=${action}&location=${location}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${size}&prompt=${inputPrompt}&style=${event.target.value}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${location}&style=${event.target.value}`);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/ai-tshirt?color=${color}&size=${event.target.value}&prompt=${inputPrompt}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${event.target.value}&subject=${subject}&action=${action}&location=${location}&style=${style}`);
   };
 
-  const handlePromptChange = (event) => {
-    setInputPrompt(event.target.value);
+  const handleSubjectChange = (event) => {
+    setSubject(event.target.value);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${event.target.value}&action=${action}&location=${location}&style=${style}`);
+  };
+
+  const handleActionChange = (event) => {
+    setAction(event.target.value);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${event.target.value}&location=${location}&style=${style}`);
+  };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${event.target.value}&style=${style}`);
   };
 
   const generate = async () => {
     setLoading(true);
-    // changePrompt(inputPrompt);
-    const fullPrompt = `${inputPrompt} in the style of ${style}`;
+    const fullPrompt = `${subject} ${action} ${location} in the style of ${style}`;
     await generateImage(fullPrompt);
     setLoading(false);
   };
@@ -97,7 +113,7 @@ const AiProductPage = () => {
     if (navigator.share) {
       navigator.share(shareData).then(() => {
         // console.log('Thanks for sharing!');
-      }).catch((error) => {
+      }).catch(error => {
         console.error('Error sharing:', error);
       });
     } else {
@@ -106,9 +122,6 @@ const AiProductPage = () => {
       setTimeout(() => setTooltipOpen(false), 2000);
     }
   };
-  
-  
-
   return (
     <Box
       sx={{
@@ -181,7 +194,6 @@ const AiProductPage = () => {
           >
             <ThreeScene
               color={color}
-              // data={{ type: 'ai', values: details }}
               type='ai'
               values={details}
               style={style}
@@ -209,58 +221,39 @@ const AiProductPage = () => {
                 <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
                   Customise with a prompt
                 </Typography>
-                <TextField
-                  placeholder="Enter your prompt..."
-                  variant="outlined"
-                  value={inputPrompt}
-                  onChange={handlePromptChange}
-                  disabled={loading}
-                  fullWidth
-                  inputProps={{ maxLength: 30 }}
-                  sx={{
-                    mb: 2,
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '16px',
-                    },
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      borderRadius: '16px',
-                    },
-                  }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <NotesIcon sx={{ color: 'grey' }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                  Choose your style
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                  {[
-                    { value: 'Popart', label: 'Pop' },
-                    { value: 'Hokusai', label: 'Hokusai' },
-                    { value: 'Anime', label: 'Anime' },
-                    { value: 'Lineart', label: 'Line' },
-                  ].map((option) => (
-                    <Chip
-                      key={option.value}
-                      label={option.label}
-                      clickable
-                      disabled={loading}
-                      color={style === option.value ? 'primary' : 'default'}
-                      variant={style === option.value ? 'filled' : 'outlined'}
-                      onClick={() => handleStyleChange({ target: { value: option.value } })}
-                      sx={{
-                        padding: '24px 12px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        borderRadius: '9999px',
-                      }}
-                    />
-                  ))}
-                </Box>
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                  <Select value={subject} onChange={handleSubjectChange} displayEmpty>
+                    <MenuItem value="A cat">A cat</MenuItem>
+                    <MenuItem value="A dog">A dog</MenuItem>
+                    <MenuItem value="A Strawberry">A strawberry</MenuItem>
+                    <MenuItem value="A Robot">A robot</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                  <Select value={action} onChange={handleActionChange} displayEmpty>
+                    <MenuItem value="sitting on a">sitting on a</MenuItem>
+                    <MenuItem value="walking on a">walking on a</MenuItem>
+                    <MenuItem value="lying on a">lying on a</MenuItem>
+                    <MenuItem value="watching a">watching a</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                  <Select value={location} onChange={handleLocationChange} displayEmpty>
+                    <MenuItem value="mountaintop">mountaintop</MenuItem>
+                    <MenuItem value="beach">beach</MenuItem>
+                    <MenuItem value="forest">forest</MenuItem>
+                    <MenuItem value="city skyline">city skyline</MenuItem>
+                  </Select>
+                </FormControl>
+                <Typography>in the style of</Typography>
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                  <Select value={style} onChange={handleStyleChange} displayEmpty>
+                    <MenuItem value="Hokusai">Hokusai</MenuItem>
+                    <MenuItem value="Popart">Popart</MenuItem>
+                    <MenuItem value="Van Gogh">Van Gogh</MenuItem>
+                    <MenuItem value="Monet">Monet</MenuItem>
+                  </Select>
+                </FormControl>
                 <Button
                   variant="contained"
                   color="primary"
@@ -395,4 +388,4 @@ const AiProductPage = () => {
   );
 };
 
-export default AiProductPage;
+export default RestrictedAiProductPage;

@@ -272,7 +272,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={4}>
             <Link 
-              href="/product/ai-tshirt" 
+              href="/product/prompt-generated-tshirt" 
               underline="none"
               onClick={(e) => {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');

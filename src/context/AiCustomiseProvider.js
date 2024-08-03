@@ -9,10 +9,8 @@ export const AiCustomiseProvider = ({ children }) => {
   // const [prompt, setPrompt] = useState('');
   const [details, setDetails, style] = useState({prompt: '', imageData: '', style: ''});
 
-  const generateImage = async (prompt, style = 'Popart') => {
+  const generateImage = async (prompt) => {
     setDetails({prompt: prompt, imageData: ''});
-    let constructedPrompt = `${prompt} in the style of ${style}`;
-    console.log("constructedPrompt", constructedPrompt);
     const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
     try {
       const response = await fetch('https://api.openai.com/v1/images/generations', {
@@ -23,7 +21,7 @@ export const AiCustomiseProvider = ({ children }) => {
         },
         body: JSON.stringify({
           model: "dall-e-3",
-          prompt: constructedPrompt,
+          prompt: prompt,
           n: 1,
           size: "1024x1024",
           quality: "standard",
