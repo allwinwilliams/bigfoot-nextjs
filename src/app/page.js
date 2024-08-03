@@ -32,26 +32,6 @@ export default function HomePage() {
     100% { transform: translate(0, 0); }
   `;
 
-  useEffect(() => {
-    const handleUserInteraction = () => {
-      const audio = new Audio('https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3');
-      audio.volume = 0.05;
-      audio.loop = true;
-      audio.play().then(() => {
-        console.log('Audio started playing');
-      }).catch(error => {
-        console.error('Error playing audio:', error);
-      });
-      document.removeEventListener('click', handleUserInteraction);
-    };
-
-    document.addEventListener('click', handleUserInteraction);
-
-    return () => {
-      document.removeEventListener('click', handleUserInteraction);
-    };
-  }, []);
-
   return (
     <Box
       sx={{
@@ -203,7 +183,7 @@ export default function HomePage() {
           The Range
         </Typography>
         <Grid container spacing={4}>
-          <Grid item xs={6} md={2.4}>
+          <Grid item xs={6} md={4}>
             <Link href="/product/songtshirt" underline="none">
               <Box>
                 <Box
@@ -219,15 +199,15 @@ export default function HomePage() {
                   <img src="/landing-page/song.png" alt="Song customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Customise with a Song
+                  🎵 Style Your Song
                 </Typography>
                 <Typography variant="subtitle1">
-                  Select a song to visualise
+                  Design with your favorite song.
                 </Typography>
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={2.4}>
+          <Grid item xs={6} md={4}>
             <Link href="/product/ai-tshirt" underline="none">
               <Box>
                 <Box
@@ -243,39 +223,15 @@ export default function HomePage() {
                   <img src="/landing-page/ai.png" alt="AI customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Draw with a prompt
+                  🖌️ Draw with a Prompt
                 </Typography>
                 <Typography variant="subtitle1">
-                  You art, Your prompt
+                  Your idea and style generated
                 </Typography>
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={2.4}>
-            <Link href="/product/basic-tshirt" underline="none">
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.8s',
-                    opacity: 0.96,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
-                </Box>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Bigfoot Basics
-                </Typography>
-                <Typography variant="subtitle1">
-                  Way forward
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={6} md={2.4}>
+          <Grid item xs={6} md={4}>
             <Link href="/product/emoji-tshirt" underline="none">
               <Box>
                 <Box
@@ -291,33 +247,80 @@ export default function HomePage() {
                   <img src="/landing-page/emoji.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Emoji Tshirt
+                  😊 Express with Emojis
                 </Typography>
                 <Typography variant="subtitle1">
-                  Design with Emoji and short text
+                  Design with emoji and short text
                 </Typography>
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={12} md={2.4} sx={{ display: { xs: 'flex', md: 'block' }, justifyContent: { xs: 'center' } }}>
+          <Grid item xs={6} md={4}>
+            <Link href="/product/basic-tshirt" underline="none">
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.96,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                  🎨 Bigfoot The Brand
+                </Typography>
+                <Typography variant="subtitle1">
+                  Make Bigfoot yours
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          
+          <Grid item xs={12} md={4} sx={{ display: { xs: 'flex', md: 'block' }, justifyContent: { xs: 'center' } }}>
+            <Box>
+              <Box
+                sx={{
+                  transition: 'transform 0.8s',
+                  opacity: 0.3,
+                  '&:hover': {
+                    transform: 'scaleX(-1)',
+                    opacity: 0.6,
+                  },
+                }}
+              >
+                <img src="/landing-page/launch.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                Launching soon
+              </Typography>
+              <Typography variant="subtitle1">
+                Check within a few days
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4} sx={{ display: { xs: 'flex', md: 'block' }, justifyContent: { xs: 'center' } }}>
             <Box>
               <Box
                 sx={{
                   transition: 'transform 0.8s',
                   opacity: 0.6,
                   '&:hover': {
-                      transform: 'rotate(360deg)',
-                      opacity: 1.0,
+                    transform: 'scaleX(-1)',
+                    opacity: 1.0,
                   },
                 }}
               >
                 <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
               </Box>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                More...
+                🧪 More Coming Soon
               </Typography>
               <Typography variant="subtitle1">
-                in our labs 🧪
+                Our lab is cooking...
               </Typography>
             </Box>
           </Grid>

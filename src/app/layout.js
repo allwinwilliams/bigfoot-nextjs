@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
 import { Container } from '@mui/material';
+import AudioControl from '../components/AudioControl';
 
 export default function RootLayout({ children }) {
   return (
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         <Container>
           <Footer />
         </Container>
+        <AudioControl />
       </body>
     </html>
   );

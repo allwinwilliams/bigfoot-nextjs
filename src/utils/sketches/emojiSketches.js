@@ -19,7 +19,7 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
         p.textAlign(p.CENTER, p.CENTER);
         p.textStyle(p.BOLD);
         if(style == "tiny"){    
-            p.textSize(200);
+            p.textSize(190);
             selectedEmoji && p.text(selectedEmoji, 750, 500);
         } if(style == "large"){
             p.textSize(650);
@@ -36,7 +36,7 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
       } else if (color === 'grey') {
         p.fill(5);
       } else if (color === 'white') {
-        p.fill(20);
+        p.fill(5);
       } else {
         p.fill(50);
       }
@@ -45,13 +45,13 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
       
       
       if(style == "tiny"){    
-        p.textSize(32);
+        p.textSize(38);
         p.textStyle(p.NORMAL);
-        p.text(textInput || '', 750, 650);
+        p.text(textInput || '', 750, 660);
       } else if(style == "large"){
         p.textStyle(p.BOLD);
-        p.textSize(48);
-        p.text(textInput || '', 750, 900);
+        p.textSize(56);
+        p.text(textInput || '', 750, 920);
       } else if(style == "badge"){
         p.textStyle(p.BOLD);
         p.textSize(28);
