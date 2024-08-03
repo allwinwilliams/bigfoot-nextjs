@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
 import SongProductStaticContent from '../components/ProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
@@ -11,6 +11,7 @@ import { Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
 import { keyframes } from '@mui/system';
 
+import {handlePlayClick} from '../components/AudioControl';
 
 export default function HomePage() {
 
@@ -24,9 +25,9 @@ export default function HomePage() {
 
   const moveLight = keyframes`
     0% { transform: translate(0, 0); }
-    25% { transform: translate(5%, 0); }
+    25% { transform: translate(5%, 2%); }
     40% { transform: translate(10%, 0); }
-    65% { transform: translate(-10%, 0); }
+    65% { transform: translate(-10%, 10%); }
     80% { transform: translate(15%, 0); }
     90% { transform: translate(-10%, 0); }
     100% { transform: translate(0, 0); }
@@ -76,7 +77,6 @@ export default function HomePage() {
     { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
     { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
   ];
-  
 
   return (
     <Box
@@ -95,7 +95,7 @@ export default function HomePage() {
             borderRadius: '32px',
             filter: 'blur(16px)',
             position: 'absolute',
-            animation: `${colorChange} 5s infinite, ${moveLight} 8s infinite`,
+            animation: `${colorChange} 7s infinite, ${moveLight} 9s infinite`,
           }}
         ></Box>
         <Box
@@ -106,7 +106,7 @@ export default function HomePage() {
             borderRadius: '50%',
             filter: 'blur(24px)',
             position: 'absolute',
-            animation: `${colorChange} 2s infinite, ${moveLight} 4s infinite`,
+            animation: `${colorChange} 3s infinite, ${moveLight} 4s infinite`,
           }}
         ></Box>
       </Box>
@@ -194,11 +194,15 @@ export default function HomePage() {
                       width: '100%',
                       background: 'white',
                       justifyContent: 'center',
-                      scrollBehavior: 'smooth',
                       background: 'linear-gradient(0deg, #999999 0%, #FFFFFF 50%)',
                       backgroundSize: '600% 600%',
                       animation: 'backgroundMovement 4s ease infinite',  
-                    }} 
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                      document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >
                     Craft Yours Now
                   </Button>
@@ -234,7 +238,16 @@ export default function HomePage() {
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={6} md={4}>
-            <Link href="/product/songtshirt" underline="none">
+            <Link
+              href="/product/songtshirt"
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+              }}  
+            >
               <Box>
                 <Box
                   sx={{
@@ -258,7 +271,16 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Link href="/product/ai-tshirt" underline="none">
+            <Link 
+              href="/product/ai-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+              }}  
+            >
               <Box>
                 <Box
                   sx={{
@@ -282,7 +304,16 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Link href="/product/emoji-tshirt" underline="none">
+            <Link
+              href="/product/emoji-tshirt"
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+              }}
+            >
               <Box>
                 <Box
                   sx={{
@@ -306,7 +337,16 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={4}>
-            <Link href="/product/basic-tshirt" underline="none">
+            <Link
+              href="/product/basic-tshirt"
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+              }}
+            >
               <Box>
                 <Box
                   sx={{

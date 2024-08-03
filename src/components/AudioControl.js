@@ -9,7 +9,6 @@ const AudioControl = () => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  
   useEffect(() => {
     const handleUserInteraction = () => {
       if (audioRef.current) {
@@ -34,10 +33,10 @@ const AudioControl = () => {
 
   const handlePlayPause = () => {
     if (audioRef.current) {
+      audioRef.current.volume = 0.01;
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.volume = 0.05;
         audioRef.current.play().catch(error => {
           console.error('Error playing audio:', error);
         });
@@ -48,7 +47,7 @@ const AudioControl = () => {
 
   return (
     <>
-      <audio ref={audioRef} src="https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3" loop volume="0.05" />
+      <audio ref={audioRef} src="https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3" loop />
       <IconButton
         onClick={handlePlayPause}
         sx={{
@@ -66,6 +65,14 @@ const AudioControl = () => {
       </IconButton>
     </>
   );
+};
+
+export const handlePlayClick = (audioUrl = 'https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3') => {
+  const audio = new Audio(audioUrl);
+  audio.volume = 0.8;
+  audio.play().catch(error => {
+    console.error('Error playing audio:', error);
+  });
 };
 
 export default AudioControl;
