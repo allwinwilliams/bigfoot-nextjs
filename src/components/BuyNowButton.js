@@ -4,12 +4,14 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Button, CircularProgress, Box, Typography } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import NotesIcon from '@mui/icons-material/Notes';
+import {handlePlayClick} from '../components/AudioControl';
 
 const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, songName, storage, db }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
 
   const handleBuyNow = async () => {
     setBuyNowLoading(true);
+    handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
     try {
       const canvas = document.getElementById('p5-canvas');
       const canvasDataUrl = canvas.toDataURL('image/png');

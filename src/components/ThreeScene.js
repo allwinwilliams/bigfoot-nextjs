@@ -216,7 +216,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
 
         .tooltip-container {
           position: absolute;
-          top: 16px;
+          top: 20%;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
@@ -226,7 +226,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           padding: 10px 20px;
           border-radius: 10px;
           opacity: 0;
-          animation: fadeInOut 3s ease 2s;
+          animation: fadeInOut 4s ease 2s;
         }
 
         @keyframes fadeInOut {
