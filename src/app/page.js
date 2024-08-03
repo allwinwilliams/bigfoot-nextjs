@@ -200,7 +200,7 @@ export default function HomePage() {
                     }}
                     onClick={(e) => {
                       e.preventDefault();
-                      handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                      handlePlayClick('https://cdn.freesound.org/previews/107/107789_1727136-lq.mp3');
                       document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
@@ -245,8 +245,9 @@ export default function HomePage() {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
               }}
               onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+                handlePlayClick('https://cdn.freesound.org/previews/488/488154_10350281-lq.mp3');
               }}  
+              
             >
               <Box>
                 <Box
@@ -278,7 +279,7 @@ export default function HomePage() {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
               }}
               onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
               }}  
             >
               <Box>
@@ -311,7 +312,7 @@ export default function HomePage() {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
               }}
               onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+                handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3');
               }}
             >
               <Box>
@@ -344,7 +345,7 @@ export default function HomePage() {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
               }}
               onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/23/23849_149377-lq.mp3');
+                handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
               }}
             >
               <Box>
@@ -361,10 +362,10 @@ export default function HomePage() {
                   <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  🎨 Bigfoot The Brand
+                  🎨 Bigfoot Basics
                 </Typography>
                 <Typography variant="subtitle1">
-                  Make Bigfoot yours
+                  From Bigfoot The Brand
                 </Typography>
               </Box>
             </Link>
@@ -381,6 +382,9 @@ export default function HomePage() {
                     opacity: 0.6,
                   },
                 }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                }}  
               >
                 <img src="/landing-page/launch.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
               </Box>
@@ -403,6 +407,9 @@ export default function HomePage() {
                     opacity: 1.0,
                   },
                 }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                }}  
               >
                 <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
               </Box>
