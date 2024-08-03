@@ -1022,10 +1022,12 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     analysisData.segments.forEach((segment) => {
       const xPos = p.map(segment.start, 0, totalDuration, x, x + drawingWidth);
       const loudness = segment.loudness_max;
-      const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
-      p.stroke(strokeColor);
-      p.strokeWeight(2);
-      p.line(xPos, y + (drawingHeight / 2) - lineHeight / 2, xPos, y + (drawingHeight / 2) + lineHeight / 2);
+      if(loudness > -50){
+        const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
+        p.stroke(strokeColor);
+        p.strokeWeight(0.4);
+        p.line(xPos, y + (drawingHeight / 2) - lineHeight / 2, xPos, y + (drawingHeight / 2) + lineHeight / 2);
+      }
     });
 
     // Convert duration to MM:SS format
