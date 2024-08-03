@@ -32,7 +32,7 @@ const EmojiTshirtPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEmoji, setSelectedEmoji] = useState(searchParams.get('slug') || 'e0-6-grinning-face-with-big-eyes');
   const [emojiCharacter, setEmojiCharacter] = useState('');
-  const [textInput, setTextInput] = useState(searchParams.get('text') || 'Hello');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || ' ');
   const [tabValue, setTabValue] = useState(0);
 
   const initialLoad = useRef(true);
@@ -67,7 +67,7 @@ const EmojiTshirtPage = () => {
       size: 'M',
       style: 'tiny',
       slug: 'e0-6-grinning-face-with-big-eyes',
-      text: 'Hello',
+      text: '',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style') || !searchParams.get('slug') || !searchParams.get('text')) {
