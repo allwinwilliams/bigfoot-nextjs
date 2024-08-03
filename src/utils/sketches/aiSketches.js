@@ -35,16 +35,16 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
     p.redraw();
   };
 
-  intervalId = setInterval(() => {
-    if (!values || values.imageData == '') {
-      console.log("Loading image..");
-      p.redraw();
-      onP5Update();
-    } else {
-      clearInterval(intervalId);
-      p.myCustomRedrawAccordingToNewPropsHandler(values);
-    }
-  }, 1200);
+  // intervalId = setInterval(() => {
+  //   if (!values || values.imageData == '') {
+  //     console.log("Loading image..");
+  //     p.redraw();
+  //     // onP5Update();
+  //   } else {
+  //     clearInterval(intervalId);
+  //     p.myCustomRedrawAccordingToNewPropsHandler(values);
+  //   }
+  // }, 1200);
   
   const drawImageSection = (x, y, drawingWidth, drawingHeight) => {
     console.log('Drawing image section');
@@ -117,8 +117,8 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
 
       p.noStroke();
       p.textAlign(p.CENTER);
-      p.textSize(32);
-      p.textStyle(p.BOLD);
+      p.textSize(28);
+      p.textStyle(p.NORMAL);
       console.log('Drawing text');
       console.log('Prompt:', prompt);
       p.text(prompt, 740, 950);

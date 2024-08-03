@@ -30,7 +30,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
             break;
         }
       }
-      if(type == "ai"){
+      if(type == "ai" || type == "prompt"){
         sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values);
       }
       if(type == "basic"){

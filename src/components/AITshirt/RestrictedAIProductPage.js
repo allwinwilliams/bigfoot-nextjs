@@ -163,7 +163,7 @@ const RestrictedAiProductPage = () => {
             fontWeight: 'bold'
           }}
         >
-          AI Generated Art T-shirt - Oversized Fit
+          🖌️ Painted with Prompt T-shirt - Oversized Fit
         </Typography>
         <Typography 
           variant='subtitle1'
@@ -194,7 +194,7 @@ const RestrictedAiProductPage = () => {
           >
             <ThreeScene
               color={color}
-              type='ai'
+              type='prompt'
               values={details}
               style={style}
               loading={loading}
@@ -219,7 +219,7 @@ const RestrictedAiProductPage = () => {
                 boxShadow: '0 0 8px rgba(0,0,0,0.06)',
                 }}>
                 <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                  Customise with a prompt
+                  Construct your prompt
                 </Typography>
                 <FormControl fullWidth sx={{ mb: 2 }}>
                   <Select value={subject} onChange={handleSubjectChange} displayEmpty>
@@ -356,7 +356,7 @@ const RestrictedAiProductPage = () => {
                   color={color}
                   size={size}
                   style={style}
-                  type="AI"
+                  type="Prompt"
                   prompt={prompt}
                   storage={storage}
                   db={db}
@@ -367,16 +367,21 @@ const RestrictedAiProductPage = () => {
                     color="primary"
                     fullWidth
                     size="large"
-                    disabled="true"
                     sx={{
                       padding: '12px',
                       fontWeight: 'bold',
+                      width: '100%',
                       borderRadius: '16px',
                       textTransform: 'none',
                     }}
                     onClick={handleShare}
                   >
-                    Generated everytime. Can't share exact one.
+                    <Box sx={{ textAlign: 'center' }}>
+                      Share Your Prompt (Exact design is not saved)
+                      <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
+                        Once you leave the page, the design is gone forever
+                      </Typography>
+                    </Box>
                   </Button>
                 </Tooltip>
               </Box>
