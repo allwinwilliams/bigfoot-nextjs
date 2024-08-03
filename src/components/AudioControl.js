@@ -47,7 +47,7 @@ const AudioControl = () => {
 
   return (
     <>
-      <audio ref={audioRef} src="https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3" loop />
+      <audio ref={audioRef} src="/landing-page/bigfoot-bg.wav" loop />
       <IconButton
         onClick={handlePlayPause}
         sx={{
