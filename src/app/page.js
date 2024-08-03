@@ -32,6 +32,52 @@ export default function HomePage() {
     100% { transform: translate(0, 0); }
   `;
 
+  const sampleData1 = [
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=7MJQ9Nfxzh8LPZ9e9u68Fq&style=concert' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=black&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=black&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=black&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=beige&size=M&songId=3z8h0TU7ReDPLIbEnYhWZb&style=analysis' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=concert' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=beige&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
+  ];
+  
+  const sampleData2 = [
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=7MJQ9Nfxzh8LPZ9e9u68Fq&style=concert' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=black&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=black&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=black&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=beige&size=M&songId=3z8h0TU7ReDPLIbEnYhWZb&style=analysis' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=concert' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=beige&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
+  ];
+  
+  const sampleData3 = [
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=7MJQ9Nfxzh8LPZ9e9u68Fq&style=concert' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=black&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=black&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=black&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=minimal' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=beige&size=M&songId=3z8h0TU7ReDPLIbEnYhWZb&style=analysis' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=concert' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=beige&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
+    { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
+  ];
+  
+
   return (
     <Box
       sx={{
@@ -162,7 +208,11 @@ export default function HomePage() {
         </Box>
 
       </Container>
-      <AutoScrollCards />
+      <AutoScrollCards 
+        itemsRow1={sampleData1}
+        itemsRow2={sampleData2}
+        itemsRow3={sampleData3}
+      />
       <Box
         id="the-range"
         sx={{

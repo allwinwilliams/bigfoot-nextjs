@@ -135,16 +135,16 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
       <Canvas
         id="three-canvas"
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 0.5, 3], fov: 70, near: 0.001, far: 100 }}
-        style={{ height: '100%', width: '100%', background: '#f7f7f7' }}
+        camera={{ position: [0, 0.2, 4], fov: 70, near: 0.001, far: 100 }}
+        style={{ height: '100%', width: '100%', background: '#F9F9F9' }}
       >
-        <ambientLight intensity={2} color="#fdfdfd" />
+        <ambientLight intensity={3} color="#FFFFFF" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
           position={[2, 3, 5]}
           angle={1}
-          penumbra={0.9}
-          intensity={7}
+          penumbra={1.0}
+          intensity={3}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
@@ -156,7 +156,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[-2, 2, 4]} intensity={8} />
+        <pointLight position={[-2, 2, 4]} intensity={16} />
         <pointLight position={[-1, 3, -3]} intensity={12} />
         <TshirtModel
           color={color}
@@ -164,7 +164,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           triggerAnimation={triggerAnimation}
           triggerLoadingAnimation={loading}
         />
-        <GroundPlane position={[0, -1.7, 0]} />
+        <GroundPlane position={[0, -1.75, 0]} />
         <OrbitControls
           maxPolarAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 10}
