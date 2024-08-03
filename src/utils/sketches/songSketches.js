@@ -1103,8 +1103,8 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   const sections = {
     VisualAnalysis: { x: 90, y: 200, w: 1300, h: 700 },
     SongDetails: { x: 90, y: 900, w: 1300, h: 300 },
-    Ranges: { x: 90, y: 1200, w: 800, h: 500 },
-    Legend: { x: 890, y: 1200, w: 500, h: 500 },
+    Ranges: { x: 90, y: 1250, w: 800, h: 500 },
+    Legend: { x: 890, y: 1250, w: 500, h: 500 },
     ScanCode: { x: 2130, y: 100, w: 800, h: 500 },
   };
 
@@ -1158,7 +1158,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     drawVisualAnalysis(p);
     drawSongDetails(p);
     drawRanges(p);
-    drawLegend(p);
+    // drawLegend(p);
     drawScanCode(p);
     
   };
@@ -1301,14 +1301,14 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     const parameters = [
       { name: 'Danceability', value: features.danceability, lowLabel: 'Sit down', highLabel: 'Dance' },
       { name: 'Energy', value: features.energy, lowLabel: 'Low energy', highLabel: 'High energy' },
-      { name: 'Loudness', value: p.map(features.loudness, -60, 0, 0, 1), lowLabel: 'Quite', highLabel: 'Loud' },
+      // { name: 'Loudness', value: p.map(features.loudness, -60, 0, 0, 1), lowLabel: 'Quite', highLabel: 'Loud' },
       { name: 'Valence', value: features.valence, lowLabel: 'Sad', highLabel: 'Happy' },
-      { name: 'Acousticness', value: 1 - features.acousticness, lowLabel: 'Acoustic', highLabel: 'Electronic' },
+      // { name: 'Acousticness', value: 1 - features.acousticness, lowLabel: 'Acoustic', highLabel: 'Electronic' },
     ];
   
-    const lineHeight = 10;
-    const gapBetweenLines = 70;
-    const lineStartX = x + 150;
+    const lineHeight = 8;
+    const gapBetweenLines = 60;
+    const lineStartX = x + 250;
     const lineEndX = x + w - 200;
     
     // p.fill(6, 10, 8);
@@ -1322,7 +1322,6 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
       const lineY = y + 20 + index * gapBetweenLines;
   
       p.stroke(150, 0, 20);
-      
       p.strokeWeight(lineHeight);
       p.line(lineStartX, lineY, lineEndX, lineY);
   
