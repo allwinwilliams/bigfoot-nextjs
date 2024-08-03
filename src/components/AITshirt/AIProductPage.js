@@ -373,6 +373,7 @@ const AiProductPage = () => {
                     color="primary"
                     fullWidth
                     size="large"
+                    disabled="true"
                     sx={{
                       padding: '12px',
                       fontWeight: 'bold',
@@ -381,7 +382,7 @@ const AiProductPage = () => {
                     }}
                     onClick={handleShare}
                   >
-                    Share Now
+                    Generated everytime. Can't share exact one.
                   </Button>
                 </Tooltip>
               </Box>

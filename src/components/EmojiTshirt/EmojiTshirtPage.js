@@ -6,14 +6,12 @@ import {
   Box, Typography, Grid, Chip, Button,
   Tooltip, Link, useTheme, Tabs, Tab, TextField
 } from '@mui/material';
-import RefreshIcon from '@mui/icons-material/RefreshOutlined';
+
 import ThreeScene from '../ThreeScene';
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
-import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+
 import SizeChart from '../SizeChart';
 import BuyNowButton from '../BuyNowButton';
-import Razorpay from 'razorpay';
 import debounce from 'lodash.debounce';
 
 const EmojiTshirtPage = () => {
@@ -25,15 +23,16 @@ const EmojiTshirtPage = () => {
   const [loading, setLoading] = useState(false);
   const [renderCount, setRenderCount] = useState(0);
 
-  const [color, setColor] = useState(searchParams.get('color') || 'black');
+  const [color, setColor] = useState(searchParams.get('color') || 'white');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [style, setStyle] = useState(searchParams.get('style') || 'tiny');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const [emojis, setEmojis] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedEmoji, setSelectedEmoji] = useState(null);
-  const [textInput, setTextInput] = useState('');
+  const [selectedEmoji, setSelectedEmoji] = useState(searchParams.get('slug') || 'e0-6-grinning-face-with-big-eyes');
+  const [emojiCharacter, setEmojiCharacter] = useState('');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || 'Hello');
   const [tabValue, setTabValue] = useState(0);
 
   const initialLoad = useRef(true);
@@ -64,17 +63,21 @@ const EmojiTshirtPage = () => {
 
   useEffect(() => {
     const defaultParams = {
-      color: 'black',
+      color: 'white',
       size: 'M',
       style: 'tiny',
+      slug: 'e0-6-grinning-face-with-big-eyes',
+      text: 'Hello',
     };
 
-    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style')) {
-      router.push(`/product/emoji-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&style=${style || defaultParams.style}`);
+    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style') || !searchParams.get('slug') || !searchParams.get('text')) {
+      router.push(`/product/emoji-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&style=${style || defaultParams.style}&slug=${selectedEmoji || defaultParams.slug}&text=${textInput || defaultParams.text}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
       setStyle(searchParams.get('style') || defaultParams.style);
+      setSelectedEmoji(searchParams.get('slug') || defaultParams.slug);
+      setTextInput(searchParams.get('text') || defaultParams.text);
     }
 
     if (initialLoad.current) {
@@ -83,19 +86,48 @@ const EmojiTshirtPage = () => {
     }
   }, [searchParams, router]);
 
+  useEffect(() => {
+    if (emojis) {
+      const groupKeys = Object.keys(emojis);
+      for (let i = 0; i < groupKeys.length; i++) {
+        const group = groupKeys[i];
+        const foundEmoji = emojis[group].find(emoji => emoji.slug === selectedEmoji);
+        if (foundEmoji) {
+          setEmojiCharacter(foundEmoji.character);
+          break;
+        }
+      }
+    }
+  }, [selectedEmoji, emojis]);
+
+  const updateUrlParams = (params) => {
+    const updatedParams = new URLSearchParams(searchParams.toString());
+    Object.keys(params).forEach((key) => {
+      if (params[key]) {
+        updatedParams.set(key, params[key]);
+      } else {
+        updatedParams.delete(key);
+      }
+    });
+    router.push(`/product/emoji-tshirt?${updatedParams.toString()}`);
+  };
+
   const handleColorChange = (event) => {
-    setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/emoji-tshirt?color=${event.target.value}&size=${size}&style=${style}`);
+    const newColor = event.target.value;
+    setColor(newColor);
+    updateUrlParams({ color: newColor });
   };
 
   const handleStyleChange = (event) => {
-    setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/emoji-tshirt?color=${color}&size=${size}&style=${event.target.value}`);
+    const newStyle = event.target.value;
+    setStyle(newStyle);
+    updateUrlParams({ style: newStyle });
   };
 
   const handleSizeChange = (event) => {
-    setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/emoji-tshirt?color=${color}&size=${event.target.value}&style=${style}`);
+    const newSize = event.target.value;
+    setSize(newSize);
+    updateUrlParams({ size: newSize });
   };
 
   const handleTabChange = (event, newValue) => {
@@ -116,6 +148,17 @@ const EmojiTshirtPage = () => {
       emoji.unicodeName.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm, emojis, tabValue]);
+
+  const handleEmojiClick = (emoji) => {
+    setSelectedEmoji(emoji.slug);
+    updateUrlParams({ slug: emoji.slug });
+  };
+
+  const handleTextInputChange = (e) => {
+    const newText = e.target.value;
+    setTextInput(newText);
+    updateUrlParams({ text: newText });
+  };
 
   const generate = async () => {
     setLoading(true);
@@ -217,7 +260,7 @@ const EmojiTshirtPage = () => {
             <ThreeScene
               color={color}
               type='emoji'
-              values={{ renderCount, selectedEmoji, textInput }}
+              values={{ renderCount, selectedEmoji: emojiCharacter, textInput }}
               style={style}
               loading={loading}
             />
@@ -253,7 +296,7 @@ const EmojiTshirtPage = () => {
                   <Chip
                     key={emoji.unicodeName}
                     label={emoji.character}
-                    onClick={() => setSelectedEmoji(emoji.character)}
+                    onClick={() => handleEmojiClick(emoji)}
                     sx={{ fontSize: '24px', padding: '8px' }}
                   />
                 ))}
@@ -264,7 +307,7 @@ const EmojiTshirtPage = () => {
                   variant="outlined"
                   fullWidth
                   value={textInput}
-                  onChange={(e) => setTextInput(e.target.value)}
+                  onChange={handleTextInputChange}
                   inputProps={{ maxLength: 24 }}
                 />
               </Box>
