@@ -186,8 +186,8 @@ export default function HomePage() {
       <Box
         id="the-range"
         sx={{
-          background: 'linear-gradient(to bottom, #f7f8fa, #C9C9C9)',
-          padding: {md: 12, xs: 4},
+          background: 'linear-gradient(to bottom, #f7f8fa, #AAAAAA)',
+          padding: { md: 12, xs: 4 },
           marginY: 12,
           maxWidth: '1600px',
           marginX: 'auto',
@@ -203,7 +203,7 @@ export default function HomePage() {
           The Range
         </Typography>
         <Grid container spacing={4}>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={2.4}>
             <Link href="/product/songtshirt" underline="none">
               <Box>
                 <Box
@@ -227,7 +227,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={2.4}>
             <Link href="/product/ai-tshirt" underline="none">
               <Box>
                 <Box
@@ -251,7 +251,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={2.4}>
             <Link href="/product/basic-tshirt" underline="none">
               <Box>
                 <Box
@@ -263,7 +263,6 @@ export default function HomePage() {
                       opacity: 1.0,
                     },
                   }}
-                  
                 >
                   <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
@@ -276,29 +275,51 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3}>
-            {/* <Link href="" underline="none"> */}
+          <Grid item xs={6} md={2.4}>
+            <Link href="/product/emoji-tshirt" underline="none">
               <Box>
                 <Box
                   sx={{
                     transition: 'transform 0.8s',
-                    opacity: 0.6,
+                    opacity: 0.96,
                     '&:hover': {
-                        transform: 'rotate(360deg)',
-                        opacity: 1.0,
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
                     },
                   }}
                 >
-                  <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/emoji.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  More...
+                  Emoji Tshirt
                 </Typography>
                 <Typography variant="subtitle1">
-                  in our labs 🧪
+                  Design with Emoji and short text
                 </Typography>
               </Box>
-            {/* </Link> */}
+            </Link>
+          </Grid>
+          <Grid item xs={12} md={2.4} sx={{ display: { xs: 'flex', md: 'block' }, justifyContent: { xs: 'center' } }}>
+            <Box>
+              <Box
+                sx={{
+                  transition: 'transform 0.8s',
+                  opacity: 0.6,
+                  '&:hover': {
+                      transform: 'rotate(360deg)',
+                      opacity: 1.0,
+                  },
+                }}
+              >
+                <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                More...
+              </Typography>
+              <Typography variant="subtitle1">
+                in our labs 🧪
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>
