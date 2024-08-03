@@ -14,6 +14,7 @@ import NotesIcon from '@mui/icons-material/Notes';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 
 import BuyNowButton from '../BuyNowButton';
+import AutoScrollCards from '../AutoScrollCards';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
@@ -110,6 +111,8 @@ const AiProductPage = () => {
   
 
   return (
+    <Box>
+      
     <Box
       sx={{
         maxWidth: 1400,
@@ -391,6 +394,8 @@ const AiProductPage = () => {
           </Grid>
         </Grid>
       </Box>
+    </Box>
+      <AutoScrollCards />
     </Box>
   );
 };

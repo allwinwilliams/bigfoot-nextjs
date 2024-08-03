@@ -5,13 +5,13 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import 
 { Box, Typography, Grid, Chip, Button,
   Tooltip, CircularProgress, Card, Link,
-  CardMedia, CardContent, useTheme }
+  CardMedia, CardContent, useTheme, Container }
 from '@mui/material';
 import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
 import ThreeScene from '../ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
 import { fetchAllSongData } from '@/utils/spotifyUtils';
-import AutoScrollCards from './AutoScrollCards';
+import AutoScrollCards from '../AutoScrollCards';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';
@@ -101,228 +101,232 @@ const SongProductPage = () => {
   
 
   return (
-    <Box
-      sx={{
-        maxWidth: 1400,
-        marginX: 'auto',
-        paddingX: { xs: 2, md: 10 },
-        paddingY: 1,
-      }}
-    >
-      <Box 
-        sx={{
-          paddingTop: 1,
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textDecoration: 'none'
-        }}
-        component={Link}
-        href={'/'}
-      >
-        <img
-          src='/logo.png'
-          alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
-        />
-      </Box>
-      <Box sx={{ paddingY: 1, textAlign: 'center' }}>
-        <Typography 
-          variant="h4"
-          gutterBottom 
-          sx={{
-            fontSize: {
-              xs: '1.25rem',
-              sm: '1.5rem',
-              md: '2rem',
-            },
-            fontWeight: 'bold'
-          }}
-        >
-          Song Data Generated Art T-shirt - Oversized Fit
-        </Typography>
-        <Typography 
-          variant='subtitle1'
-          sx={{color: '#777777', lineHeight: 1.25}}
-        >
-          Customise your T-Shirt design based on your favourite songs
-        </Typography>
-      </Box>
+    <Box>
       <Box
         sx={{
-          boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
-          borderRadius: '16px',
-          backgroundColor: '#ffffff',
-          padding: 0,
-          marginY: 2,
+          maxWidth: 1400,
+          marginX: 'auto',
+          paddingX: { xs: 2, md: 10 },
+          paddingY: 1,
         }}
       >
-        <Grid container spacing={0}>
-          <Grid 
-            item 
-            xs={12} 
-            md={6}
-            sx={{ 
-              display: { xs: 'block', md: 'flex' }, 
-              justifyContent: 'center', 
-              alignItems: 'center' 
-            }}
-          >
-            <ThreeScene
-              color={color}
-              // data={{type: 'song', values: songData}}
-              type='song'
-              values={songData}
-              style={style}
-              loading={songLoading}
-            />
-          </Grid>
-          <Grid
-            item
+        <Box 
+          sx={{
+            paddingTop: 1,
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textDecoration: 'none'
+          }}
+          component={Link}
+          href={'/'}
+        >
+          <img
+            src='/logo.png'
+            alt='Bigfoot Logo'
+            style={{ width: 48, marginBottom: 8 }}
+          />
+        </Box>
+        <Box sx={{ paddingY: 1, textAlign: 'center' }}>
+          <Typography 
+            variant="h4"
+            gutterBottom 
             sx={{
-              padding: { xs: 2, md: 2 },
+              fontSize: {
+                xs: '1.25rem',
+                sm: '1.5rem',
+                md: '2rem',
+              },
+              fontWeight: 'bold'
             }}
-            xs={12}
-            md={6}
           >
-            <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise with Your Song
-              </Typography>
-              <SpotifySearch
+            Song Data Generated Art T-shirt - Oversized Fit
+          </Typography>
+          <Typography 
+            variant='subtitle1'
+            sx={{color: '#777777', lineHeight: 1.25}}
+          >
+            Customise your T-Shirt design based on your favourite songs
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
+            borderRadius: '16px',
+            backgroundColor: '#ffffff',
+            padding: 0,
+            marginY: 2,
+          }}
+        >
+          <Grid container spacing={0}>
+            <Grid 
+              item 
+              xs={12} 
+              md={6}
+              sx={{ 
+                display: { xs: 'block', md: 'flex' }, 
+                justifyContent: 'center', 
+                alignItems: 'center' 
+              }}
+            >
+              <ThreeScene
                 color={color}
-                size={size}
+                // data={{type: 'song', values: songData}}
+                type='song'
+                values={songData}
                 style={style}
-                songLoading={songLoading}
-                setSongLoading={setSongLoading}
+                loading={songLoading}
               />
-              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                Pick your color
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                {[
-                  { value: 'black', label: 'Black' },
-                  { value: 'beige', label: 'Sand' },
-                ].map((option) => (
-                  <Chip
-                    key={option.value}
-                    label={option.label}
-                    clickable
-                    color={color === option.value ? 'primary' : 'default'}
-                    variant={color === option.value ? 'filled' : 'outlined'}
-                    onClick={() => handleColorChange({ target: { value: option.value } })}
-                    sx={{
-                      padding: '24px 16px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      borderRadius: '9999px',
-                    }}
-                    icon={
-                      <Box
-                        sx={{
-                          width: 24,
-                          height: 24,
-                          backgroundColor: option.value,
-                          border: '1px solid',
-                          borderColor: color === option.value ? '#444444' : '#eaeaea',
-                          borderRadius: '50%',
-                          mr: 1, // Add margin to the right to space out the circle and label
-                        }}
-                      />
-                    }
-                  />
-                ))}
-              </Box>
-              
-              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                Choose your style
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                {[
-                  { value: 'minimal', label: 'Minimal' },
-                  { value: 'analysis', label: 'Analysis' },
-                  { value: 'concert', label: 'Concert' },
-                  { value: 'drilldown', label: 'Drill Down' },
-                ].map((option) => (
-                  <Chip
-                    key={option.value}
-                    label={option.label}
-                    clickable
-                    color={style === option.value ? 'primary' : 'default'}
-                    variant={style === option.value ? 'filled' : 'outlined'}
-                    onClick={() => handleStyleChange({ target: { value: option.value } })}
-                    sx={{
-                      padding: '24px 16px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      borderRadius: '9999px',
-                    }}
-                  />
-                ))}
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
-                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                  Select your size
+            </Grid>
+            <Grid
+              item
+              sx={{
+                padding: { xs: 2, md: 2 },
+              }}
+              xs={12}
+              md={6}
+            >
+              <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
+                <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                  Customise with Your Song
                 </Typography>
-                <SizeChart />
+                <SpotifySearch
+                  color={color}
+                  size={size}
+                  style={style}
+                  songLoading={songLoading}
+                  setSongLoading={setSongLoading}
+                />
+                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Pick your color
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                  {[
+                    { value: 'black', label: 'Black' },
+                    { value: 'beige', label: 'Sand' },
+                  ].map((option) => (
+                    <Chip
+                      key={option.value}
+                      label={option.label}
+                      clickable
+                      color={color === option.value ? 'primary' : 'default'}
+                      variant={color === option.value ? 'filled' : 'outlined'}
+                      onClick={() => handleColorChange({ target: { value: option.value } })}
+                      sx={{
+                        padding: '24px 16px',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        borderRadius: '9999px',
+                      }}
+                      icon={
+                        <Box
+                          sx={{
+                            width: 24,
+                            height: 24,
+                            backgroundColor: option.value,
+                            border: '1px solid',
+                            borderColor: color === option.value ? '#444444' : '#eaeaea',
+                            borderRadius: '50%',
+                            mr: 1, // Add margin to the right to space out the circle and label
+                          }}
+                        />
+                      }
+                    />
+                  ))}
+                </Box>
+                
+                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Choose your style
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                  {[
+                    { value: 'minimal', label: 'Minimal' },
+                    { value: 'analysis', label: 'Analysis' },
+                    { value: 'concert', label: 'Concert' },
+                    { value: 'drilldown', label: 'Drill Down' },
+                  ].map((option) => (
+                    <Chip
+                      key={option.value}
+                      label={option.label}
+                      clickable
+                      color={style === option.value ? 'primary' : 'default'}
+                      variant={style === option.value ? 'filled' : 'outlined'}
+                      onClick={() => handleStyleChange({ target: { value: option.value } })}
+                      sx={{
+                        padding: '24px 16px',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        borderRadius: '9999px',
+                      }}
+                    />
+                  ))}
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                  <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                    Select your size
+                  </Typography>
+                  <SizeChart />
+                </Box>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                  {['XS','S', 'M', 'L', 'XL'].map((option) => (
+                    <Chip
+                      key={option}
+                      label={option}
+                      clickable
+                      color={size === option ? 'primary' : 'default'}
+                      variant={size === option ? 'filled' : 'outlined'}
+                      onClick={() => handleSizeChange({ target: { value: option } })}
+                      sx={{
+                        padding: '24px 8px',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        width: '100%',
+                        borderRadius: '9999px',
+                      }}
+                    />
+                  ))}
+                </Box>
+                <Box sx={{ mt: 4 }}>
+                <BuyNowButton
+                  color={color}
+                  size={size}
+                  style={style}
+                  type="song"
+                  songId={songId}
+                  songData={songData}
+                  songName={songData?.details?.name || ''}
+                  storage={storage}
+                  db={db}
+                />
+                  <Tooltip title="URL copied" open={tooltipOpen} arrow>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      fullWidth
+                      size="large"
+                      sx={{
+                        padding: '12px',
+                        fontWeight: 'bold',
+                        borderRadius: '16px',
+                        textTransform: 'none',
+                      }}
+                      onClick={handleShare}
+                    >
+                      Share Now
+                    </Button>
+                  </Tooltip>
+                </Box>
               </Box>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                {['XS','S', 'M', 'L', 'XL'].map((option) => (
-                  <Chip
-                    key={option}
-                    label={option}
-                    clickable
-                    color={size === option ? 'primary' : 'default'}
-                    variant={size === option ? 'filled' : 'outlined'}
-                    onClick={() => handleSizeChange({ target: { value: option } })}
-                    sx={{
-                      padding: '24px 8px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      width: '100%',
-                      borderRadius: '9999px',
-                    }}
-                  />
-                ))}
-              </Box>
-              <Box sx={{ mt: 4 }}>
-              <BuyNowButton
-                color={color}
-                size={size}
-                style={style}
-                type="song"
-                songId={songId}
-                songData={songData}
-                songName={songData?.details?.name || ''}
-                storage={storage}
-                db={db}
-              />
-                <Tooltip title="URL copied" open={tooltipOpen} arrow>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    fullWidth
-                    size="large"
-                    sx={{
-                      padding: '12px',
-                      fontWeight: 'bold',
-                      borderRadius: '16px',
-                      textTransform: 'none',
-                    }}
-                    onClick={handleShare}
-                  >
-                    Share Now
-                  </Button>
-                </Tooltip>
-              </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </Box>
       <AutoScrollCards />
-      <SongProductStaticContent />
+      <Container>
+        <SongProductStaticContent />
+      </Container>
     </Box>
   );
 };

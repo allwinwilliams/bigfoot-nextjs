@@ -44,6 +44,10 @@ const AutoScrollCards = ({
     }
   `;
 
+  const getRandomRotation = () => {
+    return Math.random() * 20 - 10;
+  };
+
   return (
     <Box>
       <Box sx={{ marginX: 'auto', textAlign: 'center', marginTop: 8, paddingTop: 4 }}>
@@ -73,19 +77,20 @@ const AutoScrollCards = ({
                 href={item.link}
                 sx={{
                   display: 'inline-block',
-                  width: 330,
-                  marginRight: 4,
+                  width: 290,
+                  margin: 2,
                   textDecoration: 'none',
                   padding: 2.5,
                   paddingBottom: 0,
-                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.02)',
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                   border: '1px solid #eeeeee',
+                  transform: `rotate(${getRandomRotation()}deg)`,
                   transition: 'transform 0.9s, border-color 0.8s',
                   '&:hover': {
-                    transform: 'scale(1.02)',  
+                    transform: `scale(1.01) rotate(${getRandomRotation()}deg)`,  
                     borderColor: '#777777',
                   },
-                  borderRadius: 4,
+                  borderRadius: 2,
                 }}
               >
                 <CardMedia
@@ -96,7 +101,7 @@ const AutoScrollCards = ({
                   sx={{ borderRadius: 2 }}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h6" component="div">
                     {item.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -132,19 +137,20 @@ const AutoScrollCards = ({
                   href={item.link}
                   sx={{
                     display: 'inline-block',
-                    width: 330,
-                    marginRight: 4,
+                    width: 290,
+                    margin: 2,
                     textDecoration: 'none',
                     padding: 2.5,
                     paddingBottom: 0,
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.02)',
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                     border: '1px solid #eeeeee',
+                    transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: 'scale(1.02)',  
+                      transform: `scale(1.01) rotate(${getRandomRotation()}deg)`,  
                       borderColor: '#777777',
                     },
-                    borderRadius: 4,
+                    borderRadius: 2,
                   }}
                 >
                   <CardMedia
@@ -192,19 +198,20 @@ const AutoScrollCards = ({
                   href={item.link}
                   sx={{
                     display: 'inline-block',
-                    width: 330,
-                    marginRight: 4,
+                    width: 290,
+                    margin: 2,
                     textDecoration: 'none',
                     padding: 2.5,
                     paddingBottom: 0,
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.02)',
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                     border: '1px solid #eeeeee',
+                    transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: 'scale(1.02)',  
+                      transform: `scale(1.01) rotate(${getRandomRotation()}deg)`,  
                       borderColor: '#777777',
                     },
-                    borderRadius: 4,
+                    borderRadius: 2,
                   }}
                 >
                   <CardMedia

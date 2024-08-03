@@ -5,7 +5,7 @@ import { useRef, useEffect } from 'react';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
 import SongProductStaticContent from '../components/ProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
-import AutoScrollCards from '@/components/SongTshirt/AutoScrollCards';
+import AutoScrollCards from '@/components/AutoScrollCards';
 import Header from '@/components/Header';
 import { Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
