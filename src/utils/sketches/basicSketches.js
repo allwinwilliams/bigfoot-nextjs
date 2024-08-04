@@ -180,7 +180,7 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
               p.fill(255);
             } else if (color === 'grey') {
               p.fill(5);
-            } else if (color === 'white') {
+            } else if (color === 'white' || color === 'beige') {
               p.fill(5);
             } else {
               p.fill(50);
@@ -195,7 +195,7 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
           p.fill(255);
         } else if (color === 'grey') {
           p.fill(5);
-        } else if (color === 'white') {
+        } else if (color === 'white' || color === 'beige') {
           p.fill(20);
         } else {
           p.fill(50);
@@ -206,7 +206,6 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
         p.text('BIGFOOT', 730, 800);
     };
 };
-
 
 export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
   const canvasWidth = 2600;
@@ -351,7 +350,7 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
             p.fill(255);
           } else if (color === 'grey') {
             p.fill(5);
-          } else if (color === 'white') {
+          } else if (color === 'white' || color === 'beige') {
             p.fill(5);
           } else {
             p.fill(50);
@@ -366,8 +365,8 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
         p.fill(255);
       } else if (color === 'grey') {
         p.fill(5);
-      } else if (color === 'white') {
-        p.fill(20);
+      } else if (color === 'white' || color === 'beige') {
+        p.fill(10);
       } else {
         p.fill(50);
       }
@@ -423,7 +422,7 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
         p.fill(70);
       } else if (color === 'grey') {
         p.fill(5);
-      } else if (color === 'white') {
+      } else if (color === 'white' || color === 'beige') {
         p.fill(20);
       } else {
         p.fill(50);
@@ -433,8 +432,7 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
       p.textSize(32);
       p.text('BIGFOOT', 750, 730);
     };
-  };
-
+};
 
 export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 2600;

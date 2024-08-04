@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import NotesIcon from '@mui/icons-material/Notes';
 import {handlePlayClick} from '../components/AudioControl';
 
-const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, songName, storage, db }) => {
+const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, songName, storage, db, price = 139900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
 
   const handleBuyNow = async () => {
@@ -34,7 +34,7 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
       if (type === "song") {
         dataToStore.songId = songId;
         dataToStore.songName = songData.details?.name || '';
-      } else if (type === "AI") {
+      } else if (type === "ai") {
         dataToStore.prompt = prompt || '';
       }
 
@@ -47,18 +47,18 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          amount: 139900,
+          amount: price,
           currency: 'INR',
           receipt: `receipt_${docId}`,
           notes: dataToStore,
-          line_items_total: 139900,
+          line_items_total: price,
           line_items: [
             {
               type: "e-commerce",
               sku: "1g234",
               variant_id: "12r34",
-              price: 139900,
-              tax_amount: 252,
+              price: price,
+              tax_amount: `${Math.ceil(price * 0.18)}`,
               quantity: 1,
               name: `${style} tee - ${type === "song" ? songData.details?.name || '' : 'Customised'}`,
               description: `Korean Fit T-Shirt with ${type} artwork`,
@@ -139,7 +139,7 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
         <CircularProgress size={24} sx={{ color: 'white' }} />
       ) : (
         <Box sx={{ textAlign: 'center' }}>
-          Buy Now @ ₹1,399
+          {`Buy Now @ ₹${Math.ceil(price / 100)}`}
           <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
             Limited Time Offer
           </Typography>

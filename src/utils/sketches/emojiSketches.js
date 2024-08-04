@@ -35,7 +35,7 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
         p.fill(70);
       } else if (color === 'grey') {
         p.fill(5);
-      } else if (color === 'white') {
+      } else if (color === 'beige' || color === 'white') {
         p.fill(5);
       } else {
         p.fill(50);

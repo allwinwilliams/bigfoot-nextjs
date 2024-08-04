@@ -82,7 +82,7 @@ const BasicTshirtPage = () => {
   const handleShare = () => {
     const shareData = {
       title: 'Check out this T-Shirt',
-      text: 'I customised this T-Shirt!! Check it out:',
+      text: 'Checkout this amazing T-Shirt!!',
       url: window.location.href,
     };
 
@@ -212,40 +212,49 @@ const BasicTshirtPage = () => {
                 Pick your color
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                {[
-                  { value: 'black', label: 'Black' },
-                  { value: 'grey', label: 'Grey' },
-                  { value: 'white', label: 'White' },
-                ].map((option) => (
-                  <Chip
-                    key={option.value}
-                    label={option.label}
-                    clickable
-                    color={color === option.value ? 'primary' : 'default'}
-                    variant={color === option.value ? 'filled' : 'outlined'}
-                    onClick={() => handleColorChange({ target: { value: option.value } })}
-                    sx={{
-                      padding: '24px 16px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      borderRadius: '9999px',
-                    }}
-                    icon={
-                      <Box
-                        sx={{
-                          width: 24,
-                          height: 24,
-                          backgroundColor: option.value,
-                          border: '1px solid',
-                          borderColor: color === option.value ? '#444444' : '#eaeaea',
-                          borderRadius: '50%',
-                          mr: 1, // Add margin to the right to space out the circle and label
-                        }}
-                      />
-                    }
-                  />
-                ))}
-              </Box>
+                  {[
+                    { value: 'black', label: 'Black', disabled: false },
+                    { value: 'grey', label: 'Grey', disabled: true },
+                    { value: 'beige', label: 'Sand', disabled: false },
+                  ].map((option) => (
+                    <Tooltip
+                      key={option.value}
+                      title={option.disabled ? "Currently out of stock. Please check later." : ""}
+                      arrow
+                    >
+                      <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                        <Chip
+                          clickable={!option.disabled}
+                          label={option.label}
+                          color={color === option.value ? 'primary' : 'default'}
+                          variant={color === option.value ? 'filled' : 'outlined'}
+                          disabled={option.disabled}
+                          onClick={() => !option.disabled && handleColorChange({ target: { value: option.value } })}
+                          sx={{
+                            padding: '24px 16px',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            borderRadius: '9999px',
+                            cursor: option.disabled ? 'not-allowed' : 'pointer'
+                          }}
+                          icon={
+                            <Box
+                              sx={{
+                                width: 24,
+                                height: 24,
+                                backgroundColor: option.value,
+                                border: '1px solid',
+                                borderColor: color === option.value ? '#444444' : '#eaeaea',
+                                borderRadius: '50%',
+                                mr: 1,
+                              }}
+                            />
+                          }
+                        />
+                      </Box>
+                    </Tooltip>
+                  ))}
+                </Box>
               
               <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                 Choose your style
@@ -303,7 +312,7 @@ const BasicTshirtPage = () => {
                 color={color}
                 size={size}
                 style={style}
-                type="Basic"
+                type="basic"
                 storage={storage}
                 db={db}
               />

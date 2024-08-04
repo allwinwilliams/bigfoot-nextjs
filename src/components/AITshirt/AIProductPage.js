@@ -91,7 +91,7 @@ const AiProductPage = () => {
   const handleShare = () => {
     const shareData = {
       title: 'Check out this T-Shirt',
-      text: 'I customised this T-Shirt with a prompt!! Check it out:',
+      text: 'I used a prompt to generate a T-Shirt design!! Check this:',
       url: window.location.href,
     };
 
@@ -301,16 +301,16 @@ const AiProductPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'black', label: 'Black' },
-                  { value: 'beige', label: 'Sand' },
-                  { value: 'white', label: 'White' },
+                  { value: 'black', label: 'Black', disabled: 'false' },
+                  { value: 'beige', label: 'Sand', disabled: 'false' },
+                  { value: 'white', label: 'White', disabled: 'true' },
                 ].map((option) => (
                   <Chip
                     key={option.value}
-                    label={option.label}
                     clickable
                     color={color === option.value ? 'primary' : 'default'}
                     variant={color === option.value ? 'filled' : 'outlined'}
+                    disabled={ option.disabled }
                     onClick={() => handleColorChange({ target: { value: option.value } })}
                     sx={{
                       padding: '24px 16px',
@@ -327,7 +327,7 @@ const AiProductPage = () => {
                           border: '1px solid',
                           borderColor: color === option.value ? '#444444' : '#eaeaea',
                           borderRadius: '50%',
-                          mr: 1, // Add margin to the right to space out the circle and label
+                          mr: 1,
                         }}
                       />
                     }
@@ -366,7 +366,7 @@ const AiProductPage = () => {
                   color={color}
                   size={size}
                   style={style}
-                  type="AI"
+                  type="ai"
                   prompt={prompt}
                   storage={storage}
                   db={db}

@@ -173,7 +173,7 @@ const EmojiTshirtPage = () => {
   const handleShare = () => {
     const shareData = {
       title: 'Check out this T-Shirt',
-      text: 'I customised this T-Shirt!! Check it out:',
+      text: 'I customised this T-Shirt with an Emoji!! Check it out:',
       url: window.location.href,
     };
 
@@ -282,6 +282,12 @@ const EmojiTshirtPage = () => {
                   Select an Emoji
                 </Typography>
                 
+                
+                <Tabs value={tabValue} onChange={handleTabChange} variant="scrollable" scrollButtons="auto">
+                  {Object.keys(emojis).map((group, index) => (
+                    <Tab key={index} label={group.replace(/-/g, ' & ')} />
+                  ))}
+                </Tabs>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                   <TextField
                     label="Search Emoji"
@@ -290,11 +296,6 @@ const EmojiTshirtPage = () => {
                     fullWidth
                   />
                 </Box>
-                <Tabs value={tabValue} onChange={handleTabChange} variant="scrollable" scrollButtons="auto">
-                  {Object.keys(emojis).map((group, index) => (
-                    <Tab key={index} label={group} />
-                  ))}
-                </Tabs>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2, height: 150, overflowY: 'scroll' }}>
                   {filteredEmojis.map((emoji) => (
                     <Chip
@@ -320,37 +321,46 @@ const EmojiTshirtPage = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                   {[
-                    { value: 'black', label: 'Black' },
-                    { value: 'grey', label: 'Grey' },
-                    { value: 'white', label: 'White' },
+                    { value: 'black', label: 'Black', disabled: false },
+                    { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
-                    <Chip
+                    <Tooltip
                       key={option.value}
-                      label={option.label}
-                      clickable
-                      color={color === option.value ? 'primary' : 'default'}
-                      variant={color === option.value ? 'filled' : 'outlined'}
-                      onClick={() => handleColorChange({ target: { value: option.value } })}
-                      sx={{
-                        padding: '24px 16px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        borderRadius: '9999px',
-                      }}
-                      icon={
-                        <Box
+                      title={option.disabled ? "Currently out of stock. Please check later." : ""}
+                      arrow
+                    >
+                      <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                        <Chip
+                          clickable={!option.disabled}
+                          label={option.label}
+                          color={color === option.value ? 'primary' : 'default'}
+                          variant={color === option.value ? 'filled' : 'outlined'}
+                          disabled={option.disabled}
+                          onClick={() => !option.disabled && handleColorChange({ target: { value: option.value } })}
                           sx={{
-                            width: 24,
-                            height: 24,
-                            backgroundColor: option.value,
-                            border: '1px solid',
-                            borderColor: color === option.value ? '#444444' : '#eaeaea',
-                            borderRadius: '50%',
-                            mr: 1,
+                            padding: '24px 16px',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            borderRadius: '9999px',
+                            cursor: option.disabled ? 'not-allowed' : 'pointer'
                           }}
+                          icon={
+                            <Box
+                              sx={{
+                                width: 24,
+                                height: 24,
+                                backgroundColor: option.value,
+                                border: '1px solid',
+                                borderColor: color === option.value ? '#444444' : '#eaeaea',
+                                borderRadius: '50%',
+                                mr: 1,
+                              }}
+                            />
+                          }
                         />
-                      }
-                    />
+                      </Box>
+                    </Tooltip>
                   ))}
                 </Box>
                 
@@ -361,7 +371,7 @@ const EmojiTshirtPage = () => {
                   {[
                     { value: 'tiny', label: 'Tiny' },
                     { value: 'out', label: 'Out there' },
-                    { value: 'badge', label: 'Side' },
+                    { value: 'badge', label: 'Badge' },
                   ].map((option) => (
                     <Chip
                       key={option.value}
@@ -410,9 +420,10 @@ const EmojiTshirtPage = () => {
                     color={color}
                     size={size}
                     style={style}
-                    type="Emoji"
+                    type="emoji"
                     storage={storage}
                     db={db}
+                    price={89900}
                   />
                   <Tooltip title="URL copied" open={tooltipOpen} arrow>
                     <Button
