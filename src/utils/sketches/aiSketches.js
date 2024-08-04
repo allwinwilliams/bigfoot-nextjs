@@ -106,23 +106,23 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
       
     }
 
-    if (prompt) {
-      if (color === 'black') {
-        p.fill(p.color(255));
-      } else if (color === 'beige' || color === 'white') {
-        p.fill(p.color(5));
-      } else {
-        p.fill(p.color(50));
-      }
+    // if (prompt) {
+    //   if (color === 'black') {
+    //     p.fill(p.color(255));
+    //   } else if (color === 'beige' || color === 'white') {
+    //     p.fill(p.color(5));
+    //   } else {
+    //     p.fill(p.color(50));
+    //   }
 
-      p.noStroke();
-      p.textAlign(p.CENTER);
-      p.textSize(28);
-      p.textStyle(p.NORMAL);
-      console.log('Drawing text');
-      console.log('Prompt:', prompt);
-      p.text(prompt, 740, 950);
-    }
+    //   p.noStroke();
+    //   p.textAlign(p.CENTER);
+    //   p.textSize(28);
+    //   p.textStyle(p.NORMAL);
+    //   console.log('Drawing text');
+    //   console.log('Prompt:', prompt);
+    //   p.text(prompt, 740, 950);
+    // }
 
     if (!isLoading) {
       drawImageSection(250, 100, 1000, 1000);

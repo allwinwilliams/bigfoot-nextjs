@@ -40,6 +40,16 @@ const EmojiTshirtPage = () => {
 
   const initialLoad = useRef(true);
 
+  const samples = [
+    { imgUrl: '/samples/emoji/1.png', title: '🍣', description: 'すし、ください。', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
+    { imgUrl: '/samples/emoji/2.png', title: '🐮', description: 'moooooooooooooo', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-cow-face&text=moooooooooooooo' },
+    { imgUrl: '/samples/emoji/3.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
+    { imgUrl: '/samples/emoji/4.png', title: '🇵🇸', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e2-0-flag-palestinian-territories&text=' },
+    { imgUrl: '/samples/emoji/5.png', title: '🌈', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=badge&slug=e0-6-rainbow&text=' },
+    { imgUrl: '/samples/emoji/6.png', title: '🍑', description: 'beach vacation', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-peach&text=beach+vacation' },
+    { imgUrl: '/samples/emoji/7.png', title: '🛕', description: 'mandir yahi banega', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e12-0-hindu-temple&text=mandir+yahi+banega' },
+  ];
+
   useEffect(() => {
     const fetchEmojis = async () => {
       try {
@@ -448,7 +458,7 @@ const EmojiTshirtPage = () => {
           </Grid>
         </Box>
       </Box>
-      <AutoScrollCards />
+      <AutoScrollCards itemsRow1={samples} />
     </Box>
   );
 };

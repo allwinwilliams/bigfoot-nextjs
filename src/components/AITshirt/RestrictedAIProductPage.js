@@ -33,9 +33,9 @@ const RestrictedAiProductPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [subject, setSubject] = useState(searchParams.get('subject') || 'A cat');
-  const [action, setAction] = useState(searchParams.get('action') || 'sitting on a');
-  const [location, setLocation] = useState(searchParams.get('location') || 'mountaintop');
-  const [style, setStyle] = useState(searchParams.get('style') || 'Hokusai');
+  const [action, setAction] = useState(searchParams.get('action') || 'sitting');
+  const [location, setLocation] = useState(searchParams.get('location') || 'a Mountain');
+  const [style, setStyle] = useState(searchParams.get('style') || 'Monet');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
@@ -45,9 +45,9 @@ const RestrictedAiProductPage = () => {
       color: 'black',
       size: 'M',
       subject: 'A cat',
-      action: 'sitting on a',
-      location: 'mountaintop',
-      style: 'Hokusai',
+      action: 'sitting',
+      location: 'a Mountain',
+      style: 'Monet',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('subject') || !searchParams.get('action') || !searchParams.get('location') || !searchParams.get('style')) {
@@ -99,7 +99,7 @@ const RestrictedAiProductPage = () => {
 
   const generate = async () => {
     setLoading(true);
-    const fullPrompt = `${subject} ${action} ${location} in the style of ${style}`;
+    const fullPrompt = `${subject} ${action} in ${location} in the style of ${style}`;
     await generateImage(fullPrompt);
     setLoading(false);
   };
@@ -165,7 +165,7 @@ const RestrictedAiProductPage = () => {
               fontWeight: 'bold'
             }}
           >
-            🖌️ Painted with Prompt T-shirt - Oversized Fit
+            Paint with Prompt T-shirt - Oversized Fit
           </Typography>
           <Typography 
             variant='subtitle1'
@@ -229,30 +229,44 @@ const RestrictedAiProductPage = () => {
                       <MenuItem value="A dog">A dog</MenuItem>
                       <MenuItem value="A Strawberry">A strawberry</MenuItem>
                       <MenuItem value="A Robot">A robot</MenuItem>
+                      <MenuItem value="Bigfoot">Bigfoot</MenuItem>
+                      <MenuItem value="A Burger(character)">A burger</MenuItem>
+                      <MenuItem value="Sushi(character)">A Sushi</MenuItem>
+                      <MenuItem value="A Sunflower">A Sunflower</MenuItem>
                     </Select>
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <Select value={action} onChange={handleActionChange} displayEmpty>
-                      <MenuItem value="sitting on a">sitting on a</MenuItem>
-                      <MenuItem value="walking on a">walking on a</MenuItem>
-                      <MenuItem value="lying on a">lying on a</MenuItem>
-                      <MenuItem value="watching a">watching a</MenuItem>
+                      <MenuItem value="sitting on a">sitting</MenuItem>
+                      <MenuItem value="walking on a">walking</MenuItem>
+                      <MenuItem value="lying on a">lying</MenuItem>
+                      <MenuItem value="reading a book">reading</MenuItem>
+                      <MenuItem value="eating">eating</MenuItem>
+                      <MenuItem value="painting">painting</MenuItem>
+                      <MenuItem value="dancing">dancing</MenuItem>
                     </Select>
                   </FormControl>
+                  <Typography>in</Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
+
                     <Select value={location} onChange={handleLocationChange} displayEmpty>
-                      <MenuItem value="mountaintop">mountaintop</MenuItem>
-                      <MenuItem value="beach">beach</MenuItem>
-                      <MenuItem value="forest">forest</MenuItem>
-                      <MenuItem value="city skyline">city skyline</MenuItem>
+                      <MenuItem value="a Forest">a Forest</MenuItem>
+                      <MenuItem value="a Mountain">a Mountain</MenuItem>
+                      <MenuItem value="a Beach">a Beach</MenuItem>
+                      <MenuItem value="a Park">a Park</MenuItem>
+                      <MenuItem value="Mumbai">Mumbai</MenuItem>
+                      <MenuItem value="a city skyline">city skyline</MenuItem>
+                      <MenuItem value="a dance club">a dance club</MenuItem>
+                      <MenuItem value="a classroom">classroom</MenuItem>
                     </Select>
                   </FormControl>
                   <Typography>in the style of</Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <Select value={style} onChange={handleStyleChange} displayEmpty>
-                      <MenuItem value="Hokusai">Hokusai</MenuItem>
-                      <MenuItem value="Popart">Popart</MenuItem>
+                      <MenuItem value="Hokusai Ukiyo-E">Hokusai</MenuItem>
                       <MenuItem value="Van Gogh">Van Gogh</MenuItem>
+                      <MenuItem value="Comics">Comics</MenuItem>
+                      <MenuItem value="Madhubani Painting Art in bright colors from Bihar, India">Madhubani</MenuItem>
                       <MenuItem value="Monet">Monet</MenuItem>
                     </Select>
                   </FormControl>

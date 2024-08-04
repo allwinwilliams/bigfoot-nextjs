@@ -34,48 +34,50 @@ export default function HomePage() {
   `;
 
   const sampleData1 = [
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=7MJQ9Nfxzh8LPZ9e9u68Fq&style=concert' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=black&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=black&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=black&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=beige&size=M&songId=3z8h0TU7ReDPLIbEnYhWZb&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=concert' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=beige&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
+    { imgUrl: '/samples/song/5.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
+    { imgUrl: '/samples/ai/1.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&style=Van%20Gogh' },
+    { imgUrl: '/samples/song/6.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
+    { imgUrl: '/samples/emoji/1.png', title: '🍣', description: 'すし、ください。', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
+    { imgUrl: '/samples/basic/2.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=beige&size=M&style=head' },
+    { imgUrl: '/samples/song/3.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=beige&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=drilldown' },
+    { imgUrl: '/samples/ai/8.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
+    
+    { imgUrl: '/samples/ai/6.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
+    { imgUrl: '/samples/basic/7.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=black&size=M&style=pixel' },
+    { imgUrl: '/samples/song/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=black&size=M&songId=6l8GvAyoUZwWDgF1e4822w&style=analysis' },
+    { imgUrl: '/samples/emoji/3.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
+    { imgUrl: '/samples/basic/4.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=beige&size=M&style=tip' },
+    { imgUrl: '/samples/song/12.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=black&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=analysis' },
+    
   ];
   
   const sampleData2 = [
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=7MJQ9Nfxzh8LPZ9e9u68Fq&style=concert' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=black&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=black&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=black&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=beige&size=M&songId=3z8h0TU7ReDPLIbEnYhWZb&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=concert' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=beige&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
+    { imgUrl: '/samples/song/11.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
+    { imgUrl: '/samples/emoji/2.png', title: '🐮', description: 'moooooooooooooo', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-cow-face&text=moooooooooooooo' },
+    { imgUrl: '/samples/ai/3.png', title: 'Strawberry', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Strawberry&action=lying%20on%20a&location=a%20Forest&style=Comics' },
+    { imgUrl: '/samples/ai/4.png', title: 'A cat', description: 'lying in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20cat&action=lying%20on%20a&location=a%20Mountain&style=Monet' },
+    { imgUrl: '/samples/song/2.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=drilldown' },
+    { imgUrl: '/samples/emoji/4.png', title: '🇵🇸', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e2-0-flag-palestinian-territories&text=' },
+    { imgUrl: '/samples/emoji/6.png', title: '🍑', description: 'beach vacation', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-peach&text=beach+vacation' },
+    { imgUrl: '/samples/song/9.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=concert' },
+    { imgUrl: '/samples/emoji/7.png', title: '🛕', description: 'mandir yahi banega', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e12-0-hindu-temple&text=mandir+yahi+banega' },
+    { imgUrl: '/samples/basic/1.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=black&size=M&style=head' },
+    { imgUrl: '/samples/ai/7.png', title: 'A robot', description: ' painting in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Robot&action=painting&location=a%20Mountain&style=Comics' },
+    { imgUrl: '/samples/basic/5.png', title: 'Basic', description: 'Loading...', link: '/product/basic-tshirt?color=black&size=M&style=loading' },
   ];
   
   const sampleData3 = [
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=7MJQ9Nfxzh8LPZ9e9u68Fq&style=concert' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/songtshirt?color=black&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=black&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=black&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Sandstorm', description: 'Darude', link: '/product/songtshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=minimal' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/songtshirt?color=beige&size=M&songId=3z8h0TU7ReDPLIbEnYhWZb&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Dynamite', description: 'BTS', link: '/product/songtshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=concert' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=beige&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/songtshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/songtshirt?color=beige&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=drilldown' },
-    { imgUrl: '/song-tshirt/option/1.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=5sICkBXVmaCQk5aISGR3x1&style=minimal' },
+    { imgUrl: '/samples/song/7.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/songtshirt?color=beige&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
+    { imgUrl: '/samples/basic/6.png', title: 'Basic', description: 'Loading...', link: '/product/basic-tshirt?color=white&size=M&style=loading' },
+    { imgUrl: '/samples/song/10.png', title: 'In the End', description: 'Linkin Park', link: '/product/songtshirt?color=black&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=minimal' },
+    { imgUrl: '/samples/basic/8.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=beige&size=M&style=pixel' },
+    { imgUrl: '/samples/emoji/5.png', title: '🌈', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=badge&slug=e0-6-rainbow&text=' },
+    { imgUrl: '/samples/ai/2.png', title: 'Bigfoot', description: 'dancing in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=dancing&location=a%20Mountain&style=Madhubani%20Painting%20Art%20in%20bright%20colors%20from%20Bihar,%20India' },
+    { imgUrl: '/samples/song/8.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/songtshirt?color=beige&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=concert' },
+    { imgUrl: '/samples/ai/5.png', title: 'Bigfoot', description: 'walking in Mumbai', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=walking%20on%20a&location=Mumbai&style=Comics' },
+    { imgUrl: '/samples/song/4.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/songtshirt?color=black&size=M&songId=3VqHuw0wFlIHcIPWkhIbdQ&style=concert' },
+    { imgUrl: '/samples/basic/3.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=black&size=M&style=tip' },
+    { imgUrl: '/samples/ai/9.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
   ];
 
   return (
@@ -220,7 +222,7 @@ export default function HomePage() {
       <Box
         id="the-range"
         sx={{
-          background: 'linear-gradient(to bottom, #f7f8fa, #AAAAAA)',
+          background: 'linear-gradient(to bottom, #f7f8fa, #BBBBBB)',
           padding: { md: 12, xs: 4 },
           marginY: 12,
           maxWidth: '1600px',
@@ -245,7 +247,7 @@ export default function HomePage() {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
               }}
               onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/488/488154_10350281-lq.mp3');
+                handlePlayClick('https://cdn.freesound.org/previews/387/387533_3829977-lq.mp3');
               }}  
               
             >
@@ -263,7 +265,7 @@ export default function HomePage() {
                   <img src="/landing-page/song.png" alt="Song customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  🎵 Style Your Song
+                  Style Your Song
                 </Typography>
                 <Typography variant="subtitle1">
                   Design with your favorite song.
@@ -296,7 +298,7 @@ export default function HomePage() {
                   <img src="/landing-page/ai.png" alt="AI customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  🖌️ Draw with a Prompt
+                  Draw with a Prompt
                 </Typography>
                 <Typography variant="subtitle1">
                   Your idea and style generated
@@ -312,7 +314,7 @@ export default function HomePage() {
                 handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
               }}
               onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3');
+                handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3', 0.4);
               }}
             >
               <Box>
@@ -362,7 +364,7 @@ export default function HomePage() {
                   <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  🎨 Bigfoot Basics
+                  Bigfoot Basics
                 </Typography>
                 <Typography variant="subtitle1">
                   From Bigfoot The Brand
@@ -414,10 +416,10 @@ export default function HomePage() {
                 <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
               </Box>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                🧪 More Coming Soon
+                More Coming Soon
               </Typography>
               <Typography variant="subtitle1">
-                Our lab is cooking...
+                Our lab is cooking 🧪...
               </Typography>
             </Box>
           </Grid>

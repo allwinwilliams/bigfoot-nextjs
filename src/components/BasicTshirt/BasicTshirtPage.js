@@ -261,8 +261,8 @@ const BasicTshirtPage = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'head', label: 'Head' },
-                  { value: 'tip', label: 'Tip' },
+                  { value: 'head', label: 'Glass' },
+                  { value: 'tip', label: 'Face' },
                   { value: 'loading', label: 'Loading...' },
                   { value: 'pixel', label: '16X16' },
                 ].map((option) => (
