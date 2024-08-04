@@ -46,8 +46,8 @@ const AutoScrollCards = ({
   `;
 
   const getRandomRotation = () => {
-    return Math.random() * 10 - 5;
-    // return 0;
+    // return Math.random() * 2 - 1;
+    return 0;
   };
 
   return (
