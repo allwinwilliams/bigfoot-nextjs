@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, Link } from '@mui/material';
 import { keyframes } from '@mui/system';
+import { handlePlayClick } from './AudioControl';
 
 const AutoScrollCards = ({
   itemsRow1 = [
@@ -75,6 +76,12 @@ const AutoScrollCards = ({
                 key={index}
                 component={Link}
                 href={item.link}
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/582/582295_9713112-lq.mp3', 0.4);
+                }} 
                 sx={{
                   display: 'inline-block',
                   width: 290,
@@ -135,6 +142,12 @@ const AutoScrollCards = ({
                   key={index}
                   component={Link}
                   href={item.link}
+                  onClick={(e) => {
+                    handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                  }}
+                  onMouseEnter={() => {
+                    handlePlayClick('https://cdn.freesound.org/previews/582/582295_9713112-lq.mp3', 0.4);
+                  }}  
                   sx={{
                     display: 'inline-block',
                     width: 290,
@@ -196,6 +209,12 @@ const AutoScrollCards = ({
                   key={index}
                   component={Link}
                   href={item.link}
+                  onClick={(e) => {
+                    handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                  }}
+                  onMouseEnter={() => {
+                    handlePlayClick('https://cdn.freesound.org/previews/582/582295_9713112-lq.mp3', 0.4);
+                  }}
                   sx={{
                     display: 'inline-block',
                     width: 290,

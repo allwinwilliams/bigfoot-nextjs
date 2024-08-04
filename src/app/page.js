@@ -249,7 +249,6 @@ export default function HomePage() {
               onMouseEnter={() => {
                 handlePlayClick('https://cdn.freesound.org/previews/387/387533_3829977-lq.mp3');
               }}  
-              
             >
               <Box>
                 <Box
