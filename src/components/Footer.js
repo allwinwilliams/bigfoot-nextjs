@@ -30,17 +30,17 @@ const Footer = () => {
               style={{ width: 48, marginBottom: 8 }}
             />
             <Typography variant="h6" gutterBottom>
-              Bigfoot Clothing
+              bigfoot
             </Typography>
             <Typography variant="subtitle1">
-              Conceptual Fashion
+              Conceptual Art & Fashion
             </Typography>
           </Link>
           <Typography variant="subtitle2" sx={{ maxWidth: '260px', color: '#999999' }}>
             We are a fashion tech brand aimed to enabling people to express themselves through fashion.
           </Typography>
           <Typography variant="subtitle2" sx={{ mt: 2, maxWidth: '260px', color: '#999999' }}>
-            We do help on customised bulk orders for events and corporates, contact us at boredom.technologies@gmail.com.
+            We do help on customised bulk orders for events and corporates, contact us at crews@bigfoot.land.
           </Typography>
         </Grid>
         <Grid item xs={12} md={2}>

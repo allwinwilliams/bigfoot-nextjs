@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Typography, Link, Chip } from '@mui/material';
 
 const Header = () => {
   return (
@@ -24,11 +24,10 @@ const Header = () => {
         style={{ width: 48, marginBottom: 8 }}
       />
       <Typography variant="h5" gutterBottom sx={{ }}>
-        Bigfoot Clothing
+        bigfoot
       </Typography>
-      <Typography variant="body1" gutterBottom>
-        Conceptual Fashion
-      </Typography>
+      
+      <Chip label="Beta" variant="contained" />
     </Box>
   );
 };

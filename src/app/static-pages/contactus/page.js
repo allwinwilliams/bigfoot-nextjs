@@ -14,7 +14,7 @@ export default function Contact() {
             <b>Phone: +91 99005 36059</b>
           </p>
           <p>
-            <b>Email: boredom.technologies@gmail.com </b>
+            <b>Email: crews@bigfoot.land </b>
           </p>
         </Box>
     </Container>
