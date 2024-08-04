@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, Link } from '@mui/material';
 import { keyframes } from '@mui/system';
 import { handlePlayClick } from './AudioControl';
 
 const AutoScrollCards = ({
+
+
   itemsRow1 = [
       { imgUrl: '/samples/song/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
       { imgUrl: '/samples/song/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
@@ -48,6 +50,14 @@ const AutoScrollCards = ({
   const getRandomRotation = () => {
     // return Math.random() * 2 - 1;
     return 0;
+  };
+
+  const audioControlRef = useRef(null);
+
+  const handlePlayClick = (url = 'https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3') => {
+    if (audioControlRef.current) {
+      audioControlRef.current.handlePlayClick(url);
+    }
   };
 
   return (

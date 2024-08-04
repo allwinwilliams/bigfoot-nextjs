@@ -5,7 +5,7 @@ import { IconButton } from '@mui/material';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 
-const AudioControl = () => {
+const AudioControl = React.forwardRef((props, ref) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -46,6 +46,25 @@ const AudioControl = () => {
     }
   };
 
+  const handlePlayClick = (audioUrl = 'https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3', volume = 0.6) => {
+    const audio = new Audio(audioUrl);
+    audio.volume = volume;
+    audio.play().then(() => {
+      console.log('Audio started playing');
+    }).catch(error => {
+      console.error('Error playing audio:', error);
+    });
+  
+    audio.addEventListener('ended', () => {
+      console.log('Audio finished playing');
+      audio.remove();
+    });
+  };
+
+  React.useImperativeHandle(ref, () => ({
+    handlePlayClick
+  }));
+
   return (
     <>
       <audio ref={audioRef} src="https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3" loop />
@@ -66,16 +85,6 @@ const AudioControl = () => {
       </IconButton>
     </>
   );
-};
-
-export const handlePlayClick = (audioUrl = 'https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3', volume = 0.6, isPlaying = false) => {
-  if (!isPlaying) {
-    const audio = new Audio(audioUrl);
-    audio.volume = volume;
-    audio.play().catch(error => {
-      console.error('Error playing audio:', error);
-    });
-  }
-};
+});
 
 export default AudioControl;

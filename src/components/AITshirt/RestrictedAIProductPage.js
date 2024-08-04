@@ -237,9 +237,9 @@ const RestrictedAiProductPage = () => {
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <Select value={action} onChange={handleActionChange} displayEmpty>
-                      <MenuItem value="sitting on a">sitting</MenuItem>
-                      <MenuItem value="walking on a">walking</MenuItem>
-                      <MenuItem value="lying on a">lying</MenuItem>
+                      <MenuItem value="sitting">sitting</MenuItem>
+                      <MenuItem value="walking">walking</MenuItem>
+                      <MenuItem value="lying">lying</MenuItem>
                       <MenuItem value="reading a book">reading</MenuItem>
                       <MenuItem value="eating">eating</MenuItem>
                       <MenuItem value="painting">painting</MenuItem>

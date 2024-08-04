@@ -11,9 +11,15 @@ import { Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
 import { keyframes } from '@mui/system';
 
-import {handlePlayClick} from '../components/AudioControl';
-
 export default function HomePage() {
+
+  const audioControlRef = useRef(null);
+
+  const handlePlayClick = (url = 'https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3') => {
+    if (audioControlRef.current) {
+      audioControlRef.current.handlePlayClick(url);
+    }
+  };
 
   const colorChange = keyframes`
     0% { background-color: red; }
@@ -570,7 +576,7 @@ export default function HomePage() {
               variant="contained" 
               color="primary" 
               component={Link} 
-              href="/product/ai-tshirt" 
+              href="/product/prompt-generated-tshirt" 
               startIcon={<CreateIcon />}
               sx={{ 
                 mt: 4, 
