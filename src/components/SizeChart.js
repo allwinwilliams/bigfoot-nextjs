@@ -61,7 +61,7 @@ const SizeChart = () => {
                 </IconButton>
             </Box>
             <img
-                src="https://image.uniqlo.com/UQ/ST3/in/imagesother/sizechart/graph_bodysize_uq_m_20fw.jpg"
+                src="/sizes.png"
                 alt="Size Chart"
                 style={{ width: '100%', marginTop: '16px' }}
             />

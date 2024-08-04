@@ -68,12 +68,14 @@ const AudioControl = () => {
   );
 };
 
-export const handlePlayClick = (audioUrl = 'https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3', volume = 0.6) => {
-  const audio = new Audio(audioUrl);
-  audio.volume = volume;
-  audio.play().catch(error => {
-    console.error('Error playing audio:', error);
-  });
+export const handlePlayClick = (audioUrl = 'https://cdn.pixabay.com/audio/2024/05/31/audio_dc85ea3a77.mp3', volume = 0.6, isPlaying = false) => {
+  if (!isPlaying) {
+    const audio = new Audio(audioUrl);
+    audio.volume = volume;
+    audio.play().catch(error => {
+      console.error('Error playing audio:', error);
+    });
+  }
 };
 
 export default AudioControl;
