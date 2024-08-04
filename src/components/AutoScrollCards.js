@@ -47,6 +47,7 @@ const AutoScrollCards = ({
 
   const getRandomRotation = () => {
     return Math.random() * 10 - 5;
+    // return 0;
   };
 
   return (
@@ -57,11 +58,11 @@ const AutoScrollCards = ({
         </Typography>
         <Box
           sx={{
-            mt: 4,
+            // mt: 4,
             overflowX: 'hidden',
             whiteSpace: 'nowrap',
-            paddingTop: 4,
-            paddingBottom: 0.5,
+            // paddingTop: 4,
+            // paddingBottom: 0.5,
           }}
         >
           <Box
@@ -89,6 +90,7 @@ const AutoScrollCards = ({
                   textDecoration: 'none',
                   padding: 2.5,
                   paddingBottom: 0,
+                  height: '100%',
                   boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                   border: '1px solid #eeeeee',
                   transform: `rotate(${getRandomRotation()}deg)`,
@@ -122,11 +124,11 @@ const AutoScrollCards = ({
         {itemsRow2 && (
           <Box
             sx={{
-              mt: 4,
+              // mt: 4,
               overflowX: 'hidden',
               whiteSpace: 'nowrap',
-              paddingTop: 0.5,
-              paddingBottom: 4,
+              // paddingTop: 0.5,
+              // paddingBottom: 4,
             }}
           >
             <Box
@@ -174,7 +176,7 @@ const AutoScrollCards = ({
                     sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                       {item.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -189,11 +191,11 @@ const AutoScrollCards = ({
         {itemsRow3 && (
           <Box
             sx={{
-              mt: 4,
+              // mt: 4,
               overflowX: 'hidden',
               whiteSpace: 'nowrap',
-              paddingTop: 0.5,
-              paddingBottom: 4,
+              // paddingTop: 0.5,
+              // paddingBottom: 4,
             }}
           >
             <Box
@@ -241,7 +243,7 @@ const AutoScrollCards = ({
                     sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                       {item.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
