@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Typography, Link, Modal, Box, Button } from '@mui/material';
+import { Typography, Link, Modal, Box, Button, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const SizeChart = () => {
   const [open, setOpen] = useState(false);
@@ -38,15 +39,32 @@ const SizeChart = () => {
             p: 4,
           }}
         >
-          <Typography id="size-chart-modal" variant="h6" component="h2">
-            Size Chart
-          </Typography>
-          <img
-            src="https://image.uniqlo.com/UQ/ST3/in/imagesother/sizechart/graph_bodysize_uq_m_20fw.jpg"
-            alt="Size Chart"
-            style={{ width: '100%', marginTop: '16px' }}
-          />
-          <Button onClick={handleClose} sx={{ marginTop: 2 }}>Close</Button>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+                >
+                <Typography id="size-chart-modal" variant="h6" component="h2">
+                    Size Chart
+                </Typography>
+                <IconButton
+                    onClick={handleClose}
+                    sx={{
+                    //   position: 'absolute',
+                    //   top: 8,
+                    //   right: 8,
+                    }}
+                  >
+                    <CloseIcon />
+                </IconButton>
+            </Box>
+            <img
+                src="https://image.uniqlo.com/UQ/ST3/in/imagesother/sizechart/graph_bodysize_uq_m_20fw.jpg"
+                alt="Size Chart"
+                style={{ width: '100%', marginTop: '16px' }}
+            />
         </Box>
       </Modal>
     </div>
