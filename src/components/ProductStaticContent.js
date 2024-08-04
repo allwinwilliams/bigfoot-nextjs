@@ -130,92 +130,97 @@ export default function ProductStaticContent() {
                 sx={{
                 borderRadius: '16px',
                 backgroundColor: '#FFFFFF',
-                padding: 3,
+                padding: 4,
                 textAlign: 'center',
                 }}
             >
                 <Typography variant="h3" 
                 sx={{
                     fontWeight: 'bold',
-                    mt: 4,
-                    paddingBottom: 2,
+                    mt: 2,
                     color: '#BBBBBB'
                 }}>
                     Softest fabric
                 </Typography>
                 <Typography variant="subtitle1" 
                 sx={{
-                    color: '#BBBBBB'
+                    color: '#BBBBBB',
+                    my: 2
                 }}>
                     We are sure you'll agree too
                 </Typography>
+                <img
+                        src="/landing-page/fabric.png"
+                        alt="Custom T-shirt"
+                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                    />
                 <Grid container spacing={4} sx={{padding: {md: 8, xs: 0}, paddingBottom: {md: 8, xs: 8}}}>
-                <Grid item xs={4} md={2}>
-                    {/* <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} /> */}
-                    {/* <img
-                        src="/landing-page/paint.png"
-                        alt="Custom T-shirt"
-                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
-                    /> */}
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        Soft Touch Knitting
-                    </Typography>
-                </Grid>
-                <Grid item xs={4} md={2}>
-                    {/* <BuildIcon sx={{ fontSize: 50, mb: 2 }} /> */}
-                    {/* <img
-                        src="/landing-page/paint.png"
-                        alt="Custom T-shirt"
-                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
-                    /> */}
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        100% Cotton
-                    </Typography>
-                </Grid>
-                <Grid item xs={4} md={2}>
-                    {/* <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} /> */}
-                    {/* <img
-                        src="/landing-page/paint.png"
-                        alt="Custom T-shirt"
-                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
-                    /> */}
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        Korean Fit
-                    </Typography>
-                </Grid>
-                <Grid item xs={4} md={2}>
-                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
-                    {/* <img
-                        src="/landing-page/paint.png"
-                        alt="Craft you own"
-                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
-                    /> */}
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        200GSM thickness
-                    </Typography>
-                </Grid>
-                <Grid item xs={4} md={2}>
-                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
-                    {/* <img
-                        src="/landing-page/paint.png"
-                        alt="Craft you own"
-                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
-                    /> */}
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        Bio-Washed
-                    </Typography>
-                </Grid>
-                <Grid item xs={4} md={2}>
-                    {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
-                    {/* <img
-                        src="/landing-page/paint.png"
-                        alt="Craft you own"
-                        style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
-                    /> */}
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        Eco-Friendly Dye
-                    </Typography>
-                </Grid>
+                    <Grid item xs={4} md={2}>
+                        {/* <LocalShippingIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                        {/* <img
+                            src="/landing-page/paint.png"
+                            alt="Custom T-shirt"
+                            style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                        /> */}
+                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                            Soft Touch Knitting
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4} md={2}>
+                        {/* <BuildIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                        {/* <img
+                            src="/landing-page/paint.png"
+                            alt="Custom T-shirt"
+                            style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                        /> */}
+                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                            100% Cotton
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4} md={2}>
+                        {/* <CheckCircleIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                        {/* <img
+                            src="/landing-page/paint.png"
+                            alt="Custom T-shirt"
+                            style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                        /> */}
+                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                            Korean Fit
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4} md={2}>
+                        {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                        {/* <img
+                            src="/landing-page/paint.png"
+                            alt="Craft you own"
+                            style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                        /> */}
+                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                            200GSM thickness
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4} md={2}>
+                        {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                        {/* <img
+                            src="/landing-page/paint.png"
+                            alt="Craft you own"
+                            style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                        /> */}
+                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                            Bio-Washed
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4} md={2}>
+                        {/* <BrushIcon sx={{ fontSize: 50, mb: 2 }} /> */}
+                        {/* <img
+                            src="/landing-page/paint.png"
+                            alt="Craft you own"
+                            style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
+                        /> */}
+                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                            Eco-Friendly Dye
+                        </Typography>
+                    </Grid>
                 </Grid>
             </Box>
             <Box
