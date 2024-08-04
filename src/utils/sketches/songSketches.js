@@ -1103,7 +1103,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
   const sections = {
     VisualAnalysis: { x: 90, y: 200, w: 1300, h: 700 },
     SongDetails: { x: 90, y: 900, w: 1300, h: 300 },
-    Ranges: { x: 90, y: 1250, w: 800, h: 500 },
+    Ranges: { x: 20, y: 1240, w: 800, h: 500 },
     Legend: { x: 890, y: 1250, w: 500, h: 500 },
     ScanCode: { x: 2130, y: 100, w: 800, h: 500 },
   };
@@ -1187,7 +1187,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.line(x, lineY, x + w, lineY);
 
     if (explicit && explicitImage) {
-      p.image(explicitImage, w / 2 + 50, 50, 100, 63);
+      p.image(explicitImage, w - 80, 1250, 160, 101);
     }
   
     analysisData.sections.forEach((section, index) => {
