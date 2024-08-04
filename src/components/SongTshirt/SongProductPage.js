@@ -34,7 +34,7 @@ const SongProductPage = () => {
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
-  const [songId, setSongId] = useState(searchParams.get('songId') || '44JnQ7TIl4ieCbCQiEPQag');
+  const [songId, setSongId] = useState(searchParams.get('songId') || '5ChkMS8OtdzJeqyybCc9R5');
   const [style, setStyle] = useState(searchParams.get('style') || 'minimal');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -59,7 +59,7 @@ const SongProductPage = () => {
     const defaultParams = {
       color: 'black',
       size: 'M',
-      songId: '44JnQ7TIl4ieCbCQiEPQag',
+      songId: '5ChkMS8OtdzJeqyybCc9R5',
       style: 'minimal',
     };
 
