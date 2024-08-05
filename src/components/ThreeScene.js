@@ -124,7 +124,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         position={position}
         receiveShadow={false}
       >
-        <planeGeometry args={[10, 10]} />
+        <planeGeometry args={[6, 6]} />
         <meshStandardMaterial map={texture} transparent={true} />
       </mesh>
     );

@@ -264,7 +264,7 @@ const EmojiTshirtPage = () => {
             <Grid 
               item 
               xs={12} 
-              md={6}
+              md={7}
               sx={{ 
                 display: { xs: 'block', md: 'flex' }, 
                 justifyContent: 'center', 
@@ -285,7 +285,7 @@ const EmojiTshirtPage = () => {
                 padding: { xs: 2, md: 2 },
               }}
               xs={12}
-              md={6}
+              md={5}
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
                 <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>

@@ -162,7 +162,7 @@ export default function ProductStaticContent() {
                             alt="Custom T-shirt"
                             style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
                         /> */}
-                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        <Typography variant="body1">
                             Soft Touch Knitting
                         </Typography>
                     </Grid>
@@ -173,7 +173,7 @@ export default function ProductStaticContent() {
                             alt="Custom T-shirt"
                             style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
                         /> */}
-                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        <Typography variant="body1">
                             100% Cotton
                         </Typography>
                     </Grid>
@@ -184,8 +184,8 @@ export default function ProductStaticContent() {
                             alt="Custom T-shirt"
                             style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
                         /> */}
-                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                            Korean Fit
+                        <Typography variant="body1">
+                            Oversized Fit
                         </Typography>
                     </Grid>
                     <Grid item xs={4} md={2}>
@@ -195,7 +195,7 @@ export default function ProductStaticContent() {
                             alt="Craft you own"
                             style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
                         /> */}
-                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        <Typography variant="body1">
                             200GSM thickness
                         </Typography>
                     </Grid>
@@ -206,7 +206,7 @@ export default function ProductStaticContent() {
                             alt="Craft you own"
                             style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
                         /> */}
-                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        <Typography variant="body1">
                             Bio-Washed
                         </Typography>
                     </Grid>
@@ -217,7 +217,7 @@ export default function ProductStaticContent() {
                             alt="Craft you own"
                             style={{ width: '100%', paddingX: 4, borderRadius: '16px' }}
                         /> */}
-                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        <Typography variant="body1">
                             Eco-Friendly Dye
                         </Typography>
                     </Grid>
@@ -267,8 +267,7 @@ export default function ProductStaticContent() {
                     </Typography>
                 </Box>
                 
-            </Box>
-            
+            </Box>            
             <Box
                 marginTop={4}
                 sx={{
@@ -391,8 +390,7 @@ export default function ProductStaticContent() {
                                 Using Direct To Garment (DTG) printing technique, we ensure highest quality print for each of your order.
                             </Typography>
                         </Box>
-                    </Grid>
-                    
+                    </Grid>    
                 </Grid>
             </Box>
         </Box>

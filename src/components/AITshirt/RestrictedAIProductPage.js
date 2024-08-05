@@ -199,7 +199,7 @@ const RestrictedAiProductPage = () => {
             <Grid 
               item 
               xs={12} 
-              md={6}
+              md={7}
               sx={{ 
                 display: { xs: 'block', md: 'flex' }, 
                 justifyContent: 'center', 
@@ -220,7 +220,7 @@ const RestrictedAiProductPage = () => {
                 padding: { xs: 2, md: 2 },
               }}
               xs={12}
-              md={6}
+              md={5}
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 1 }}>
                 <Box sx={{ 
