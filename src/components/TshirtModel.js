@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { useEnvironment } from '@react-three/drei';
 import { TextureLoader } from 'three';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
@@ -10,6 +11,9 @@ import { gsap } from 'gsap';
 const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
   const normalMapUrl = '/models/textures/normal-final.jpeg';
+
+  const envMap = useEnvironment({files: '/models/textures/env-map.hdr'})
+  
   const normalMap = useLoader(TextureLoader, normalMapUrl);
   normalMap.wrapS = THREE.RepeatWrapping;
 	normalMap.wrapT = THREE.RepeatWrapping;
@@ -23,14 +27,15 @@ const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
           child.castShadow = true;
-			    child.receiveShadow = true;
-          // console.log('Applying texture to mesh');
+          child.receiveShadow = true;
           const material = new THREE.MeshStandardMaterial({
             side: THREE.DoubleSide,
             map: texture,
             normalMap: normalMap,
-            roughness: 0.98,
-            metalness: 0.25,
+            roughness: 0.85,
+            metalness: 0.3,
+            envMap: envMap,
+            envMapIntensity: 0.25,
           });
           child.material = material;
           child.material.needsUpdate = true;

@@ -2,9 +2,10 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Canvas, extend } from '@react-three/fiber';
-import { OrbitControls, SoftShadows } from '@react-three/drei';
+import { OrbitControls, SoftShadows, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useLoader } from '@react-three/fiber';
+
 import TshirtModel from './TshirtModel';
 import dynamic from 'next/dynamic';
 import { IconButton, Typography } from '@mui/material';
@@ -138,8 +139,9 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         camera={{ position: [0, 0.2, 4], fov: 70, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#F8F8F8' }}
       >
-        <ambientLight intensity={3.5} color="#FFFFFF" />
+        <ambientLight intensity={2} color="#FFFFFF" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
+        
         <spotLight
           position={[2, 4, 5]}
           angle={1}
@@ -156,8 +158,8 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[1, 3, 3]} intensity={3} />
-        <pointLight position={[-1, 3, -3]} intensity={8} />
+        <pointLight position={[1, 3, 3]} intensity={2} />
+        <pointLight position={[-1, 3, -3]} intensity={4} />
         <TshirtModel
           color={color}
           texture={texture}
