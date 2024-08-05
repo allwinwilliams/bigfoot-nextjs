@@ -157,7 +157,7 @@ const SongProductPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Song Data Generated Art T-shirt - Oversized Fit
+            Style Your Song T-Shirt - Oversized Fit - SoftTouch Cotton
           </Typography>
           <Typography 
             variant='subtitle1'

@@ -177,7 +177,7 @@ const RestrictedAiProductPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Paint with Prompt T-shirt - Oversized Fit
+            Paint with Prompt T-Shirt - Oversized Fit - SoftTouch Cotton
           </Typography>
           <Typography 
             variant='subtitle1'

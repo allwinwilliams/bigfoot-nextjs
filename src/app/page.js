@@ -303,7 +303,7 @@ export default function HomePage() {
                   <img src="/landing-page/ai.png" alt="AI customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  Draw with a Prompt
+                  Paint with Prompt T-shirt
                 </Typography>
                 <Typography variant="subtitle1">
                   Your idea and style generated

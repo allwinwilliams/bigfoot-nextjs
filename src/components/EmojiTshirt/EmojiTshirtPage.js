@@ -25,7 +25,7 @@ const EmojiTshirtPage = () => {
   const [loading, setLoading] = useState(false);
   const [renderCount, setRenderCount] = useState(0);
 
-  const [color, setColor] = useState(searchParams.get('color') || 'white');
+  const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [style, setStyle] = useState(searchParams.get('style') || 'tiny');
   const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -76,7 +76,7 @@ const EmojiTshirtPage = () => {
 
   useEffect(() => {
     const defaultParams = {
-      color: 'white',
+      color: 'black',
       size: 'M',
       style: 'tiny',
       slug: 'e0-6-grinning-face-with-big-eyes',
@@ -242,7 +242,7 @@ const EmojiTshirtPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Emoji T-shirt - Korean Fit
+            Emoji T-shirt - Regular Fit - Premium Cotton
           </Typography>
           <Typography 
             variant='subtitle1'
