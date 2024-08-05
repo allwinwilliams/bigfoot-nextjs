@@ -1025,7 +1025,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       if(loudness > -50){
         const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
         p.stroke(strokeColor);
-        p.strokeWeight(0.4);
+        p.strokeWeight(p.map(loudness, -30, 5, 0, 1.5));
         p.line(xPos, y + (drawingHeight / 2) - lineHeight / 2, xPos, y + (drawingHeight / 2) + lineHeight / 2);
       }
     });
