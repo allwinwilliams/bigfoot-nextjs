@@ -355,7 +355,7 @@ export default function ProductStaticContent() {
                             sx={{
                             backgroundColor: '#eaeaea',
                             borderRadius: '16px',
-                            padding: 3,
+                            padding: 5,
                             }}
                         >
                             <img
@@ -363,7 +363,7 @@ export default function ProductStaticContent() {
                                 alt="Soft Touch Knitting"
                                 style={{ width: '100%', borderRadius: '16px' }}
                             />
-                            <Typography variant="h4" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                            <Typography variant="h5" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
                                 Soft Touch Knitted Cotton
                             </Typography>
                             <Typography variant="body1">
@@ -376,7 +376,7 @@ export default function ProductStaticContent() {
                             sx={{
                             backgroundColor: '#eaeaea',
                             borderRadius: '16px',
-                            padding: 3,
+                            padding: 5,
                             }}
                         >
                             <img
@@ -384,8 +384,8 @@ export default function ProductStaticContent() {
                                 alt="Direct To Garment"
                                 style={{ width: '100%', borderRadius: '16px' }}
                             />
-                            <Typography variant="h4" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
-                                Truly Customised Prints
+                            <Typography variant="h5" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                                High Quality Customised Printing
                             </Typography>
                             <Typography variant="body1">
                                 Using Direct To Garment (DTG) printing technique, we ensure highest quality print for each of your order.

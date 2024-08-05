@@ -144,7 +144,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
             });
 
             if (explicit && explicitImage) {
-                p.image(explicitImage, centerX + drawingWidth / 2 - 50, centerY + drawingHeight + 230 + nameYOffset, 100, 100); // Adjust the size and position as needed
+                p.image(explicitImage, centerX + drawingWidth / 2 - 50, centerY + drawingHeight + 230 + nameYOffset, 100, 63);
             }
 
             p.textSize(24);
@@ -637,7 +637,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
 
       // Draw the explicit image if the song is explicit
       if (explicit && explicitImage) {
-        p.image(explicitImage, drawingX + drawingWidth / 2 - 50, loudnessSectionY + drawingHeight / 2 + textGap + 10 + nameLines.length * 82 + artistLines.length * 30, 100, 100);
+        p.image(explicitImage, drawingX + drawingWidth / 2 - 50, loudnessSectionY + drawingHeight / 2 + textGap + 10 + nameLines.length * 82 + artistLines.length * 30, 100, 63);
       }
     } else {
       p.textSize(32);

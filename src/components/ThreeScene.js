@@ -42,7 +42,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
       'blue': '#0000FF',
       'grey': '#333333',
       'beige': '#E1C699',
-      'black': '#090909',
+      'black': '#070707',
       'white': '#FFFFFF',
     };
     const fillColor = colorMap[color] || '#FFFFFF';
@@ -136,15 +136,15 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         id="three-canvas"
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 0.2, 4], fov: 70, near: 0.001, far: 100 }}
-        style={{ height: '100%', width: '100%', background: '#F9F9F9' }}
+        style={{ height: '100%', width: '100%', background: '#F8F8F8' }}
       >
-        <ambientLight intensity={3} color="#FFFFFF" />
+        <ambientLight intensity={3.5} color="#FFFFFF" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         <spotLight
-          position={[2, 3, 5]}
+          position={[2, 4, 5]}
           angle={1}
           penumbra={1.0}
-          intensity={3}
+          intensity={1}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
@@ -156,8 +156,8 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[-2, 2, 4]} intensity={16} />
-        <pointLight position={[-1, 3, -3]} intensity={12} />
+        <pointLight position={[1, 3, 3]} intensity={3} />
+        <pointLight position={[-1, 3, -3]} intensity={8} />
         <TshirtModel
           color={color}
           texture={texture}

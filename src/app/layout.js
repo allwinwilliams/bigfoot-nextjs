@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <meta name="keywords" content="customised T-shirts, song T-shirts, personalised clothing, oversized T-shirts, high quality T-shirts, Bigfoot Clothing, AI T-Shirts, Prompt to T-Shirt, Emoji T-Shirt, Personalised T-Shirts" />
         <meta name="author" content="Bigfoot Clothing" />
         
-        <meta property="og:title" content="Bigfoot - Customised Song T-shirt & Clothing - Made to Order" />
+        <meta property="og:title" content="Bigfoot - Customise T-shirts with Songs, Emojis or Prompt" />
         <meta property="og:description" content="Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs." />
         <meta property="og:image" content="https://bigfoot.land/og-banner.png" />
         <meta property="og:url" content="https://bigfoot.land" />
