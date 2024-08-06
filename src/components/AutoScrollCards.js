@@ -63,7 +63,7 @@ const AutoScrollCards = ({
   return (
     <Box>
       <Box sx={{ marginX: 'auto', textAlign: 'center', marginTop: 8, paddingTop: 4 }}>
-        <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', margin: 2 }}>
+        <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', marginY: 8 }}>
           <strike>Thousands</strike> Millions of options to choose from...<br />Make it truly yours..
         </Typography>
         <Box

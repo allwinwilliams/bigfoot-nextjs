@@ -220,18 +220,13 @@ export default function HomePage() {
         </Box>
 
       </Container>
-      <AutoScrollCards 
-        itemsRow1={sampleData1}
-        itemsRow2={sampleData2}
-        itemsRow3={sampleData3}
-      />
+      
       <Box
         id="the-range"
         sx={{
-          background: 'linear-gradient(to bottom, #f7f8fa, #BBBBBB)',
-          padding: { md: 12, xs: 4 },
+          background: 'linear-gradient(to bottom, #f7f8fa, #EEEEEE)',
+          padding: { md: 16, xs: 4 },
           marginY: 12,
-          maxWidth: '1600px',
           marginX: 'auto',
           textAlign: 'center',
         }}
@@ -245,7 +240,7 @@ export default function HomePage() {
           The Range
         </Typography>
         <Grid container spacing={4}>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={6} md={2.4}>
             <Link
               href="/product/songtshirt"
               underline="none"
@@ -278,7 +273,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={6} md={2.4}>
             <Link 
               href="/product/prompt-generated-tshirt" 
               underline="none"
@@ -311,7 +306,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={6} md={2.4}>
             <Link
               href="/product/emoji-tshirt"
               underline="none"
@@ -344,7 +339,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={6} md={2.4}>
             <Link
               href="/product/basic-tshirt"
               underline="none"
@@ -378,7 +373,7 @@ export default function HomePage() {
             </Link>
           </Grid>
           
-          <Grid item xs={6} md={4}>
+          <Grid item xs={6} md={2.4}>
             <Box>
               <Box
                 sx={{
@@ -403,7 +398,7 @@ export default function HomePage() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={6} md={4}>
+          {/* <Grid item xs={6} md={2.4}>
             <Box>
               <Box
                 sx={{
@@ -427,12 +422,16 @@ export default function HomePage() {
                 Our lab is cooking 🧪...
               </Typography>
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
-
+      <AutoScrollCards 
+        itemsRow1={sampleData1}
+        itemsRow2={sampleData2}
+        itemsRow3={sampleData3}
+      />
       <Container>
-      <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8 }}>
+      <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, mt: 24 }}>
         <video
           autoPlay
           loop
