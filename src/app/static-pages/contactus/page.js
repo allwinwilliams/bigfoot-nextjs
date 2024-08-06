@@ -11,7 +11,7 @@ export default function Contact() {
             For any queries,
           </p>
           <p>
-            <b>Phone: +91 99005 36059</b>
+            <b>Phone: +91 87549 68346</b>
           </p>
           <p>
             <b>Email: crews@bigfoot.land </b>

@@ -942,7 +942,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
       let qrColor;
       if (color === 'black') {
-        qrColor = '#ffffff'; // White
+        qrColor = '#777777';
       } else if (color === 'beige') {
         qrColor = '#77301b'; // Dark grey
       } else {
@@ -984,14 +984,14 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     let fillColor, strokeColor;
 
     if (color === 'black') {
-      fillColor = p.color(255); // White fill color
-      strokeColor = p.color(255); // White stroke color
+      fillColor = p.color('#666666');
+      strokeColor = p.color('#666666');
     } else if (color === 'beige') {
-      fillColor = p.color('#77301b'); // Dark grey fill color
-      strokeColor = p.color('#77301b'); // Dark grey stroke color
+      fillColor = p.color('#77301b'); 
+      strokeColor = p.color('#77301b');
     } else {
-      fillColor = p.color(50); // Default fill color
-      strokeColor = p.color(50); // Default stroke color
+      fillColor = p.color(50);
+      strokeColor = p.color(50);
     }
 
     const splitText = (text, maxLength) => {
@@ -1025,7 +1025,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       if(loudness > -50){
         const lineHeight = p.map(loudness, -30, 5, 0, drawingHeight);
         p.stroke(strokeColor);
-        p.strokeWeight(p.map(loudness, -30, 5, 0, 1.5));
+        p.strokeWeight(1.5);
         p.line(xPos, y + (drawingHeight / 2) - lineHeight / 2, xPos, y + (drawingHeight / 2) + lineHeight / 2);
       }
     });
@@ -1071,7 +1071,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
     let textColor;
     if (color === 'black') {
-      textColor = p.color(255);
+      textColor = p.color('#666666');
     } else if (color === 'beige') {
       textColor = p.color('#77301b');
     } else {

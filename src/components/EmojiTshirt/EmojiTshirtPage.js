@@ -16,6 +16,9 @@ import SizeChart from '../SizeChart';
 import BuyNowButton from '../BuyNowButton';
 import debounce from 'lodash.debounce';
 
+import EmojiSelector from './EmojiSelector';
+
+
 const EmojiTshirtPage = () => {
   const theme = useTheme();
   const router = useRouter();
@@ -73,6 +76,7 @@ const EmojiTshirtPage = () => {
 
     fetchEmojis();
   }, []);
+
 
   useEffect(() => {
     const defaultParams = {
@@ -152,12 +156,16 @@ const EmojiTshirtPage = () => {
   }, 300);
 
   const filteredEmojis = useMemo(() => {
-    if (!emojis || !Object.keys(emojis).length) return [];
-
-    const currentGroup = Object.keys(emojis)[tabValue];
-    if (!currentGroup) return [];
-
-    return emojis[currentGroup].filter((emoji) =>
+    let emojiList = [];
+    if (tabValue === 0) {
+      emojiList = Object.values(emojis).flat();
+    } else {
+      const currentGroup = Object.keys(emojis)[tabValue - 1];
+      if (currentGroup) {
+        emojiList = emojis[currentGroup];
+      }
+    }
+    return emojiList.filter((emoji) =>
       emoji.unicodeName.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm, emojis, tabValue]);
@@ -171,13 +179,6 @@ const EmojiTshirtPage = () => {
     const newText = e.target.value;
     setTextInput(newText);
     updateUrlParams({ text: newText });
-  };
-
-  const generate = async () => {
-    setLoading(true);
-    console.log("GENERATE AGAIN");
-    setRenderCount(renderCount + 1);
-    setLoading(false);
   };
 
   const handleShare = () => {
@@ -288,37 +289,10 @@ const EmojiTshirtPage = () => {
               md={5}
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
-                <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                  Select an Emoji
-                </Typography>
-                
-                
-                <Tabs value={tabValue} onChange={handleTabChange} variant="scrollable" scrollButtons="auto">
-                  {Object.keys(emojis).map((group, index) => (
-                    <Tab key={index} label={group.replace(/-/g, ' & ')} />
-                  ))}
-                </Tabs>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <TextField
-                    label="Search Emoji"
-                    variant="outlined"
-                    onChange={(e) => handleSearch(e.target.value)}
-                    fullWidth
-                  />
-                </Box>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2, height: 150, overflowY: 'scroll' }}>
-                  {filteredEmojis.map((emoji) => (
-                    <Chip
-                      key={emoji.unicodeName}
-                      label={emoji.character}
-                      onClick={() => handleEmojiClick(emoji)}
-                      sx={{ fontSize: '24px', padding: '8px' }}
-                    />
-                  ))}
-                </Box>
+                <EmojiSelector emojis={emojis} onEmojiClick={handleEmojiClick}/>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
                   <TextField
-                    label="Add a message (Optional)"
+                    label="Add a message (Optional - Max 24 characters)"
                     variant="outlined"
                     fullWidth
                     value={textInput}

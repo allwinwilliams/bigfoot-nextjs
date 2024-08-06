@@ -7,15 +7,16 @@ export default function ExplainMusic() {
         <Header />
         
         <Box style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
-          <Typography variant="h3" gutterBottom>Explain Designs here</Typography>
+          <Typography variant="h3" gutterBottom>We want to explain our designs here</Typography>
           <p>
-            Explain All Designs Across Here
+            <b>We are thrilled to finish our product for our public launch. Thank you for supporting us.</b>
           </p>
           <p>
-            <b>Series of images and short text for every design</b>
+            However we are still building the site. You can contact us at crews@bigfoot.land and we can have a call to explain.
           </p>
+          
           <p>
-            <b>For more, contact crews@bigfoot.land </b>
+            <b>For more, contact crews@bigfoot.land or + 91 87549 68346 </b>
           </p>
         </Box>
     </Container>
