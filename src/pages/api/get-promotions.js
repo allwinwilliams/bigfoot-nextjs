@@ -12,24 +12,23 @@ export default async function handler(req, res) {
     }
   
     try {
-      // Mocked promotions data
       const promotions = [
         {
-          code: 'rqrqw',
-          summary: 'short summary',
-          description: 'long description- One time',
+          code: 'INTRO10',
+          summary: '10% instant discount for all orders',
+          description: '10% OFF - One time offer',
           tnc: [
-            'Dagdasga',
-            'Sahhqw'
+            'Valid only till August 30th',
+            'Can be revoked anytime'
           ]
         },
         {
-          code: 'abcd',
+          code: 'TEST',
           summary: 'short summary 2',
-          description: 'long description- One time',
+          description: 'long description - One time',
           tnc: [
-            'Dagdasga',
-            'Sahhqw'
+            'Some T&C',
+            'Some description'
           ]
         }
       ];
