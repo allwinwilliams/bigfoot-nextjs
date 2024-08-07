@@ -124,7 +124,7 @@ export default function HomePage() {
           position: 'relative',
           width: '100%',
           backgroundColor: '#000000',
-          borderRadius: 16
+          borderRadius: 4
           }}>
           <video
             autoPlay
@@ -218,14 +218,13 @@ export default function HomePage() {
             </Grid>
           </Paper>
         </Box>
-
       </Container>
       
       <Box
         id="the-range"
         sx={{
           background: 'linear-gradient(to bottom, #f7f8fa, #F1F1F1)',
-          paddingX: { md: 16, xs: 4 },
+          paddingX: { md: 12, xs: 4 },
           paddingY: 16,
           marginX: 'auto',
           textAlign: 'center',
