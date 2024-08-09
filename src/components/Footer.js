@@ -40,7 +40,7 @@ const Footer = () => {
             We are a fashion tech brand aimed to enabling people to express themselves through fashion.
           </Typography>
           <Typography variant="subtitle2" sx={{ mt: 2, maxWidth: '260px', color: '#999999' }}>
-            We do help on customised bulk orders for events and corporates, contact us at crews@bigfoot.land.
+            We do help on customised bulk orders for events and corporates, contact us at crew@bigfoot.land.
           </Typography>
         </Grid>
         <Grid item xs={12} md={2}>

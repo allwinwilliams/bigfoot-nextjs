@@ -17,9 +17,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Bigfoot offers high-quality, customised song T-shirts made to order. Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs." />
         <meta name="keywords" content="Customised T-Shirts, Personalised Fashion, Song T-shirts, Personalised Clothing, Oversized T-shirts, High Quality T-shirts, Bigfoot Clothing, AI T-Shirts, Prompt to T-Shirt, Emoji T-Shirt, Customised Emojis T-Shirt, Personalised T-Shirts" />
         <meta name="author" content="Bigfoot" />
-
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         
         <meta property="og:title" content="Bigfoot - Customise T-shirts with Songs, Emojis or Prompt" />
         <meta property="og:description" content="Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs." />

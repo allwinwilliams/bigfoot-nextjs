@@ -14,7 +14,7 @@ export default function Contact() {
             <b>Phone: +91 87549 68346</b>
           </p>
           <p>
-            <b>Email: crews@bigfoot.land </b>
+            <b>Email: crew@bigfoot.land </b>
           </p>
         </Box>
     </Container>

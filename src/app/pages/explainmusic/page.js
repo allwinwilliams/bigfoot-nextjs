@@ -12,11 +12,11 @@ export default function ExplainMusic() {
             <b>We are thrilled to finish our product for our public launch. Thank you for supporting us.</b>
           </p>
           <p>
-            However we are still building the site. You can contact us at crews@bigfoot.land and we can have a call to explain.
+            However we are still building the site. You can contact us at crew@bigfoot.land and we can have a call to explain.
           </p>
           
           <p>
-            <b>For more, contact crews@bigfoot.land or + 91 87549 68346 </b>
+            <b>For more, contact crew@bigfoot.land or + 91 87549 68346 </b>
           </p>
         </Box>
     </Container>

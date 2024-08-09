@@ -263,7 +263,7 @@ export default function ProductStaticContent() {
                         We are trying to give control to our customers in their designs through different means.
                         <br/>
                         <br/>
-                        Contact us at crews@bigfoot.land for feedback, queries, bulk orders or just coffee, .
+                        Contact us at crew@bigfoot.land for feedback, queries, bulk orders or just coffee, .
                     </Typography>
                 </Box>
                 
