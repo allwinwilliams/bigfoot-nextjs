@@ -40,6 +40,7 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
 
   const handleBuyNow = async () => {
     setOpenPrePaymentModal(true);
+    confirmPurchase();
   };
   
 
@@ -75,7 +76,6 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
 
-      setOpenPrePaymentModal(false);
 
       const response = await fetch('/api/create-razorpay-order', {
         method: 'POST',
@@ -117,7 +117,7 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
       if (!orderData.id) {
         throw new Error('Failed to create Razorpay order');
       }
-
+      setOpenPrePaymentModal(false);
       const options = {
         key_id: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
         key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
@@ -213,7 +213,7 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" gutterBottom>
-              Confirm Your Order
+              Creating your order...
             </Typography>
             <Box sx={{ borderRadius: 2, marginY: '16px', border: '1px solid #ddd' }}>
               <canvas ref={canvasRef}  />
@@ -261,20 +261,24 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
               disabled={buyNowLoading}
             >
               {buyNowLoading ? (
-                <CircularProgress size={24} color="inherit" />
+                <Box> 
+                 <CircularProgress size={24} color="inherit" />
+                  <Typography>Please wait...</Typography>
+                </Box>
               ) : (
                 'Order Now'
               )}
             </Button>
-            <Button
+            {/* <Button
               variant="outlined"
               color="primary"
               onClick={() => setOpenPrePaymentModal(false)}
               fullWidth
               sx={{ marginBottom: 2, fontWeight: 'bold', textTransform: 'none', }}
+              disabled={buyNowLoading}
             >
               Close
-            </Button>
+            </Button> */}
             <Typography variant="body2" sx={{color: '#999999'}}>
               Note: You may not be able to retrieve certain designs, if you exit
             </Typography>

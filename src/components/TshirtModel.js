@@ -8,7 +8,7 @@ import { TextureLoader } from 'three';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-const TshirtModel = ({ color, texture, triggerAnimation, triggerLoadingAnimation }) => {
+const TshirtModel = ({ color, texture, triggerAnimation = false, triggerLoadingAnimation = false }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
   const normalMapUrl = '/models/textures/normal-final.jpeg';
 

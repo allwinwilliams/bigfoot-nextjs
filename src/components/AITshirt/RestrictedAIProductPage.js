@@ -411,9 +411,10 @@ const RestrictedAiProductPage = () => {
                         textTransform: 'none',
                       }}
                       onClick={handleShare}
+                      disabled={true}
                     >
                       <Box sx={{ textAlign: 'center' }}>
-                        Share Your Prompt (Exact design is not saved)
+                        Exact design is not saved
                         <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
                           Once you leave the page, the design is gone forever
                         </Typography>

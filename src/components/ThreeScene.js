@@ -21,7 +21,7 @@ const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 const ThreeScene = ({ color, type, values, style, loading }) => {
   const [texture, setTexture] = useState(null);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
-  const [triggerLoadingAnimation, setTriggerLoadingAnimation] = useState(false);
+
   const canvasRef = useRef();
 
   const [showTooltip, setShowTooltip] = useState(true);
