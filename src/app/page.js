@@ -236,7 +236,7 @@ export default function HomePage() {
             mb: 8,
             color: '#ababab'
           }}>
-          The Range
+          Explore the range
         </Typography>
         <Grid container spacing={2} sx={{my: 8}}>
           <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>

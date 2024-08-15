@@ -178,7 +178,7 @@ const EmojiTshirtPage = () => {
   const handleTextInputChange = (e) => {
     const newText = e.target.value;
     setTextInput(newText);
-    updateUrlParams({ text: newText });
+    updateUrlParams({ text: newText }); 
   };
 
   const handleShare = () => {
