@@ -169,13 +169,15 @@ const BasicTshirtPage = () => {
               alignItems: 'center' 
             }}
           >
-            <ThreeScene
-              color={color}
-              type='basic'
-              values={{renderCount}}
-              style={style}
-              loading={loading}
-            />
+            
+              <ThreeScene
+                color={color}
+                type='basic'
+                values={{renderCount}}
+                style={style}
+                loading={loading}
+              />
+            
           </Grid>
           <Grid
             item

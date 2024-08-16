@@ -4,8 +4,6 @@ import { keyframes } from '@mui/system';
 import { handlePlayClick } from './AudioControl';
 
 const AutoScrollCards = ({
-
-
   itemsRow1 = [
       { imgUrl: '/samples/song/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/songtshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
       { imgUrl: '/samples/song/1.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/songtshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
@@ -116,7 +114,7 @@ const AutoScrollCards = ({
                   component="img"
                   height="200"
                   image={item.imgUrl}
-                  alt={item.title}
+                  alt={`T-Shirt product sample image customised for ${item.title}`}
                   sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                 />
                 <CardContent>

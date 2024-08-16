@@ -186,14 +186,16 @@ const SongProductPage = () => {
                 alignItems: 'center' 
               }}
             >
-              <ThreeScene
-                color={color}
-                // data={{type: 'song', values: songData}}
-                type='song'
-                values={songData}
-                style={style}
-                loading={songLoading}
-              />
+              
+                <ThreeScene
+                  color={color}
+                  // data={{type: 'song', values: songData}}
+                  type='song'
+                  values={songData}
+                  style={style}
+                  loading={songLoading}
+                />
+              
             </Grid>
             <Grid
               item

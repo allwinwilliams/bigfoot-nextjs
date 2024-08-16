@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Bigfoot Clothing - Customised Song T-shirt - Made to Order - High Quality Oversized Tshirts</title>
+        <title>Bigfoot Clothing - Customised T-shirts with songs, emojis, AI and more - Made to Order - High Quality Oversized Tshirts</title>
         <meta charSet="UTF-8" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet" />
         <script src="https://checkout.razorpay.com/v1/magic-checkout.js"></script>
 
-        <meta name="description" content="Bigfoot offers high-quality, customised song T-shirts made to order. Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs." />
-        <meta name="keywords" content="Customised T-Shirts, Personalised Fashion, Song T-shirts, Personalised Clothing, Oversized T-shirts, High Quality T-shirts, Bigfoot Clothing, AI T-Shirts, Prompt to T-Shirt, Emoji T-Shirt, Customised Emojis T-Shirt, Personalised T-Shirts" />
+        <meta name="description" content="Bigfoot offers high-quality, customised song T-shirts made to order. Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs. Made in India for the world." />
+        <meta name="keywords" content="Customised T-Shirts, Personalised Fashion, Song T-shirts, Personalised Clothing, Oversized T-shirts, High Quality T-shirts, Bigfoot Clothing, AI T-Shirts, Prompt to T-Shirt, Emoji T-Shirt, Customised Emojis T-Shirt, Personalised T-Shirts, Unique Gifts, Customised Gifts, Personalised Gifts, Matching T-Shirts" />
         <meta name="author" content="Bigfoot" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         

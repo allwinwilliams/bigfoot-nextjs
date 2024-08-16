@@ -206,13 +206,16 @@ const RestrictedAiProductPage = () => {
                 alignItems: 'center' 
               }}
             >
-              <ThreeScene
-                color={color}
-                type='prompt'
-                values={details}
-                style={style}
-                loading={loading}
-              />
+              
+                <ThreeScene
+                  color={color}
+                  type='prompt'
+                  values={details}
+                  style={style}
+                  loading={loading}
+                  loadingDuration={20}
+                />
+              
             </Grid>
             <Grid
               item

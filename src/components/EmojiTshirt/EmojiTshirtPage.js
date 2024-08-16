@@ -272,13 +272,15 @@ const EmojiTshirtPage = () => {
                 alignItems: 'center' 
               }}
             >
-              <ThreeScene
-                color={color}
-                type='emoji'
-                values={{ renderCount, selectedEmoji: emojiCharacter, textInput }}
-                style={style}
-                loading={loading}
-              />
+              
+                <ThreeScene
+                  color={color}
+                  type='emoji'
+                  values={{ renderCount, selectedEmoji: emojiCharacter, textInput }}
+                  style={style}
+                  loading={loading}
+                />
+              
             </Grid>
             <Grid
               item

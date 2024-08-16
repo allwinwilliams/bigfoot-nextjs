@@ -182,14 +182,16 @@ const AiProductPage = () => {
               alignItems: 'center' 
             }}
           >
-            <ThreeScene
-              color={color}
-              // data={{ type: 'ai', values: details }}
-              type='ai'
-              values={details}
-              style={style}
-              loading={loading}
-            />
+            
+              <ThreeScene
+                color={color}
+                // data={{ type: 'ai', values: details }}
+                type='ai'
+                values={details}
+                style={style}
+                loading={loading}
+              />
+            
           </Grid>
           <Grid
             item

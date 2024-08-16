@@ -2,29 +2,46 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Canvas, extend } from '@react-three/fiber';
-import { OrbitControls, SoftShadows, Environment } from '@react-three/drei';
+import { OrbitControls, SoftShadows, Environment, OrthographicCamera, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
+import { useLoader, useThree, useFrame } from '@react-three/fiber';
+import { Vector3 } from 'three';
 
 import TshirtModel from './TshirtModel';
 import dynamic from 'next/dynamic';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, Typography, Box } from '@mui/material';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
+import RightArrowIcon from '@mui/icons-material/ChevronRightRounded';
+import LeftArrowIcon from '@mui/icons-material/ChevronLeftRounded';
 import TouchAppIcon from '@mui/icons-material/TouchApp';
 
-// Ensure the ShadowMaterial is recognized by React Three Fiber
 extend({ ShadowMaterial: THREE.ShadowMaterial });
 
-// Dynamic import with no SSR
 const P5Sketch = dynamic(() => import('./P5Sketch'), { ssr: false });
 
-const ThreeScene = ({ color, type, values, style, loading }) => {
+const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }) => {
   const [texture, setTexture] = useState(null);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
+  
 
   const canvasRef = useRef();
 
   const [showTooltip, setShowTooltip] = useState(true);
+
+  const cameraPositions = [
+    new Vector3(0, 0.2, 5),
+    new Vector3(5, 4.2, 5),
+    new Vector3(2, 2, 0.5),
+    new Vector3(3, -3, -5),
+  ];
+
+  const [cameraPositionIndex, setCameraPositionIndex] = useState(0);
+  const [targetPosition, setTargetPosition] = useState(cameraPositions[cameraPositionIndex]);
+
+  // useFrame(({ camera }) => {
+  //   camera.position.lerp(targetPosition, 0.1);
+  //   camera.lookAt(0, 0, 0);
+  // });
   
   const createCombinedTexture = useCallback(() => {
     if (!(canvasRef.current instanceof HTMLCanvasElement)) {
@@ -87,11 +104,23 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleIconClick = () => {
+  const handleRotation = () => {
     setTriggerAnimation(true);
     setTimeout(() => {
       setTriggerAnimation(false); // Reset the trigger
     }, 3000); // Reset after 3 seconds
+  };
+
+  const handlePreviousCameraChange = () => {
+    const nextPosition = (cameraPositionIndex + 1) % cameraPositions.length;
+    setCameraPositionIndex(nextPosition);
+    setTargetPosition(cameraPositions[nextPosition]);
+  };
+
+  const handleNextCameraChange = () => {
+    const previousPosition = Math.abs((cameraPositionIndex - 1) % cameraPositions.length);
+    setCameraPositionIndex(previousPosition);
+    setTargetPosition(cameraPositions[previousPosition]);
   };
 
   // const GroundPlane = ({position}) => {
@@ -125,39 +154,41 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         position={position}
         receiveShadow={false}
       >
-        <planeGeometry args={[6, 6]} />
+        <planeGeometry args={[8, 6]} />
         <meshStandardMaterial map={texture} transparent={true} />
       </mesh>
     );
   };
 
   return(
-  <div className="three-scene-container">
+    <Box className="three-scene-container">
       <Canvas
         id="three-canvas"
         shadows={{ type: THREE.PCFSoftShadowMap }}
-        camera={{ position: [0, 0.2, 4], fov: 70, near: 0.001, far: 100 }}
         style={{ height: '100%', width: '100%', background: '#F8F8F8' }}
       >
+        <PerspectiveCamera makeDefault {...{position:cameraPositions[cameraPositionIndex], fov: 65, near: 0.01, far: 100}}>
+          <pointLight position={[1, 3, 3]} intensity={2} />
+        </PerspectiveCamera>
+        <spotLight
+            // position={[2, 4, 5]}
+            angle={1}
+            penumbra={1.0}
+            intensity={1}
+            castShadow
+            shadow-mapSize-width={2048}
+            shadow-mapSize-height={2048}
+            shadow-camera-far={50}
+            shadow-camera-near={0.001}
+            shadow-bias={-0.00001}
+            shadow-camera-left={-30}
+            shadow-camera-right={30}
+            shadow-camera-top={30}
+            shadow-camera-bottom={-30}
+          />
         <ambientLight intensity={2} color="#FFFFFF" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         
-        <spotLight
-          position={[2, 4, 5]}
-          angle={1}
-          penumbra={1.0}
-          intensity={1}
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-camera-far={50}
-          shadow-camera-near={0.001}
-          shadow-bias={-0.00001}
-          shadow-camera-left={-30}
-          shadow-camera-right={30}
-          shadow-camera-top={30}
-          shadow-camera-bottom={-30}
-        />
         <pointLight position={[1, 3, 3]} intensity={2} />
         <pointLight position={[-1, 3, -3]} intensity={4} />
         <TshirtModel
@@ -165,13 +196,14 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           texture={texture}
           triggerAnimation={triggerAnimation}
           triggerLoadingAnimation={loading}
+          animationDuration={loadingDuration}
         />
         <GroundPlane position={[0, -1.75, 0]} />
         <OrbitControls
           maxPolarAngle={Math.PI / 1.2}
           minPolarAngle={Math.PI / 10}
           enableZoom={true}
-          maxDistance={12}
+          maxDistance={10}
           minDistance={0.8}
         />
       </Canvas>
@@ -183,11 +215,28 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
         values={values}
         style={style}
       />
-      <div className="icon-container">
-        <IconButton aria-label="3D info" onClick={handleIconClick}>
+      <Box sx={{
+          position: 'absolute',
+          bottom: '32px',
+          right: '32px'
+        }}>
+        
+        <IconButton aria-label="Next View" onClick={handleRotation}>
           <ThreeDRotationIcon sx={{ fontSize: 36 }} />
         </IconButton>
-      </div>
+      </Box>
+      <Box sx={{
+          position: 'absolute',
+          bottom: '32px',
+          left: '32px'
+        }}>
+        <IconButton aria-label="3D Rotation" onClick={handleNextCameraChange}>
+          <LeftArrowIcon sx={{ fontSize: 36 }} />
+        </IconButton>
+        <IconButton aria-label="Previous View" onClick={handlePreviousCameraChange}>
+          <RightArrowIcon sx={{ fontSize: 36 }} />
+        </IconButton>
+      </Box>
       {showTooltip && (
         <div className="tooltip-container">
           <TouchAppIcon id="touch-icon" className="touch-icon" sx={{ fontSize: 36, color: 'white', animation: 'moveLeftRight 1s infinite alternate' }} />
@@ -196,57 +245,7 @@ const ThreeScene = ({ color, type, values, style, loading }) => {
           </Typography>
         </div>
       )}
-      <style jsx>{`
-        .three-scene-container {
-          position: relative;
-          height: 100%;
-          width: 100%;
-          border-radius: 16px 0 0 16px;
-          overflow: hidden;
-        }
-
-        .icon-container {
-          position: absolute;
-          bottom: 32px;
-          right: 32px;
-        }
-
-        @keyframes moveLeftRight {
-          0% { transform: translateX(-10px); }
-          100% { transform: translateX(10px); }
-        }
-
-        .tooltip-container {
-          position: absolute;
-          top: 20%;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          background: rgba(0, 0, 0, 0.2);
-          padding: 10px 20px;
-          border-radius: 10px;
-          opacity: 0;
-          animation: fadeInOut 4s ease 2s;
-        }
-
-        @keyframes fadeInOut {
-          0% { opacity: 0; }
-          60% { opacity: 1; }
-          90% { opacity: 0; }
-          100% { display: none; }
-        }
-
-        @media (max-width: 900px) {
-          .three-scene-container {
-            min-height: 500px;
-            border-radius: 16px 16px 0 0;
-            height: 60vh;
-          }
-        }
-      `}</style>
-    </div>
+    </Box>
   );
 };
 

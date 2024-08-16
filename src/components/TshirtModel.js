@@ -8,7 +8,7 @@ import { TextureLoader } from 'three';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-const TshirtModel = ({ color, texture, triggerAnimation = false, triggerLoadingAnimation = false }) => {
+const TshirtModel = ({ color, texture, triggerAnimation = false, animationDuration = 4, triggerLoadingAnimation = false }) => {
   const gltf = useLoader(GLTFLoader, '/models/tshirt-final.glb');
   const normalMapUrl = '/models/textures/normal-final.jpeg';
 
@@ -72,8 +72,8 @@ const TshirtModel = ({ color, texture, triggerAnimation = false, triggerLoadingA
   useEffect(() => {
     if (triggerLoadingAnimation && modelRef.current) {
       gsap.to(modelRef.current.rotation, {
-        y: modelRef.current.rotation.y - Math.PI * 4,
-        duration: 3,
+        y: modelRef.current.rotation.y - Math.PI * 6,
+        duration: animationDuration,
         ease: "power1.inOut",
         onComplete: () => {
           modelRef.current.rotation.y = modelRef.current.rotation.y % (Math.PI * 2);
@@ -83,7 +83,7 @@ const TshirtModel = ({ color, texture, triggerAnimation = false, triggerLoadingA
         x: 0.5,
         y: 0.5,
         z: 0.5,
-        duration: 1,
+        duration: animationDuration/2,
         yoyo: true,
         repeat: 1,
         ease: "power1.inOut",
