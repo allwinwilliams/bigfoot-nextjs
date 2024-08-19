@@ -239,7 +239,7 @@ export default function ProductStaticContent() {
                 >
                     
                     <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#BBBBBB' }}>
-                        Can you you understand the design?
+                        What bigfoot offers that others don't?
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     
@@ -255,12 +255,14 @@ export default function ProductStaticContent() {
                             }}
                         />
                     </Box>
-                    <Typography variant="h4" sx={{marginTop: 4}}>
-                        Yes, you Can.<br/>
+                    <Typography variant="h6" sx={{marginTop: 4}}>
+                        We want you to have control over the designs you wear. <br/>
+                        We cheer for you to express yourself.<br/>
                     </Typography>
                     <Typography variant="h6" sx={{marginTop: 4, color: '#999999'}}>
                         <br/>
-                        We are trying to give control to our customers in their designs through different means.
+                        We are trying to give control to all of you in their designs through different means.<br />
+                        Join us in taking back control of our designs.
                         <br/>
                         <br/>
                         Contact us at crew@bigfoot.land for feedback, queries, bulk orders or just coffee, .

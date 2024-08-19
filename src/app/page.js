@@ -618,9 +618,9 @@ export default function HomePage() {
                   mb: 2,
                 }}
               >
-                Pick a song.<br/>
-                Write a prompt.<br/>
-                Click a button.<br/>
+                You design.
+                We develop.<br/>
+                Take control of the design.<br/>
               </Typography>
               <Typography variant="subtitle2"
               sx={{

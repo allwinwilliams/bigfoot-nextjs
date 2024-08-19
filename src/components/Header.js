@@ -23,12 +23,12 @@ const Header = () => {
         alt='Bigfoot Logo'
         style={{ width: 48, marginBottom: 8 }}
       />
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h5" gutterBottom>
         bigfoot
       </Typography>
 
-      <Typography variant="subtitle1" gutterBottom sx={{color: '#777777'}}>
-        Conceptual fashion
+      <Typography variant="subtitle2" gutterBottom sx={{color: '#777777'}}>
+        conceptual fashion
       </Typography>
       
       {/* <Chip label="Beta" variant="contained" /> */}
