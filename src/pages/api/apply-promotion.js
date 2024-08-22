@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     const mockPromotionCodes = {
       "FRIENDS50": {
         reference_id: "PROMO1",
-        type: "coupon",
+        type: "offer",
         code: "FRIENDS50",
         value: 50,
         value_type: "Percentage",
