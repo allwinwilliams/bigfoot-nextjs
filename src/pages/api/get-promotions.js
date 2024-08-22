@@ -14,23 +14,23 @@ export default async function handler(req, res) {
     try {
       const promotions = [
         {
-          code: 'INTRO10',
-          summary: '10% instant discount for all orders',
-          description: '10% OFF - One time offer',
+          code: 'INTRO200',
+          summary: 'Rs. 200 instant discount for all orders',
+          description: 'Rs. 200 OFF - Introductory Sale',
           tnc: [
-            'Valid only till August 30th',
+            'Valid only till September 15th',
             'Can be revoked anytime'
           ]
         },
-        {
-          code: 'TEST',
-          summary: 'short summary 2',
-          description: 'long description - One time',
-          tnc: [
-            'Some T&C',
-            'Some description'
-          ]
-        }
+        // {
+        //   code: 'TEST',
+        //   summary: 'short summary 2',
+        //   description: 'long description - One time',
+        //   tnc: [
+        //     'Some T&C',
+        //     'Some description'
+        //   ]
+        // }
       ];
 
       return res.status(200).json({ promotions });

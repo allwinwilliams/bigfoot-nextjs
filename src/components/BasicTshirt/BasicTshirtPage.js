@@ -314,7 +314,8 @@ const BasicTshirtPage = () => {
                 color={color}
                 size={size}
                 style={style}
-                type="basic"
+                type="Basic"
+                data={{}}
                 storage={storage}
                 db={db}
               />

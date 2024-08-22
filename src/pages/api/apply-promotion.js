@@ -15,21 +15,20 @@ export default async function handler(req, res) {
     }
   
     const mockPromotionCodes = {
-      "50POFF": {
+      "FRIENDS50": {
         reference_id: "PROMO1",
         type: "coupon",
-        code: "50POFF",
+        code: "FRIENDS50",
         value: 50,
-        value_type: "Fixed amount",
-        description: "50% off promotion"
+        description: "Flat 50% off promotion for close friends"
       },
-      "INTRO10": {
+      "INTRO200": {
         reference_id: "PROMO2",
         type: "coupon",
-        code: "INTRO10",
-        value: 10,
+        code: "INTRO200",
+        value: 20000,
         value_type: "Fixed amount",
-        description: "10% off promotion"
+        description: "Rs. 200 off for introductory sale across"
       },
       "EXPIRED": {
         reference_id: "TEST",

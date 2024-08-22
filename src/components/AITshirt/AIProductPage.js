@@ -369,7 +369,7 @@ const AiProductPage = () => {
                   size={size}
                   style={style}
                   type="ai"
-                  prompt={prompt}
+                  data={{prompt}}
                   storage={storage}
                   db={db}
                 />

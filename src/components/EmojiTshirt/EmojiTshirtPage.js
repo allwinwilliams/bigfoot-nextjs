@@ -406,7 +406,8 @@ const EmojiTshirtPage = () => {
                     color={color}
                     size={size}
                     style={style}
-                    type="emoji"
+                    type="Emoji"
+                    data={{emoji: selectedEmoji, text: textInput}}
                     storage={storage}
                     db={db}
                     price={89900}

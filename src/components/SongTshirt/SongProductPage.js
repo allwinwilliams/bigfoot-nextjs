@@ -310,10 +310,8 @@ const SongProductPage = () => {
                   color={color}
                   size={size}
                   style={style}
-                  type="song"
-                  songId={songId}
-                  songData={songData}
-                  songName={songData?.details?.name || ''}
+                  type="Song"
+                  data={{songId, songData, songName: songData?.details?.name || ''}}
                   storage={storage}
                   db={db}
                 />

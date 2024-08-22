@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, songName, storage, db, price = 139900 }) => {
+const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, price = 139900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openPostPaymentModal, setOpenPostPaymentModal] = useState(false);
@@ -52,8 +52,8 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
       
       // const threeCanvas = document.querySelector('#three-canvas canvas');
       // const threeCanvasDataUrl = threeCanvas ? threeCanvas.toDataURL('image/png') : "";
-
-      const storageRef = ref(storage, `orders/${type}-${songId ? songId + '-' : ''}${Date.now()}.png`);
+      const timestamp = Date.now();
+      const storageRef = ref(storage, `orders/${type}/${style}-${timestamp}.png`);
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
 
@@ -67,10 +67,13 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
       };
 
       if (type === "song") {
-        dataToStore.songId = songId;
-        dataToStore.songName = songData.details?.name || '';
+        dataToStore.songId = data.songId ;
+        dataToStore.name = data.songName || '';
       } else if (type === "ai") {
-        dataToStore.prompt = prompt || '';
+        dataToStore.prompt = data.prompt || '';
+      } else if(type === "emoji"){
+        dataToStore.emoji = data.emoji || '';
+        dataToStore.text = data.text || '';
       }
 
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
@@ -86,27 +89,30 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
           amount: price,
           currency: 'INR',
           receipt: `receipt_${docId}`,
-          notes: dataToStore,
+          payment_capture: true,
+          notes: { docId, ...dataToStore },
           line_items_total: price,
           line_items: [
             {
-              type: "e-commerce",
-              sku: "1g234",
-              variant_id: "12r34",
+              // type: "e-commerce",
+              // sku: `//TEE/${type}/${style}/timestamp`,
+              // variant_id: `//TEE/${type}/${style}`,
               price: price,
-              tax_amount: `${Math.ceil(price * 0.18)}`,
+              tax_amount: 0, //`${Math.ceil(price * 0.18)}`,
               quantity: 1,
-              name: `${style} tee - ${type === "song" ? songData.details?.name || '' : 'Customised'}`,
+              name: `${type} - ${style} T-Shirt`,
               description: `Korean Fit T-Shirt with ${type} artwork`,
-              weight: 500,
-              dimensions: {
-                length: 100,
-                width: 50,
-                height: 30
-              },
+              // weight: 500,
+              // dimensions: {
+              //   length: 100,
+              //   width: 50,
+              //   height: 30
+              // },
               image_url: imageUrl,
-              product_url: window.location.href,
-              notes: {}
+              // product_url: window.location.href,
+              // notes: {
+              //  dataToStore
+              // }
             }
           ]
         })
@@ -118,6 +124,7 @@ const BuyNowButton = ({ color, size, style, type, prompt, songId, songData, song
         throw new Error('Failed to create Razorpay order');
       }
       setOpenPrePaymentModal(false);
+      console.log("Order ID: ", orderData.id);
       const options = {
         key_id: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
         key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
