@@ -117,7 +117,7 @@ const EmojiTshirtPage = () => {
     }
   }, [selectedEmoji, emojis]);
 
-  const updateUrlParams = (params) => {
+  const updateUrlParams = (params, shallow = false) => {
     const updatedParams = new URLSearchParams(searchParams.toString());
     Object.keys(params).forEach((key) => {
       if (params[key]) {
@@ -126,26 +126,28 @@ const EmojiTshirtPage = () => {
         updatedParams.delete(key);
       }
     });
-    router.push(`/product/emoji-tshirt?${updatedParams.toString()}`);
+    router.replace(`/product/emoji-tshirt?${updatedParams.toString()}`, undefined, { shallow });
   };
 
   const handleColorChange = (event) => {
     const newColor = event.target.value;
     setColor(newColor);
-    updateUrlParams({ color: newColor });
+    updateUrlParams({ color: newColor }, true); // Pass true to indicate shallow routing
   };
-
+  
   const handleStyleChange = (event) => {
     const newStyle = event.target.value;
     setStyle(newStyle);
-    updateUrlParams({ style: newStyle });
+    updateUrlParams({ style: newStyle }, true);
   };
-
+  
   const handleSizeChange = (event) => {
     const newSize = event.target.value;
     setSize(newSize);
-    updateUrlParams({ size: newSize });
+    updateUrlParams({ size: newSize }, true);
   };
+  
+  
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
