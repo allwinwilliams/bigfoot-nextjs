@@ -20,10 +20,19 @@ export default async function handler(req, res) {
         type: "coupon",
         code: "FRIENDS50",
         value: 50,
+        value_type: "Percentage",
         description: "Flat 50% off promotion for close friends"
       },
-      "INTRO200": {
+      "FLAT500": {
         reference_id: "PROMO2",
+        type: "coupon",
+        code: "FLAT500",
+        value: 50000,
+        value_type: "Fixed amount",
+        description: "Rs. 500 off across all products"
+      },
+      "INTRO200": {
+        reference_id: "PROMO3",
         type: "coupon",
         code: "INTRO200",
         value: 20000,
@@ -34,7 +43,7 @@ export default async function handler(req, res) {
         reference_id: "TEST",
         type: "coupon",
         code: "EXPIRED",
-        value: 0,
+        value: 10,
         value_type: "Fixed amount",
         description: "Expired promotion"
       }
