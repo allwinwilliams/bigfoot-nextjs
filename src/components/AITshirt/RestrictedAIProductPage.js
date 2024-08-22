@@ -399,6 +399,7 @@ const RestrictedAiProductPage = () => {
                     data={{prompt}}
                     storage={storage}
                     db={db}
+                    price={139900}
                   />
                   <Tooltip title="URL copied" open={tooltipOpen} arrow>
                     <Button

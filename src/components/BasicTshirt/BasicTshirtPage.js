@@ -318,6 +318,7 @@ const BasicTshirtPage = () => {
                 data={{}}
                 storage={storage}
                 db={db}
+                price={139900}
               />
                 <Tooltip title="URL copied" open={tooltipOpen} arrow>
                   <Button

@@ -412,7 +412,7 @@ const EmojiTshirtPage = () => {
                     data={{emoji: selectedEmoji, text: textInput}}
                     storage={storage}
                     db={db}
-                    price={89900}
+                    price={139900}
                   />
                   <Tooltip title="URL copied" open={tooltipOpen} arrow>
                     <Button

@@ -314,6 +314,7 @@ const SongProductPage = () => {
                   data={{songId, songData, songName: songData?.details?.name || ''}}
                   storage={storage}
                   db={db}
+                  price={139900}
                 />
                   <Tooltip title="URL copied" open={tooltipOpen} arrow>
                     <Button

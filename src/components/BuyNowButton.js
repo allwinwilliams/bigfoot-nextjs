@@ -95,8 +95,8 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
           line_items: [
             {
               // type: "e-commerce",
-              // sku: `//TEE/${type}/${style}/timestamp`,
-              // variant_id: `//TEE/${type}/${style}`,
+              sku: `//TEE/${type}/${style}/${timestamp}`,
+              variant_id: `//TEE/${type}/${style}`,
               price: price,
               tax_amount: 0, //`${Math.ceil(price * 0.18)}`,
               quantity: 1,
