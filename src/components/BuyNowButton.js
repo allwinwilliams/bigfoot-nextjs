@@ -94,13 +94,13 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
           line_items_total: price,
           line_items: [
             {
-              // type: "e-commerce",
+              type: "e-commerce",
               sku: `//TEE/${type}/${style}/${timestamp}`,
               variant_id: `//TEE/${type}/${style}`,
               price: price,
-              tax_amount: 0, //`${Math.ceil(price * 0.18)}`,
+              tax_amount: `${Math.ceil(price * 0.18)}`,
               quantity: 1,
-              name: `${type} - ${style} T-Shirt`,
+              name: `${type} T-Shirt - ${style}`,
               description: `Korean Fit T-Shirt with ${type} artwork`,
               // weight: 500,
               // dimensions: {
