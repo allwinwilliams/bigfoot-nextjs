@@ -132,7 +132,7 @@ const EmojiTshirtPage = () => {
   const handleColorChange = (event) => {
     const newColor = event.target.value;
     setColor(newColor);
-    updateUrlParams({ color: newColor }, true); // Pass true to indicate shallow routing
+    updateUrlParams({ color: newColor }, true);
   };
   
   const handleStyleChange = (event) => {
@@ -146,8 +146,6 @@ const EmojiTshirtPage = () => {
     setSize(newSize);
     updateUrlParams({ size: newSize }, true);
   };
-  
-  
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -356,27 +354,41 @@ const EmojiTshirtPage = () => {
                   Choose your style
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                  {[
-                    { value: 'tiny', label: 'Tiny' },
-                    { value: 'out', label: 'Out there' },
-                    { value: 'badge', label: 'Badge' },
-                  ].map((option) => (
-                    <Chip
-                      key={option.value}
-                      label={option.label}
-                      clickable
-                      color={style === option.value ? 'primary' : 'default'}
-                      variant={style === option.value ? 'filled' : 'outlined'}
-                      onClick={() => handleStyleChange({ target: { value: option.value } })}
-                      sx={{
-                        padding: '24px 16px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        borderRadius: '9999px',
+                {[
+                  { value: 'tiny', label: 'Tiny', imgSrc: '/product-page/emoji/small.png' },
+                  { value: 'out', label: 'Out there', imgSrc: '/product-page/emoji/large.png' },
+                  { value: 'badge', label: 'Badge', imgSrc: '/product-page/emoji/badge.png' },
+                ].map((option) => (
+                  <Box
+                    key={option.value}
+                    onClick={() => handleStyleChange({ target: { value: option.value } })}
+                    sx={{
+                      padding: 1,
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      border: `2px solid ${style === option.value ? theme.palette.primary.main : '#ccc'}`,
+                      transition: 'border-color 0.3s',
+                      '&:hover': {
+                        borderColor: style === option.value ? theme.palette.primary.dark : '#999',
+                      },
+                    }}
+                  >
+                    <img
+                      src={option.imgSrc}
+                      alt={option.label}
+                      style={{
+                        width: '80px', 
+                        height: '80px',
+                        objectFit: 'cover',
+                        borderRadius: '8px',
                       }}
                     />
-                  ))}
-                </Box>
+                    <Typography variant="body2" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 1 }}>
+                      {option.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                     Select your size

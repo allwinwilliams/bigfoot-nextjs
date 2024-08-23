@@ -377,35 +377,55 @@ const RestrictedAiProductPage = () => {
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                  {[
-                    { value: 'small', label: 'Small', disabled: false },
-                    { value: 'large', label: 'Large', disabled: false },
-                  ].map((option) => (
-                    <Tooltip
-                      key={option.value}
-                      title={option.disabled ? "Currently out of stock. Please check later." : ""}
-                      arrow
+                {[
+                  { value: 'small', label: 'Small', disabled: false, url: '/product-page/ai/small.png' },
+                  { value: 'large', label: 'Large', disabled: false, url: '/product-page/ai/large.png' },
+                ].map((option) => (
+                  <Tooltip
+                    key={option.value}
+                    title={option.disabled ? "Currently out of stock. Please check later." : ""}
+                    arrow
+                  >
+                    <Box
+                      onClick={() => !option.disabled && handleStyleChange({ target: { value: option.value } })}
+                      sx={{
+                        padding: 1,
+                        borderRadius: '8px',
+                        border: `2px solid ${style === option.value ? theme.palette.primary.main : '#ccc'}`,
+                        cursor: option.disabled ? 'not-allowed' : 'pointer',
+                        transition: 'border-color 0.3s',
+                        opacity: option.disabled ? 0.5 : 1,
+                        '&:hover': {
+                          borderColor: option.disabled ? '#eaeaea' : '#1976d2',
+                        },
+                      }}
                     >
-                      <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
-                        <Chip
-                          clickable={!option.disabled}
-                          label={option.label}
-                          color={style === option.value ? 'primary' : 'default'}
-                          variant={style === option.value ? 'filled' : 'outlined'}
-                          disabled={option.disabled}
-                          onClick={() => !option.disabled && handleStyleChange({ target: { value: option.value } })}
-                          sx={{
-                            padding: '24px 16px',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                            borderRadius: '9999px',
-                            cursor: option.disabled ? 'not-allowed' : 'pointer'
-                          }}
-                        />
-                      </Box>
-                    </Tooltip>
-                  ))}
-                </Box>
+                      <Box
+                        component="img"
+                        src={option.url}
+                        alt={option.label}
+                        sx={{
+                          width: '100%',
+                          height: 'auto',
+                          borderRadius: '4px',
+                          mb: 1,
+                        }}
+                      />
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          fontSize: '16px',
+                          fontWeight: 'bold',
+                          textAlign: 'center',
+                          color: style === option.value ? '#1976d2' : '#555',
+                        }}
+                      >
+                        {option.label}
+                      </Typography>
+                    </Box>
+                  </Tooltip>
+                ))}
+              </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                     Select your size

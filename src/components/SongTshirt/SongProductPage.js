@@ -259,25 +259,47 @@ const SongProductPage = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                   {[
-                    { value: 'minimal', label: 'Minimal' },
-                    { value: 'analysis', label: 'Analysis' },
-                    { value: 'concert', label: 'Concert' },
-                    { value: 'drilldown', label: 'Drill Down' },
+                    { value: 'minimal', label: 'Minimal', url: '/product-page/song/minimal.png' },
+                    { value: 'concert', label: 'Concert', url: '/product-page/song/concert.png' },
+                    { value: 'analysis', label: 'Analysis', url: '/product-page/song/analysis.png' },
+                    { value: 'drilldown', label: 'Drill Down', url: '/product-page/song/drilldown.png' },
                   ].map((option) => (
-                    <Chip
+                    <Box
                       key={option.value}
-                      label={option.label}
-                      clickable
-                      color={style === option.value ? 'primary' : 'default'}
-                      variant={style === option.value ? 'filled' : 'outlined'}
                       onClick={() => handleStyleChange({ target: { value: option.value } })}
                       sx={{
-                        padding: '24px 16px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        borderRadius: '9999px',
+                        cursor: 'pointer',
+                        padding: 1,
+                        borderRadius: '8px',
+                        textAlign: 'center',
+                        border: `2px solid ${style === option.value ? theme.palette.primary.main : '#ccc'}`,
+                        transition: 'border-color 0.3s',
+                        '&:hover': {
+                          borderColor: style === option.value ? theme.palette.primary.dark : '#999',
+                        },
                       }}
-                    />
+                    >
+                      <Box
+                        component="img"
+                        src={option.url}
+                        alt={option.label}
+                        sx={{
+                          width: '100%',
+                          height: 'auto',
+                          borderRadius: '4px',
+                          mb: 1,
+                        }}
+                      />
+                      <Typography
+                        variant="subtitle2"
+                        sx={{
+                          fontWeight: style === option.value ? 'bold' : 'normal',
+                          color: style === option.value ? theme.palette.primary.main : 'inherit',
+                        }}
+                      >
+                        {option.label}
+                      </Typography>
+                    </Box>
                   ))}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
