@@ -216,43 +216,6 @@ const SongProductPage = () => {
                   songLoading={songLoading}
                   setSongLoading={setSongLoading}
                 />
-                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                  Pick your color
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                  {[
-                    { value: 'black', label: 'Black' },
-                    { value: 'beige', label: 'Sand' },
-                  ].map((option) => (
-                    <Chip
-                      key={option.value}
-                      label={option.label}
-                      clickable
-                      color={color === option.value ? 'primary' : 'default'}
-                      variant={color === option.value ? 'filled' : 'outlined'}
-                      onClick={() => handleColorChange({ target: { value: option.value } })}
-                      sx={{
-                        padding: '24px 16px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        borderRadius: '9999px',
-                      }}
-                      icon={
-                        <Box
-                          sx={{
-                            width: 24,
-                            height: 24,
-                            backgroundColor: option.value,
-                            border: '1px solid',
-                            borderColor: color === option.value ? '#444444' : '#eaeaea',
-                            borderRadius: '50%',
-                            mr: 1, // Add margin to the right to space out the circle and label
-                          }}
-                        />
-                      }
-                    />
-                  ))}
-                </Box>
                 
                 <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                   Choose your style
@@ -300,6 +263,43 @@ const SongProductPage = () => {
                         {option.label}
                       </Typography>
                     </Box>
+                  ))}
+                </Box>
+                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Pick your color
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                  {[
+                    { value: 'black', label: 'Black' },
+                    { value: 'beige', label: 'Sand' },
+                  ].map((option) => (
+                    <Chip
+                      key={option.value}
+                      label={option.label}
+                      clickable
+                      color={color === option.value ? 'primary' : 'default'}
+                      variant={color === option.value ? 'filled' : 'outlined'}
+                      onClick={() => handleColorChange({ target: { value: option.value } })}
+                      sx={{
+                        padding: '24px 16px',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        borderRadius: '9999px',
+                      }}
+                      icon={
+                        <Box
+                          sx={{
+                            width: 24,
+                            height: 24,
+                            backgroundColor: option.value,
+                            border: '1px solid',
+                            borderColor: color === option.value ? '#444444' : '#eaeaea',
+                            borderRadius: '50%',
+                            mr: 1, // Add margin to the right to space out the circle and label
+                          }}
+                        />
+                      }
+                    />
                   ))}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>

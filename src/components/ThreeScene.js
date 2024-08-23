@@ -169,7 +169,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
         style={{ height: '100%', width: '100%', background: '#F8F8F8', cursor: 'grab'}}
       >
         <PerspectiveCamera makeDefault {...{position:cameraPositions[cameraPositionIndex], fov: 65, near: 0.01, far: 100}}>
-          <pointLight position={[1, 3, 3]} intensity={2} />
+          {/* <pointLight position={[1, 3, 3]} intensity={2} /> */}
         </PerspectiveCamera>
         <spotLight
             position={[2, 4, 5]}
@@ -194,11 +194,11 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
             maxDistance={10}
             minDistance={0.8}
           />
-        <ambientLight intensity={1} color="#FFFFFF" />
+        <ambientLight intensity={1.2} color="#FFFFFF" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         
         <pointLight position={[1, 3, 3]} intensity={1} />
-        <pointLight position={[-1, 3, -3]} intensity={4} />
+        <pointLight position={[-0.5, 3, -3]} intensity={4} />
         
         <TshirtModel
           color={color}

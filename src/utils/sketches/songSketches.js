@@ -984,8 +984,8 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     let fillColor, strokeColor;
 
     if (color === 'black') {
-      fillColor = p.color('#666666');
-      strokeColor = p.color('#666666');
+      fillColor = p.color('#444444');
+      strokeColor = p.color('#444444');
     } else if (color === 'beige') {
       fillColor = p.color('#77301b'); 
       strokeColor = p.color('#77301b');

@@ -324,53 +324,7 @@ const RestrictedAiProductPage = () => {
                     <strong>Try Again</strong>
                   </Button>
                 </Box>
-                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                  Pick your color
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                  {[
-                    { value: 'black', label: 'Black', disabled: false },
-                    { value: 'beige', label: 'Sand', disabled: false },
-                    { value: 'white', label: 'White', disabled: true },
-                  ].map((option) => (
-                    <Tooltip
-                      key={option.value}
-                      title={option.disabled ? "Currently out of stock. Please check later." : ""}
-                      arrow
-                    >
-                      <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
-                        <Chip
-                          clickable={!option.disabled}
-                          label={option.label}
-                          color={color === option.value ? 'primary' : 'default'}
-                          variant={color === option.value ? 'filled' : 'outlined'}
-                          disabled={option.disabled}
-                          onClick={() => !option.disabled && handleColorChange({ target: { value: option.value } })}
-                          sx={{
-                            padding: '24px 16px',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                            borderRadius: '9999px',
-                            cursor: option.disabled ? 'not-allowed' : 'pointer'
-                          }}
-                          icon={
-                            <Box
-                              sx={{
-                                width: 24,
-                                height: 24,
-                                backgroundColor: option.value,
-                                border: '1px solid',
-                                borderColor: color === option.value ? '#444444' : '#eaeaea',
-                                borderRadius: '50%',
-                                mr: 1,
-                              }}
-                            />
-                          }
-                        />
-                      </Box>
-                    </Tooltip>
-                  ))}
-                </Box>
+                
                 <Box sx={{ display: 'flex', alignItems: 'center'}}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                     Select style
@@ -426,6 +380,53 @@ const RestrictedAiProductPage = () => {
                   </Tooltip>
                 ))}
               </Box>
+              <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Pick your color
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                  {[
+                    { value: 'black', label: 'Black', disabled: false },
+                    { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'white', label: 'White', disabled: true },
+                  ].map((option) => (
+                    <Tooltip
+                      key={option.value}
+                      title={option.disabled ? "Currently out of stock. Please check later." : ""}
+                      arrow
+                    >
+                      <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                        <Chip
+                          clickable={!option.disabled}
+                          label={option.label}
+                          color={color === option.value ? 'primary' : 'default'}
+                          variant={color === option.value ? 'filled' : 'outlined'}
+                          disabled={option.disabled}
+                          onClick={() => !option.disabled && handleColorChange({ target: { value: option.value } })}
+                          sx={{
+                            padding: '24px 16px',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            borderRadius: '9999px',
+                            cursor: option.disabled ? 'not-allowed' : 'pointer'
+                          }}
+                          icon={
+                            <Box
+                              sx={{
+                                width: 24,
+                                height: 24,
+                                backgroundColor: option.value,
+                                border: '1px solid',
+                                borderColor: color === option.value ? '#444444' : '#eaeaea',
+                                borderRadius: '50%',
+                                mr: 1,
+                              }}
+                            />
+                          }
+                        />
+                      </Box>
+                    </Tooltip>
+                  ))}
+                </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                     Select your size

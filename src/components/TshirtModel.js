@@ -32,8 +32,8 @@ const TshirtModel = ({ color, texture, triggerAnimation = false, animationDurati
             side: THREE.DoubleSide,
             map: texture,
             normalMap: normalMap,
-            roughness: 0.85,
-            metalness: 0.3,
+            roughness: 0.9,
+            metalness: 0.2,
             envMap: envMap,
             envMapIntensity: 0.25,
           });
