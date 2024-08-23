@@ -1,4 +1,4 @@
-export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
+export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) => {
   const canvasWidth = 2600;
   const canvasHeight = 2000;
 
@@ -61,9 +61,16 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values) => {
 
     if (img) {
       console.log('Drawing image:', img);
-      const imgX = x + (drawingWidth - 500) / 2;
-      const imgY = y + (drawingHeight - 500) / 2;
-      p.image(img, imgX, imgY, 500, 500);
+      if(style == "small"){
+        const imgX = x + (drawingWidth + 360) / 2;
+        const imgY = y + (drawingHeight - 560) / 2;
+        p.image(img, imgX, imgY, 320, 320);
+      } else if(style == "large"){
+        const imgX = x + (drawingWidth - 1000) / 2;
+        const imgY = y + (drawingHeight - 1000) / 2;
+        p.image(img, imgX, imgY, 1000, 1000);
+      }
+      
     } else {
       console.error('Image is not loaded or img variable is null');
     }

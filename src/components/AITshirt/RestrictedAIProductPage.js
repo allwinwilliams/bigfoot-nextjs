@@ -35,21 +35,22 @@ const RestrictedAiProductPage = () => {
   const [subject, setSubject] = useState(searchParams.get('subject') || 'A cat');
   const [action, setAction] = useState(searchParams.get('action') || 'sitting');
   const [location, setLocation] = useState(searchParams.get('location') || 'a Mountain');
-  const [style, setStyle] = useState(searchParams.get('style') || 'Monet');
+  const [artstyle, setArtStyle] = useState(searchParams.get('artstyle') || 'Monet');
+  const [style, setStyle] = useState(searchParams.get('style') || 'small');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
 
   const sampleData = [
-    { imgUrl: '/samples/ai/1.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&style=Van%20Gogh' },
-    { imgUrl: '/samples/ai/8.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
-    { imgUrl: '/samples/ai/6.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
-    { imgUrl: '/samples/ai/3.png', title: 'Strawberry', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Strawberry&action=lying%20on%20a&location=a%20Forest&style=Comics' },
-    { imgUrl: '/samples/ai/4.png', title: 'A cat', description: 'lying in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20cat&action=lying%20on%20a&location=a%20Mountain&style=Monet' },
-    { imgUrl: '/samples/ai/7.png', title: 'A robot', description: ' painting in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Robot&action=painting&location=a%20Mountain&style=Comics' },
-    { imgUrl: '/samples/ai/2.png', title: 'Bigfoot', description: 'dancing in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=dancing&location=a%20Mountain&style=Madhubani%20Painting%20Art%20in%20bright%20colors%20from%20Bihar,%20India' },
-    { imgUrl: '/samples/ai/5.png', title: 'Bigfoot', description: 'walking in Mumbai', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=walking%20on%20a&location=Mumbai&style=Comics' },
-    { imgUrl: '/samples/ai/9.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
+    { imgUrl: '/samples/ai/1.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&artstyle=Van%20Gogh&style=small' },
+    { imgUrl: '/samples/ai/8.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&artstyle=Hokusai%20Ukiyo-E&style=large' },
+    { imgUrl: '/samples/ai/6.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&artstyle=Van%20Gogh&style=small' },
+    { imgUrl: '/samples/ai/3.png', title: 'Strawberry', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Strawberry&action=lying%20on%20a&location=a%20Forest&artstyle=Comics&style=large' },
+    { imgUrl: '/samples/ai/4.png', title: 'A cat', description: 'lying in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20cat&action=lying%20on%20a&location=a%20Mountain&artstyle=Monet&style=small' },
+    { imgUrl: '/samples/ai/7.png', title: 'A robot', description: ' painting in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Robot&action=painting&location=a%20Mountain&artstyle=Comics&style=large' },
+    { imgUrl: '/samples/ai/2.png', title: 'Bigfoot', description: 'dancing in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=dancing&location=a%20Mountain&artstyle=Madhubani%20Painting%20Art%20in%20bright%20colors%20from%20Bihar,%20India&style=small' },
+    { imgUrl: '/samples/ai/5.png', title: 'Bigfoot', description: 'walking in Mumbai', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=walking%20on%20a&location=Mumbai&artstyle=Comics&style=small' },
+    { imgUrl: '/samples/ai/9.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&artstyle=Hokusai%20Ukiyo-E&style=large' },
   ];
 
   useEffect(() => {
@@ -59,17 +60,19 @@ const RestrictedAiProductPage = () => {
       subject: 'A cat',
       action: 'sitting',
       location: 'a Mountain',
-      style: 'Monet',
+      artstyle: 'Monet',
+      style: 'small',
     };
 
-    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('subject') || !searchParams.get('action') || !searchParams.get('location') || !searchParams.get('style')) {
-      router.push(`/product/prompt-generated-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&subject=${subject || defaultParams.subject}&action=${action || defaultParams.action}&location=${location || defaultParams.location}&style=${style || defaultParams.style}`);
+    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('subject') || !searchParams.get('action') || !searchParams.get('location') || !searchParams.get('artstyle') || !searchParams.get('style')) {
+      router.push(`/product/prompt-generated-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&subject=${subject || defaultParams.subject}&action=${action || defaultParams.action}&location=${location || defaultParams.location}&artstyle=${artstyle || defaultParams.artstyle}&style=${style || defaultParams.style}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
       setSubject(searchParams.get('subject') || defaultParams.subject);
       setAction(searchParams.get('action') || defaultParams.action);
       setLocation(searchParams.get('location') || defaultParams.location);
+      setArtStyle(searchParams.get('artstyle') || defaultParams.artstyle);
       setStyle(searchParams.get('style') || defaultParams.style);
     }
 
@@ -81,32 +84,37 @@ const RestrictedAiProductPage = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${event.target.value}&size=${size}&subject=${subject}&action=${action}&location=${location}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${event.target.value}&size=${size}&subject=${subject}&action=${action}&location=${location}&artstyle=${artstyle}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${location}&style=${event.target.value}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${location}&artstyle=${artstyle}&style=${event.target.value}`);
+  };
+
+  const handleArtStyleChange = (event) => {
+    setArtStyle(event.target.value);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${location}&artstyle=${event.target.value}&style=${style}`);
   };
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${event.target.value}&subject=${subject}&action=${action}&location=${location}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${event.target.value}&subject=${subject}&action=${action}&location=${location}&artstyle=${artstyle}&style=${style}`);
   };
 
   const handleSubjectChange = (event) => {
     setSubject(event.target.value);
-    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${event.target.value}&action=${action}&location=${location}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${event.target.value}&action=${action}&location=${location}&artstyle=${artstyle}&style=${style}`);
   };
 
   const handleActionChange = (event) => {
     setAction(event.target.value);
-    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${event.target.value}&location=${location}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${event.target.value}&location=${location}&artstyle=${artstyle}&style=${style}`);
   };
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
-    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${event.target.value}&style=${style}`);
+    window.history.replaceState(null, '', `/product/prompt-generated-tshirt?color=${color}&size=${size}&subject=${subject}&action=${action}&location=${event.target.value}&artstyle=${artstyle}&style=${style}`);
   };
 
   const generate = async () => {
@@ -263,7 +271,6 @@ const RestrictedAiProductPage = () => {
                   </FormControl>
                   <Typography>in</Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
-
                     <Select value={location} onChange={handleLocationChange} displayEmpty>
                       <MenuItem value="a Forest">a Forest</MenuItem>
                       <MenuItem value="a Mountain">a Mountain</MenuItem>
@@ -277,7 +284,7 @@ const RestrictedAiProductPage = () => {
                   </FormControl>
                   <Typography>in the style of</Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
-                    <Select value={style} onChange={handleStyleChange} displayEmpty>
+                    <Select value={artstyle} onChange={handleArtStyleChange} displayEmpty>
                       <MenuItem value="Hokusai Ukiyo-E">Hokusai</MenuItem>
                       <MenuItem value="Van Gogh">Van Gogh</MenuItem>
                       <MenuItem value="Comics">Comics</MenuItem>
@@ -364,7 +371,41 @@ const RestrictedAiProductPage = () => {
                     </Tooltip>
                   ))}
                 </Box>
-                   
+                <Box sx={{ display: 'flex', alignItems: 'center'}}>
+                  <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                    Select style
+                  </Typography>
+                </Box>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                  {[
+                    { value: 'small', label: 'Small', disabled: false },
+                    { value: 'large', label: 'Large', disabled: false },
+                  ].map((option) => (
+                    <Tooltip
+                      key={option.value}
+                      title={option.disabled ? "Currently out of stock. Please check later." : ""}
+                      arrow
+                    >
+                      <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
+                        <Chip
+                          clickable={!option.disabled}
+                          label={option.label}
+                          color={style === option.value ? 'primary' : 'default'}
+                          variant={style === option.value ? 'filled' : 'outlined'}
+                          disabled={option.disabled}
+                          onClick={() => !option.disabled && handleStyleChange({ target: { value: option.value } })}
+                          sx={{
+                            padding: '24px 16px',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            borderRadius: '9999px',
+                            cursor: option.disabled ? 'not-allowed' : 'pointer'
+                          }}
+                        />
+                      </Box>
+                    </Tooltip>
+                  ))}
+                </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                     Select your size
@@ -390,6 +431,7 @@ const RestrictedAiProductPage = () => {
                     />
                   ))}
                 </Box>
+                
                 <Box sx={{ mt: 4 }}>
                   <BuyNowButton
                     color={color}
