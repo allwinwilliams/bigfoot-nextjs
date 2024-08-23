@@ -64,11 +64,16 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) =>
       if(style == "small"){
         const imgX = x + (drawingWidth + 360) / 2;
         const imgY = y + (drawingHeight - 560) / 2;
-        p.image(img, imgX, imgY, 320, 320);
+        p.noStroke();
+        p.rect(imgX-25, imgY-25, 310, 340);
+        p.image(img, imgX, imgY, 260, 260);
+        p.fill(p.color(255));
+        
       } else if(style == "large"){
-        const imgX = x + (drawingWidth - 1000) / 2;
-        const imgY = y + (drawingHeight - 1000) / 2;
-        p.image(img, imgX, imgY, 1000, 1000);
+        const imgX = x + (drawingWidth - 720) / 2;
+        const imgY = y + (drawingHeight - 720) / 2;
+        
+        p.image(img, imgX, imgY, 720, 720);
 
         if (prompt) {
           if (color === 'black') {
@@ -85,7 +90,7 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) =>
           p.textStyle(p.NORMAL);
           console.log('Drawing text');
           console.log('Prompt:', prompt);
-          p.text(prompt, 740, 1200);
+          // p.text(prompt, 740, 1060);
         }
       }
       
