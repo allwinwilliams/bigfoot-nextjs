@@ -119,7 +119,7 @@ const RestrictedAiProductPage = () => {
 
   const generate = async () => {
     setLoading(true);
-    const fullPrompt = `${subject} ${action} in ${location} in the style of ${style}`;
+    const fullPrompt = `${subject} ${action} in ${location} in the art style of ${artstyle}`;
     await generateImage(fullPrompt);
     setLoading(false);
   };
@@ -282,13 +282,13 @@ const RestrictedAiProductPage = () => {
                       <MenuItem value="a classroom">classroom</MenuItem>
                     </Select>
                   </FormControl>
-                  <Typography>in the style of</Typography>
+                  <Typography>in the art style of</Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <Select value={artstyle} onChange={handleArtStyleChange} displayEmpty>
-                      <MenuItem value="Hokusai Ukiyo-E">Hokusai</MenuItem>
+                      <MenuItem value="Hokusai">Hokusai</MenuItem>
                       <MenuItem value="Van Gogh">Van Gogh</MenuItem>
                       <MenuItem value="Comics">Comics</MenuItem>
-                      <MenuItem value="Madhubani Painting Art in bright colors from Bihar, India">Madhubani</MenuItem>
+                      <MenuItem value="Madhubani">Madhubani</MenuItem>
                       <MenuItem value="Monet">Monet</MenuItem>
                     </Select>
                   </FormControl>

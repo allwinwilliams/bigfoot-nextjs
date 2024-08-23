@@ -69,6 +69,24 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) =>
         const imgX = x + (drawingWidth - 1000) / 2;
         const imgY = y + (drawingHeight - 1000) / 2;
         p.image(img, imgX, imgY, 1000, 1000);
+
+        if (prompt) {
+          if (color === 'black') {
+            p.fill(p.color(200));
+          } else if (color === 'beige' || color === 'white') {
+            p.fill(p.color(10));
+          } else {
+            p.fill(p.color(50));
+          }
+
+          p.noStroke();
+          p.textAlign(p.CENTER);
+          p.textSize(28);
+          p.textStyle(p.NORMAL);
+          console.log('Drawing text');
+          console.log('Prompt:', prompt);
+          p.text(prompt, 740, 1200);
+        }
       }
       
     } else {
