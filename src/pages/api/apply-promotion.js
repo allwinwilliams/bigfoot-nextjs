@@ -23,18 +23,18 @@ export default async function handler(req, res) {
         value_type: "Percentage",
         description: "Flat 50% off promotion for close friends"
       },
-      "FRIENDS1000": {
+      "FAM1000": {
         reference_id: "PROMO2",
         type: "coupon",
-        code: "FRIENDS1000",
+        code: "FAM1000",
         value: 100000,
         value_type: "Fixed amount",
         description: "Rs. 1000 off across all products - For Closest Friends"
       },
-      "FLAT500": {
+      "COMMUNITY500": {
         reference_id: "PROMO3",
         type: "coupon",
-        code: "FLAT500",
+        code: "COMMUNITY500",
         value: 50000,
         value_type: "Fixed amount",
         description: "Rs. 500 off across all products"

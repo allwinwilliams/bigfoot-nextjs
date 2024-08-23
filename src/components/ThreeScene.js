@@ -188,16 +188,16 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
             shadow-camera-bottom={-30}
           />
           <OrbitControls
-          maxPolarAngle={Math.PI / 1.2}
-          minPolarAngle={Math.PI / 10}
-          enableZoom={true}
-          maxDistance={10}
-          minDistance={0.8}
-        />
-        <ambientLight intensity={2} color="#FFFFFF" />
+            maxPolarAngle={Math.PI / 1.2}
+            minPolarAngle={Math.PI / 10}
+            enableZoom={true}
+            maxDistance={10}
+            minDistance={0.8}
+          />
+        <ambientLight intensity={1} color="#FFFFFF" />
         {/* <SoftShadows size={128} focus={32} samples={64} /> */}
         
-        <pointLight position={[1, 3, 3]} intensity={2} />
+        <pointLight position={[1, 3, 3]} intensity={1} />
         <pointLight position={[-1, 3, -3]} intensity={4} />
         
         <TshirtModel
