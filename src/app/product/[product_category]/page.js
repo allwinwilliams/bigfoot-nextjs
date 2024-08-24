@@ -48,7 +48,7 @@ export default function ProductType() {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Something doesn't seem right</div>}>
       {ComponentToRender}
     </Suspense>
   );

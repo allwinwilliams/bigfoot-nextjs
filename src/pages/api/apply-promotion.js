@@ -23,6 +23,14 @@ export default async function handler(req, res) {
         value_type: "Percentage",
         description: "Flat 50% off promotion for close friends"
       },
+      "ONLYSHIPPING": {
+        reference_id: "PROMOTERS",
+        type: "offer",
+        code: "ONLYSHIPPING",
+        value: 120000,
+        value_type: "Fixed amount",
+        description: "Rs. 1200 off promotion for promoters"
+      },
       "FAM1000": {
         reference_id: "PROMO2",
         type: "coupon",

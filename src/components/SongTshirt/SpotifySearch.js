@@ -5,7 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Box, TextField, Typography, Paper,
   List, ListItem, ListItemText, CircularProgress,
-  InputAdornment
+  InputAdornment,
+  Chip
 } from '@mui/material';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
@@ -76,18 +77,18 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
         onChange={handleSearchChange}
         fullWidth
         sx={{
-            mb: 2,
+            // mb: 2,
             '& .MuiOutlinedInput-root': {
-            borderRadius: '16px',
+              borderRadius: '8px 8px 0 0',
             },
             '& .MuiOutlinedInput-notchedOutline': {
-            borderRadius: '16px',
+              borderRadius: '8px 8px 0 0',
             },
         }}
         InputProps={{
             startAdornment: (
             <InputAdornment position="start">
-                <MusicNoteIcon sx={{ color: 'grey' }} />
+                <MusicNoteIcon color="primary" />
             </InputAdornment>
             ),
         }}
@@ -100,9 +101,9 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
             maxHeight: 240,
             overflow: 'auto',
             zIndex: 10,
-            mt: 1,
+            mt: 0,
             boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
-            borderRadius: '16px',
+            borderRadius: '0 0 8px 8px',
           }}
         >
           <List>
@@ -127,9 +128,10 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
         <Box
           sx={{
             mb: 2,
-            boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
-            borderRadius: '16px',
-            backgroundColor: '#fffff',
+            // boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
+            borderRadius: '0 0 8px 8px',
+            // border: '1px solid rgba(0, 0, 0, 0.12)',
+            backgroundColor: '#F7F7F7',
             padding: 2,
             display: 'flex',
             alignItems: 'center',
@@ -137,8 +139,8 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
         >
           <Box
             sx={{
-              width: '60px',
-              height: '60px',
+              width: '48px',
+              height: '48px',
               borderRadius: '8px',
               backgroundColor: '#f0f0f0',
               display: 'flex',
@@ -169,9 +171,10 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
           <Box
             sx={{
               mb: 2,
-              boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
-              borderRadius: '16px',
-              backgroundColor: '#fffff',
+              // boxShadow: '0 0 8px rgba(0, 0, 0, 0.12)',
+              borderRadius: '0 0 8px 8px',
+              // border: '1px solid rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#F7F7F7',
               padding: 2,
               display: 'flex',
               alignItems: 'center',
@@ -183,24 +186,32 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
                 <img
                   src={songData.details.album.images[0].url}
                   alt={songData.details.name}
-                  style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '16px' }}
+                  style={{ width: '48px', height: '48px', borderRadius: '8px', marginRight: '16px' }}
                 />
             )}
             <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+              <Box sx={{display: 'flex'}}>
+                <Typography
+                  variant="heading6"
+                  sx={{
+                    fontWeight: 'bold',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    width: '100%',
+                  }}
+                >
+                  {songData.details.name}
+                </Typography>
+                <Chip 
+                  label="Current Selection"
+                  size="small"
+                  color="secondary"
+                  sx={{}}
+                />
+              </Box>
               <Typography
-                variant="subtitle1"
-                sx={{
-                  fontWeight: 'bold',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  width: '100%',
-                }}
-              >
-                {songData.details.name}
-              </Typography>
-              <Typography
-                variant="subtitle1"
+                variant="subtitle2"
                 sx={{
                   overflow: 'hidden',
                   color: '#777777',

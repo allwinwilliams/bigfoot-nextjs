@@ -4,7 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketches/songSketches';
-import { aiBasicSketch } from '../utils/sketches/aiSketches';
+import { aiBasicSketch, aiVariantsSketch } from '../utils/sketches/aiSketches';
 import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
 import { emojiSketch } from '@/utils/sketches/emojiSketches';
 
@@ -30,8 +30,11 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
             break;
         }
       }
-      if(type == "ai" || type == "prompt"){
+      if(type == "ai"){
         sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values, style);
+        
+      } if (type == "prompt"){
+        sketch = (p) => aiVariantsSketch(p, canvasRef, onP5Update, color, values, style);
       }
       if(type == "basic"){
         switch (style) {
