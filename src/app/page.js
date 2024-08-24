@@ -1,8 +1,8 @@
 "use client";
 
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { useRef, useEffect } from 'react';
-import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid } from '@mui/material';
+import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid, Link } from '@mui/material';
 import SongProductStaticContent from '../components/ProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/AutoScrollCards';
@@ -241,6 +241,7 @@ export default function HomePage() {
         <Grid container spacing={2} sx={{my: 8}}>
           <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
             <Link
+              LinkComponent={NextLink}
               href="/product/songtshirt"
               underline="none"
               onClick={(e) => {
@@ -273,7 +274,8 @@ export default function HomePage() {
             </Link>
           </Grid>
           <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
-            <Link 
+            <Link
+              LinkComponent={NextLink} 
               href="/product/prompt-generated-tshirt" 
               underline="none"
               onClick={(e) => {
@@ -307,6 +309,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
             <Link
+              LinkComponent={NextLink}
               href="/product/emoji-tshirt"
               underline="none"
               onClick={(e) => {
@@ -340,6 +343,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
             <Link
+              LinkComponent={NextLink}
               href="/product/basic-tshirt"
               underline="none"
               onClick={(e) => {

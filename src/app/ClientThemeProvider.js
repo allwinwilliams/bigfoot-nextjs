@@ -4,6 +4,8 @@
 import React from 'react';
 import { CssBaseline, Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import NextLink from 'next/link';
+import { forwardRef } from 'react';
 
 import '@fontsource/inter'; 
 
