@@ -114,7 +114,7 @@ const AutoScrollCards = ({
                   component="img"
                   height="200"
                   image={item.imgUrl}
-                  alt={`T-Shirt product sample image customised for ${item.title}`}
+                  alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
                   sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                 />
                 <CardContent>
@@ -180,7 +180,7 @@ const AutoScrollCards = ({
                     component="img"
                     height="200"
                     image={item.imgUrl}
-                    alt={item.title}
+                    alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
                     sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                   />
                   <CardContent>
@@ -247,7 +247,7 @@ const AutoScrollCards = ({
                     component="img"
                     height="200"
                     image={item.imgUrl}
-                    alt={item.title}
+                    alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
                     sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                   />
                   <CardContent>

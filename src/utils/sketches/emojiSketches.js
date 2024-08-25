@@ -19,20 +19,20 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
         p.textAlign(p.CENTER, p.CENTER);
         p.textStyle(p.BOLD);
         if(style == "tiny"){    
-            p.textSize(180);
+            p.textSize(190);
             selectedEmoji && p.text(selectedEmoji, 750, 500);
         } if(style == "large"){
             p.textSize(650);
             selectedEmoji && p.text(selectedEmoji, 750, 500);
         }
         if(style == "badge"){
-            p.textSize(160);
+            p.textSize(190);
             selectedEmoji && p.text(selectedEmoji, 1150, 300);
         }
   
       // Draw the text "BIGFOOT" at specified position
       if (color === 'black') {
-        p.fill(70);
+        p.fill(255);
       } else if (color === 'grey') {
         p.fill(5);
       } else if (color === 'beige' || color === 'white') {
@@ -45,17 +45,17 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
       
       
       if(style == "tiny"){    
-        p.textSize(36);
-        p.textStyle(p.NORMAL);
+        p.textSize(40);
+        p.textStyle(p.MEDIUM);
         p.text(textInput || '', 750, 655);
       } else if(style == "large"){
         p.textStyle(p.BOLD);
         p.textSize(56);
         p.text(textInput || '', 750, 900);
       } else if(style == "badge"){
-        p.textStyle(p.BOLD);
-        p.textSize(28);
-        p.text(textInput || '', 1150, 410);
+        p.textStyle(p.MEDIUM);
+        p.textSize(40);
+        p.text(textInput || '', 1150, 440);
       }
 
     };
