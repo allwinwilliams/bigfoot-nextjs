@@ -23,13 +23,21 @@ export default async function handler(req, res) {
         value_type: "Percentage",
         description: "Flat 50% off promotion for close friends"
       },
-      "ONLYSHIPPING": {
+      "VERYSPECIAL": {
         reference_id: "PROMOTERS",
         type: "offer",
-        code: "ONLYSHIPPING",
+        code: "VERYSPECIAL",
         value: 120000,
         value_type: "Fixed amount",
         description: "Rs. 1200 off promotion for promoters"
+      },
+      "RAZORPAY": {
+        reference_id: "RAZORPAY_OFFER",
+        type: "offer",
+        code: "RAZORPAY",
+        value: 70000,
+        value_type: "Fixed amount",
+        description: "Rs. 700 off for Razorpay"
       },
       "FAM1000": {
         reference_id: "PROMO2",

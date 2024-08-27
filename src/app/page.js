@@ -134,7 +134,7 @@ export default function HomePage() {
           zIndex: 1000,
         }}
       >
-        <Marquee gradient={false} speed={30}>
+        <Marquee gradient={false} speed={40}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mx: 2 }}>
             {/* <WhatsAppIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="h6" sx={{ color: '#fff' }}>
