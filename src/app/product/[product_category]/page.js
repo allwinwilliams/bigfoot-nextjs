@@ -16,7 +16,7 @@ export default function ProductType() {
   const { product_category } = useParams();
 
   let ComponentToRender;
-  if (product_category === 'songtshirt') {
+  if (product_category === 'song-tshirt') {
     ComponentToRender = (
       <SongCustomiseProvider>
         <SongProductPage />

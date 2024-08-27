@@ -65,7 +65,7 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
     setInputValue(song.name);
     setSongLoading(true); // Set loading state to true when a new song is selected
     // router.replace(`/product/tshirt/song?color=${color}&size=${size}&songId=${song.id}&style=${style}`);
-    window.history.replaceState(null, '', `/product/songtshirt?color=${color}&size=${size}&songId=${song.id}&style=${style}`);
+    window.history.replaceState(null, '', `/product/song-tshirt?color=${color}&size=${size}&songId=${song.id}&style=${style}`);
   };
 
   return (

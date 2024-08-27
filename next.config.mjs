@@ -1,4 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+// next.config.mjs
 
-export default nextConfig;
+const nextConfig = {
+    i18n: {
+      defaultLocale: 'en',
+      locales: ['en', 'hi', 'de', 'es', 'zh', 'ja'],
+    },
+  };
+  
+  export default nextConfig;

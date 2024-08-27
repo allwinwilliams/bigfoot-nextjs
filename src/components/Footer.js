@@ -162,7 +162,7 @@ const Footer = () => {
             Products
           </Typography>
           <Link
-            href="/product/songtshirt"
+            href="/product/song-tshirt"
             variant="body2"
             display="block"
             sx={{

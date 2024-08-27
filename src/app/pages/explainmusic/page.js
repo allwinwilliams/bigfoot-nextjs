@@ -5,7 +5,6 @@ export default function ExplainMusic() {
     return (
       <Container sx={{ mt: 2 }}>
         <Header />
-        
         <Box style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
           <Typography variant="h3" gutterBottom>We want to explain our designs here</Typography>
           <p>

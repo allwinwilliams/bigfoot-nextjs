@@ -1,16 +1,16 @@
+// app/layout.js or RootLayout (if named differently)
 import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
 import { Container } from '@mui/material';
 import AudioControl from '../components/AudioControl';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
         <title>Bigfoot Clothing - Customised T-shirts with songs, emojis, AI and more - Made to Order - High Quality Oversized Tshirts</title>
-        
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet" />
@@ -34,10 +34,11 @@ export default function RootLayout({ children }) {
       <body>
         <ClientThemeProvider>
           {children}
+          <Container>
+            <Footer />
+          </Container>
+          <LanguageSwitcher />
         </ClientThemeProvider>
-        <Container>
-          <Footer />
-        </Container>
         <AudioControl />
       </body>
     </html>
