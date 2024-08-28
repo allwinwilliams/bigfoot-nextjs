@@ -23,8 +23,8 @@ const AudioControl = React.forwardRef((props, ref) => {
       document.removeEventListener('touchstart', handleUserInteraction); // For mobile devices
     };
 
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction);
+    // document.addEventListener('click', handleUserInteraction);
+    // document.addEventListener('touchstart', handleUserInteraction);
 
     return () => {
       document.removeEventListener('click', handleUserInteraction);
