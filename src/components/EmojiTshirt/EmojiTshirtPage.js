@@ -243,7 +243,7 @@ const EmojiTshirtPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Emoji T-shirt - Regular Fit - Premium Cotton
+            Emoji T-shirt
           </Typography>
           <Typography 
             variant='subtitle1'

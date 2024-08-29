@@ -14,10 +14,13 @@ const SizeChart = () => {
           component="button"
           variant="body2"
           onClick={handleOpen}
-          sx={{ marginLeft: 2, textDecoration: 'underline', cursor: 'pointer' }}
+          sx={{ marginX: 1, textDecoration: 'underline', cursor: 'pointer' }}
         >
-          Size chart
+          Size chart 
         </Link>
+        <Typography variant="body1">
+          ( Fit is same as <Link href="https://www.uniqlo.com/in/en/products/E465185-000" target="_blank">Uniqlo</Link> )
+        </Typography>
       </Box>
       
       <Modal

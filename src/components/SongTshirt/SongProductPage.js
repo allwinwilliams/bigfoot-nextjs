@@ -157,7 +157,7 @@ const SongProductPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Style Your Song T-Shirt - Oversized Fit - SoftTouch Cotton
+            Style Your Song T-Shirt
           </Typography>
           <Typography 
             variant='subtitle1'

@@ -140,7 +140,7 @@ const BasicTshirtPage = () => {
             fontWeight: 'bold'
           }}
         >
-          Basic T-shirt - Oversized Fit - SoftTouch Cotton
+          Basic T-shirt
         </Typography>
         <Typography 
           variant='subtitle1'
