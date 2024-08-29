@@ -19,7 +19,14 @@ const SizeChart = () => {
           Size chart 
         </Link>
         <Typography variant="body1">
-          ( Fit is same as <Link href="https://www.uniqlo.com/in/en/products/E465185-000" target="_blank">Uniqlo</Link> )
+          ( Fit is same  
+          <Link
+            variant="body2"
+            sx={{ fontWeight: 'bold'}}
+            href="https://www.uniqlo.com/in/en/products/E465185-000"
+            target="_blank">
+             Uniqlo fit</Link> 
+          )
         </Typography>
       </Box>
       
