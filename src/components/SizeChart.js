@@ -19,7 +19,7 @@ const SizeChart = () => {
           Size chart 
         </Link>
         <Typography variant="body1">
-          ( Fit is same  
+          ( Fit is same as -  
           <Link
             variant="body2"
             sx={{ fontWeight: 'bold'}}
