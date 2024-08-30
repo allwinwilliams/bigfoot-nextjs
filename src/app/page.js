@@ -209,7 +209,7 @@ export default function HomePage() {
                     textAlign: 'center',
                   }}
                 >
-                  Make it your own
+                  Express yourself with personalised fashion
                 </Typography>
                 <Typography variant="subtitle2"
                   sx={{
