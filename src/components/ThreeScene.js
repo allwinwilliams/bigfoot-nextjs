@@ -154,7 +154,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
         position={position}
         receiveShadow={false}
       >
-        <planeGeometry args={[8, 6]} />
+        <planeGeometry args={[8, 8]} />
         <meshStandardMaterial map={texture} transparent={true} />
       </mesh>
     );
@@ -207,7 +207,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
           triggerLoadingAnimation={loading}
           animationDuration={loadingDuration}
         />
-        <GroundPlane position={[0, -1.75, 0]} />
+        <GroundPlane position={[0, -1.8, 0]} />
         
       </Canvas>
       <P5Sketch
