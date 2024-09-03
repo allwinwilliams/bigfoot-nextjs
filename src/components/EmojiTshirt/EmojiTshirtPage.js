@@ -391,7 +391,7 @@ const EmojiTshirtPage = () => {
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                    Select your size
+                    Size
                   </Typography>
                   <SizeChart />
                 </Box>
