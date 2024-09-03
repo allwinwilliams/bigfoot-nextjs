@@ -302,30 +302,29 @@ const SongProductPage = () => {
                     />
                   ))}
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                <Box sx={{ marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                    Size
+                    Select your size
                   </Typography>
                   <SizeChart />
                 </Box>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                  {['XS','S', 'M', 'L', 'XL'].map((option) => (
-                    <Chip
-                      key={option}
-                      label={option}
-                      clickable
-                      color={size === option ? 'primary' : 'default'}
-                      variant={size === option ? 'filled' : 'outlined'}
-                      onClick={() => handleSizeChange({ target: { value: option } })}
-                      sx={{
-                        padding: '24px 8px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        width: '100%',
-                        borderRadius: '9999px',
-                      }}
-                    />
-                  ))}
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                {['XS','S', 'M', 'L', 'XL', 'XXL'].map((option) => (
+                  <Chip
+                    key={option}
+                    label={option}
+                    clickable
+                    color={size === option ? 'primary' : 'default'}
+                    variant={size === option ? 'filled' : 'outlined'}
+                    onClick={() => handleSizeChange({ target: { value: option } })}
+                    sx={{
+                      padding: '24px 12px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      borderRadius: '9999px',
+                    }}
+                  />
+                ))}
                 </Box>
                 <Box sx={{ mt: 4 }}>
                 <BuyNowButton

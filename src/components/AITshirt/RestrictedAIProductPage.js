@@ -221,7 +221,7 @@ const RestrictedAiProductPage = () => {
                   values={details}
                   style={style}
                   loading={loading}
-                  loadingDuration={20}
+                  loadingDuration={22}
                 />
               
             </Grid>
@@ -350,7 +350,7 @@ const RestrictedAiProductPage = () => {
                         transition: 'border-color 0.3s',
                         opacity: option.disabled ? 0.5 : 1,
                         '&:hover': {
-                          borderColor: option.disabled ? '#eaeaea' : '#1976d2',
+                          borderColor: option.disabled ? '#eaeaea' : theme.palette.primary.main,
                         },
                       }}
                     >
@@ -371,7 +371,7 @@ const RestrictedAiProductPage = () => {
                           fontSize: '16px',
                           fontWeight: 'bold',
                           textAlign: 'center',
-                          color: style === option.value ? '#1976d2' : '#555',
+                          color: style === option.value ? theme.palette.primary.main : '#555',
                         }}
                       >
                         {option.label}
@@ -427,31 +427,30 @@ const RestrictedAiProductPage = () => {
                     </Tooltip>
                   ))}
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                <Box sx={{ marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                    Size
+                    Select your size
                   </Typography>
                   <SizeChart />
                 </Box>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                  {['XS','S', 'M', 'L', 'XL'].map((option) => (
-                    <Chip
-                      key={option}
-                      label={option}
-                      clickable
-                      color={size === option ? 'primary' : 'default'}
-                      variant={size === option ? 'filled' : 'outlined'}
-                      onClick={() => handleSizeChange({ target: { value: option } })}
-                      sx={{
-                        padding: '24px 8px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        width: '100%',
-                        borderRadius: '9999px',
-                      }}
-                    />
-                  ))}
-                </Box>
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                {['XS','S', 'M', 'L', 'XL', 'XXL'].map((option) => (
+                  <Chip
+                    key={option}
+                    label={option}
+                    clickable
+                    color={size === option ? 'primary' : 'default'}
+                    variant={size === option ? 'filled' : 'outlined'}
+                    onClick={() => handleSizeChange({ target: { value: option } })}
+                    sx={{
+                      padding: '24px 12px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      borderRadius: '9999px',
+                    }}
+                  />
+                ))}
+              </Box>
                 
                 <Box sx={{ mt: 4 }}>
                   <BuyNowButton
@@ -481,9 +480,9 @@ const RestrictedAiProductPage = () => {
                       disabled={true}
                     >
                       <Box sx={{ textAlign: 'center' }}>
-                        Exact design is not saved
+                          Share Now
                         <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
-                          Once you leave the page, the design is gone forever
+                          Exact designs are not saved for prompt generated. We are currently building this.
                         </Typography>
                       </Box>
                     </Button>

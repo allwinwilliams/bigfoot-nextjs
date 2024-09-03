@@ -14,12 +14,12 @@ const SizeChart = () => {
           component="button"
           variant="body2"
           onClick={handleOpen}
-          sx={{ marginX: 1, textDecoration: 'underline', cursor: 'pointer' }}
+          sx={{ marginRight: 1, textDecoration: 'underline', cursor: 'pointer' }}
         >
           Size chart 
         </Link>
         <Typography variant="body1">
-          ( Fit is same as -  
+          ( Fit is same as -&nbsp;  
           <Link
             variant="body2"
             sx={{ fontWeight: 'bold'}}

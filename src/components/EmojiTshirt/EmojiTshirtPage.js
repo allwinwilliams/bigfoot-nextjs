@@ -44,7 +44,7 @@ const EmojiTshirtPage = () => {
   const initialLoad = useRef(true);
 
   const samples = [
-    { imgUrl: '/samples/emoji/1.png', title: '🍣', description: 'すし、ください。', link: '/product/song-tshirt?color=beige&size=M&songId=1D4PL9B8gOg78jiHg3FvBb&style=minimal' },
+    { imgUrl: '/samples/emoji/1.png', title: '🍣', description: 'すし、ください。', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e0-6-sushi&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
     { imgUrl: '/samples/emoji/2.png', title: '🐮', description: 'moooooooooooooo', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-cow-face&text=moooooooooooooo' },
     { imgUrl: '/samples/emoji/3.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
     { imgUrl: '/samples/emoji/4.png', title: '🇵🇸', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e2-0-flag-palestinian-territories&text=' },
@@ -389,30 +389,29 @@ const EmojiTshirtPage = () => {
                     </Tooltip>
                   ))}
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                <Box sx={{ marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                    Size
+                    Select your size
                   </Typography>
                   <SizeChart />
                 </Box>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                  {['XS','S', 'M', 'L', 'XL'].map((option) => (
-                    <Chip
-                      key={option}
-                      label={option}
-                      clickable
-                      color={size === option ? 'primary' : 'default'}
-                      variant={size === option ? 'filled' : 'outlined'}
-                      onClick={() => handleSizeChange({ target: { value: option } })}
-                      sx={{
-                        padding: '24px 8px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        width: '100%',
-                        borderRadius: '9999px',
-                      }}
-                    />
-                  ))}
+                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                {['XS','S', 'M', 'L', 'XL', 'XXL'].map((option) => (
+                  <Chip
+                    key={option}
+                    label={option}
+                    clickable
+                    color={size === option ? 'primary' : 'default'}
+                    variant={size === option ? 'filled' : 'outlined'}
+                    onClick={() => handleSizeChange({ target: { value: option } })}
+                    sx={{
+                      padding: '24px 12px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      borderRadius: '9999px',
+                    }}
+                  />
+                ))}
                 </Box>
                 
                 <Box sx={{ mt: 4 }}>
