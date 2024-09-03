@@ -61,7 +61,7 @@ const Footer = () => {
             Home
           </Link>
           <Link
-            href="#"
+            href="/static-pages/about"
             variant="body2"
             display="block"
             sx={{
