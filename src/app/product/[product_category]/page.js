@@ -11,6 +11,7 @@ const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProdu
 const RestrictedAIProductPage = dynamic(() => import('../../../components/AITshirt/RestrictedAIProductPage'), { ssr: false });
 const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/BasicTshirtPage'), { ssr: false });
 const EmojiProductPage = dynamic(() => import('../../../components/EmojiTshirt/EmojiTshirtPage'), { ssr: false });
+const TextProductPage = dynamic(() => import('../../../components/TextTshirt/TextTshirtPage'), { ssr: false });
 
 export default function ProductType() {
   const { product_category } = useParams();
@@ -41,6 +42,10 @@ export default function ProductType() {
   } else if (product_category === 'emoji-tshirt') {
     ComponentToRender = (
         <EmojiProductPage />
+    );
+  } else if (product_category === 'text-tshirt') {
+    ComponentToRender = (
+        <TextProductPage />
     );
   }
    else {

@@ -30,7 +30,6 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
             selectedEmoji && p.text(selectedEmoji, 1150, 300);
         }
   
-      // Draw the text "BIGFOOT" at specified position
       if (color === 'black') {
         p.fill(255);
       } else if (color === 'grey') {

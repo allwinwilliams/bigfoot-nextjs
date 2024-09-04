@@ -7,6 +7,7 @@ import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils
 import { aiBasicSketch, aiVariantsSketch } from '../utils/sketches/aiSketches';
 import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
 import { emojiSketch } from '@/utils/sketches/emojiSketches';
+import { textSketch } from '@/utils/sketches/textSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();
@@ -66,6 +67,10 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
             sketch = (p) => emojiSketch(p, canvasRef, onP5Update, color, values, "tiny");
             break;
         }
+      }
+
+      if(type == "text"){
+        sketch = (p) => textSketch(p, canvasRef, onP5Update, color, values, style);
       }
 
       // console.log('Creating p5 instance');
