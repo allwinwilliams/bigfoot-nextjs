@@ -81,7 +81,8 @@ export default async function handler(req, res) {
       }
     };
   
-    const promotion = mockPromotionCodes[code];
+    // const promotion = mockPromotionCodes[code];
+    const promotion = mockPromotionCodes[code.toUpperCase()];
   
     if (!promotion) {
       return res.status(400).json({
