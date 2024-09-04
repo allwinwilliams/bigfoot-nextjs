@@ -201,6 +201,19 @@ const Footer = () => {
             Emoji T-shirt
           </Link>
           <Link
+            href="/product/text-tshirt"
+            variant="body2"
+            display="block"
+            sx={{
+              mb: 1,
+              textDecoration: 'none',
+              color: 'inherit',
+              fontWeight: 'medium'
+            }}
+          >
+            Text T-shirt
+          </Link>
+          <Link
             href="/product/basic-tshirt"
             variant="body2"
             display="block"
