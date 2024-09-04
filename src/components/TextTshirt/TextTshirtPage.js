@@ -27,7 +27,7 @@ const TextTshirtPage = () => {
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
-  const [style, setStyle] = useState(searchParams.get('style') || 'tiny');
+  const [style, setStyle] = useState(searchParams.get('style') || 'small');
   const [tooltipOpen, setTooltipOpen] = useState(false);
   
 
@@ -38,20 +38,20 @@ const TextTshirtPage = () => {
   const initialLoad = useRef(true);
 
   const samples = [
-    { imgUrl: '/samples/emoji/1.png', title: '🍣', description: 'すし、ください。', link: '/product/text-tshirt?color=black&size=M&style=tiny&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
-    { imgUrl: '/samples/emoji/2.png', title: '🐮', description: 'moooooooooooooo', link: '/product/text-tshirt?color=beige&size=M&style=tiny&text=moooooooooooooo' },
-    { imgUrl: '/samples/emoji/3.png', title: '🚬', description: 'no smoking', link: '/product/text-tshirt?color=white&size=M&style=badge&text=no+smoking' },
-    { imgUrl: '/samples/emoji/4.png', title: '🇵🇸', description: '', link: '/product/text-tshirt?color=black&size=M&style=tiny&text=Blah Blah' },
-    { imgUrl: '/samples/emoji/5.png', title: '🌈', description: '', link: '/product/text-tshirt?color=black&size=M&style=badge&text=Blah' },
-    { imgUrl: '/samples/emoji/6.png', title: '🍑', description: 'beach vacation', link: '/product/text-tshirt?color=beige&size=M&style=tiny&text=beach+vacation' },
-    { imgUrl: '/samples/emoji/7.png', title: '🛕', description: 'mandir yahi banega', link: '/product/text-tshirt?color=black&size=M&style=tiny&text=mandir+yahi+banega' },
+    { imgUrl: '/samples/emoji/1.png', title: 'すし、ください。', description: '', link: '/product/text-tshirt?color=black&size=M&style=small&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
+    { imgUrl: '/samples/emoji/2.png', title: 'No time', description: '', link: '/product/text-tshirt?color=beige&size=M&style=small&text=No+time' },
+    { imgUrl: '/samples/emoji/3.png', title: 'Tired.', description: '', link: '/product/text-tshirt?color=white&size=M&style=badge&text=Tired.' },
+    { imgUrl: '/samples/emoji/6.png', title: 'स्वागत', description: 'beach vacation', link: '/product/text-tshirt?color=beige&size=M&style=small&text=स्वागत' },
+    { imgUrl: '/samples/emoji/4.png', title: 'Free Speech', description: '', link: '/product/text-tshirt?color=black&size=M&style=small&text=Free+Speech' },
+    { imgUrl: '/samples/emoji/5.png', title: 'வணக்கம்', description: '', link: '/product/text-tshirt?color=black&size=M&style=brat&text=வணக்கம்' },
+    { imgUrl: '/samples/emoji/7.png', title: 'JUST DO IT', description: '', link: '/product/text-tshirt?color=black&size=M&style=bold&text=JUST+DO+IT' },
   ];
 
   useEffect(() => {
     const defaultParams = {
       color: 'black',
       size: 'M',
-      style: 'tiny',
+      style: 'small',
       text: '',
     };
 
@@ -237,7 +237,7 @@ const TextTshirtPage = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'small', label: 'Tiny', imgSrc: '/product-page/text/small.png' },
+                  { value: 'small', label: 'Small', imgSrc: '/product-page/text/small.png' },
                   { value: 'bold', label: 'Bold', imgSrc: '/product-page/text/large.png' },
                   { value: 'cursive', label: 'Cursive', imgSrc: '/product-page/text/cursive.png' },
                   { value: 'brat', label: 'Brat', imgSrc: '/product-page/text/brat.png' },
