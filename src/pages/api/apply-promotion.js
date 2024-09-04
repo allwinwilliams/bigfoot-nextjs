@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         reference_id: "PROMOTERS",
         type: "offer",
         code: "VERYSPECIAL",
-        value: 120000,
+        value: 130000,
         value_type: "Fixed amount",
         description: "Rs. 1200 off promotion for promoters"
       },
