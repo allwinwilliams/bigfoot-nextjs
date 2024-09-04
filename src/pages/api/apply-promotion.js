@@ -39,6 +39,14 @@ export default async function handler(req, res) {
         value_type: "Fixed amount",
         description: "Rs. 700 off for Razorpay"
       },
+      "WOXSEN": {
+        reference_id: "WOXSEN_OFFER",
+        type: "offer",
+        code: "WOXSEN",
+        value: 60000,
+        value_type: "Fixed amount",
+        description: "Rs. 600 off for Woxsen"
+      },
       "FAM1000": {
         reference_id: "PROMO2",
         type: "coupon",
