@@ -41,8 +41,6 @@ export const emojiSketch = (p, canvasRef, onP5Update, color, values, style = "ti
       }
       p.textAlign(p.CENTER, p.CENTER);
       
-      
-      
       if(style == "tiny"){    
         p.textSize(40);
         p.textStyle(p.MEDIUM);

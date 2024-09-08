@@ -334,6 +334,7 @@ const RestrictedAiProductPage = () => {
                 {[
                   { value: 'small', label: 'Small', disabled: false, url: '/product-page/ai/small.png' },
                   { value: 'large', label: 'Large', disabled: false, url: '/product-page/ai/large.png' },
+                  // { value: 'pixels', label: 'Pixels', disabled: false, url: '/product-page/ai/pixel.png' },
                 ].map((option) => (
                   <Tooltip
                     key={option.value}

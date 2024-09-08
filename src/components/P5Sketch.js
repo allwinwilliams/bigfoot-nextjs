@@ -4,7 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketches/songSketches';
-import { aiBasicSketch, aiVariantsSketch } from '../utils/sketches/aiSketches';
+import { aiBasicSketch, aiVariantsSketch, aiPixelsSketch } from '../utils/sketches/aiSketches';
 import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
 import { emojiSketch } from '@/utils/sketches/emojiSketches';
 import { textSketch } from '@/utils/sketches/textSketches';
@@ -35,7 +35,14 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
         sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values, style);
         
       } if (type == "prompt"){
-        sketch = (p) => aiVariantsSketch(p, canvasRef, onP5Update, color, values, style);
+        if(style == "small" || style == "large"){
+          sketch = (p) => aiVariantsSketch(p, canvasRef, onP5Update, color, values, style);
+        }
+        if (style == "pixels"){
+          sketch = (p) => aiPixelsSketch(p, canvasRef, onP5Update, color, values, style);
+        }
+
+        
       }
       if(type == "basic"){
         switch (style) {

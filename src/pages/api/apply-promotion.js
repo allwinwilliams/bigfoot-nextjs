@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         code: "VERYSPECIAL",
         value: 130000,
         value_type: "Fixed amount",
-        description: "Rs. 1200 off promotion for promoters"
+        description: "Rs. 1300 off promotion for promoters"
       },
       "RAZORPAY": {
         reference_id: "RAZORPAY_OFFER",

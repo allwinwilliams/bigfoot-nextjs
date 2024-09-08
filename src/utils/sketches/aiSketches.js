@@ -365,3 +365,154 @@ export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style)
   // Call the custom handler initially to handle the first load
   p.myCustomRedrawAccordingToNewPropsHandler(values);
 };
+
+export const aiPixelsSketch = (p, canvasRef, onP5Update, color, values, style) => {
+  const canvasWidth = 2600;
+  const canvasHeight = 2000;
+
+  let img = null;
+  let prompt = values?.prompt || '';
+  let imgUrl = values?.imageData || '';
+  let isLoading = true;
+  let pixelationLevel = 10;
+
+  const loadImageProxy = (url, onSuccess, onError) => {
+    const proxyUrl = `/api/proxy?url=${encodeURIComponent(url)}`;
+    p.loadImage(proxyUrl, onSuccess, onError);
+  };
+
+  p.preload = () => {
+    if (imgUrl) {
+      loadImageProxy(
+        imgUrl,
+        (loadedImg) => {
+          img = loadedImg;
+          if (img.width > 0 && img.height > 0) {
+            isLoading = false;
+            p.redraw();
+          } else {
+            console.error('Image has invalid dimensions');
+          }
+        },
+        () => {
+          console.error('Failed to load AI image');
+        }
+      );
+    }
+  };
+
+  p.setup = () => {
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.colorMode(p.HSL, 360, 100, 100);
+    p.noLoop();
+    onP5Update();
+  }
+  const pixelateImage = (img, pixelSize) => {
+  // const imgX = (canvasWidth - img.width) / 2;
+    // const imgY = (canvasHeight - img.height) / 2;
+    // p.image(img, imgX, imgY, img.width, img.height);
+
+    const imgX = 250;
+    const imgY = 100;
+
+    p.image(img, imgX, imgY, 720, 720);
+
+    if (img.width > 0 && img.height > 0) {
+      try {
+        p.loadPixels();
+        for (let x = 0; x < img.width; x += pixelSize) {
+          for (let y = 0; y < img.height; y += pixelSize) {
+            const i = (x + y * img.width) * 4;
+
+            const r = p.pixels[i];
+            const g = p.pixels[i + 1];
+            const b = p.pixels[i + 2];
+            const a = p.pixels[i + 3];
+
+            p.fill(r, g, b, a);
+            p.noStroke();
+            p.rect(imgX + x, imgY + y, pixelSize, pixelSize);
+          }
+        }
+        p.updatePixels();
+      } catch (err) {
+        console.error('Error applying pixelation:', err);
+      }
+    } else {
+      console.error('Invalid image dimensions for pixelation');
+    }
+  };
+
+  const drawLoadingText = () => {
+    p.fill(50);
+    p.textSize(32);
+    p.textAlign(p.CENTER);
+    p.text('Loading...', canvasWidth / 2, canvasHeight / 2);
+  };
+
+  const drawImageSection = () => {
+    if (!img) {
+      drawLoadingText();
+      return;
+    }
+    if (img.width > 0 && img.height > 0) {
+      pixelateImage(img, pixelationLevel);
+    } else {
+      console.error('Image dimensions are invalid or not loaded yet.');
+    }
+
+    // if (prompt) {
+    //   p.fill(color === 'black' ? 255 : 0);
+    //   p.noStroke();
+    //   p.textAlign(p.CENTER);
+    //   p.textSize(28);
+    //   p.text(prompt, canvasWidth / 2, canvasHeight - 50);
+    // }
+  };
+
+  p.draw = () => {
+    p.background(200); // Set a default background color
+    if (isLoading) {
+      drawLoadingText();
+    } else {
+      drawImageSection();
+    }
+  };
+
+  p.myCustomRedrawAccordingToNewPropsHandler = async (newValues) => {
+    const newImgUrl = newValues?.imageData || '';
+    if (newImgUrl !== imgUrl) {
+      imgUrl = newImgUrl;
+      isLoading = true;
+      loadImageProxy(
+        imgUrl,
+        (loadedImg) => {
+          img = loadedImg;
+          if (img.width > 0 && img.height > 0) {
+            isLoading = false;
+            p.redraw();
+          } else {
+            console.error('Image has invalid dimensions');
+            isLoading = false;
+          }
+        },
+        () => {
+          console.error('Failed to load new image');
+          isLoading = false;
+        }
+      );
+    }
+
+    prompt = newValues?.prompt || '';
+    if (newValues?.style !== style) {
+      style = newValues?.style || 'large';
+      p.redraw();
+    }
+  };
+
+  // Initial trigger of redraw
+  p.myCustomRedrawAccordingToNewPropsHandler(values);
+};
+
