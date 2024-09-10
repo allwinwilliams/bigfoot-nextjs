@@ -28,6 +28,29 @@ export default function RootLayout({ children }) {
         <meta property="og:image" content="https://bigfoot.land/og-banner.png" />
         <meta property="og:url" content="https://bigfoot.land" />
         <meta property="og:type" content="website" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://www.bigfoot.land",
+            "logo": "https://www.bigfoot.land/logo.png",
+            "image": "https://www.bigfoot.land/brand-image.png",
+            "name": "Bigfoot - Personlised Fashion",
+            "description": "A fashion tech brand enabling people to express themselves through conceptual art and fashion. Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs. Made in India for the world.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91 87549 68346",
+              "email": "crew@bigfoot.land",
+              "contactType": "Customer Service",
+              "areaServed": "IN"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/bigfoot-clothing/",
+              "https://www.instagram.com/bigfoot.land/"
+            ]
+          })}
+        </script>
         
         <link rel="icon" href="/favicon.ico" />
       </head>
