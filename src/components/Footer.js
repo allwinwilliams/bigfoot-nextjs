@@ -14,7 +14,8 @@ const Footer = () => {
         my: 4
       }}
     >
-      <Grid container spacing={4}>
+      <Grid container justifyContent="space-between" alignItems="flex-start">
+        {/* Left Side - Brand Name and Details */}
         <Grid item xs={12} md={4}>
           <Link
             href="/"
@@ -36,196 +37,205 @@ const Footer = () => {
               Conceptual Art & Fashion
             </Typography>
           </Link>
-          <Typography variant="subtitle2" sx={{ maxWidth: '260px', color: '#999999' }}>
+          <Typography variant="subtitle2" sx={{ color: '#999999' }}>
             We are a fashion tech brand aimed to enabling people to express themselves through fashion.
           </Typography>
-          <Typography variant="subtitle2" sx={{ mt: 2, maxWidth: '260px', color: '#999999' }}>
-            We do help on customised bulk orders for events and corporates, contact us at crew@bigfoot.land.
+          <Typography variant="subtitle2" sx={{ mt: 2, color: '#999999' }}>
+            We do help on customised bulk orders for events and corporates, contact us at crew@bigfoot.land or +91 87549 68346.
+          </Typography>
+          <Typography variant="subtitle2" sx={{ mt: 2 }}>
+            Made with ❤️ in India for the world
           </Typography>
         </Grid>
-        <Grid item xs={12} md={2}>
-          <Typography variant="h6" gutterBottom>
-            Quick Links
-          </Typography>
-          <Link
-            href="/"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Home
-          </Link>
-          <Link
-            href="/static-pages/about"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            About Us
-          </Link>
-          <Link
-            href="/product"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Product
-          </Link>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom>
-            Policies
-          </Typography>
-          <Link
-            href="/static-pages/contactus"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Contact Us
-          </Link>
-          <Link
-            href="/static-pages/privacypolicy"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            href="/static-pages/returnspolicy"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Returns Policy
-          </Link>
-          <Link
-            href="/static-pages/shippingdetails"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Shipping Details
-          </Link>
-          <Link
-            href="/static-pages/termsandconditions"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Terms and Conditions
-          </Link>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom>
-            Products
-          </Typography>
-          <Link
-            href="/product/song-tshirt"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Song T-shirt
-          </Link>
-          <Link
-            href="/product/ai-tshirt"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            AI T-shirt
-          </Link>
-          <Link
-            href="/product/emoji-tshirt"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Emoji T-shirt
-          </Link>
-          <Link
-            href="/product/text-tshirt"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Text T-shirt
-          </Link>
-          <Link
-            href="/product/basic-tshirt"
-            variant="body2"
-            display="block"
-            sx={{
-              mb: 1,
-              textDecoration: 'none',
-              color: 'inherit',
-              fontWeight: 'medium'
-            }}
-          >
-            Bigfoot Basics
-          </Link>
+
+        {/* Right Side - Links (Quick Links, Policies, Products) */}
+        <Grid item xs={12} md={6} container spacing={4} justifyContent="flex-end">
+          <Grid item xs={6} sm={4}>
+            <Typography variant="h6" gutterBottom>
+              Quick Links
+            </Typography>
+            <Link
+              href="/"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Home
+            </Link>
+            <Link
+              href="/static-pages/about"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              About Us
+            </Link>
+            <Link
+              href="/product"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Product
+            </Link>
+          </Grid>
+
+          <Grid item xs={6} sm={4}>
+            <Typography variant="h6" gutterBottom>
+              Policies
+            </Typography>
+            <Link
+              href="/static-pages/contactus"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/static-pages/privacypolicy"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/static-pages/returnspolicy"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Returns Policy
+            </Link>
+            <Link
+              href="/static-pages/shippingdetails"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Shipping Details
+            </Link>
+            <Link
+              href="/static-pages/termsandconditions"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Terms and Conditions
+            </Link>
+          </Grid>
+
+          <Grid item xs={6} sm={4}>
+            <Typography variant="h6" gutterBottom>
+              Products
+            </Typography>
+            <Link
+              href="/product/song-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Song T-shirt
+            </Link>
+            <Link
+              href="/product/ai-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              AI T-shirt
+            </Link>
+            <Link
+              href="/product/emoji-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Emoji T-shirt
+            </Link>
+            <Link
+              href="/product/text-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Text T-shirt
+            </Link>
+            <Link
+              href="/product/basic-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Bigfoot Basics
+            </Link>
+          </Grid>
         </Grid>
       </Grid>
     </Box>
