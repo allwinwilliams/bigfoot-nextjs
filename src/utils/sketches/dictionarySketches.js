@@ -288,72 +288,78 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
       let y = 100;
       const lineHeight = 60;
       const maxCharsPerLine = 50; // Adjust this value as needed
+      const indentWidth = 40; // Control how much each indent level moves the text to the right
   
       lines.forEach(line => {
-        // Handle indentation based on leading spaces
+        // Handle indentation based on leading spaces (each space is 2 characters of indent in JSON)
         const leadingSpaces = line.match(/^(\s*)/)[1].length;
+        const indentLevel = leadingSpaces / 2;
         const indent = ' '.repeat(leadingSpaces);
   
         // Split the line into tokens
         const tokens = tokenizeJSONLine(line.trim());
   
-        // Handle line wrapping based on character count
         let currentLine = indent;
+        let lineTokens = [];
         tokens.forEach(token => {
           const { type, value } = token;
           const tokenColor = getTokenColor(type, scheme);
   
-          // If the token is a string value (not a key) and exceeds maxCharsPerLine, split it
+          // Split long string values if necessary
           if (type === 'string' && !isKeyToken(token)) {
-            const stringContent = value; // Includes the surrounding quotes
-            const splitStringLines = splitText(stringContent, maxCharsPerLine - currentLine.length);
-  
+            const splitStringLines = splitText(value, maxCharsPerLine - currentLine.length);
             splitStringLines.forEach((strLine, index) => {
               if (currentLine.length + strLine.length > maxCharsPerLine) {
-                // Draw the current line
-                p.fill(tokenColor);
-                p.text(currentLine, x, y);
-                y += lineHeight;
-                currentLine = indent + '  ' + strLine; // Add extra indentation for wrapped lines
-              } else {
-                currentLine += strLine;
-              }
-  
-              if (index < splitStringLines.length - 1) {
-                // Move to next line after this part of the split string
-                p.fill(tokenColor);
-                p.text(currentLine, x, y);
+                // Render the current line with indentation
+                renderLine(lineTokens, x + indentLevel * indentWidth, y);
                 y += lineHeight;
                 currentLine = indent + '  ';
+                lineTokens = [];
+              }
+              currentLine += strLine;
+              lineTokens.push({ text: strLine, color: tokenColor });
+              if (index < splitStringLines.length - 1) {
+                // Render the current line with indentation
+                renderLine(lineTokens, x + indentLevel * indentWidth, y);
+                y += lineHeight;
+                currentLine = indent + '  ';
+                lineTokens = [];
               }
             });
           } else {
-            // Measure the width of the current line and token
             if (currentLine.length + value.length > maxCharsPerLine) {
-              // Draw the current line
-              p.fill(tokenColor);
-              p.text(currentLine, x, y);
+              // Render the current line with indentation
+              renderLine(lineTokens, x + indentLevel * indentWidth, y);
               y += lineHeight;
-              currentLine = indent + value;
-            } else {
-              currentLine += value;
+              currentLine = indent;
+              lineTokens = [];
             }
+            currentLine += value;
+            lineTokens.push({ text: value, color: tokenColor });
           }
         });
   
-        // Draw any remaining text in the current line
-        if (currentLine.trim() !== '') {
-          p.fill(scheme.punctuation); // Default color
-          p.text(currentLine, x, y);
+        // Render any remaining tokens in the line with indentation
+        if (lineTokens.length > 0) {
+          renderLine(lineTokens, x + indentLevel * indentWidth, y);
           y += lineHeight;
         }
       });
     };
   
+    // Helper function to render a line with tokens
+    function renderLine(lineTokens, x, y) {
+      let xOffset = x;
+      lineTokens.forEach(token => {
+        p.fill(token.color);
+        p.text(token.text, xOffset, y);
+        xOffset += p.textWidth(token.text);
+      });
+    }
+  
     // Function to check if a token is a key
     function isKeyToken(token) {
-      // A key token is a string that is immediately followed by a colon
-      return token.isKey;
+      return token.type === 'key';
     }
   
     // Helper function to tokenize a line of JSON string
@@ -375,7 +381,7 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
             isEscaped = true;
           } else if (char === '"') {
             isString = false;
-            tokens.push({ type: 'string', value: currentToken, isKey });
+            tokens.push({ type: isKey ? 'key' : 'string', value: currentToken });
             currentToken = '';
             isKey = false;
           }
@@ -389,10 +395,10 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
             isString = true;
   
             // Check if this string is a key (followed by ':')
-            const restOfLine = line.slice(i);
+            const restOfLine = line.slice(i + 1);
             const colonIndex = restOfLine.indexOf(':');
-            const quoteIndex = restOfLine.indexOf('"', 1);
-            if (colonIndex > 0 && (quoteIndex === -1 || colonIndex < quoteIndex)) {
+            const nextQuoteIndex = restOfLine.indexOf('"');
+            if (colonIndex !== -1 && (nextQuoteIndex === -1 || colonIndex < nextQuoteIndex)) {
               isKey = true;
             }
           } else if (char.match(/[{}\[\],:]/)) {
@@ -467,5 +473,4 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
           return scheme.punctuation;
       }
     }
-  };
-  
+};
