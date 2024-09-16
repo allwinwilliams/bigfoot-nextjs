@@ -248,10 +248,11 @@ const DictionaryTshirtPage = () => {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Add a message (Optional - Max 16 characters)"
+                        label="Write your word"
                         variant="outlined"
                         fullWidth
-                        inputProps={{ ...params.inputProps, maxLength: 16 }}
+                        inputProps={{ ...params.inputProps, maxLength: 32 }}
+                        helperText="Max 32 characters"
                       />
                     )}
                   />
