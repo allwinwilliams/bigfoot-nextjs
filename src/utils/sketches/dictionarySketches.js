@@ -2,7 +2,12 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
     const canvasWidth = 2600;
     const canvasHeight = 2000;
     const { textInput, definition } = values;
-  
+
+    p.preload = () => {
+        // If you have a custom font, load it here.
+        // p.font = p.loadFont('path/to/font.ttf');
+    };
+
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
@@ -11,92 +16,98 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
       p.noLoop();
       onP5Update();
     };
-  
+
     p.draw = () => {
+        p.textFont("Georgia");
+
+        p.textAlign(p.LEFT, p.TOP);
+
+        const word = (definition?.word || textInput || '').toLowerCase();
+        const phonetics = (definition?.details?.phonetics || '').toLowerCase();
+        const typeArray = definition?.details?.type || [];
+        const type = Array.isArray(typeArray) ? typeArray.join(', ').toLowerCase() : typeArray.toLowerCase();
+        const definitionText = (definition?.details?.definition || '').toLowerCase();
+        const example = (definition?.details?.example || '').toLowerCase();
+
+        const splitText = (text, maxLength) => {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + word).length <= maxLength) {
+                    currentLine += `${word} `;
+                } else {
+                    lines.push(currentLine.trim());
+                    currentLine = `${word} `;
+                }
+            });
+
+            if (currentLine.length > 0) {
+                lines.push(currentLine.trim());
+            }
+
+            return lines;
+        };
+
+        const definitionMaxCharsPerLine = 32;
+        const exampleMaxCharsPerLine = 40;
+
+        const definitionLines = splitText(definitionText, definitionMaxCharsPerLine);
+        const exampleLines = splitText(`"${example}"`, exampleMaxCharsPerLine);
+
+        p.textSize(80);
+        p.textStyle(p.BOLD);
+
+        let totalTextHeight = 0;
+        const lineHeight = 60;
+        totalTextHeight += 100 + (definitionLines.length + exampleLines.length) * lineHeight;
+
+        const backgroundHeight = Math.max(900, totalTextHeight + 200);
+
+        // Draw background rectangle (adjust height dynamically)
         p.fill('#92cc33');
         p.noStroke();
-        p.rect(300, 50, 900, 900);
+        p.rect(300, 30, 900, backgroundHeight);
 
-        p.fill(0);
+        p.fill(0); // Set text color to black
 
-  
-      // Text settings
-      p.textAlign(p.LEFT, p.TOP);
-  
-      // Extract data from definition
-      const word = definition?.word || textInput || '';
-      const phonetics = definition?.details?.phonetics || '';
-      const typeArray = definition?.details?.type || [];
-      const type = Array.isArray(typeArray) ? typeArray.join(', ') : typeArray;
-      const definitionText = definition?.details?.definition || '';
-      const example = definition?.details?.example || '';
-  
-      // Display the word
-      p.textSize(80);
-      p.textStyle(p.BOLD);
-      p.text(word, 400, 100);
-  
-      // Display phonetics
-      p.textSize(48);
-      p.textStyle(p.ITALIC);
-      p.text(phonetics, 400, 220);
-  
-      // Display type
-      p.textSize(48);
-      p.textStyle(p.NORMAL);
-      p.text(type, 400, 300);
-  
-      // Function to split text into lines based on character count
-      const splitText = (text, maxLength) => {
-        const words = text.split(' ');
-        const lines = [];
-        let currentLine = '';
-  
-        words.forEach(word => {
-          if ((currentLine + word).length <= maxLength) {
-            currentLine += `${word} `;
-          } else {
-            lines.push(currentLine.trim());
-            currentLine = `${word} `;
-          }
+        // Display the word
+        p.text(word, 400, 150);
+
+        // Display phonetics
+        p.textSize(48);
+        p.textStyle(p.ITALIC);
+        p.text(phonetics, 400, 240);
+
+        // Display type
+        p.textSize(48);
+        p.textStyle(p.NORMAL);
+        p.text(type, 400, 320);
+
+        // Text settings for definition
+        p.textSize(48);
+        p.textStyle(p.NORMAL);
+        p.textLeading(60); // Adjust line spacing if needed
+
+        let yPosition = 400;
+
+        // Display each line of the definition
+        definitionLines.forEach(line => {
+            p.text(line, 400, yPosition);
+            yPosition += p.textLeading();
         });
-  
-        if (currentLine.length > 0) {
-          lines.push(currentLine.trim());
-        }
-  
-        return lines;
-      };
-  
-      const definitionMaxCharsPerLine = 32;
-      const exampleMaxCharsPerLine = 40;
-  
-      // Split the definition and example texts
-      const definitionLines = splitText(definitionText, definitionMaxCharsPerLine);
-      const exampleLines = splitText(`"${example}"`, exampleMaxCharsPerLine);
-  
-      // Text settings for definition
-      p.textSize(48);
-      p.textStyle(p.NORMAL);
-      p.textLeading(60); // Adjust line spacing if needed
-  
-      let yPosition = 380;
-  
-      // Display each line of the definition
-      definitionLines.forEach(line => {
-        p.text(line, 400, yPosition);
-        yPosition += p.textLeading();
-      });
-  
-      yPosition += 40; 
-  
-      p.textSize(40);
-      p.textLeading(50);
-  
-      exampleLines.forEach(line => {
-        p.text(line, 400, yPosition);
-        yPosition += p.textLeading();
-      });
+
+        yPosition += 40; // Add spacing before the example
+
+        // Text settings for example
+        p.textSize(40);
+        p.textLeading(50);
+
+        exampleLines.forEach(line => {
+            p.text(line, 400, yPosition);
+            yPosition += p.textLeading();
+        });
     };
 };
 
