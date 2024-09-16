@@ -84,7 +84,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
       if(type == "dictionary"){
         switch (style) {
           case 'brat':
-            sketch = (p) => dictionarySmallSketch(p, canvasRef, onP5Update, color, values, style);
+            sketch = (p) => dictionaryBratSketch(p, canvasRef, onP5Update, color, values, style);
             break;
           case 'code':
             sketch = (p) => dictionaryCodeSketch(p, canvasRef, onP5Update, color, values, style);

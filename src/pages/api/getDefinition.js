@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful dictionary assistant that provides word definitions in JSON format according to a specified schema.',
+            content: 'You are a helpful dictionary assistant that provides word definitions with a funny and witty example in JSON format according to a specified schema.',
           },
           {
             role: 'user',
@@ -64,7 +64,7 @@ export default async function handler(req, res) {
                     },
                     example: {
                       type: "string",
-                      description: "An example sentence using the word",
+                      description: "An casual, funny and witty joke as example sentence using the word",
                     },
                   },
                   required: ["phonetics", "type", "definition", "example"],

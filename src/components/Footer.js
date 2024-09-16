@@ -223,6 +223,19 @@ const Footer = () => {
               Text T-shirt
             </Link>
             <Link
+              href="/product/dictionary-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Dictionary T-shirt
+            </Link>
+            <Link
               href="/product/basic-tshirt"
               variant="body2"
               display="block"
