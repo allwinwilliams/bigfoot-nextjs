@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { useParams } from 'next/navigation';
 import { SongCustomiseProvider } from '../../../context/SongCustomiseProvider';
 import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
+import { DictionaryContextProvider } from '../../../context/DictionaryContextProvider';
 
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
@@ -12,6 +13,8 @@ const RestrictedAIProductPage = dynamic(() => import('../../../components/AITshi
 const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/BasicTshirtPage'), { ssr: false });
 const EmojiProductPage = dynamic(() => import('../../../components/EmojiTshirt/EmojiTshirtPage'), { ssr: false });
 const TextProductPage = dynamic(() => import('../../../components/TextTshirt/TextTshirtPage'), { ssr: false });
+const DictionaryProductPage = dynamic(() => import('../../../components/DictionaryTshirt/DictionaryTshirtPage'), { ssr: false });
+
 
 export default function ProductType() {
   const { product_category } = useParams();
@@ -46,6 +49,12 @@ export default function ProductType() {
   } else if (product_category === 'text-tshirt') {
     ComponentToRender = (
         <TextProductPage />
+    );
+  } else if (product_category === 'dictionary-tshirt') {
+    ComponentToRender = (
+      <DictionaryContextProvider>
+        <DictionaryProductPage />
+      </DictionaryContextProvider>
     );
   }
    else {

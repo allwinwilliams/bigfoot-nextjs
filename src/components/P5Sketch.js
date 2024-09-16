@@ -8,6 +8,7 @@ import { aiBasicSketch, aiVariantsSketch, aiPixelsSketch } from '../utils/sketch
 import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
 import { emojiSketch } from '@/utils/sketches/emojiSketches';
 import { textSketch } from '@/utils/sketches/textSketches';
+import { dictionarySmallSketch, dictionaryCodeSketch, dictionaryBratSketch } from '@/utils/sketches/dictionarySketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();
@@ -78,6 +79,21 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
 
       if(type == "text"){
         sketch = (p) => textSketch(p, canvasRef, onP5Update, color, values, style);
+      }
+
+      if(type == "dictionary"){
+        switch (style) {
+          case 'brat':
+            sketch = (p) => dictionarySmallSketch(p, canvasRef, onP5Update, color, values, style);
+            break;
+          case 'code':
+            sketch = (p) => dictionaryCodeSketch(p, canvasRef, onP5Update, color, values, style);
+            break;
+          case 'small':
+          default:
+            sketch = (p) => dictionarySmallSketch(p, canvasRef, onP5Update, color, values, style);
+            break;
+        }
       }
 
       // console.log('Creating p5 instance');
