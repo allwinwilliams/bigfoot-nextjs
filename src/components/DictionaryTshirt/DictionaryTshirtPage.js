@@ -45,9 +45,13 @@ const DictionaryTshirtPage = () => {
   const { definitionDetails, getDefinition } = useContext(DictionaryContext);
 
   useEffect(() => {
-    if (textInput) {
+    if (!textInput) return;
+  
+    const debounceTimer = setTimeout(() => {
       getDefinition(textInput);
-    }
+    }, 800);
+  
+    return () => clearTimeout(debounceTimer);
   }, [textInput]);
 
   useEffect(() => {
