@@ -66,6 +66,7 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       p.colorMode(p.HSL, 360, 100, 100);
       p.noLoop();
       onP5Update();
+      // p.textFont("Impact");
     };
   
     p.draw = () => {
@@ -93,7 +94,7 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       const phonetics = translation?.translation?.phonetics || ''; // Pronunciation
   
       // Display the Japanese word (translated word)
-      p.textSize(200);
+      p.textSize(180);
       p.textStyle(p.BOLD);
       p.textAlign(p.CENTER);
       p.text(japaneseWord, 750, 180); // Display the translated word
@@ -122,6 +123,7 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
       canvasRef.current = canvas.canvas;
       p.noLoop();
       onP5Update();
+      p.textFont("Impact");
     };
   
     p.draw = () => {
@@ -156,17 +158,23 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
       ];
   
       // Apply multiple strokes to the Japanese word (neon glow effect)
-      const textX = 750; // X position for the text
+      let textX = 750; // X position for the text
       let textY = 380; // Y position for the Japanese word
   
       // Loop to create multiple strokes with different colors
-      p.textSize(200);
+      let textSize = 200;
+      p.textSize(180);
+      // p.textStyle(p.BLACK);
       p.textStyle(p.BOLD);
+      p.stroke(0);
+      // p.strokeWeight(8);
       for (let i = neonColors.length - 1; i >= 0; i--) {
+        p.textSize(textSize - i * 10);
         p.fill(neonColors[i]);
         p.text(japaneseWord, textX, textY);
         textY -= 20;
       }
+      p.strokeWeight(0);
   
       if (color === 'black') {
         p.fill(255);

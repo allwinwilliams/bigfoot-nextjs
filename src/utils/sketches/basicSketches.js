@@ -398,7 +398,7 @@ export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
     
     // Draw rectangle
     p.fill(hue, 90, 50);
-    p.rect(xPos - 15, yPos - 15, 420, 590);
+    p.rect(xPos - 15, yPos - 15, 440, 590);
     
     // Draw the text "BIGFOOT" at specified position
     hue = p.random(360);
@@ -456,7 +456,7 @@ export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
       }
     };
 
-    drawJustifiedText(mottoText, 565, 200, 380);
+    drawJustifiedText(mottoText, 575, 200, 380);
   };
 };
 
