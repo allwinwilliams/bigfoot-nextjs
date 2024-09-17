@@ -374,7 +374,7 @@ const JapaneseTshirtPage = () => {
                     color={color}
                     size={size}
                     style={style}
-                    type="Text"
+                    type="Japanese"
                     data={{text: textInput}}
                     storage={storage}
                     db={db}

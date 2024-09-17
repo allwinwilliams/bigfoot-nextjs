@@ -377,6 +377,90 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
   };
 };
 
+export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
+  const canvasWidth = 2600;
+  const canvasHeight = 2000;
+
+  p.setup = () => {
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.noLoop();
+    onP5Update();
+    p.colorMode(p.HSL, 360, 100, 100);
+  };
+
+  p.draw = () => {
+    p.background(255);
+    const xPos = 560, yPos = 200;
+    const scale = 2;
+    let hue = p.random(360);
+    
+    // Draw rectangle
+    p.fill(hue, 90, 50);
+    p.rect(xPos - 15, yPos - 15, 420, 590);
+    
+    // Draw the text "BIGFOOT" at specified position
+    hue = p.random(360);
+    p.fill(hue, 90, 50);
+    p.textFont("Georgia");
+    p.textStyle(p.BOLD);
+    p.textSize(33);
+    
+    // The text we want to display
+    const mottoText = "Humans are artisans of their existence, shaping reality from sparks of thought and emotion. Our creativity flows freely, reflecting the unique worlds within. Each expression is personal, shaped by our untamed spirit. We are born to create — so go, be creative.";
+
+    // Set up font properties
+    p.textAlign(p.LEFT, p.TOP); // No native JUSTIFIED, but we can simulate by handling lines ourselves
+    
+    // Custom function to handle line wrapping and text justification
+    const drawJustifiedText = (text, x, y, maxWidth) => {
+      const words = text.split(' ');
+      let currentLine = '';
+      let currentY = y;
+
+      for (let i = 0; i < words.length; i++) {
+        let testLine = currentLine + words[i] + ' ';
+        let testWidth = p.textWidth(testLine);
+
+        if (testWidth > maxWidth && currentLine.length > 0) {
+          // Justify this line
+          drawJustifiedLine(currentLine.trim(), x, currentY, maxWidth);
+          currentLine = words[i] + ' ';
+          currentY += p.textSize() * 1.2;
+        } else {
+          currentLine = testLine;
+        }
+      }
+
+      drawJustifiedLine(currentLine.trim(), x, currentY, maxWidth);
+    };
+
+    const drawJustifiedLine = (line, x, y, maxWidth) => {
+      const words = line.split(' ');
+      const totalWords = words.length;
+      
+      if (totalWords === 1) {
+        p.text(line, x, y);
+        return;
+      }
+      
+      const spaceWidth = p.textWidth(' ');
+      const lineWidth = p.textWidth(line);
+      const extraSpace = (maxWidth - lineWidth) / (totalWords - 1);
+
+      let currentX = x;
+      for (let i = 0; i < totalWords; i++) {
+        p.text(words[i], currentX, y);
+        currentX += p.textWidth(words[i]) + spaceWidth + extraSpace;
+      }
+    };
+
+    drawJustifiedText(mottoText, 565, 200, 380);
+  };
+};
+
+
 export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 2600;
     const canvasHeight = 2000;

@@ -220,6 +220,7 @@ const BasicTshirtPage = () => {
                   { value: 'head', label: 'Glass' },
                   { value: 'tip', label: 'Face' },
                   { value: 'loading', label: 'Loading...' },
+                  { value: 'motto', label: 'Motto' },
                   { value: 'pixel', label: '16X16' },
                 ].map((option) => (
                   <Chip

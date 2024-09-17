@@ -5,7 +5,7 @@ import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
 import { maximal, analysisSketch, minimalSketch, standoutSketch } from '../utils/sketches/songSketches';
 import { aiBasicSketch, aiVariantsSketch, aiPixelsSketch } from '../utils/sketches/aiSketches';
-import { headSketch, loadingSketch, tipSketch, pixelSketch } from '../utils/sketches/basicSketches';
+import { headSketch, loadingSketch, tipSketch, pixelSketch, mottoSketch } from '../utils/sketches/basicSketches';
 import { emojiSketch } from '@/utils/sketches/emojiSketches';
 import { textSketch } from '@/utils/sketches/textSketches';
 import { dictionarySmallSketch, dictionaryCodeSketch, dictionaryBratSketch } from '@/utils/sketches/dictionarySketches';
@@ -54,8 +54,11 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
           case 'tip':
             sketch = (p) => tipSketch(p, canvasRef, onP5Update, color, values);
             break;
-            case 'loading':
+          case 'loading':
             sketch = (p) => loadingSketch(p, canvasRef, onP5Update, color, values);
+            break;
+          case 'motto':
+            sketch = (p) => mottoSketch(p, canvasRef, onP5Update, color, values);
             break;
           case 'head':
           default:
