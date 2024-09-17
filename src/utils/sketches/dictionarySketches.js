@@ -233,7 +233,6 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
     };
   
     p.draw = () => {
-      // Define color schemes based on T-shirt color
       const colorSchemes = {
         black: {
           background: '#1e1e1e', // Dark background

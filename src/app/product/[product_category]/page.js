@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { SongCustomiseProvider } from '../../../context/SongCustomiseProvider';
 import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 import { DictionaryContextProvider } from '../../../context/DictionaryContextProvider';
+import { JapaneseContextProvider } from '../../../context/JapaneseContextProvider';
 
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
@@ -14,6 +15,7 @@ const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/B
 const EmojiProductPage = dynamic(() => import('../../../components/EmojiTshirt/EmojiTshirtPage'), { ssr: false });
 const TextProductPage = dynamic(() => import('../../../components/TextTshirt/TextTshirtPage'), { ssr: false });
 const DictionaryProductPage = dynamic(() => import('../../../components/DictionaryTshirt/DictionaryTshirtPage'), { ssr: false });
+const JapaneseProductPage = dynamic(() => import('../../../components/JapaneseTshirt/JapaneseTshirtPage'), { ssr: false });
 
 
 export default function ProductType() {
@@ -55,6 +57,12 @@ export default function ProductType() {
       <DictionaryContextProvider>
         <DictionaryProductPage />
       </DictionaryContextProvider>
+    );
+  }else if (product_category === 'japanese-tshirt') {
+    ComponentToRender = (
+      <JapaneseContextProvider>
+        <JapaneseProductPage />
+      </JapaneseContextProvider>
     );
   }
    else {

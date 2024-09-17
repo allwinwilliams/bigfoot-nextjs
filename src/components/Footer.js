@@ -236,6 +236,19 @@ const Footer = () => {
               Dictionary T-shirt
             </Link>
             <Link
+              href="/product/japanese-tshirt"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Japanese(ジャパニーズ) T-shirt
+            </Link>
+            <Link
               href="/product/basic-tshirt"
               variant="body2"
               display="block"

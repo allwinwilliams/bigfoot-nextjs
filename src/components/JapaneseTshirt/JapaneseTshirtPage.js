@@ -12,13 +12,13 @@ import { db, storage } from '../../utils/firebaseConfig';
 
 import AutoScrollCards from '../AutoScrollCards';
 
-import wordsList from './words_dictionary.json';
-import { DictionaryContext } from '../../context/DictionaryContextProvider';
+import wordsList from '../DictionaryTshirt/words_dictionary.json';
+import { JapaneseContext } from '../../context/JapaneseContextProvider';
 
 import SizeChart from '../SizeChart';
 import BuyNowButton from '../BuyNowButton';
 
-const DictionaryTshirtPage = () => {
+const JapaneseTshirtPage = () => {
   const theme = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -42,13 +42,13 @@ const DictionaryTshirtPage = () => {
 
   const wordsArray = Object.keys(wordsList);
 
-  const { definitionDetails, getDefinition } = useContext(DictionaryContext);
+  const { translationDetails, getTranslation } = useContext(JapaneseContext);
 
   useEffect(() => {
     if (!textInput) return;
   
     const debounceTimer = setTimeout(() => {
-      getDefinition(textInput);
+        getTranslation(textInput);
     }, 800);
   
     return () => clearTimeout(debounceTimer);
@@ -63,7 +63,7 @@ const DictionaryTshirtPage = () => {
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style') || !searchParams.get('text')) {
-      router.push(`/product/dictionary-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&style=${style || defaultParams.style}&text=${textInput || defaultParams.text}`);
+      router.push(`/product/japanese-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&style=${style || defaultParams.style}&text=${textInput || defaultParams.text}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
       setSize(searchParams.get('size') || defaultParams.size);
@@ -86,7 +86,7 @@ const DictionaryTshirtPage = () => {
         updatedParams.delete(key);
       }
     });
-    router.replace(`/product/dictionary-tshirt?${updatedParams.toString()}`, undefined, { shallow });
+    router.replace(`/product/japanese-tshirt?${updatedParams.toString()}`, undefined, { shallow });
   };
 
   const handleColorChange = (event) => {
@@ -180,13 +180,13 @@ const DictionaryTshirtPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Dictionary on T-Shirt
+            Japanese(ジャパニーズ) on T-Shirt
           </Typography>
           <Typography 
             variant='subtitle1'
             sx={{color: '#777777', lineHeight: 1.25}}
           >
-            A T-Shirt that is designed based on a dictionary definition of a word of your choice
+            A T-Shirt that is designed with a japanese text in Katakana script of a word of your choice
           </Typography>
         </Box>
         <Box
@@ -212,8 +212,8 @@ const DictionaryTshirtPage = () => {
               
                 <ThreeScene
                   color={color}
-                  type='dictionary'
-                  values={{ textInput, definition: definitionDetails }}
+                  type='japanese'
+                  values={{ textInput, translation: translationDetails }}
                   style={style}
                   loading={loading}
                 />
@@ -251,8 +251,8 @@ const DictionaryTshirtPage = () => {
                         label="Write your word"
                         variant="outlined"
                         fullWidth
-                        inputProps={{ ...params.inputProps, maxLength: 32 }}
-                        helperText="Max 32 characters"
+                        inputProps={{ ...params.inputProps, maxLength: 16 }}
+                        helperText="Max 16 characters"
                       />
                     )}
                   />
@@ -263,9 +263,9 @@ const DictionaryTshirtPage = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'small', label: 'Small', imgSrc: '/product-page/dictionary/small.png' },
-                  { value: 'code', label: '{code}', imgSrc: '/product-page/dictionary/code.png' },
-                  { value: 'brat', label: 'Brat', imgSrc: '/product-page/dictionary/brat.png' },
+                  { value: 'small', label: 'Small', imgSrc: '/product-page/japanese/small.png' },
+                  { value: 'bold', label: 'BOLD', imgSrc: '/product-page/japanese/bold.png' },
+                  { value: 'neon', label: 'Neon', imgSrc: '/product-page/japanese/neon.png' },
                 ].map((option) => (
                   <Box
                     key={option.value}
@@ -408,4 +408,4 @@ const DictionaryTshirtPage = () => {
   );
 };
 
-export default DictionaryTshirtPage;
+export default JapaneseTshirtPage;
