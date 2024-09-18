@@ -222,6 +222,8 @@ const BasicTshirtPage = () => {
                   { value: 'loading', label: 'Loading...' },
                   { value: 'motto', label: 'Motto' },
                   { value: 'pixel', label: '16X16' },
+                  { value: 'gradient', label: 'Gradients' },
+                  { value: 'overlap', label: 'Overlaps' },
                 ].map((option) => (
                   <Chip
                     key={option.value}

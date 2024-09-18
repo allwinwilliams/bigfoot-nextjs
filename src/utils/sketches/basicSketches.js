@@ -549,3 +549,102 @@ export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
       p.text('Loading...', 760, 600);
     };
 };
+
+export const twoSquareSketch = (p, canvasRef, onP5Update, color, values) => {
+  const canvasWidth = 2600;
+  const canvasHeight = 2000;
+
+  p.setup = () => {
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.colorMode(p.RGB, 255, 255, 255);
+    p.noLoop();
+    
+    onP5Update();
+  };
+
+  p.draw = () => {
+    p.background(255);
+
+    const rectWidth = p.random(200, 600);
+    const rectHeight = p.random(200, 600);
+    const centerX = 750;
+    const centerY = 400;
+    const angle = p.random(0, p.TWO_PI);
+
+    const color1 = p.color(p.random(255), p.random(255), p.random(255));
+    const color2 = p.color(p.random(255), p.random(255), p.random(255));
+
+    drawGradientRectangle(centerX, centerY, rectWidth, rectHeight, color1, color2, angle);
+  };
+
+  const drawGradientRectangle = (x, y, w, h, col1, col2, angle) => {
+    const steps = p.random(5, 50);
+
+    const stepX = w / steps;
+    const stepY = h / steps;
+
+    p.push();
+    p.translate(x, y);
+    p.rotate(angle);
+    p.strokeWeight(5);
+
+    for (let i = 0; i < steps; i++) {
+      const inter = p.map(i, 0, steps, 0, 1);
+      const currentColor = p.lerpColor(col1, col2, inter);
+
+      p.stroke(currentColor);
+      p.line(-w / 2 + i * stepX, -h / 2, -w / 2 + i * stepX, h / 2);
+    }
+    p.pop();
+  };
+};
+
+export const gradientSketch = (p, canvasRef, onP5Update, color, values) => {
+  const canvasWidth = 2600;
+  const canvasHeight = 2000;
+
+  p.setup = () => {
+    const canvas = p.createCanvas(canvasWidth, canvasHeight);
+    canvas.id('p5-canvas');
+    canvasRef.current = canvas.canvas;
+    p.colorMode(p.RGB, 255, 255, 255);
+    p.noLoop();
+    
+    
+  };
+
+  p.draw = () => {
+    p.background(255);
+
+    const rectWidth = p.random(200, 600);
+    const rectHeight = p.random(200, 600);
+    const centerX = 750;
+    const centerY = 400;
+
+    const color1 = p.color(p.random(255), p.random(255), p.random(255));
+    const color2 = p.color(p.random(255), p.random(255), p.random(255));
+
+    const steps = 1000;
+    const stepHeight = rectHeight / steps;
+    p.strokeWeight(2);
+
+    p.push();
+      p.translate(centerX, centerY);
+
+      for (let i = 0; i <= steps; i++) {
+        const inter = p.map(i, 0, steps, 0, 1);
+        const currentColor = p.lerpColor(color1, color2, inter);
+
+        p.noStroke();
+        p.fill(currentColor);
+        p.rectMode(p.CORNER);
+        p.rect(-rectWidth / 2, -rectHeight / 2 + i * stepHeight, rectWidth, stepHeight);
+      }
+    p.pop();
+
+    onP5Update();
+    
+  };
+};
