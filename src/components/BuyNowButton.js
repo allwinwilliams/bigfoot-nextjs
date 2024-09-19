@@ -1,30 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
-import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton, Chip, Select, MenuItem } from '@mui/material';
+import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton, Chip, Select, MenuItem, ButtonGroup } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from './SizeChart';
 
-const BuyNowButton = ({ color, style, type, data, songData, storage, db, price = 139900 }) => {
+const BuyNowButton = ({ color, style, type, data, storage, db, price = 139900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openPostPaymentModal, setOpenPostPaymentModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
 
-  const [fabric, setFabric] = useState('Premium');
+  const [fabric, setFabric] = useState({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 109900 });
   const [size, setSize] = useState('S');
   const [dynamicPrice, setDynamicPrice] = useState(price);
 
   const canvasRef = useRef(null);
-
   
-  useEffect(() => {
-    if (fabric === 'Premium') {
-      setDynamicPrice(99900);
-    } else if (fabric === 'Luxury') {
-      setDynamicPrice(139900);
-    }
-  }, [fabric]);
+  // useEffect(() => {
+  //   if (fabric === 'Premium Cottom') {
+  //     setDynamicPrice(109900);
+  //   } else if (fabric === 'Luxury') {
+  //     setDynamicPrice(139900);
+  //   }
+  // }, [fabric]);
 
   useEffect(() => {
     if (openPrePaymentModal) {
@@ -39,8 +38,7 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
 
           currentCanvas.width = newWidth;
           currentCanvas.height = newHeight;
-          
-
+        
           ctx.clearRect(0, 0, newWidth, newHeight);
           ctx.drawImage(threeCanvas, 0, 0, newWidth, newHeight);
 
@@ -58,7 +56,8 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
   };
 
   const handleFabricChange = (event) => {
-    setFabric(event.target.value);
+    setFabric(event.target.fabric);
+    setDynamicPrice(event.target.price);
   }
 
   const handleSizeChange = (event) => {
@@ -84,7 +83,7 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
         style,
         type,
         imageUrl,
-        fabric,
+        fabric: fabric.id,
         timestamp: new Date().toISOString(),
       };
 
@@ -116,13 +115,13 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
           line_items: [
             {
               type: "e-commerce",
-              sku: `//TEE/${type}/${style}/${timestamp}`,
-              variant_id: `//TEE/${type}/${style}`,
+              sku: `//TEE/${type}/${style}/${fabric.id}/${timestamp}`,
+              variant_id: `//TEE/${type}/${style}/${fabric.id}`,
               price: dynamicPrice,
               tax_amount: `${Math.ceil(dynamicPrice * 0.18)}`,
               quantity: 1,
               name: `${type} T-Shirt - ${style}`,
-              description: `Korean Fit T-Shirt with ${type} artwork`,
+              description: `Oversized Fit T-Shirt with ${type}`,
               // weight: 500,
               // dimensions: {
               //   length: 100,
@@ -234,7 +233,7 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
           onClose={() => setOpenPrePaymentModal(false)}
           sx={{ top: "4%"}}
         >
-          <Paper sx={{ padding: 6, margin: 'auto', maxWidth: 400, borderRadius: 4, position: 'relative' }}>
+          <Paper sx={{ padding: 4, margin: 'auto', maxWidth: '100%', width: '480px', borderRadius: 4, position: 'relative' }}>
             <IconButton
               onClick={() => setOpenPrePaymentModal(false)}
               sx={{ position: 'absolute', top: 16, right: 16 }}
@@ -299,40 +298,58 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
                   Pick your fabric choose
                 </Typography>
               </Box>
-              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                {['Premium', 'Luxury'].map((option) => (
-                  <Chip
-                    key={option}
-                    label={option}
-                    clickable
-                    color={fabric === option ? 'primary' : 'default'}
-                    variant={fabric === option ? 'filled' : 'outlined'}
-                    onClick={() => handleFabricChange({ target: { value: option } })}
-                    sx={{
-                      padding: '24px 12px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      borderRadius: '9999px',
-                    }}
-                  />
-                ))}
+              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                <ButtonGroup variant="outlined" color="primary" aria-label="outlined button group" fullWidth>
+                  {[
+                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 109900 },
+                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 139900 },
+                  ].map((option) => (
+                    <Button
+                      key={option.id}
+                      onClick={() => handleFabricChange({ target: { fabric: option, price: option.price } })}
+                      variant={fabric.id === option.id ? 'contained' : 'outlined'}
+                      sx={{
+                        paddingY: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        textTransform: 'none',
+                        borderRadius: 2
+                      }}
+                    >
+                      <Typography variant="body1" sx={{ fontWeight: 'bold', textTransform: 'none' }}>
+                        {option.label}
+                      </Typography>
+                      <Typography variant="body2" sx={{ fontSize: '12px', textTransform: 'none' }}>
+                        {option.description}
+                      </Typography>
+                    </Button>
+                  ))}
+                </ButtonGroup>
               </Box>
             </Box>
+            
             <Button
               variant="contained"
               color="primary"
               onClick={confirmPurchase}
               fullWidth
-              sx={{ marginBottom: 2, fontWeight: 'bold', paddingY: 2, textTransform: 'none' }}
+              sx={{ marginY: 2, fontWeight: 'bold', paddingY: 2, textTransform: 'none', borderRadius: 2 }}
               disabled={buyNowLoading}
             >
               {buyNowLoading ? (
                 <Box> 
-                 <CircularProgress size={24} color="inherit" />
-                  <Typography>Please wait...</Typography>
+                  <CircularProgress size={24} color="inherit" />
                 </Box>
               ) : (
-                `Buy Now @ ₹${Math.ceil(dynamicPrice / 100)}`
+                <Box>
+                  <Typography variant="body1" sx={{ fontWeight: 'bold', textTransform: 'none' }}>
+                    {`Buy Now @ ₹${Math.ceil(dynamicPrice / 100)}`}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontSize: '12px', textTransform: 'none' }}>
+                    Secured Checkout by Razorpay
+                  </Typography>
+                </Box>
               )}
             </Button>
             <Button
@@ -340,7 +357,7 @@ const BuyNowButton = ({ color, style, type, data, songData, storage, db, price =
               color="primary"
               onClick={() => setOpenPrePaymentModal(false)}
               fullWidth
-              sx={{ marginBottom: 2, fontWeight: 'bold', textTransform: 'none', }}
+              sx={{ marginBottom: 2, fontWeight: 'bold', textTransform: 'none', borderRadius: 2 }}
               disabled={buyNowLoading}
             >
               Close
