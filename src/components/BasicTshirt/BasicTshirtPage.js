@@ -30,7 +30,6 @@ const BasicTshirtPage = () => {
   const [renderCount, setRenderCount] = useState(0); // State variable to trigger re-render
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
-  const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [style, setStyle] = useState(searchParams.get('style') || 'head');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -39,15 +38,13 @@ const BasicTshirtPage = () => {
   useEffect(() => {
     const defaultParams = {
       color: 'black',
-      size: 'M',
       style: 'head',
     };
 
-    if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style')) {
-      router.push(`/product/basic-tshirt?color=${color || defaultParams.color}&size=${size || defaultParams.size}&style=${style || defaultParams.style}`);
+    if (!searchParams.get('color') || !searchParams.get('style')) {
+      router.push(`/product/basic-tshirt?color=${color || defaultParams.color}&style=${style || defaultParams.style}`);
     } else {
       setColor(searchParams.get('color') || defaultParams.color);
-      setSize(searchParams.get('size') || defaultParams.size);
       setStyle(searchParams.get('style') || defaultParams.style);
     }
 
@@ -59,18 +56,14 @@ const BasicTshirtPage = () => {
 
   const handleColorChange = (event) => {
     setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/basic-tshirt?color=${event.target.value}&size=${size}&style=${style}`);
+    window.history.replaceState(null, '', `/product/basic-tshirt?color=${event.target.value}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/basic-tshirt?color=${color}&size=${size}&style=${event.target.value}`);
+    window.history.replaceState(null, '', `/product/basic-tshirt?color=${color}&style=${event.target.value}`);
   };
 
-  const handleSizeChange = (event) => {
-    setSize(event.target.value);
-    window.history.replaceState(null, '', `/product/basic-tshirt?color=${color}&size=${event.target.value}&style=${style}`);
-  };
 
   const generate = async () => {
     setLoading(true);
@@ -288,7 +281,7 @@ const BasicTshirtPage = () => {
                   </Tooltip>
                 ))}
               </Box>
-              <Box sx={{ marginBottom: 2 }}>
+              {/* <Box sx={{ marginBottom: 2 }}>
                 <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                   Select your size
                 </Typography>
@@ -311,11 +304,11 @@ const BasicTshirtPage = () => {
                   }}
                 />
               ))}
-              </Box>
+              </Box> */}
               <Box sx={{ mt: 4 }}>
               <BuyNowButton
                 color={color}
-                size={size}
+                // size={size}
                 style={style}
                 type="Basic"
                 data={{}}

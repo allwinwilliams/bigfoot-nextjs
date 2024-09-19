@@ -428,7 +428,7 @@ const RestrictedAiProductPage = () => {
                     </Tooltip>
                   ))}
                 </Box>
-                <Box sx={{ marginBottom: 2 }}>
+                {/* <Box sx={{ marginBottom: 2 }}>
                   <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                     Select your size
                   </Typography>
@@ -451,12 +451,12 @@ const RestrictedAiProductPage = () => {
                     }}
                   />
                 ))}
-              </Box>
+              </Box> */}
                 
                 <Box sx={{ mt: 4 }}>
                   <BuyNowButton
                     color={color}
-                    size={size}
+                    // size={size}
                     style={style}
                     type="Prompt"
                     data={{prompt}}

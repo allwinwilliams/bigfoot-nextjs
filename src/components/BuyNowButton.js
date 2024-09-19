@@ -1,16 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
-import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton } from '@mui/material';
+import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton, Chip, Select, MenuItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import SizeChart from './SizeChart';
 
-const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, price = 139900 }) => {
+const BuyNowButton = ({ color, style, type, data, songData, storage, db, price = 139900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openPostPaymentModal, setOpenPostPaymentModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
 
+  const [fabric, setFabric] = useState('Premium');
+  const [size, setSize] = useState('S');
+  const [dynamicPrice, setDynamicPrice] = useState(price);
+
   const canvasRef = useRef(null);
+
+  
+  useEffect(() => {
+    if (fabric === 'Premium') {
+      setDynamicPrice(99900);
+    } else if (fabric === 'Luxury') {
+      setDynamicPrice(139900);
+    }
+  }, [fabric]);
 
   useEffect(() => {
     if (openPrePaymentModal) {
@@ -40,10 +54,17 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
 
   const handleBuyNow = async () => {
     setOpenPrePaymentModal(true);
-    confirmPurchase();
+    // confirmPurchase();
+  };
+
+  const handleFabricChange = (event) => {
+    setFabric(event.target.value);
+  }
+
+  const handleSizeChange = (event) => {
+    setSize(event.target.value);
   };
   
-
   const confirmPurchase = async () => {
     setBuyNowLoading(true);
     try {
@@ -63,6 +84,7 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
         style,
         type,
         imageUrl,
+        fabric,
         timestamp: new Date().toISOString(),
       };
 
@@ -79,26 +101,25 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
 
-
       const response = await fetch('/api/create-razorpay-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          amount: price,
+          amount: dynamicPrice,
           currency: 'INR',
           receipt: `receipt_${docId}`,
           payment_capture: true,
           notes: { docId, ...dataToStore },
-          line_items_total: price,
+          line_items_total: dynamicPrice,
           line_items: [
             {
               type: "e-commerce",
               sku: `//TEE/${type}/${style}/${timestamp}`,
               variant_id: `//TEE/${type}/${style}`,
-              price: price,
-              tax_amount: `${Math.ceil(price * 0.18)}`,
+              price: dynamicPrice,
+              tax_amount: `${Math.ceil(dynamicPrice * 0.18)}`,
               quantity: 1,
               name: `${type} T-Shirt - ${style}`,
               description: `Korean Fit T-Shirt with ${type} artwork`,
@@ -192,9 +213,10 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
           <CircularProgress size={24} sx={{ color: 'white' }} />
         ) : (
           <Box sx={{ textAlign: 'center' }}>
-            {`Buy Now @ ₹${Math.ceil(price / 100)}`}
+            {/* {`Buy Now @ ₹${Math.ceil(price / 100)}`} */}
+            {`Select size and fabric`}
             <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
-              Limited Time Offer
+              See prices based on fabric
             </Typography>
           </Box>
         )}
@@ -210,22 +232,22 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
         <Modal
           open={openPrePaymentModal}
           onClose={() => setOpenPrePaymentModal(false)}
-          sx={{ top: "5%" }}
+          sx={{ top: "4%"}}
         >
-          <Paper sx={{ padding: 4, margin: 'auto', maxWidth: 340, position: 'relative' }}>
+          <Paper sx={{ padding: 6, margin: 'auto', maxWidth: 400, borderRadius: 4, position: 'relative' }}>
             <IconButton
               onClick={() => setOpenPrePaymentModal(false)}
-              sx={{ position: 'absolute', top: 8, right: 8 }}
+              sx={{ position: 'absolute', top: 16, right: 16 }}
             >
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" gutterBottom>
-              Creating your order...
+            <Typography variant="h4">
+              Place your order
             </Typography>
-            <Box sx={{ borderRadius: 2, marginY: '16px', border: '1px solid #ddd' }}>
+            {/* <Box sx={{ borderRadius: 2, marginY: '16px', border: '1px solid #ddd' }}>
               <canvas ref={canvasRef}  />
-            </Box>
-            <Grid container spacing={2} sx={{ marginBottom: 2 }}>
+            </Box> */}
+            {/* <Grid container spacing={2} sx={{ marginBottom: 2 }}>
               <Grid item xs={6} md={6}>
                 <Typography variant="label">
                   Color
@@ -234,14 +256,7 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
                   <strong>{color}</strong>
                 </Typography>
               </Grid>
-              <Grid item xs={6} md={6}>
-                <Typography variant="label">
-                  Size
-                </Typography>
-                <Typography variant="subtitle1">
-                  <strong>{size}</strong>
-                </Typography>
-              </Grid>
+              
               <Grid item xs={6} md={6}>
                 <Typography variant="label">
                   Type
@@ -250,15 +265,59 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
                   <strong>{type} - {style}</strong>
                 </Typography>
               </Grid>
-              <Grid item xs={6} md={6}>
-                <Typography variant="label">
-                  Price
+            </Grid> */}
+            <Box sx={{marginY: 4}}>
+              <Box sx={{marginBottom: 2}}>
+                <Typography variant="subtitle1" sx={{fontWeight: 800}} >
+                  Select your size
                 </Typography>
-                <Typography variant="subtitle1">
-                  <strong>₹{Math.ceil(price / 100)}</strong>
+                <SizeChart />
+              </Box>
+              <Box>
+                <Select
+                  value={size}
+                  onChange={(e) => handleSizeChange(e)}
+                  displayEmpty
+                  fullWidth
+                  sx={{
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    borderRadius: '9999px',
+                  }}
+                >
+                  {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Box>
+            </Box>
+            <Box sx={{marginY: 4}}>
+              <Box sx={{ marginBottom: 2 }}>
+                <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
+                  Pick your fabric choose
                 </Typography>
-              </Grid>
-            </Grid>
+              </Box>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                {['Premium', 'Luxury'].map((option) => (
+                  <Chip
+                    key={option}
+                    label={option}
+                    clickable
+                    color={fabric === option ? 'primary' : 'default'}
+                    variant={fabric === option ? 'filled' : 'outlined'}
+                    onClick={() => handleFabricChange({ target: { value: option } })}
+                    sx={{
+                      padding: '24px 12px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      borderRadius: '9999px',
+                    }}
+                  />
+                ))}
+              </Box>
+            </Box>
             <Button
               variant="contained"
               color="primary"
@@ -273,10 +332,10 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
                   <Typography>Please wait...</Typography>
                 </Box>
               ) : (
-                'Order Now'
+                `Buy Now @ ₹${Math.ceil(dynamicPrice / 100)}`
               )}
             </Button>
-            {/* <Button
+            <Button
               variant="outlined"
               color="primary"
               onClick={() => setOpenPrePaymentModal(false)}
@@ -285,9 +344,9 @@ const BuyNowButton = ({ color, size, style, type, data, songData, storage, db, p
               disabled={buyNowLoading}
             >
               Close
-            </Button> */}
+            </Button>
             <Typography variant="body2" sx={{color: '#999999'}}>
-              Note: You may not be able to retrieve certain designs, if you exit
+              Note: Certain designs will be lost, if you exit now. There is no return or exchange unless due to manufacturing damage. So, read information carefully before proceeding.
             </Typography>
           </Paper>
         </Modal>
