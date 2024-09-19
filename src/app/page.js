@@ -275,7 +275,7 @@ export default function HomePage() {
           Explore the range
         </Typography>
         <Grid container spacing={2} sx={{my: 8}}>
-          <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Link
               LinkComponent={NextLink}
               href="/product/song-tshirt"
@@ -309,7 +309,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/prompt-generated-tshirt" 
@@ -343,7 +343,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Link
               LinkComponent={NextLink}
               href="/product/emoji-tshirt"
@@ -377,7 +377,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Link
               LinkComponent={NextLink}
               href="/product/basic-tshirt"
@@ -411,8 +411,75 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          
-          <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+            <Link
+              LinkComponent={NextLink} 
+              href="/product/dictionary-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                  Dictionary of whatever
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Find meaning of anyword
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+            <Link
+              LinkComponent={NextLink} 
+              href="/product/japanese-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                  Japanese Style
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Turn any word into japanese
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Box>
               <Box
                 sx={{
@@ -437,7 +504,7 @@ export default function HomePage() {
               </Typography>
             </Box>
           </Grid>
-          {/* <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          {/* <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Box>
               <Box
                 sx={{
