@@ -103,7 +103,7 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       p.text(japaneseWord, 750, 180); // Display the translated word
   
       // Display phonetics (pronunciation)
-      p.textSize(textSize/1.5);
+      p.textSize(textSize/2.5);
       p.textStyle(p.ITALIC);
       p.text(phonetics, 750, 480); // Display the pronunciation
   
