@@ -37,12 +37,14 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
       const phonetics = translation?.translation?.phonetics || ''; // Pronunciation
   
       // Display the Japanese word (translated word)
-      p.textSize(60);
+      let textSize = p.map(japaneseWord.length, 0, 32, 60, 18);
+      p.textSize(textSize);
+      
       p.textStyle(p.BOLD);
       p.text(japaneseWord, 940, 180); // Display the translated word
   
       // Display phonetics (pronunciation)
-      p.textSize(32);
+      p.textSize(textSize/1.5);
       p.textStyle(p.ITALIC);
       p.text(phonetics, 940, 280); // Display the pronunciation
   
@@ -94,13 +96,14 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       const phonetics = translation?.translation?.phonetics || ''; // Pronunciation
   
       // Display the Japanese word (translated word)
-      p.textSize(180);
+      let textSize = p.map(japaneseWord.length, 0, 32, 180, 24);
+      p.textSize(textSize);
       p.textStyle(p.BOLD);
       p.textAlign(p.CENTER);
       p.text(japaneseWord, 750, 180); // Display the translated word
   
       // Display phonetics (pronunciation)
-      p.textSize(60);
+      p.textSize(textSize/1.5);
       p.textStyle(p.ITALIC);
       p.text(phonetics, 750, 480); // Display the pronunciation
   
@@ -162,17 +165,17 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
       let textY = 380; // Y position for the Japanese word
   
       // Loop to create multiple strokes with different colors
-      let textSize = 200;
-      p.textSize(180);
+      let textSize = p.map(japaneseWord.length, 0, 32, 180, 24);
+      p.textSize(textSize);
       // p.textStyle(p.BLACK);
       p.textStyle(p.BOLD);
       p.stroke(0);
       // p.strokeWeight(8);
       for (let i = neonColors.length - 1; i >= 0; i--) {
-        p.textSize(textSize - i * 10);
+        p.textSize(textSize - i * 5);
         p.fill(neonColors[i]);
         p.text(japaneseWord, textX, textY);
-        textY -= 20;
+        textY -= textSize/10;
       }
       p.strokeWeight(0);
   
@@ -189,5 +192,5 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
       p.textStyle(p.ITALIC);
       p.text(phonetics, textX, 640); // Display the pronunciation below the Japanese word
     };
-  };
+};
   

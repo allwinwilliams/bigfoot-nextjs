@@ -1,5 +1,3 @@
-// pages/api/getTranslation.js
-
 export default async function handler(req, res) {
   const { word } = req.body;
   const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
@@ -8,7 +6,7 @@ export default async function handler(req, res) {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -16,17 +14,24 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant that provides Japanese translations in Katakana script with English pronunciation (phonetics) in JSON format according to a specified schema.',
+            content: `You are a helpful assistant that provides accurate Japanese translations for words. The Japanese translation should be the true equivalent in Japanese, not a phonetic transliteration. You should return the response in JSON format, strictly following this schema:
+            {
+              "word": "original word in English",
+              "translation": {
+                "japanese_word": "the accurate Japanese word. If not available, the transliteration in Katakana script",
+                "phonetics": "English pronunciation of the japanese word using English letters"
+              }
+            }.`,
           },
           {
             role: 'user',
-            content: `Translate the word "${word}" to Japanese in Katakana script and provide the pronunciation in English.`,
+            content: `Translate the word "${word}" to the actual Japanese equivalent word in Katakana script and provide the correct pronunciation in English.`,
           },
         ],
         functions: [
           {
             name: "get_word_translation",
-            description: "Provides the Japanese translation of a word in Katakana script along with the pronunciation in English and original word according to the schema.",
+            description: "Provides the accurate Japanese translation of a word along with the pronunciation in English and original word according to the schema.",
             parameters: {
               type: "object",
               properties: {
@@ -39,11 +44,11 @@ export default async function handler(req, res) {
                   properties: {
                     japanese_word: {
                       type: "string",
-                      description: "The translated word in Katakana script",
+                      description: "The accurate translated word in Japanese (Katakana or other appropriate script)",
                     },
                     phonetics: {
                       type: "string",
-                      description: "The phonetic transcription in English of the Japanese word",
+                      description: "The English phonetic transcription of the Japanese word using only English letters",
                     },
                   },
                   required: ["japanese_word", "phonetics"],
@@ -55,7 +60,7 @@ export default async function handler(req, res) {
             },
           },
         ],
-        function_call: { "name": "get_word_translation" },
+        function_call: { name: "get_word_translation" },
         temperature: 0,
       }),
     });
