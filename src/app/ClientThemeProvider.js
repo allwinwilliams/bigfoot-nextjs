@@ -4,8 +4,6 @@
 import React from 'react';
 import { CssBaseline, Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import NextLink from 'next/link';
-import { forwardRef } from 'react';
 
 import '@fontsource/inter'; 
 
@@ -30,18 +28,22 @@ const theme = createTheme({
     h1: {
       fontFamily: 'Urbanist, Arial, sans-serif',
       fontWeight: 600,
+      textTransform: 'uppercase', // Capitalize h1
     },
     h2: {
       fontFamily: 'Urbanist, Arial, sans-serif',
       fontWeight: 600,
+      textTransform: 'uppercase', // Capitalize h2
     },
     h3: {
       fontFamily: 'Urbanist, Arial, sans-serif',
       fontWeight: 600,
+      textTransform: 'uppercase', // Capitalize h3
     },
     h4: {
       fontFamily: 'Urbanist, Arial, sans-serif',
       fontWeight: 600,
+      textTransform: 'uppercase', // Capitalize h3
     },
     h5: {
       fontFamily: 'Urbanist, Arial, sans-serif',

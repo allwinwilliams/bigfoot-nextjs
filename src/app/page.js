@@ -136,15 +136,25 @@ export default function HomePage() {
       width: '25%',
       aspectRatio: '260%',
     },
+    // New card with plain black background and gradient text
+    {
+      title: '',
+      image: '', // No image for this card
+      url: '#the-range',
+      width: '35%', // Full width
+      aspectRatio: '200%', // Aspect ratio
+      isTextCard: true, // Flag to differentiate this card
+      text: `Humans are artisans of their existence, shaping reality from sparks of thought and emotion. Our creativity flows freely, reflecting the unique worlds within. Each expression is personal, shaped by our untamed spirit. We are born to create
+—so go, be creative.`, // Card text
+    },
     {
       title: '',
       image: '/gallery/6.png',
       hoverImage: '/gallery/5.png',
       url: '#the-range',
-      width: '45%',
+      width: '35%',
       aspectRatio: '160%',
     },
-    
   ];
   
 
