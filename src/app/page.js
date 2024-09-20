@@ -366,7 +366,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
                   Style Your Song
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -400,7 +400,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
                   Paint with Prompt
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -434,7 +434,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
                   😊 Express with Emojis
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -468,7 +468,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
                   Bigfoot Basics
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -502,7 +502,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
                   Dictionary of whatever
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -536,11 +536,45 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
                   Japanese Style
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Turn any word into japanese
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+            <Link
+              LinkComponent={NextLink} 
+              href="/product/text-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Any Text
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Write any word or short phrase
                 </Typography>
               </Box>
             </Link>
@@ -562,7 +596,7 @@ export default function HomePage() {
               >
                 <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
               </Box>
-              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h6" sx={{ color: '#444444' }}>
                 Launching soon
               </Typography>
               <Typography variant="subtitle2" sx={{ color: '#777777' }}>
