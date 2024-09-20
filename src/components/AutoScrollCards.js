@@ -60,7 +60,7 @@ const AutoScrollCards = ({
 
   return (
     <Box>
-      <Box sx={{ marginX: 'auto', textAlign: 'center', marginTop: 8, paddingTop: 4 }}>
+      <Box sx={{ marginX: 'auto', textAlign: 'center', paddingY: 16, backgroundColor: '#EEEEEE' }}>
         <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', marginY: 8 }}>
           <strike>Thousands</strike> Millions of options to choose from...<br />Make it truly yours..
         </Typography>
@@ -93,19 +93,20 @@ const AutoScrollCards = ({
                 }} 
                 sx={{
                   display: 'inline-block',
-                  width: 290,
-                  margin: 2,
+                  width: 260,
+                  margin: 1,
                   textDecoration: 'none',
-                  padding: 2.5,
+                  // padding: 2.5,
                   paddingBottom: 0,
                   height: '100%',
-                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
+                  // boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 0 8px rgba(0, 0, 0, 0.00)',
                   border: '1px solid #eeeeee',
                   transform: `rotate(${getRandomRotation()}deg)`,
                   transition: 'transform 0.9s, border-color 0.8s',
                   '&:hover': {
-                    transform: `scale(1.01) rotate(${getRandomRotation()}deg)`,  
-                    borderColor: '#777777',
+                    transform: `scale(1.05) rotate(${getRandomRotation()}deg)`,  
+                    // borderColor: '#777777',
                   },
                   borderRadius: 2,
                 }}
@@ -117,14 +118,14 @@ const AutoScrollCards = ({
                   alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
                   sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                 />
-                <CardContent>
+                {/* <CardContent>
                   <Typography gutterBottom variant="h6" component="div">
                     {item.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {item.description}
                   </Typography>
-                </CardContent>
+                </CardContent> */}
               </Card>
             ))}
           </Box>
@@ -160,18 +161,19 @@ const AutoScrollCards = ({
                   }}  
                   sx={{
                     display: 'inline-block',
-                    width: 290,
-                    margin: 2,
+                    width: 260,
+                    margin: 1,
                     textDecoration: 'none',
-                    padding: 2.5,
+                    // padding: 2.5,
                     paddingBottom: 0,
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
+                    // boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.00)',
                     border: '1px solid #eeeeee',
                     transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: `scale(1.01) rotate(${getRandomRotation()}deg)`,  
-                      borderColor: '#777777',
+                      transform: `scale(1.05) rotate(${getRandomRotation()}deg)`,  
+                      // borderColor: '#777777',
                     },
                     borderRadius: 2,
                   }}
@@ -183,14 +185,14 @@ const AutoScrollCards = ({
                     alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
                     sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                   />
-                  <CardContent>
+                  {/* <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
                       {item.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {item.description}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               ))}
             </Box>
@@ -227,18 +229,19 @@ const AutoScrollCards = ({
                   }}
                   sx={{
                     display: 'inline-block',
-                    width: 290,
-                    margin: 2,
+                    width: 260,
+                    margin: 1,
                     textDecoration: 'none',
-                    padding: 2.5,
+                    // padding: 2.5,
                     paddingBottom: 0,
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
+                    // boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.00)',
                     border: '1px solid #eeeeee',
                     transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: `scale(1.01) rotate(${getRandomRotation()}deg)`,  
-                      borderColor: '#777777',
+                      transform: `scale(1.05) rotate(${getRandomRotation()}deg)`,  
+                      // borderColor: '#777777',
                     },
                     borderRadius: 2,
                   }}
@@ -250,14 +253,14 @@ const AutoScrollCards = ({
                     alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
                     sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
                   />
-                  <CardContent>
+                  {/* <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
                       {item.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {item.description}
                     </Typography>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               ))}
             </Box>

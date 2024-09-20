@@ -28,11 +28,11 @@ const Footer = () => {
             <img
               src='/logo.png'
               alt='Bigfoot Logo'
-              style={{ width: 48, marginBottom: 8 }}
+              style={{ width: 72, marginBottom: 8 }}
             />
-            <Typography variant="h6" gutterBottom>
+            {/* <Typography variant="h6" gutterBottom>
               bigfoot
-            </Typography>
+            </Typography> */}
             <Typography variant="subtitle1">
               Conceptual Art & Fashion
             </Typography>

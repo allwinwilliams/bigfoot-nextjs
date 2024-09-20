@@ -7,7 +7,7 @@ import SongProductStaticContent from '../components/ProductStaticContent';
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/AutoScrollCards';
 import Header from '@/components/Header';
-import { Margin, Opacity } from '@mui/icons-material';
+import { AspectRatio, Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
 import { keyframes } from '@mui/system';
 
@@ -16,6 +16,9 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PrintIcon from '@mui/icons-material/Print';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Marquee from "react-fast-marquee";
+import GallerySection from '../components/Gallerysection';
+
+
 
 export default function HomePage() {
 
@@ -91,6 +94,59 @@ export default function HomePage() {
     { imgUrl: '/samples/basic/3.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=black&size=M&style=tip' },
     { imgUrl: '/samples/ai/9.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
   ];
+
+  const galleryCards = [
+    {
+      title: '',
+      image: '/gallery/1.png',
+      url: '#the-range',
+      hoverImage: '/gallery/1b.png',
+      width: '100%',
+      aspectRatio: '50%',
+    },
+    {
+      title: 'Express',
+      image: '/gallery/2.png',
+      url: '#the-range',
+      hoverImage: '/gallery/5.png',
+      width: '20%',
+      aspectRatio: '100%',
+    },
+    {
+      title: 'Music vibes',
+      image: '/gallery/3.png',
+      hoverImage: '/gallery/4.png',
+      url: '#the-range',
+      width: '20%',
+      aspectRatio: '250%',
+    },
+    {
+      title: 'The gang',
+      image: '/gallery/8.png',
+      hoverImage: '/gallery/6.png',
+      url: '#the-range',
+      width: '50%',
+      aspectRatio: '80%',
+    },
+    {
+      title: '',
+      image: '/gallery/7.png',
+      hoverImage: '/gallery/7a.png',
+      url: '#the-range',
+      width: '25%',
+      aspectRatio: '260%',
+    },
+    {
+      title: '',
+      image: '/gallery/6.png',
+      hoverImage: '/gallery/5.png',
+      url: '#the-range',
+      width: '45%',
+      aspectRatio: '160%',
+    },
+    
+  ];
+  
 
   return (
     <Box
@@ -536,7 +592,11 @@ export default function HomePage() {
         itemsRow2={sampleData2}
         itemsRow3={sampleData3}
       />
+      
       <Container>
+      <Box>
+        <GallerySection cards={galleryCards} />
+      </Box>
       <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, mt: 24 }}>
         <video
           autoPlay
@@ -707,7 +767,8 @@ export default function HomePage() {
         </Paper>
       </Box>    
       
-        <SongProductStaticContent/>
+      <SongProductStaticContent/>
+
         <Paper elevation={1} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>

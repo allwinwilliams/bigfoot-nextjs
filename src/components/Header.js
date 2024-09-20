@@ -23,11 +23,11 @@ const Header = () => {
         <img
           src='/logo.png'
           alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
+          style={{ width: 72, marginBottom: 8 }}
         />
-        <Typography variant="h5" gutterBottom>
+        {/* <Typography variant="h5" gutterBottom>
           bigfoot
-        </Typography>
+        </Typography> */}
 
         <Typography variant="subtitle2" gutterBottom sx={{color: '#777777'}}>
           conceptual fashion
