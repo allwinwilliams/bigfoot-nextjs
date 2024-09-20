@@ -52,9 +52,9 @@ export default function ProductStaticContent() {
                         >
                         Our Philosophy
                         </Typography>
-                        <Typography variant="h3">
-                            Your fashion is your expression. Own it.
-                            Wear yourself on your sleeves, literally.
+                        <Typography variant="h4" sx={{textTransform: 'none'}}>
+                            Human are naturally creative and expressive.
+                            We encourage it with fashion and lifestyle options.
                         </Typography>
                     </Grid>
                 </Grid>
@@ -72,10 +72,16 @@ export default function ProductStaticContent() {
                 sx={{
                     fontWeight: 'bold',
                     mt: 4,
-                    paddingBottom: 4,
                     color: '#BBBBBB'
                 }}>
                 What we offer?
+                </Typography>
+                <Typography variant="body1"
+                sx={{
+                    my: 2,
+                    paddingBottom: 2,
+                }}>
+                    Premium personlisation driven with tech
                 </Typography>
                 <Grid container spacing={4} sx={{padding: {md: 8, xs: 0}, paddingBottom: {md: 8, xs: 8}}}>
                 <Grid item xs={6} md={3}>

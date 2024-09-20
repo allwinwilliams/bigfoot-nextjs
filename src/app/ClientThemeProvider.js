@@ -26,31 +26,31 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Inter, Arial, sans-serif', // Set Inter as the default font
     h1: {
-      fontFamily: 'Urbanist, Arial, sans-serif',
+      fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
       textTransform: 'uppercase', // Capitalize h1
     },
     h2: {
-      fontFamily: 'Urbanist, Arial, sans-serif',
+      fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
       textTransform: 'uppercase', // Capitalize h2
     },
     h3: {
-      fontFamily: 'Urbanist, Arial, sans-serif',
+      fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
       textTransform: 'uppercase', // Capitalize h3
     },
     h4: {
-      fontFamily: 'Urbanist, Arial, sans-serif',
+      fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
       textTransform: 'uppercase', // Capitalize h3
     },
     h5: {
-      fontFamily: 'Urbanist, Arial, sans-serif',
+      fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
     },
     h6: {
-      fontFamily: 'Urbanist, Arial, sans-serif',
+      fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
     },
   },

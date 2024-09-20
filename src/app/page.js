@@ -136,16 +136,15 @@ export default function HomePage() {
       width: '25%',
       aspectRatio: '260%',
     },
-    // New card with plain black background and gradient text
     {
       title: '',
-      image: '', // No image for this card
+      image: '',
       url: '#the-range',
-      width: '35%', // Full width
-      aspectRatio: '200%', // Aspect ratio
-      isTextCard: true, // Flag to differentiate this card
+      width: '25%',
+      aspectRatio: '200%',
+      isTextCard: true,
       text: `Humans are artisans of their existence, shaping reality from sparks of thought and emotion. Our creativity flows freely, reflecting the unique worlds within. Each expression is personal, shaped by our untamed spirit. We are born to create
-—so go, be creative.`, // Card text
+—so go, be creative.`,
     },
     {
       title: '',
@@ -302,9 +301,10 @@ export default function HomePage() {
                       textTransform: 'none',
                       borderRadius: 4,
                       width: '100%',
-                      background: 'white',
+                      background: 'black',
+                      color: 'white',
                       justifyContent: 'center',
-                      background: 'linear-gradient(0deg, #999999 0%, #FFFFFF 50%)',
+                      background: 'linear-gradient(0deg, #222222 0%, #000000 100%)',
                       backgroundSize: '600% 600%',
                       animation: 'backgroundMovement 4s ease infinite',  
                     }}
@@ -336,7 +336,7 @@ export default function HomePage() {
           sx={{
             fontWeight: 'bold',
             mb: 8,
-            color: '#ababab'
+            color: '#bbbbbb'
           }}>
           Explore the range
         </Typography>

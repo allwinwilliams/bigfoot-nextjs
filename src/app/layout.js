@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
         <title>Bigfoot Clothing - Customised T-shirts with songs, emojis, AI and more - Made to Order - High Quality Oversized Tshirts</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"/>
         <script src="https://checkout.razorpay.com/v1/magic-checkout.js"></script>
 
         <meta charSet="UTF-8" />
