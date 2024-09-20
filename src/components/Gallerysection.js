@@ -22,11 +22,9 @@ const GallerySection = ({ cards }) => {
         return (
           <MUILink
             key={index}
-            href={card.url} // The URL provided with each card
-            target="_blank" // Opens the link in a new tab
-            rel="noopener noreferrer" // Security for new tabs
-            underline="none" // Remove underline from link
-            sx={{ width: width, display: 'block' }} // Ensure the link takes full card width
+            href={card.url}
+            underline="none"
+            sx={{ width: width, display: 'block' }}
           >
             <Box
               sx={{
