@@ -60,14 +60,14 @@ const AutoScrollCards = ({
 
   return (
     <Box>
-      <Box sx={{ marginX: 'auto', textAlign: 'center', paddingY: 16, backgroundColor: '#EEEEEE' }}>
+      <Box sx={{ marginX: 'auto', textAlign: 'center', paddingY: 16, backgroundColor: '#F7F7F7' }}>
         <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', marginY: 8 }}>
           <strike>Thousands</strike> Millions of options to choose from...<br />Make it truly yours..
         </Typography>
         <Box
           sx={{
             // mt: 4,
-            overflowX: 'hidden',
+            overflow: 'hidden',
             whiteSpace: 'nowrap',
             // paddingTop: 4,
             // paddingBottom: 0.5,
@@ -93,7 +93,7 @@ const AutoScrollCards = ({
                 }} 
                 sx={{
                   display: 'inline-block',
-                  width: 260,
+                  width: 240,
                   margin: 1,
                   textDecoration: 'none',
                   // padding: 2.5,
@@ -101,11 +101,11 @@ const AutoScrollCards = ({
                   height: '100%',
                   // boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                   boxShadow: '0 0 8px rgba(0, 0, 0, 0.00)',
-                  border: '1px solid #eeeeee',
+                  // border: '1px solid #eeeeee',
                   transform: `rotate(${getRandomRotation()}deg)`,
                   transition: 'transform 0.9s, border-color 0.8s',
                   '&:hover': {
-                    transform: `scale(1.05) rotate(${getRandomRotation()}deg)`,  
+                    transform: `scale(1.2) rotate(${getRandomRotation()}deg)`,  
                     // borderColor: '#777777',
                   },
                   borderRadius: 2,
@@ -113,10 +113,10 @@ const AutoScrollCards = ({
               >
                 <CardMedia
                   component="img"
-                  height="200"
+                  height="180"
                   image={item.imgUrl}
                   alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
-                  sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
+                  sx={{ borderRadius: 2, padding: 2, backgroundColor: '#F7F7F7' }}
                 />
                 {/* <CardContent>
                   <Typography gutterBottom variant="h6" component="div">
@@ -134,7 +134,7 @@ const AutoScrollCards = ({
           <Box
             sx={{
               // mt: 4,
-              overflowX: 'hidden',
+              overflow: 'hidden',
               whiteSpace: 'nowrap',
               // paddingTop: 0.5,
               // paddingBottom: 4,
@@ -146,6 +146,7 @@ const AutoScrollCards = ({
                 alignItems: 'center',
                 animation: `${reverseScroll} 100s linear infinite`,
                 transition: ' 4s',
+                overflow: 'hidden',
               }}
             >
               {itemsRow2.map((item, index) => (
@@ -161,18 +162,18 @@ const AutoScrollCards = ({
                   }}  
                   sx={{
                     display: 'inline-block',
-                    width: 260,
+                    width: 240,
                     margin: 1,
                     textDecoration: 'none',
                     // padding: 2.5,
                     paddingBottom: 0,
                     // boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                     boxShadow: '0 0 8px rgba(0, 0, 0, 0.00)',
-                    border: '1px solid #eeeeee',
+                    // border: '1px solid #eeeeee',
                     transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: `scale(1.05) rotate(${getRandomRotation()}deg)`,  
+                      transform: `scale(1.2) rotate(${getRandomRotation()}deg)`,  
                       // borderColor: '#777777',
                     },
                     borderRadius: 2,
@@ -180,10 +181,10 @@ const AutoScrollCards = ({
                 >
                   <CardMedia
                     component="img"
-                    height="200"
+                    height="180"
                     image={item.imgUrl}
                     alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
-                    sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
+                    sx={{ borderRadius: 2, padding: 2, backgroundColor: '#F7F7F7' }}
                   />
                   {/* <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
@@ -202,7 +203,7 @@ const AutoScrollCards = ({
           <Box
             sx={{
               // mt: 4,
-              overflowX: 'hidden',
+              overflow: 'hidden',
               whiteSpace: 'nowrap',
               // paddingTop: 0.5,
               // paddingBottom: 4,
@@ -214,6 +215,7 @@ const AutoScrollCards = ({
                 alignItems: 'center',
                 animation: `${scroll} 100s linear infinite`,
                 transition: ' 4s',
+                overflow: 'hidden',
               }}
             >
               {itemsRow3.map((item, index) => (
@@ -229,18 +231,18 @@ const AutoScrollCards = ({
                   }}
                   sx={{
                     display: 'inline-block',
-                    width: 260,
+                    width: 240,
                     margin: 1,
                     textDecoration: 'none',
                     // padding: 2.5,
                     paddingBottom: 0,
                     // boxShadow: '0 0 8px rgba(0, 0, 0, 0.08)',
                     boxShadow: '0 0 8px rgba(0, 0, 0, 0.00)',
-                    border: '1px solid #eeeeee',
+                    // border: '1px solid #eeeeee',
                     transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: `scale(1.05) rotate(${getRandomRotation()}deg)`,  
+                      transform: `scale(1.2) rotate(${getRandomRotation()}deg)`,  
                       // borderColor: '#777777',
                     },
                     borderRadius: 2,
@@ -248,10 +250,10 @@ const AutoScrollCards = ({
                 >
                   <CardMedia
                     component="img"
-                    height="200"
+                    height="180"
                     image={item.imgUrl}
                     alt={`T-Shirt with ${item.title} ${item.description} - Customised Clothing`}
-                    sx={{ borderRadius: 2, padding: 2, backgroundColor: '#EEEEEE' }}
+                    sx={{ borderRadius: 2, padding: 2, backgroundColor: '#F7F7F7' }}
                   />
                   {/* <CardContent>
                     <Typography gutterBottom variant="h6" component="div">

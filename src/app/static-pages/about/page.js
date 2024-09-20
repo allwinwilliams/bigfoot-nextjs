@@ -21,8 +21,15 @@ export default function About() {
                         to let you showcase your unique style, whether it’s through a song that speaks to you, an AI-generated design, or a fun emoji.
                     </Typography>
                     <Box mt={2}>
-                        <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bigfoot Philosophy" style={{ width: '100%', borderRadius: '8px' }} />
-                    </Box>
+                        <video 
+                            src="/gallery/motto.mp4" 
+                            autoPlay 
+                            loop 
+                            muted 
+                            playsInline 
+                            style={{ width: '100%', borderRadius: '8px' }} 
+                        />
+                        </Box>
                 </Box>
 
                 <Box mb={6}>

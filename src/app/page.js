@@ -100,7 +100,7 @@ export default function HomePage() {
       title: '',
       image: '/gallery/1.png',
       url: '#the-range',
-      hoverImage: '/gallery/1b.png',
+      hoverImage: '/gallery/1c.jpg',
       width: '100%',
       aspectRatio: '50%',
     },
@@ -234,7 +234,7 @@ export default function HomePage() {
               zIndex: 0,
             }}
           >
-            <source src="https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4" type="video/mp4" />
+            <source src="/gallery/main.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <Paper elevation={4} sx={{
@@ -274,9 +274,9 @@ export default function HomePage() {
                     mb: 4,
                     paddingX: {md: 8, xs: 2}
                   }}>
-                  We wanted to share the joy of creation with our customers.
-                  Imagine wearing your favorite song or a drawing you created with a prompt or anything like that.
-                  Now you can! Bring your ideas to life with Bigfoot.
+                  Exploring creativity with you!
+                  Bring your ideas to life
+                  Join our community!
                 </Typography>
                   <Button 
                     variant="contained" 
@@ -597,6 +597,9 @@ export default function HomePage() {
       <Box>
         <GallerySection cards={galleryCards} />
       </Box>
+        
+      
+      <SongProductStaticContent/>
       <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, mt: 24 }}>
         <video
           autoPlay
@@ -641,7 +644,7 @@ export default function HomePage() {
                 }}
               />
           </Grid>
-            <Grid item xs={12} md={6}
+          <Grid item xs={12} md={6}
             sx={{padding: 4}}>
               <Typography
                 variant="h4"
@@ -765,10 +768,7 @@ export default function HomePage() {
             </Grid>
           </Grid>
         </Paper>
-      </Box>    
-      
-      <SongProductStaticContent/>
-
+      </Box>  
         <Paper elevation={1} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>
           <Grid container spacing={4} alignItems="center">
             <Grid item xs={12} md={6}>
