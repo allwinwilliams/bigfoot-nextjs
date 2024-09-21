@@ -346,7 +346,7 @@ export default function HomePage() {
           Explore the range
         </Typography>
         <Grid container spacing={2} sx={{my: 8}}>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}
               href="/product/song-tshirt"
@@ -380,7 +380,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/prompt-generated-tshirt" 
@@ -414,7 +414,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/dictionary-tshirt" 
@@ -448,7 +448,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}
               href="/product/emoji-tshirt"
@@ -482,7 +482,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/japanese-tshirt" 
@@ -517,7 +517,7 @@ export default function HomePage() {
             </Link>
           </Grid>
           
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/text-tshirt" 
@@ -551,7 +551,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}
               href="/product/basic-tshirt"
@@ -585,7 +585,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Box>
               <Box
                 sx={{
@@ -610,7 +610,7 @@ export default function HomePage() {
               </Typography>
             </Box>
           </Grid>
-          {/* <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+          {/* <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Box>
               <Box
                 sx={{

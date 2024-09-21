@@ -96,7 +96,7 @@ const AutoScrollCards = ({
                 }} 
                 sx={{
                   display: 'inline-block',
-                  width: 240,
+                  width: 200,
                   margin: 1,
                   textDecoration: 'none',
                   // padding: 2.5,
@@ -108,7 +108,7 @@ const AutoScrollCards = ({
                   transform: `rotate(${getRandomRotation()}deg)`,
                   transition: 'transform 0.9s, border-color 0.8s',
                   '&:hover': {
-                    transform: `scale(1.2) rotate(${getRandomRotation()}deg)`,  
+                    transform: `scale(1.25) rotate(${getRandomRotation()}deg)`,  
                     // borderColor: '#777777',
                   },
                   borderRadius: 2,
@@ -165,7 +165,7 @@ const AutoScrollCards = ({
                   }}  
                   sx={{
                     display: 'inline-block',
-                    width: 240,
+                    width: 200,
                     margin: 1,
                     textDecoration: 'none',
                     // padding: 2.5,
@@ -176,7 +176,7 @@ const AutoScrollCards = ({
                     transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: `scale(1.2) rotate(${getRandomRotation()}deg)`,  
+                      transform: `scale(1.25) rotate(${getRandomRotation()}deg)`,  
                       // borderColor: '#777777',
                     },
                     borderRadius: 2,
@@ -234,7 +234,7 @@ const AutoScrollCards = ({
                   }}
                   sx={{
                     display: 'inline-block',
-                    width: 240,
+                    width: 200,
                     margin: 1,
                     textDecoration: 'none',
                     // padding: 2.5,
@@ -245,7 +245,7 @@ const AutoScrollCards = ({
                     transform: `rotate(${getRandomRotation()}deg)`,
                     transition: 'transform 0.9s, border-color 0.8s',
                     '&:hover': {
-                      transform: `scale(1.2) rotate(${getRandomRotation()}deg)`,  
+                      transform: `scale(1.25) rotate(${getRandomRotation()}deg)`,  
                       // borderColor: '#777777',
                     },
                     borderRadius: 2,
