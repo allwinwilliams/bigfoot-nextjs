@@ -3,7 +3,8 @@
 import NextLink from 'next/link';
 import { useRef, useEffect } from 'react';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid, Link } from '@mui/material';
-import SongProductStaticContent from '../components/ProductStaticContent';
+import ProductStaticContent from '../components/ProductStaticContent';
+import HorizontalScrollSection from '../components/HorizontalScrollSection';
 import CreateIcon from '@mui/icons-material/Create';
 import AutoScrollCards from '@/components/AutoScrollCards';
 import Header from '@/components/Header';
@@ -203,17 +204,21 @@ export default function HomePage() {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mx: 2 }}>
             {/* <WhatsAppIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="h6" sx={{ color: '#fff' }}>
-              FOR FURTHER CUSTOMISATIONS AND GROUP ORDERS, CONTACT 87549 68346
+              FOR MORE CUSTOMISATIONS AND GROUP ORDERS, CONTACT 87549 68346
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             {/* <PrintIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="h6" sx={{ color: '#fff' }}>
-              CUSTOM T-SHIRT PRINTING
+              EXPRESS YOURSELF
+            </Typography>
+            <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
+            <Typography variant="h6" sx={{ color: '#fff' }}>
+              FREEDOM OF EXPRESSION
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             {/* <LocalShippingIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="h6" sx={{ color: '#fff' }}>
-              FREE DELIVERY
+              PREMIUM CONCEPTUAL DESIGNS
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
           </Box>
@@ -367,7 +372,7 @@ export default function HomePage() {
                   <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Style Your Song
+                  Style With Music
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Design with your favorite song
@@ -401,78 +406,10 @@ export default function HomePage() {
                   <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Paint with Prompt
+                  Generate with Prompt
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Your idea and style generated
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
-            <Link
-              LinkComponent={NextLink}
-              href="/product/emoji-tshirt"
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3', 0.4);
-              }}
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.8s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
-                </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
-                  😊 Express with Emojis
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Design with emoji and short text
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
-            <Link
-              LinkComponent={NextLink}
-              href="/product/basic-tshirt"
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
-              }}
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.8s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
-                </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Bigfoot Basics
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  From Bigfoot The Brand
                 </Typography>
               </Box>
             </Link>
@@ -513,6 +450,40 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Link
+              LinkComponent={NextLink}
+              href="/product/emoji-tshirt"
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3', 0.4);
+              }}
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  😊 Express with Emojis
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Design with emoji and short text
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+            <Link
               LinkComponent={NextLink} 
               href="/product/japanese-tshirt" 
               underline="none"
@@ -537,7 +508,7 @@ export default function HomePage() {
                   <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Japanese Style
+                  Japanese (ジャパニーズ)
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Turn any word into japanese
@@ -545,6 +516,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
+          
           <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
             <Link
               LinkComponent={NextLink} 
@@ -575,6 +547,40 @@ export default function HomePage() {
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Write any word or short phrase
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto'}}>
+            <Link
+              LinkComponent={NextLink}
+              href="/product/basic-tshirt"
+              underline="none"
+              onClick={(e) => {
+                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+              }}
+              onMouseEnter={() => {
+                handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
+              }}
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Bigfoot Basics
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  From Bigfoot The Brand
                 </Typography>
               </Box>
             </Link>
@@ -643,7 +649,9 @@ export default function HomePage() {
       </Box>
         
       
-      <SongProductStaticContent/>
+      <ProductStaticContent/>
+      {/* <HorizontalScrollSection /> */}
+      
       <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, mt: 24 }}>
         <video
           autoPlay

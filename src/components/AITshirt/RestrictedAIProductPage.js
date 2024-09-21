@@ -185,7 +185,7 @@ const RestrictedAiProductPage = () => {
               fontWeight: 'bold'
             }}
           >
-            Paint with Prompt T-Shirt
+            Generate with Prompt T-Shirt
           </Typography>
           <Typography 
             variant='subtitle1'
