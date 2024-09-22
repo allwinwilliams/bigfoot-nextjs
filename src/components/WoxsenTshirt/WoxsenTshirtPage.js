@@ -179,8 +179,10 @@ const WoxsenTshirtPage = () => {
             
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'black', label: 'Black', image: '/product-page/woxsen/black.png', disabled: false },
-                  { value: 'beige', label: 'Beige', image: '/product-page/woxsen/beige.png', disabled: false },
+                  { value: 'black', label: 'Chase', image: '/product-page/woxsen/black.png', disabled: false },
+                  { value: 'beige', label: 'Stars', image: '/product-page/woxsen/beige.png', disabled: false },
+                  { value: 'yo', label: 'Another', image: '/product-page/woxsen/black.png', disabled: false },
+                  { value: 'ba', label: 'One more', image: '/product-page/woxsen/black.png', disabled: false },
                 ].map((option) => (
                   <Tooltip
                     key={option.value}
@@ -211,7 +213,7 @@ const WoxsenTshirtPage = () => {
                         onClick={() => !option.disabled && handleColorChange({ target: { value: option.value } })}
                         sx={{
                           border: color === option.value ? '3px solid #444444' : '2px solid #eaeaea',
-                          padding: '16px', // Adjust padding as needed
+                          padding: '8px',
                           fontSize: '16px',
                           fontWeight: 'bold',
                           borderRadius: '16px',
@@ -282,6 +284,308 @@ const WoxsenTshirtPage = () => {
               </Box>
             </Box>
           </Grid>
+        </Grid>
+      </Box>
+      <Box
+        id="the-range"
+        sx={{
+          paddingX: { md: 12, xs: 4 },
+          paddingY: 12,
+          marginX: 'auto',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h3"
+          sx={{
+            mb: 4,
+            color: '#bbbbbb'
+          }}>
+          Other range
+        </Typography>
+        <Grid container spacing={2} sx={{my: 8}}>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link}
+              href="/product/song-tshirt"
+              underline="none"
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Style With Music
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Design with your favorite song
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link} 
+              href="/product/prompt-generated-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                
+              }}
+              onMouseEnter={() => {
+                
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Generate with Prompt
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Your idea and style generated
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link} 
+              href="/product/dictionary-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                
+              }}
+              onMouseEnter={() => {
+                
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Dictionary of whatever
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Find meaning of anyword
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link}
+              href="/product/emoji-tshirt"
+              underline="none"
+              onClick={(e) => {
+                
+              }}
+              onMouseEnter={() => {
+                
+              }}
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  😊 Express with Emojis
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Design with emoji and short text
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link} 
+              href="/product/japanese-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                
+              }}
+              onMouseEnter={() => {
+                
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Japanese (ジャパニーズ)
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Turn any word into japanese
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link} 
+              href="/product/text-tshirt" 
+              underline="none"
+              onClick={(e) => {
+                
+              }}
+              onMouseEnter={() => {
+                
+              }}  
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.9s, opacity 0.4s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Any Text
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Write any word or short phrase
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Link
+              LinkComponent={Link}
+              href="/product/basic-tshirt"
+              underline="none"
+              onClick={(e) => {
+                
+              }}
+              onMouseEnter={() => {
+                
+              }}
+            >
+              <Box>
+                <Box
+                  sx={{
+                    transition: 'transform 0.8s',
+                    opacity: 0.98,
+                    '&:hover': {
+                      transform: 'scale(1.2)',
+                      opacity: 1.0,
+                    },
+                  }}
+                >
+                  <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: '#444444' }}>
+                  Bigfoot Basics
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  From Bigfoot The Brand
+                </Typography>
+              </Box>
+            </Link>
+          </Grid>
+          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Box>
+              <Box
+                sx={{
+                  transition: 'transform 0.8s',
+                  opacity: 0.3,
+                  '&:hover': {
+                    transform: 'scaleX(-1)',
+                    opacity: 0.6,
+                  },
+                }}
+                onMouseEnter={() => {
+                  
+                }}  
+              >
+                <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+              </Box>
+              <Typography variant="h6" sx={{ color: '#444444' }}>
+                Launching soon
+              </Typography>
+              <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                Check within a few days
+              </Typography>
+            </Box>
+          </Grid>
+          {/* <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+            <Box>
+              <Box
+                sx={{
+                  transition: 'transform 0.8s',
+                  opacity: 0.6,
+                  '&:hover': {
+                    transform: 'scaleX(-1)',
+                    opacity: 1.0,
+                  },
+                }}
+                onMouseEnter={() => {
+                  
+                }}  
+              >
+                <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+              </Box>
+              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                More Coming Soon
+              </Typography>
+              <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                Our lab is cooking 🧪...
+              </Typography>
+            </Box>
+          </Grid> */}
         </Grid>
       </Box>
     </Box>
