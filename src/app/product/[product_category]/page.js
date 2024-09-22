@@ -16,6 +16,7 @@ const EmojiProductPage = dynamic(() => import('../../../components/EmojiTshirt/E
 const TextProductPage = dynamic(() => import('../../../components/TextTshirt/TextTshirtPage'), { ssr: false });
 const DictionaryProductPage = dynamic(() => import('../../../components/DictionaryTshirt/DictionaryTshirtPage'), { ssr: false });
 const JapaneseProductPage = dynamic(() => import('../../../components/JapaneseTshirt/JapaneseTshirtPage'), { ssr: false });
+const WoxsenTshirtPage = dynamic(() => import('../../../components/WoxsenTshirt/WoxsenTshirtPage'), { ssr: false });
 
 
 export default function ProductType() {
@@ -63,6 +64,11 @@ export default function ProductType() {
       <JapaneseContextProvider>
         <JapaneseProductPage />
       </JapaneseContextProvider>
+    );
+  }
+  else if (product_category === 'woxsen-tshirt') {
+    ComponentToRender = (
+      <WoxsenTshirtPage />
     );
   }
    else {

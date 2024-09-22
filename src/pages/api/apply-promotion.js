@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         code: "RAZORPAY",
         value: 50000,
         value_type: "Fixed amount",
-        description: "Rs. 700 off for Razorpay"
+        description: "Rs. 500 off for Razorpay"
       },
       "PARAM": {
         reference_id: "PARAM_OFFER",

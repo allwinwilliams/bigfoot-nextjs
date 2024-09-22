@@ -1,6 +1,6 @@
 export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     const { textInput, definition } = values;
 
     p.preload = () => {
@@ -110,8 +110,8 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
 };
 
 export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     const { textInput, definition } = values;
   
     p.setup = () => {
@@ -218,8 +218,8 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
 };
 
 export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
   const { textInput, definition } = values;
 
   p.setup = () => {
@@ -279,7 +279,7 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
     // Set default text settings
     p.textAlign(p.LEFT, p.TOP);
     p.textFont('Courier New');
-    p.textSize(36);
+    p.textSize(32);
 
     // Extract data from definition
     const jsonData = definition || {};

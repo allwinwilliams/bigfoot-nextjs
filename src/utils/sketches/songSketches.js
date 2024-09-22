@@ -3,8 +3,8 @@ import { generateQRCodeForGoogleSearch } from '../qrUtils';
 export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     const drawingWidth = 1200;
     const drawingHeight = 1200; // Height for the vertical lines
-    const canvasWidth = 2600;
-    const canvasHeight = 2000; // Total canvas height
+    const canvasWidth = 4000;
+    const canvasHeight = 2060; // Total canvas height
     let explicitImage, qrCodeImage;
 
     p.preload = async () => {
@@ -459,8 +459,8 @@ export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
 export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   const drawingWidth = 1000;
   const drawingHeight = 900; // Height for the vertical lines
-  const canvasWidth = 2600;
-  const canvasHeight = 2000; // Total canvas height
+  const canvasWidth = 4000;
+  const canvasHeight = 2060; // Total canvas height
   const drawingX = 250; // X position for the drawing
   const topSectionHeight = 600;
   const gapBetweenSections = 30; // Reduced gap between sections
@@ -815,10 +815,10 @@ export const frequencychroma = (p, canvasRef, onP5Update, color, songData) => {
 };
 
 export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
-  const drawingWidth = 800; // Reduced by 20%
+  const drawingWidth = 600; // Reduced by 20%
   const drawingHeight = 640; // Reduced by 20%
-  const canvasWidth = 1500;
-  const canvasHeight = 1400;
+  const canvasWidth = 2600;
+  const canvasHeight = 2060;
 
   p.setup = () => {
   //  console.log('Setting up p5 sketch type 1');
@@ -927,8 +927,8 @@ export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
  
 //minimal
 export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   let explicitImage, qrCodeImage;
 
@@ -1097,8 +1097,8 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 };
 // standout
 export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   const sections = {
     VisualAnalysis: { x: 90, y: 200, w: 1300, h: 700 },

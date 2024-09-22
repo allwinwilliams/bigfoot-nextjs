@@ -1,6 +1,6 @@
 export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     const { textInput, translation } = values;
   
     p.setup = () => {
@@ -57,8 +57,8 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
 };
   
 export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     const { textInput, translation } = values;
   
     p.setup = () => {
@@ -116,8 +116,8 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     const { textInput, translation } = values;
   
     p.setup = () => {

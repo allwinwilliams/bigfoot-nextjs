@@ -1,6 +1,6 @@
 export const oldheadSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     let img;
     let imgLoaded = false;
   
@@ -48,8 +48,8 @@ export const oldheadSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const headSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
 
     const shapes = [
         { x: 32.4297, y: 81.5469, width: 16.6903, height: 16.6903, fill: 'red' },
@@ -208,8 +208,8 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   const shapes = [
       { x: 0, y: 0, width: 220, height: 250, fill: '#0094FF' },
@@ -378,8 +378,8 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -460,10 +460,9 @@ export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
   };
 };
 
-
 export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
     const startX = 550;
     const startY = 250;
     const endX = 950;
@@ -519,8 +518,8 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
-    const canvasWidth = 2600;
-    const canvasHeight = 2000;
+    const canvasWidth = 4000;
+    const canvasHeight = 2060;
   
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -551,8 +550,8 @@ export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const twoSquareSketch = (p, canvasRef, onP5Update, color, values) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -602,8 +601,8 @@ export const twoSquareSketch = (p, canvasRef, onP5Update, color, values) => {
 };
 
 export const gradientSketch = (p, canvasRef, onP5Update, color, values) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);

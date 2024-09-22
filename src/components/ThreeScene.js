@@ -68,7 +68,8 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
 
     // console.log('Drawing p5 canvas on combined canvas');
-    ctx.drawImage(canvasRef.current, 60, 2000, 2600, 2000);
+    // ctx.drawImage(canvasRef.current, 60, 2000, 2600, 2000);
+    ctx.drawImage(canvasRef.current, 45, 1980, 4000, 2060);
 
     const texture = new THREE.CanvasTexture(combinedCanvas);
     texture.flipY = false; // Flip the Y-axis

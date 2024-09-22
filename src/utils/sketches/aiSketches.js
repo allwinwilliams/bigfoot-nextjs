@@ -1,6 +1,6 @@
 export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   let img = null;
   let prompt = values?.prompt;
@@ -178,8 +178,8 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) =>
 };
 
 export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   let img = null;
   let prompt = values?.prompt;
@@ -367,8 +367,8 @@ export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style)
 };
 
 export const aiPixelsSketch = (p, canvasRef, onP5Update, color, values, style) => {
-  const canvasWidth = 2600;
-  const canvasHeight = 2000;
+  const canvasWidth = 4000;
+  const canvasHeight = 2060;
 
   let img = null;
   let prompt = values?.prompt || '';

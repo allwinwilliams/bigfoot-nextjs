@@ -10,6 +10,7 @@ import { emojiSketch } from '@/utils/sketches/emojiSketches';
 import { textSketch } from '@/utils/sketches/textSketches';
 import { dictionarySmallSketch, dictionaryCodeSketch, dictionaryBratSketch } from '@/utils/sketches/dictionarySketches';
 import { japaneseSmallSketch, japaneseBoldSketch, japaneseNeonSketch } from '@/utils/sketches/japaneseSketches';
+import { imageSketch } from '@/utils/sketches/imageSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
   const sketchRef = useRef();
@@ -118,6 +119,9 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
             sketch = (p) => japaneseSmallSketch(p, canvasRef, onP5Update, color, values, style);
             break;
         }
+      }
+      if(type == "woxsen"){
+        sketch = (p) => imageSketch(p, canvasRef, onP5Update, color, values, style);
       }
 
       // console.log('Creating p5 instance');

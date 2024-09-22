@@ -18,7 +18,7 @@ const SizeChart = () => {
         >
           Size chart 
         </Link>
-        <Typography variant="body1">
+        {/* <Typography variant="body1">
           ( Fit is same as -&nbsp;  
           <Link
             variant="body2"
@@ -27,7 +27,7 @@ const SizeChart = () => {
             target="_blank">
              Uniqlo fit</Link> 
           )
-        </Typography>
+        </Typography> */}
       </Box>
       
       <Modal
