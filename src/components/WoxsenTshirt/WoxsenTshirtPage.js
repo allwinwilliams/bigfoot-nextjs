@@ -203,7 +203,7 @@ const WoxsenTshirtPage = () => {
                               src={option.image}
                               alt={option.label}
                               sx={{
-                                width: '120px',
+                                width: '100px',
                                 borderRadius: '8px',
                               }}
                             />
@@ -220,7 +220,7 @@ const WoxsenTshirtPage = () => {
                           borderRadius: '16px',
                           cursor: option.disabled ? 'not-allowed' : 'pointer',
                           backgroundColor: 'transparent',
-                          minWidth: '120px', // Ensures consistency
+                          minWidth: '100px',
                           height: '160px',
                           textTransform: 'none',
                         }}
