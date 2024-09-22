@@ -55,8 +55,9 @@ const WoxsenTshirtPage = () => {
   }, [searchParams, router]);
 
   const handleColorChange = (event) => {
-    setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/woxsen-tshirt?color=${event.target.value}&style=${style}`);
+    setColor(event.target.color);
+    setStyle(event.target.style);
+    window.history.replaceState(null, '', `/product/woxsen-tshirt?color=${event.target.color}&style=${event.target.style}`);
   };
 
   const handleStyleChange = (event) => {
@@ -179,13 +180,13 @@ const WoxsenTshirtPage = () => {
             
               <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                 {[
-                  { value: 'black', label: 'Chase', image: '/product-page/woxsen/black.png', disabled: false },
-                  { value: 'beige', label: 'Stars', image: '/product-page/woxsen/beige.png', disabled: false },
-                  { value: 'yo', label: 'Another', image: '/product-page/woxsen/black.png', disabled: false },
-                  { value: 'ba', label: 'One more', image: '/product-page/woxsen/black.png', disabled: false },
+                  { style: 'chase', color: 'black', label: 'Chase', image: '/product-page/woxsen/black.png', disabled: false },
+                  { style: 'stars', color: 'beige', label: 'Stars', image: '/product-page/woxsen/beige.png', disabled: false },
+                  { style: 'another', color: 'black', label: 'Another', image: '/product-page/woxsen/black.png', disabled: false },
+                  { style: 'more', color: 'beige', label: 'One more', image: '/product-page/woxsen/beige.png', disabled: false },
                 ].map((option) => (
                   <Tooltip
-                    key={option.value}
+                    key={option.style}
                     title={option.disabled ? "Currently out of stock. Please check later." : ""}
                     arrow
                   >
@@ -210,9 +211,9 @@ const WoxsenTshirtPage = () => {
                         }
                         variant="outlined"
                         disabled={option.disabled}
-                        onClick={() => !option.disabled && handleColorChange({ target: { value: option.value } })}
+                        onClick={() => !option.disabled && handleColorChange({ target: { color: option.color, style: option.style } })}
                         sx={{
-                          border: color === option.value ? '3px solid #444444' : '2px solid #eaeaea',
+                          border: style === option.style ? '3px solid #444444' : '2px solid #eaeaea',
                           padding: '8px',
                           fontSize: '16px',
                           fontWeight: 'bold',

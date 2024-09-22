@@ -42,13 +42,13 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
       p.background(255); // Clear the background with white color
       let imgX = 0;
       let imgY = 100;
-      if(color === 'beige'){
+      if(style === 'stars'){
         if (imgLoaded && starFront) {
             imgX = 0;
             imgY = 100;
             p.image(starFront, imgX, imgY, 1500, 1500);
           }
-      } else if(color === 'black'){
+      } else if(style === 'chase'){
         if (imgLoaded && chaseFront) {
             imgX = 0;
             imgY = 0;
