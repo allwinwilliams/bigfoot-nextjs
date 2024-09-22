@@ -184,9 +184,9 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price = 899
         ) : (
           <Box sx={{ textAlign: 'center' }}>
             {/* {`Buy Now @ ₹${Math.ceil(price / 100)}`} */}
-            {`Select size and fabric`}
+            {`Select size`}
             <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
-              See prices based on fabric
+              Enter details to confirm order
             </Typography>
           </Box>
         )}
