@@ -337,10 +337,9 @@ export default function HomePage() {
           textAlign: 'center',
         }}
       >
-        <Typography variant="h2"
+        <Typography variant="h3"
           sx={{
-            fontWeight: 'bold',
-            mb: 8,
+            mb: 4,
             color: '#bbbbbb'
           }}>
           Explore the range

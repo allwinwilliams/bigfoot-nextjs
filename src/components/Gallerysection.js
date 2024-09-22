@@ -62,7 +62,8 @@ const GallerySection = ({ cards }) => {
                   sx={{
                     position: 'absolute',
                     top: '50%',
-                    left: '50%',
+                    left: '80%',
+                    width: '90%',
                     transform: 'translate(-80%, -50%)',
                     textAlign: 'left',
                     fontSize: '1.4rem',

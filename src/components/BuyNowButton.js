@@ -5,13 +5,13 @@ import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid,
 import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from './SizeChart';
 
-const BuyNowButton = ({ color, style, type, data, storage, db, price = 139900 }) => {
+const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openPostPaymentModal, setOpenPostPaymentModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
 
-  const [fabric, setFabric] = useState({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 139900 });
+  const [fabric, setFabric] = useState({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 119900 });
   const [size, setSize] = useState('S');
   const [dynamicPrice, setDynamicPrice] = useState(price);
 
@@ -21,7 +21,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 139900 })
   //   if (fabric === 'Premium Cottom') {
   //     setDynamicPrice(109900);
   //   } else if (fabric === 'Luxury') {
-  //     setDynamicPrice(139900);
+  //     setDynamicPrice(119900);
   //   }
   // }, [fabric]);
 
@@ -301,8 +301,8 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 139900 })
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 <ButtonGroup variant="outlined" color="primary" aria-label="outlined button group" fullWidth>
                   {[
-                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 139900 },
-                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 159900 },
+                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 119900 },
+                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 149900 },
                   ].map((option) => (
                     <Button
                       key={option.id}
