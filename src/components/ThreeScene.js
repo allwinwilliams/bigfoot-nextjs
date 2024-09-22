@@ -7,13 +7,16 @@ import * as THREE from 'three';
 import { useLoader, useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 
-import TshirtModel from './TshirtModel';
+
 import dynamic from 'next/dynamic';
 import { IconButton, Typography, Box } from '@mui/material';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import RightArrowIcon from '@mui/icons-material/ChevronRightRounded';
 import LeftArrowIcon from '@mui/icons-material/ChevronLeftRounded';
 import TouchAppIcon from '@mui/icons-material/TouchApp';
+
+import HoodieModel from './HoodieModel';
+import TshirtModel from './TshirtModel';
 
 extend({ ShadowMaterial: THREE.ShadowMaterial });
 

@@ -301,8 +301,8 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 <ButtonGroup variant="outlined" color="primary" aria-label="outlined button group" fullWidth>
                   {[
-                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 119900 },
-                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 149900 },
+                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 114900 },
+                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 139900 },
                   ].map((option) => (
                     <Button
                       key={option.id}
