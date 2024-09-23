@@ -92,7 +92,7 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) =>
 
   p.draw = () => {
     console.log('Drawing p5 canvas');
-    p.background(200);
+    p.clear();
 
     if (isLoading) {
       const startX = 500;
@@ -282,7 +282,7 @@ export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style)
 
   p.draw = () => {
     console.log('Drawing p5 canvas');
-    p.background(200);
+    p.clear();
 
     if (isLoading) {
       const startX = 500;

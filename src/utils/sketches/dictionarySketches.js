@@ -19,6 +19,7 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
     };
 
     p.draw = () => {
+        p.clear();
         p.textFont("Georgia");
         p.textAlign(p.LEFT, p.TOP);
         const word = (definition?.word || textInput || '').toLowerCase();
@@ -126,20 +127,23 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
     };
   
     p.draw = () => {
+      
+      p.clear();
       // Set background and text color based on the T-shirt color
       if (color === 'black') {
-        p.background(0);
+        
         p.fill(255);
       } else if (color === 'grey') {
-        p.background(200);
+        
         p.fill(0);
       } else if (color === 'beige' || color === 'white') {
-        p.background(255);
+        
         p.fill(0);
       } else {
-        p.background(255);
+        
         p.fill(0);
       }
+      
   
       // Text settings
       p.textAlign(p.LEFT, p.TOP);
@@ -234,6 +238,7 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
   };
 
   p.draw = () => {
+    
     const colorSchemes = {
       black: {
         background: '#1e1e1e',
@@ -277,7 +282,8 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
     const scheme = colorSchemes[color] || colorSchemes.white;
 
     // Set background color
-    p.background(scheme.background);
+    // p.background(scheme.background);
+    p.clear();
 
     // Set default text settings
     p.textAlign(p.LEFT, p.TOP);

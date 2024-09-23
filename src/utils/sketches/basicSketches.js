@@ -24,7 +24,7 @@ export const oldheadSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
-      p.background(255); // Clear the background with white color
+      p.clear();
   
       if (imgLoaded && img) {
         const imgX = 450;
@@ -170,8 +170,8 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
-        p.background(255);
-        const xPos = 520, yPos = 200;
+      p.clear();
+        const xPos = 560, yPos = 200;
         const scale = 2; // Scaling factor
       
         shapes.forEach(shape => {
@@ -198,14 +198,14 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
         } else if (color === 'grey') {
           p.fill(5);
         } else if (color === 'white' || color === 'beige') {
-          p.fill(20);
+          p.fill(5);
         } else {
-          p.fill(50);
+          p.fill(5);
         }
         p.textAlign(p.CENTER, p.CENTER);
         p.textStyle(p.BOLD);
         p.textSize(32);
-        p.text('BIGFOOT', 730, 800);
+        p.text('BIGFOOT', 780, 800);
     };
 };
 
@@ -332,8 +332,8 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
   };
 
   p.draw = () => {
-      p.background(255);
-      const xPos = 520, yPos = 200;
+    p.clear();
+      const xPos = 570, yPos = 200;
       const scale = 2; // Scaling factor
       let hue = p.random(360);
       p.fill(hue, 90, 50);
@@ -369,14 +369,14 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
       } else if (color === 'grey') {
         p.fill(5);
       } else if (color === 'white' || color === 'beige') {
-        p.fill(10);
+        p.fill(5);
       } else {
-        p.fill(50);
+        p.fill(5);
       }
       p.textAlign(p.CENTER, p.CENTER);
       p.textStyle(p.BOLD);
       p.textSize(32);
-      p.text('BIGFOOT', 730, 800);
+      p.text('BIGFOOT', 780, 800);
   };
 };
 
@@ -395,7 +395,7 @@ export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
   };
 
   p.draw = () => {
-    p.background(255);
+    p.clear();
     const xPos = 560, yPos = 200;
     const scale = 2;
     let hue = p.random(360);
@@ -467,7 +467,7 @@ export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
 export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 4000;
     const canvasHeight = 2060;
-    const startX = 550;
+    const startX = 650;
     const startY = 250;
     const endX = 950;
     const endY = 450;
@@ -488,7 +488,7 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
-      // p.background(255);
+      p.clear();
       let gaps = p.random(4,8);
       for (let i = 0; i < squaresPerRow; i++) {
         for (let j = 0; j < squaresPerRow; j++) {
@@ -511,14 +511,14 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
       } else if (color === 'grey') {
         p.fill(5);
       } else if (color === 'white' || color === 'beige') {
-        p.fill(20);
+        p.fill(5);
       } else {
-        p.fill(50);
+        p.fill(5);
       }
       p.textAlign(p.CENTER, p.CENTER);
       p.textStyle(p.BOLD);
       p.textSize(32);
-      p.text('BIGFOOT', 750, 730);
+      p.text('BIGFOOT', 790, 630);
     };
 };
 
@@ -538,20 +538,20 @@ export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
-      
-        if (color === 'black') {
-            p.fill(255);
-        } else if (color === 'grey') {
-            p.fill(5);
-        } else if (color === 'white') {
-            p.fill(20);
-        } else {
-            p.fill(50);
-        }
+      p.clear();
+      if (color === 'black') {
+          p.fill(255);
+      } else if (color === 'grey') {
+          p.fill(5);
+      } else if (color === 'white') {
+          p.fill(20);
+      } else {
+          p.fill(50);
+      }
       p.textAlign(p.CENTER, p.CENTER);
       p.textStyle(p.BOLD);
       p.textSize(40);
-      p.text('Loading...', 760, 600);
+      p.text('Loading...', 775, 600);
     };
 };
 
@@ -571,16 +571,27 @@ export const twoSquareSketch = (p, canvasRef, onP5Update, color, values) => {
   };
 
   p.draw = () => {
-    p.background(255);
+    p.clear();
 
-    const rectWidth = p.random(200, 600);
-    const rectHeight = p.random(200, 600);
-    const centerX = 750;
-    const centerY = 400;
-    const angle = p.random(0, p.TWO_PI);
+    let rectWidth = p.random(200, 600);
+    let rectHeight = p.random(200, 600);
+    let centerX = 775;
+    let centerY = 400;
+    let angle = p.random(0, p.TWO_PI);
 
-    const color1 = p.color(p.random(255), p.random(255), p.random(255));
-    const color2 = p.color(p.random(255), p.random(255), p.random(255));
+    let color1 = p.color(p.random(255), p.random(255), p.random(255));
+    let color2 = p.color(p.random(255), p.random(255), p.random(255));
+
+    drawGradientRectangle(centerX, centerY, rectWidth, rectHeight, color1, color2, angle);
+
+    rectWidth = p.random(200, 600);
+    rectHeight = p.random(200, 600);
+    centerX = 775;
+    centerY = 400;
+    angle = p.random(0, p.TWO_PI);
+
+    color1 = p.color(p.random(255), p.random(255), p.random(255));
+    color2 = p.color(p.random(255), p.random(255), p.random(255));
 
     drawGradientRectangle(centerX, centerY, rectWidth, rectHeight, color1, color2, angle);
   };
@@ -623,11 +634,11 @@ export const gradientSketch = (p, canvasRef, onP5Update, color, values) => {
   };
 
   p.draw = () => {
-    p.background(255);
+    p.clear();
 
     const rectWidth = p.random(200, 600);
     const rectHeight = p.random(200, 600);
-    const centerX = 750;
+    const centerX = 775;
     const centerY = 400;
 
     const color1 = p.color(p.random(255), p.random(255), p.random(255));

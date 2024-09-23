@@ -15,17 +15,18 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
   
     p.draw = () => {
       // Set background and text color based on the T-shirt color
+      p.clear();
       if (color === 'black') {
-        p.background(0);
+        
         p.fill(255);
       } else if (color === 'grey') {
-        p.background(200);
+        
         p.fill(0);
       } else if (color === 'beige' || color === 'white') {
-        p.background(255);
+        
         p.fill(0);
       } else {
-        p.background(255);
+        
         p.fill(0);
       }
   
@@ -74,18 +75,19 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
+      p.clear();
       // Set background and text color based on the T-shirt color
       if (color === 'black') {
-        p.background(0);
+        
         p.fill(255);
       } else if (color === 'grey') {
-        p.background(200);
+        
         p.fill(0);
       } else if (color === 'beige' || color === 'white') {
-        p.background(255);
+        
         p.fill(0);
       } else {
-        p.background(255);
+        
         p.fill(0);
       }
   
@@ -133,18 +135,15 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
     };
   
     p.draw = () => {
+      p.clear();
       // Set background and text color based on the T-shirt color
       if (color === 'black') {
-        p.background(0);
         p.fill(255);
       } else if (color === 'grey') {
-        p.background(200);
         p.fill(0);
       } else if (color === 'beige' || color === 'white') {
-        p.background(255);
         p.fill(0);
       } else {
-        p.background(255);
         p.fill(0);
       }
   

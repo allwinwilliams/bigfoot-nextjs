@@ -41,7 +41,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
     };
 
     p.draw = () => {
-        p.background(200);
+        p.clear();
         p.fill(50);
         p.textSize(32);
 
@@ -616,7 +616,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.draw = () => {
-    p.background(200);
+    p.clear();
     p.fill(50);
     p.textSize(32);
 
@@ -969,6 +969,7 @@ export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   p.draw = () => {
+    p.clear();
     if (!songData) return;
     p.translate(200,200);
     const songDetails = songData.details;
@@ -1103,6 +1104,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 
   const drawSongDataSection = (x, y, drawingWidth, drawingHeight) => {
+    p.clear();
     if (!songData) {
       p.fill(50);
       p.textSize(32);
@@ -1285,7 +1287,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData, width,
   };
 
   p.draw = () => {
-    p.background(255);
+    p.clear();
 
     if (!songData) {
       p.fill(50);
