@@ -62,7 +62,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
     const isIOSDevice = isIOS();
 
     // Get the device pixel ratio and cap it to a maximum of 2
-    const devicePixelRatio = Math.min(2, window.devicePixelRatio);
+    const devicePixelRatio = Math.min(1, window.devicePixelRatio);
 
     // Set canvas dimensions based on device type and devicePixelRatio
     const canvasSize = isIOSDevice ? 1024 : 4096;
