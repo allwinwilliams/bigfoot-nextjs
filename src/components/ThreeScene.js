@@ -46,26 +46,41 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
   //   camera.lookAt(0, 0, 0);
   // });
 
+  
   const isIOS = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
   };
-  
+
   const createCombinedTexture = useCallback(() => {
     if (!(canvasRef.current instanceof HTMLCanvasElement)) {
       console.error('canvasRef.current is not an HTMLCanvasElement');
       return null;
     }
-  
+    window.devicePixelRatio = 1;
+
     const isIOSDevice = isIOS();
-  
-    // Set canvas dimensions based on device type
+
+    // Get the device pixel ratio and cap it to a maximum of 2
+    const devicePixelRatio = Math.min(2, window.devicePixelRatio);
+
+    // Set canvas dimensions based on device type and devicePixelRatio
     const canvasSize = isIOSDevice ? 1024 : 4096;
+    const scaledCanvasWidth = canvasSize * devicePixelRatio;
+    const scaledCanvasHeight = canvasSize * devicePixelRatio;
+
+    // Create the combined canvas
     const combinedCanvas = document.createElement('canvas');
     const ctx = combinedCanvas.getContext('2d');
-    combinedCanvas.width = canvasSize;
-    combinedCanvas.height = canvasSize;
-  
+    combinedCanvas.width = scaledCanvasWidth;
+    combinedCanvas.height = scaledCanvasHeight;
+
+    // Apply devicePixelRatio scaling
+    combinedCanvas.style.width = `${canvasSize}px`;  // Physical size remains the same
+    combinedCanvas.style.height = `${canvasSize}px`;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+
+    // Fill the background color
     const colorMap = {
       'red': '#FF0000',
       'blue': '#0000FF',
@@ -76,8 +91,8 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
     };
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
-    ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
-  
+    ctx.fillRect(0, 0, canvasSize, canvasSize);  // No need to scale this since ctx.scale() handles it
+
     // Scale down the drawImage values by 4 for iOS devices
     const scaleFactor = isIOSDevice ? 4 : 1;
     ctx.drawImage(
@@ -85,11 +100,12 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
       45 / scaleFactor, 1980 / scaleFactor, 
       4000 / scaleFactor, 2060 / scaleFactor
     );
-  
+
+    // Create texture from the combined canvas
     const texture = new THREE.CanvasTexture(combinedCanvas);
     texture.flipY = false; // Flip the Y-axis
     texture.needsUpdate = true;
-  
+
     return texture;
   }, [color]);
 
@@ -228,6 +244,8 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
         type={type}
         values={values}
         style={style}
+        width={4000}
+        height={2060}
       />
       <Box sx={{
           position: 'absolute',
