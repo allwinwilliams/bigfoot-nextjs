@@ -12,7 +12,7 @@ import { dictionarySmallSketch, dictionaryCodeSketch, dictionaryBratSketch } fro
 import { japaneseSmallSketch, japaneseBoldSketch, japaneseNeonSketch } from '@/utils/sketches/japaneseSketches';
 import { imageSketch } from '@/utils/sketches/imageSketches';
 
-const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal' }) => {
+const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal', width = 4000, height = 2040 }) => {
   const sketchRef = useRef();
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -20,7 +20,7 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
       if(type == "song"){
         switch (style) {
           case 'drilldown':
-            sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, values);
+            sketch = (p) => standoutSketch(p, canvasRef, onP5Update, color, values, width, height);
             break;
           case 'concert':
             sketch = (p) => maximal(p, canvasRef, onP5Update, color, values);

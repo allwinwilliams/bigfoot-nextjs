@@ -461,13 +461,121 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   const drawingHeight = 900; // Height for the vertical lines
   const canvasWidth = 4000;
   const canvasHeight = 2060; // Total canvas height
-  const drawingX = 250; // X position for the drawing
+  const drawingX = 1800; // X position for the drawing
+  const drawingY = 350;
   const topSectionHeight = 600;
   const gapBetweenSections = 30; // Reduced gap between sections
   const textGap = 30; // Reduced text gap
 
   let explicitImage;
   let qrCodeImage;
+
+  const headShapes = [
+    { x: 32.4297, y: 81.5469, width: 16.6903, height: 16.6903, fill: '#FC006A' },
+    { x: 49.1172, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 65.3203, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 81.5469, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 97.7656, y: 81.5469, width: 16.6903, height: 16.6903, fill: '#FC006A' },
+    { x: 114.438, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 130.664, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 146.875, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 163.094, y: 81.5469, width: 16.6903, height: 16.6903, fill: '#FC006A' },
+    { x: 179.781, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#FC006A' },
+    { x: 65.3203, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#FC006A' },
+    { x: 81.5469, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#FC006A' },
+    { x: 97.7656, y: 98.2344, width: 16.6903, height: 16.2134, fill: '#FC006A' },
+    { x: 130.664, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#FC006A' },
+    { x: 146.875, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#FC006A' },
+    { x: 163.094, y: 98.2344, width: 16.6903, height: 16.2134, fill: '#FC006A' },
+    { x: 81.5469, y: 114.438, width: 16.2134, height: 16.2134, fill: '#FC006A' },
+    { x: 97.7656, y: 114.438, width: 16.6903, height: 16.2134, fill: '#FC006A' },
+    { x: 146.875, y: 114.438, width: 16.2134, height: 16.2134, fill: '#FC006A' },
+    { x: 163.094, y: 114.438, width: 16.6903, height: 16.2134, fill: '#FC006A' },
+    { x: 97.7656, y: 0, width: 16.6903, height: 16.6903, fill: '#02328F' },
+    { x: 114.438, y: 0, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 130.664, y: 0, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 146.875, y: 0, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 65.3203, y: 16.6875, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 81.5469, y: 16.6875, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 97.7656, y: 16.6875, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 114.438, y: 16.6875, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 130.664, y: 16.6875, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 32.8984, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 49.1172, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 65.3203, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 81.5469, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 97.7656, y: 32.8984, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 114.438, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 130.664, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 146.875, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 163.094, y: 32.8984, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 179.781, y: 32.8984, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 49.1172, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 49.1172, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 65.3203, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 81.5469, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 97.7656, y: 49.1172, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 114.438, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 130.664, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 146.875, y: 49.1172, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 163.094, y: 49.1172, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 65.3203, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 65.3203, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 49.1172, y: 65.3203, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 65.3203, y: 65.3203, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 163.094, y: 65.3203, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 179.781, y: 65.3203, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 0, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 16.2109, y: 81.5469, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 0, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 98.2344, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 179.781, y: 98.2344, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 0, y: 114.438, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 114.438, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 114.438, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 195.992, y: 114.438, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 0, y: 130.664, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 130.664, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 130.664, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 195.992, y: 130.664, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 0, y: 146.875, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 16.2109, y: 146.875, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 32.4297, y: 146.875, width: 16.6903, height: 16.6903, fill: '#02328F' },
+    { x: 195.992, y: 146.875, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 0, y: 163.555, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 163.555, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 163.555, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 195.992, y: 163.555, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 179.781, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 179.781, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 179.781, y: 179.781, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 195.992, y: 179.781, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 16.2109, y: 195.992, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 195.992, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 49.1172, y: 195.992, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 65.3203, y: 195.992, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 163.094, y: 195.992, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 179.781, y: 195.992, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 195.992, y: 195.992, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 32.4297, y: 212.195, width: 16.6903, height: 16.6903, fill: '#02328F' },
+    { x: 49.1172, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 65.3203, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 81.5469, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 97.7656, y: 212.195, width: 16.6903, height: 16.6903, fill: '#02328F' },
+    { x: 114.438, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 130.664, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 146.875, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 163.094, y: 212.195, width: 16.6903, height: 16.6903, fill: '#02328F' },
+    { x: 179.781, y: 212.195, width: 16.2134, height: 16.6903, fill: '#02328F' },
+    { x: 81.5469, y: 228.898, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 97.7656, y: 228.898, width: 16.6903, height: 16.2134, fill: '#02328F' },
+    { x: 114.438, y: 228.898, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 130.664, y: 228.898, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 146.875, y: 228.898, width: 16.2134, height: 16.2134, fill: '#02328F' },
+    { x: 114.211, y: 163.664, width: 16.2134, height: 16.2134, fill: '#02328F' }
+  ];
 
   const hueValues = [270, 248, 212, 202, 191, 119, 61, 47, 30, 5];
 
@@ -478,17 +586,17 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
       const artistNames = artists.map(artist => artist.name).join(', ');
       const searchPhrase = `${name} ${artistNames}`;
 
-      let qrColor;
-      if (color === 'black') {
-          qrColor = '#ffffff';
-      } else if (color === 'beige') {
-          qrColor = '#050505';
-      } else {
-          qrColor = '#323232';
-      }
+      // let qrColor;
+      // if (color === 'black') {
+      //     qrColor = '#ffffff';
+      // } else if (color === 'beige') {
+      //     qrColor = '#050505';
+      // } else {
+      //     qrColor = '#323232';
+      // }
 
-      const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 240); // Generate at larger size
-      qrCodeImage = p.loadImage(qrCodeUrl);
+      // const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 240); // Generate at larger size
+      // qrCodeImage = p.loadImage(qrCodeUrl);
     }
     
   };
@@ -509,7 +617,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.textSize(32);
 
     let fillColor, strokeColor;
-
+    
     if (songData) {
       const songDetails = songData.details;
       const analysisData = songData.analysis;
@@ -538,6 +646,30 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
         Math.max(0, hueIndex - rangeFactor),
         Math.min(hueValues.length, hueIndex + rangeFactor + 1)
       );
+
+      let xPos = 1000, yPos = 400;
+      headShapes.forEach((shape) => {
+        if(shape.fill === "#FC006A"){
+          p.fill((baseHue - 20) % 360, 90, 40);
+        }
+        else if(shape.fill === "#001739"){
+          p.fill(baseHue, 80, 40);
+        }
+        else{
+          if (color === 'black') {
+            p.fill(255);
+          } else if (color === 'grey') {
+            p.fill(5);
+          } else if (color === 'white' || color === 'beige') {
+            p.fill(5);
+          } else {
+            p.fill(50);
+          }
+        }
+          p.noStroke();
+          p.rect(shape.x * 0.8 + xPos, shape.y * 0.8 + yPos, shape.width * 0.8, shape.height * 0.8);
+        }
+      )
 
       if (color === 'black') {
         fillColor = p.color(200);
@@ -591,7 +723,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
         pitchIndices.forEach((index) => {
           const pitch = segment.pitches[index];
           const loudness = segment.loudness_max;
-          const y = index * rowHeight;
+          const y = index * rowHeight + drawingY;
           const lineHeight = p.map(loudness, -30, 5, 30, 80); // Pitch height from 20px to 70px
 
           let hueIndex = Math.round(p.map(pitch, 0, 1, 0, hueRange.length - 1));
@@ -621,23 +753,23 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.textSize(36);
       p.textStyle(p.BOLD);
       nameLines.forEach((line, index) => {
-        p.text(line, drawingX + drawingWidth / 2, loudnessSectionY + drawingHeight / 1.8 + textGap + index * 40 - 60);
+        p.text(line, drawingX + drawingWidth / 2, drawingY + loudnessSectionY + drawingHeight / 1.8 + textGap + index * 40 - 60);
       });
 
       p.textSize(24);
       p.textStyle(p.NORMAL);
       artistLines.forEach((line, index) => {
-        p.text(line, drawingX + drawingWidth / 2, loudnessSectionY + drawingHeight / 1.8 + textGap + 8 + nameLines.length * 40 + index * 62 - 60);
+        p.text(line, drawingX + drawingWidth / 2, drawingY + loudnessSectionY + drawingHeight / 1.8 + textGap + 8 + nameLines.length * 40 + index * 62 - 60);
       });
 
-      p.textSize(18);
-      p.textStyle(p.BOLD);
-      p.text(`0:00`, drawingX - 40, loudnessSectionY + drawingHeight / 2 - 80);
-      p.text(`${durationFormatted}`, drawingX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight / 2 - 80);
+      // p.textSize(18);
+      // p.textStyle(p.BOLD);
+      // p.text(`0:00`, drawingX - 40, loudnessSectionY + drawingHeight / 2 - 80);
+      // p.text(`${durationFormatted}`, drawingX + 55 + drawingWidth - 20, loudnessSectionY + drawingHeight / 2 - 80);
 
       // Draw the explicit image if the song is explicit
       if (explicit && explicitImage) {
-        p.image(explicitImage, drawingX + drawingWidth / 2 - 50, loudnessSectionY + drawingHeight / 2 + textGap + 10 + nameLines.length * 82 + artistLines.length * 30, 100, 63);
+        p.image(explicitImage, drawingX + drawingWidth / 2 - 50, drawingY + loudnessSectionY + drawingHeight / 2 + textGap + 10 + nameLines.length * 82 + artistLines.length * 30, 100, 63);
       }
     } else {
       p.textSize(32);
@@ -646,7 +778,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
     }
 
     // Draw QRCode section
-    drawQRCodeSection(2150, 200, 800, 500);
+    // drawQRCodeSection(2150, 200, 800, 500);
   };
 
   const drawQRCodeSection = (x, y, width, height) => {
@@ -1096,9 +1228,9 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   };
 };
 // standout
-export const standoutSketch = (p, canvasRef, onP5Update, color, songData) => {
-  const canvasWidth = 4000;
-  const canvasHeight = 2060;
+export const standoutSketch = (p, canvasRef, onP5Update, color, songData, width, height) => {
+  const canvasWidth = width;
+  const canvasHeight = height;
 
   const sections = {
     VisualAnalysis: { x: 90, y: 200, w: 1300, h: 700 },
