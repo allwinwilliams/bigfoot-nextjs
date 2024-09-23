@@ -11,6 +11,7 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.HSL, 360, 100, 100);
       p.noLoop();
@@ -117,6 +118,7 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.HSL, 360, 100, 100);
       p.noLoop();
@@ -225,6 +227,7 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.noLoop();
     onP5Update();

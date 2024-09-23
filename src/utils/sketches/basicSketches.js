@@ -16,6 +16,7 @@ export const oldheadSketch = (p, canvasRef, onP5Update, color, values) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.RGB, 255, 255, 255);
       p.noLoop();
@@ -161,6 +162,7 @@ export const headSketch = (p, canvasRef, onP5Update, color, values) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.noLoop();
       onP5Update();
@@ -322,6 +324,7 @@ export const tipSketch = (p, canvasRef, onP5Update, color, values) => {
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.noLoop();
     onP5Update();
@@ -384,6 +387,7 @@ export const mottoSketch = (p, canvasRef, onP5Update, color, values) => {
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.noLoop();
     onP5Update();
@@ -476,6 +480,7 @@ export const pixelSketch = (p, canvasRef, onP5Update, color, values) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.HSL, 360, 100, 100);
       p.noLoop();
@@ -524,6 +529,7 @@ export const loadingSketch = (p, canvasRef, onP5Update, color, values) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.RGB, 255, 255, 255);
       p.noLoop();
@@ -556,6 +562,7 @@ export const twoSquareSketch = (p, canvasRef, onP5Update, color, values) => {
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.RGB, 255, 255, 255);
     p.noLoop();
@@ -607,6 +614,7 @@ export const gradientSketch = (p, canvasRef, onP5Update, color, values) => {
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.RGB, 255, 255, 255);
     p.noLoop();

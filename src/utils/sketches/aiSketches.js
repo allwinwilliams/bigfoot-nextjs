@@ -28,6 +28,7 @@ export const aiBasicSketch = (p, canvasRef, onP5Update, color, values, style) =>
     console.log('Setting up p5 sketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop(); // No continuous drawing, will draw manually when needed
@@ -207,6 +208,7 @@ export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style)
     console.log('Setting up p5 sketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop(); // No continuous drawing, will draw manually when needed
@@ -404,6 +406,7 @@ export const aiPixelsSketch = (p, canvasRef, onP5Update, color, values, style) =
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();

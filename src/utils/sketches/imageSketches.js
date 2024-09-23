@@ -32,6 +32,7 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.RGB, 255, 255, 255);
       p.noLoop();

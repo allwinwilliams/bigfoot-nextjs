@@ -33,6 +33,7 @@ export const maximal = (p, canvasRef, onP5Update, color, songData) => {
         // console.log('Setting up p5 sketch type 1');
         const canvas = p.createCanvas(canvasWidth, canvasHeight);
         canvas.id('p5-canvas');
+        p.pixelDensity(1); 
         canvasRef.current = canvas.canvas;
         p.colorMode(p.HSL, 360, 100, 100);
         p.noLoop();
@@ -198,6 +199,7 @@ export const maxGlitch = (p, canvasRef, onP5Update, color, songData) => {
     // console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();
@@ -341,6 +343,7 @@ export const sketchType2 = (p, canvasRef, onP5Update, color, songData) => {
     // console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();
@@ -605,6 +608,7 @@ export const analysisSketch = (p, canvasRef, onP5Update, color, songData) => {
   //  console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();
@@ -811,6 +815,7 @@ export const frequencychroma = (p, canvasRef, onP5Update, color, songData) => {
   //  console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();
@@ -956,6 +961,7 @@ export const analysisBackup = (p, canvasRef, onP5Update, color, songData) => {
   //  console.log('Setting up p5 sketch type 1');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();
@@ -1089,6 +1095,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();
@@ -1270,6 +1277,7 @@ export const standoutSketch = (p, canvasRef, onP5Update, color, songData, width,
   //  console.log('Setting up standoutSketch');
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();

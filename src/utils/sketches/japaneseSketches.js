@@ -6,6 +6,7 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.HSL, 360, 100, 100);
       p.noLoop();
@@ -64,6 +65,7 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.colorMode(p.HSL, 360, 100, 100);
       p.noLoop();
@@ -123,6 +125,7 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
+      p.pixelDensity(1); 
       canvasRef.current = canvas.canvas;
       p.noLoop();
       onP5Update();
