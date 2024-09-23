@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { Container } from '@mui/material';
 import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({ children }) {
   return (
@@ -63,6 +64,7 @@ export default function RootLayout({ children }) {
           <LanguageSwitcher />
         </ClientThemeProvider>
         <AudioControl />
+        <Analytics />
       </body>
     </html>
   );

@@ -23,7 +23,6 @@ const TshirtModel = ({ color, texture, triggerAnimation = false, animationDurati
   useEffect(() => {
     if (gltf && texture) {
       // console.log('Model loaded and texture received');
-
       gltf.scene.traverse((child) => {
         if (child.isMesh && child.name === 'Tshirt_final1') {
           child.castShadow = true;
