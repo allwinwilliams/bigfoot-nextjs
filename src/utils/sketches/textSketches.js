@@ -14,6 +14,7 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id('p5-canvas');
+    p.pixelDensity(1); 
     canvasRef.current = canvas.canvas;
     p.colorMode(p.HSL, 360, 100, 100);
     p.noLoop();

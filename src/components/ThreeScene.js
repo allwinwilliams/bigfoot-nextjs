@@ -57,12 +57,11 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
       console.error('canvasRef.current is not an HTMLCanvasElement');
       return null;
     }
-    window.devicePixelRatio = 1;
 
     const isIOSDevice = isIOS();
 
     // Get the device pixel ratio and cap it to a maximum of 2
-    const devicePixelRatio = Math.min(1, window.devicePixelRatio);
+    const devicePixelRatio = Math.min(2, window.devicePixelRatio);
 
     // Set canvas dimensions based on device type and devicePixelRatio
     const canvasSize = isIOSDevice ? 1024 : 4096;

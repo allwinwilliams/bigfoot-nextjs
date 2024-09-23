@@ -1227,6 +1227,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     drawQRCodeSection(2060, 250, 500, 500);
   };
 };
+
 // standout
 export const standoutSketch = (p, canvasRef, onP5Update, color, songData, width, height) => {
   const canvasWidth = width;
