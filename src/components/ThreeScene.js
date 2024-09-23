@@ -45,19 +45,27 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
   //   camera.position.lerp(targetPosition, 0.1);
   //   camera.lookAt(0, 0, 0);
   // });
+
+  const isIOS = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+  };
   
   const createCombinedTexture = useCallback(() => {
     if (!(canvasRef.current instanceof HTMLCanvasElement)) {
       console.error('canvasRef.current is not an HTMLCanvasElement');
       return null;
     }
-
-    // console.log('Creating combined texture');
+  
+    const isIOSDevice = isIOS();
+  
+    // Set canvas dimensions based on device type
+    const canvasSize = isIOSDevice ? 1024 : 4096;
     const combinedCanvas = document.createElement('canvas');
     const ctx = combinedCanvas.getContext('2d');
-    combinedCanvas.width = 4096;
-    combinedCanvas.height = 4096;
-
+    combinedCanvas.width = canvasSize;
+    combinedCanvas.height = canvasSize;
+  
     const colorMap = {
       'red': '#FF0000',
       'blue': '#0000FF',
@@ -69,19 +77,19 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
     ctx.fillRect(0, 0, combinedCanvas.width, combinedCanvas.height);
-
-    // console.log('Drawing p5 canvas on combined canvas');
-    // ctx.drawImage(canvasRef.current, 60, 2000, 2600, 2000);
-    ctx.drawImage(canvasRef.current, 45, 1980, 4000, 2060);
-
+  
+    // Scale down the drawImage values by 4 for iOS devices
+    const scaleFactor = isIOSDevice ? 4 : 1;
+    ctx.drawImage(
+      canvasRef.current, 
+      45 / scaleFactor, 1980 / scaleFactor, 
+      4000 / scaleFactor, 2060 / scaleFactor
+    );
+  
     const texture = new THREE.CanvasTexture(combinedCanvas);
     texture.flipY = false; // Flip the Y-axis
     texture.needsUpdate = true;
-
-    // const sampleDesignUrl = '/models/textures/UV.png';
-    // const sampleTexture = useLoader(THREE.TextureLoader, sampleDesignUrl);
-    // sampleTexture.flipY = false;
-
+  
     return texture;
   }, [color]);
 

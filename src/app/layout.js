@@ -1,4 +1,5 @@
-// app/layout.js or RootLayout (if named differently)
+// app/layout.js or RootLayout
+
 import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="max-image-preview:large"></meta>
         
         <meta property="og:title" content="Bigfoot - Customise T-shirts with Songs, Emojis or Prompt" />
-        <meta property="og:description" content="Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs." />
+        <meta property="og:description" content="Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis, Japanese script, and other unique designs." />
         <meta property="og:image" content="https://bigfoot.land/og-banner.png" />
         <meta property="og:url" content="https://bigfoot.land" />
         <meta property="og:type" content="website" />
