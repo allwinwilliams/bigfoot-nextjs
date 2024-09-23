@@ -32,7 +32,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
   const [showTooltip, setShowTooltip] = useState(true);
 
   const cameraPositions = [
-    new Vector3(0, 0.2, 5),
+    new Vector3(0, 0.3, 3.3),
     new Vector3(5, 4.2, 5),
     new Vector3(2, 2, 0.5),
     new Vector3(3, -3, -5),
@@ -195,7 +195,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
         shadows={{ type: THREE.PCFSoftShadowMap }}
         style={{ height: '100%', width: '100%', background: '#F8F8F8', cursor: 'grab'}}
       >
-        <PerspectiveCamera makeDefault {...{position:cameraPositions[cameraPositionIndex], fov: 65, near: 0.01, far: 100}}>
+        <PerspectiveCamera makeDefault {...{position:cameraPositions[cameraPositionIndex], fov: 60, near: 0.01, far: 100}}>
           {/* <pointLight position={[1, 3, 3]} intensity={2} /> */}
         </PerspectiveCamera>
         <spotLight
