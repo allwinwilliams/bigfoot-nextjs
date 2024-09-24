@@ -56,7 +56,9 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
         const definitionLines = splitText(definitionText, definitionMaxCharsPerLine);
         const exampleLines = splitText(`"${example}"`, exampleMaxCharsPerLine);
 
-        p.textSize(80);
+        let textSize = p.map(word.length, 0, 32, 80, 32)
+
+        p.textSize(textSize);
         p.textStyle(p.BOLD);
 
         let totalTextHeight = 0;
@@ -76,17 +78,17 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
         p.text(word, 400, 150);
 
         // Display phonetics
-        p.textSize(48);
+        p.textSize(textSize/2);
         p.textStyle(p.ITALIC);
         p.text(phonetics, 400, 240);
 
         // Display type
-        p.textSize(48);
+        p.textSize(textSize/2);
         p.textStyle(p.NORMAL);
         p.text(type, 400, 320);
 
         // Text settings for definition
-        p.textSize(48);
+        p.textSize(textSize/2);
         p.textStyle(p.NORMAL);
         p.textLeading(60); // Adjust line spacing if needed
 
@@ -101,7 +103,7 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
         yPosition += 40; // Add spacing before the example
 
         // Text settings for example
-        p.textSize(40);
+        p.textSize(textSize/2);
         p.textLeading(50);
 
         exampleLines.forEach(line => {
