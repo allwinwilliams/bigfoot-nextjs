@@ -157,17 +157,18 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
       const example = definition?.details?.example || '';
   
       // Display the word
-      p.textSize(60);
+      let textSize = p.map(word.length, 0, 32, 60, 32)
+      p.textSize(textSize);
       p.textStyle(p.BOLD);
       p.text(word, 900, 100);
   
       // Display phonetics
-      p.textSize(32);
+      p.textSize(textSize/2);
       p.textStyle(p.ITALIC);
       p.text(phonetics, 900, 180);
   
       // Display type
-      p.textSize(32);
+      p.textSize(textSize/2);
       p.textStyle(p.NORMAL);
       p.text(type, 900, 220);
   
