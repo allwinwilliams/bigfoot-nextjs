@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc } from 'firebase/firestore';
 import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton, Chip, Select, MenuItem, ButtonGroup } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from './SizeChart';
 
@@ -373,12 +374,18 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
         onClose={() => setOpenPostPaymentModal(false)}
       >
         <Paper sx={{ padding: 4, margin: 'auto', maxWidth: 500, textAlign: 'center' }}>
+          {orderDetails.orderId && (
+            <>
+              <CheckCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
+            </>
+          )}
           <Typography variant="h6" gutterBottom>
             Order Status
           </Typography>
           {orderDetails && (
             <>
-              <Typography variant="body1">
+
+              <Typography variant="h4">
                 {orderDetails.status}
               </Typography>
               {orderDetails.orderId && (
@@ -388,9 +395,6 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
                   </Typography>
                   <Typography variant="body1">
                     Payment ID: {orderDetails.paymentId}
-                  </Typography>
-                  <Typography variant="body1">
-                    Razorpay Signature: {orderDetails.signature}
                   </Typography>
                 </>
               )}
