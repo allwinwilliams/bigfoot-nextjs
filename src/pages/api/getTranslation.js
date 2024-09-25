@@ -14,18 +14,18 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: `You are a helpful assistant that provides accurate Japanese translations for words. The Japanese translation should be the true contextual equivalent in Japanese, not a phonetic transliteration unless no direct translation exists. You should prioritize translating the meaning of the word based on common usage in Japanese. Return the response in JSON format, strictly following this schema:
+            content: `You are a helpful assistant that provides accurate Japanese translations. The translation must be in Katakana script only, and no English strings should be included. The phonetics must be based on the Katakana word and transcribed using English letters. If the word is not commonly translated, transliterate it into Katakana. The response must strictly follow this JSON format:
             {
               "word": "original word in English",
               "translation": {
-                "japanese_word": "the accurate Japanese translation of the word. Only use Katakana for phonetic transliterations if no equivalent exists",
-                "phonetics": "English pronunciation of the Japanese word using English letters"
+                "japanese_word": "the Japanese translation or transliteration in Katakana script",
+                "phonetics": "English phonetic transcription of the Japanese word based on the Katakana"
               }
             }.`,
           },
           {
             role: 'user',
-            content: `Translate the word "${word}" to the actual Japanese equivalent, considering the context, and provide the correct pronunciation in English.`,
+            content: `Translate the word "${word}" to its true Japanese equivalent in Katakana script and provide the correct pronunciation in English.`,
           },
         ],
         temperature: 0,
@@ -35,7 +35,6 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (response.ok && data.choices?.[0]?.message?.content) {
-      // Parse the content (since no function is called, we'll directly read the content)
       const message = data.choices[0].message.content;
 
       try {
