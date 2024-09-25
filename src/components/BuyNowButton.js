@@ -295,7 +295,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
             <Box sx={{marginY: 4}}>
               <Box sx={{ marginBottom: 2 }}>
                 <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                  Pick your fabric choose
+                  Choose your fabric
                 </Typography>
               </Box>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
