@@ -374,7 +374,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
         onClose={() => setOpenPostPaymentModal(false)}
       >
         <Paper sx={{ padding: 4, margin: 'auto', maxWidth: 500, textAlign: 'center' }}>
-          {orderDetails.orderId && (
+          {orderDetails && (
             <>
               <CheckCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
             </>
