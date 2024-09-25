@@ -401,7 +401,7 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price }) =>
               <img src="/product-page/woxsen/qr.png" alt="Payment QR Code" style={{ width: '100%', height: 'auto' }} />
             </Box>
             <Typography variant="body1" gutterBottom>
-              Pay someone@hdfcbank
+              Pay "ts.priyatham-1@oksbi" before proceeding
             </Typography>
             <Button
               variant="contained"
@@ -425,7 +425,7 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price }) =>
               Order Collected Successfully!
             </Typography>
             <Typography variant="body1" sx={{ marginY: 2 }}>
-              Thank you for your purchase. Your order is being processed.
+              Thank you for your purchase. Your order will be processed.
             </Typography>
             <Button
               variant="contained"
