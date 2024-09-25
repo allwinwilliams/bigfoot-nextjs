@@ -14,11 +14,11 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: `You are a helpful assistant that provides accurate Japanese translations for words. The Japanese translation should be the true contextual equivalent in Japanese, not a phonetic transliteration unless no direct translation exists. You should prioritize translating the meaning of the word based on common usage in Japanese. Return the response in JSON format, strictly following this schema:
+            content: `You are a helpful assistant that provides accurate Japanese translations for words in katakana script. The Japanese translation should be the true contextual equivalent. If no direct translation exists, use phonetic transliteration, else always go for contextual translation. Return the response in JSON format, strictly following this schema:
             {
               "word": "original word in English",
               "translation": {
-                "japanese_word": "the accurate Japanese translation or transliterations of the word. Use phonetic transliterations if no equivalent exists. Return only in Katakana script",
+                "japanese_word": "the accurate Japanese translation of the word. Only use Katakana for phonetic transliterations if no equivalent exists",
                 "phonetics": "English pronunciation of the Japanese word using English letters"
               }
             }.`,
