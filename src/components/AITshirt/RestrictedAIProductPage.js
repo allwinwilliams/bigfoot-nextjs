@@ -458,7 +458,7 @@ const RestrictedAiProductPage = () => {
                     color={color}
                     // size={size}
                     style={style}
-                    type="Prompt"
+                    type="prompt"
                     data={{prompt}}
                     storage={storage}
                     db={db}

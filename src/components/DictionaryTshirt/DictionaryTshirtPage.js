@@ -374,7 +374,7 @@ const DictionaryTshirtPage = () => {
                     color={color}
                     // size={size}
                     style={style}
-                    type="Dictionary"
+                    type="dictionary"
                     data={{text: textInput}}
                     storage={storage}
                     db={db}

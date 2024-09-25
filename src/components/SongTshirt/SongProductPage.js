@@ -331,7 +331,7 @@ const SongProductPage = () => {
                   color={color}
                   // size={size}
                   style={style}
-                  type="Song"
+                  type="song"
                   data={{songId, songData, songName: songData?.details?.name || ''}}
                   storage={storage}
                   db={db}

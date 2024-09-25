@@ -78,25 +78,32 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
       await uploadString(storageRef, canvasDataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
 
+      // if (type === "song") {
+      //   dataToStore.data.songId = data.songId ;
+      //   dataToStore.data.name = data.songName || '';
+      // } else if (type === "ai") {
+      //   dataToStore.data.prompt = data.prompt || '';
+      // } else if(type === "emoji"){
+      //   dataToStore.data.emoji = data.emoji || '';
+      //   dataToStore.data.text = data.text || '';
+      // } else if(type === "dictionary"){
+      //   dataToStore.data.text = data.text || '';
+      // } else if(type === "japanese"){
+      //   dataToStore.data.word = data.text || '';
+      // }
+
       const dataToStore = {
         color,
         size,
         style,
         type,
         imageUrl,
+        data,
         fabric: fabric.id,
         timestamp: new Date().toISOString(),
       };
 
-      if (type === "song") {
-        dataToStore.songId = data.songId ;
-        dataToStore.name = data.songName || '';
-      } else if (type === "ai") {
-        dataToStore.prompt = data.prompt || '';
-      } else if(type === "emoji"){
-        dataToStore.emoji = data.emoji || '';
-        dataToStore.text = data.text || '';
-      }
+      
 
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;

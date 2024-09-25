@@ -14,67 +14,35 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: `You are a helpful assistant that provides accurate Japanese translations for words. The Japanese translation should be the true equivalent in Japanese, not a phonetic transliteration. You should return the response in JSON format, strictly following this schema:
+            content: `You are a helpful assistant that provides accurate Japanese translations for words. The Japanese translation should be the true contextual equivalent in Japanese, not a phonetic transliteration unless no direct translation exists. You should prioritize translating the meaning of the word based on common usage in Japanese. Return the response in JSON format, strictly following this schema:
             {
               "word": "original word in English",
               "translation": {
-                "japanese_word": "the accurate Japanese word. If not available, the transliteration in Katakana script",
-                "phonetics": "English pronunciation of the japanese word using English letters"
+                "japanese_word": "the accurate Japanese translation of the word. Only use Katakana for phonetic transliterations if no equivalent exists",
+                "phonetics": "English pronunciation of the Japanese word using English letters"
               }
             }.`,
           },
           {
             role: 'user',
-            content: `Translate the word "${word}" to the actual Japanese equivalent word in Katakana script and provide the correct pronunciation in English.`,
+            content: `Translate the word "${word}" to the actual Japanese equivalent, considering the context, and provide the correct pronunciation in English.`,
           },
         ],
-        functions: [
-          {
-            name: "get_word_translation",
-            description: "Provides the accurate Japanese translation of a word along with the pronunciation in English and original word according to the schema.",
-            parameters: {
-              type: "object",
-              properties: {
-                word: {
-                  type: "string",
-                  description: "The original word being translated",
-                },
-                translation: {
-                  type: "object",
-                  properties: {
-                    japanese_word: {
-                      type: "string",
-                      description: "The accurate translated word in Japanese (Katakana or other appropriate script)",
-                    },
-                    phonetics: {
-                      type: "string",
-                      description: "The English phonetic transcription of the Japanese word using only English letters",
-                    },
-                  },
-                  required: ["japanese_word", "phonetics"],
-                  additionalProperties: false,
-                },
-              },
-              required: ["word", "translation"],
-              additionalProperties: false,
-            },
-          },
-        ],
-        function_call: { name: "get_word_translation" },
         temperature: 0,
       }),
     });
 
     const data = await response.json();
 
-    if (response.ok && data.choices?.[0]?.message?.function_call?.arguments) {
-      const functionArgs = data.choices[0].message.function_call.arguments;
+    if (response.ok && data.choices?.[0]?.message?.content) {
+      // Parse the content (since no function is called, we'll directly read the content)
+      const message = data.choices[0].message.content;
 
       try {
-        const translation = JSON.parse(functionArgs);
+        const translation = JSON.parse(message);
         return res.status(200).json({ translation });
       } catch (parseError) {
-        console.error('Error parsing function arguments JSON:', parseError);
+        console.error('Error parsing translation response JSON:', parseError);
         return res.status(500).json({ error: 'Error parsing assistant response JSON' });
       }
     } else {

@@ -349,7 +349,7 @@ const TextTshirtPage = () => {
                     color={color}
                     // size={size}
                     style={style}
-                    type="Text"
+                    type="text"
                     data={{text: textInput}}
                     storage={storage}
                     db={db}
