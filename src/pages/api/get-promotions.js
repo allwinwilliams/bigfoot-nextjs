@@ -14,14 +14,23 @@ export default async function handler(req, res) {
     try {
       const promotions = [
         {
+          code: 'WOXSEN',
+          summary: 'Rs. 400 instant discount for all orders',
+          description: 'Rs. 400 OFF - Woxsen Sale',
+          tnc: [
+            'Valid only till September 27th'
+          ]
+        },
+        {
           code: 'INTRO200',
           summary: 'Rs. 200 instant discount for all orders',
           description: 'Rs. 200 OFF - Introductory Sale',
           tnc: [
-            'Valid only till September 15th',
+            'Valid only till September 30th',
             'Can be revoked anytime'
           ]
         },
+        
         // {
         //   code: 'TEST',
         //   summary: 'short summary 2',

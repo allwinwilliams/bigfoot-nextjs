@@ -5,7 +5,7 @@ import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid,
 import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from './SizeChart';
 
-const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 }) => {
+const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openPostPaymentModal, setOpenPostPaymentModal] = useState(false);
