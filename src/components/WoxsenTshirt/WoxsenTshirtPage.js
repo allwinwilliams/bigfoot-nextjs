@@ -30,7 +30,8 @@ const WoxsenTshirtPage = () => {
   const [renderCount, setRenderCount] = useState(0); // State variable to trigger re-render
 
   const [color, setColor] = useState(searchParams.get('color') || 'black');
-  const [style, setStyle] = useState(searchParams.get('style') || 'head');
+  const [style, setStyle] = useState(searchParams.get('style') || 'chase');
+  const [price, setPrice] = useState(899);
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const initialLoad = useRef(true);
@@ -38,7 +39,7 @@ const WoxsenTshirtPage = () => {
   useEffect(() => {
     const defaultParams = {
       color: 'black',
-      style: 'head',
+      style: 'chase',
     };
 
     if (!searchParams.get('color') || !searchParams.get('style')) {
@@ -57,11 +58,13 @@ const WoxsenTshirtPage = () => {
   const handleColorChange = (event) => {
     setColor(event.target.color);
     setStyle(event.target.style);
+   
     window.history.replaceState(null, '', `/product/woxsen-tshirt?color=${event.target.color}&style=${event.target.style}`);
   };
 
   const handleStyleChange = (event) => {
     setStyle(event.target.value);
+    
     window.history.replaceState(null, '', `/product/woxsen-tshirt?color=${color}&style=${event.target.value}`);
   };
 
@@ -263,7 +266,7 @@ const WoxsenTshirtPage = () => {
                 data={{}}
                 storage={storage}
                 db={db}
-                price={89900}
+                price={price}
               />
                 <Tooltip title="URL copied" open={tooltipOpen} arrow>
                   <Button

@@ -246,8 +246,8 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
       black: {
         background: '#1e1e1e',
         punctuation: '#d4d4d4',
-        key: '#2c2cfe',    // Color for keys
-        string: '#2ef178',  // Color for strings
+        key: '#2c2cfe',
+        string: '#2ef178',
         number: '#b5cea8',
         boolean: '#569cd6',
         null: '#808080',
@@ -255,8 +255,8 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
       white: {
         background: '#ffffff',
         punctuation: '#000000',
-        key: '#0000ff',     // Color for keys
-        string: '#a31515',   // Color for strings
+        key: '#0000ff',
+        string: '#a31515',
         number: '#098658',
         boolean: '#0000ff',
         null: '#098658',
@@ -359,7 +359,6 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
         }
       });
 
-      // Render any remaining tokens in the line with indentation
       if (lineTokens.length > 0) {
         renderLine(lineTokens, x + indentLevel * indentWidth, y);
         y += lineHeight;
@@ -367,7 +366,6 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
     });
   };
 
-  // Helper function to render a line with tokens
   function renderLine(lineTokens, x, y) {
     let xOffset = x;
     lineTokens.forEach(token => {
@@ -377,12 +375,10 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
     });
   }
 
-  // Function to check if a token is a key
   function isKeyToken(token) {
     return token.type === 'key';
   }
 
-  // Helper function to tokenize a line of JSON string
   function tokenizeJSONLine(line) {
     const tokens = [];
     let currentToken = '';
@@ -414,7 +410,6 @@ export const dictionaryCodeSketch = (p, canvasRef, onP5Update, color, values) =>
           currentToken += char;
           isString = true;
 
-          // Check if this string is a key (followed by ':')
           const restOfLine = line.slice(i + 1);
           const colonIndex = restOfLine.indexOf(':');
           const nextQuoteIndex = restOfLine.indexOf('"');

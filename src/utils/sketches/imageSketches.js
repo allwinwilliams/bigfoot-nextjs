@@ -36,11 +36,12 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
       canvasRef.current = canvas.canvas;
       p.colorMode(p.RGB, 255, 255, 255);
       p.noLoop();
+      p.clear();
       onP5Update();
     };
   
     p.draw = () => {
-      p.background(255); // Clear the background with white color
+      p.clear(); // Clear the background with white color
       let imgX = 0;
       let imgY = 100;
       if(style === 'stars'){

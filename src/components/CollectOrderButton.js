@@ -19,14 +19,16 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from './SizeChart';
 
-const CollectOrderButton = ({ color, style, type, data, storage, db, price = 89900 }) => {
+const CollectOrderButton = ({ color, style, type, data, storage, db, price }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openQRModal, setOpenQRModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
 
-  const [fabric, setFabric] = useState({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 89900 });
+  
+
+  // const [fabric, setFabric] = useState({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 89900 });
   const [size, setSize] = useState('S');
   const [dynamicPrice, setDynamicPrice] = useState(price);
 
@@ -37,6 +39,18 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price = 899
   const [department, setDepartment] = useState('');
 
   const canvasRef = useRef(null);
+
+  useEffect(() => {
+    if(style == "chase"){
+      setDynamicPrice(89900);
+    } else if(style == "stars"){
+      setDynamicPrice(79900);
+    } else if(style == "another"){
+      setDynamicPrice(78900);
+    } else if(style == "more"){
+      setDynamicPrice(77900);
+    }
+  }, [style]);
   
   useEffect(() => {
     if (openPrePaymentModal) {
@@ -68,8 +82,8 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price = 899
   };
 
   const handleFabricChange = (event) => {
-    setFabric(event.target.fabric);
-    setDynamicPrice(event.target.price);
+    // setFabric(event.target.fabric);
+    // setDynamicPrice(event.target.price);
   }
 
   const handleSizeChange = (event) => {
@@ -121,7 +135,7 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price = 899
         style,
         type,
         imageUrl,
-        fabric: fabric.id,
+        // fabric: fabric.id,
         timestamp: new Date().toISOString(),
       };
 
@@ -158,8 +172,8 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price = 899
     setPhone('');
     setDepartment('');
     setSize('S');
-    setFabric({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 89900 });
-    setDynamicPrice(price);
+    // setFabric({ id: 'premium', label: 'Premium Cotton', description: '100% Premium Amit Cotton', price: 89900 });
+    // setDynamicPrice(price);
   };
 
   return (
@@ -380,7 +394,7 @@ const CollectOrderButton = ({ color, style, type, data, storage, db, price = 899
               <CloseIcon />
             </IconButton>
             <Typography variant="h5" gutterBottom>
-              Scan to Pay Rs. 899
+              {`Scan to Pay - ₹${Math.ceil(dynamicPrice / 100)}`}
             </Typography>
             <Box sx={{ marginY: 2 }}>
               {/* Replace the src with your actual QR code image path */}
