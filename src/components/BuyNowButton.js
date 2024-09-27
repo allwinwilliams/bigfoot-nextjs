@@ -354,7 +354,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
                 <Box>
                   <Typography variant="body1" sx={{ fontWeight: 'bold', textTransform: 'none' }}>
                     {`Buy Now @ `}
-                    <ProductPrice priceInINR={`${Math.ceil(dynamicPrice / 100)}`}  priceInUSD={`${Math.ceil(dynamicPrice / 5000)}`}/>
+                    <ProductPrice priceInINR={`${Math.ceil(dynamicPrice / 100)}`}  priceInUSD={`${Math.ceil(dynamicPrice / 2000)}`}/>
                   </Typography>
                   <Typography variant="body2" sx={{ fontSize: '12px', textTransform: 'none' }}>
                     Secured Checkout by Razorpay
