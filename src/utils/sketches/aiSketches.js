@@ -246,9 +246,9 @@ export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style)
         const imgX = x + (drawingWidth + 360) / 2;
         const imgY = y + (drawingHeight - 560) / 2;
         p.noStroke();
-        p.rect(imgX-25, imgY-25, 310, 360);
+        // p.rect(imgX-25, imgY-25, 310, 360);
         p.image(img, imgX, imgY, 260, 260);
-        p.fill(p.color(255));
+        // p.fill(p.color(255));
         
       } else if(style == "large"){
         const imgX = x + (drawingWidth - 720) / 2;
