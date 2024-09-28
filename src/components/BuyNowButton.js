@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from './SizeChart';
 import ProductPrice from './ProductPrice';
 
-const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 }) => {
+const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [openPrePaymentModal, setOpenPrePaymentModal] = useState(false);
   const [openPostPaymentModal, setOpenPostPaymentModal] = useState(false);
@@ -310,8 +310,8 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 114900 })
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 <ButtonGroup variant="outlined" color="primary" aria-label="outlined button group" fullWidth>
                   {[
-                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 114900 },
-                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 139900 },
+                    { id: 'premium', label: 'Premium', description: '100% Amid Cotton', price: 119900 },
+                    { id: 'luxury', label: 'Luxury', description: '100% SoftTouch Cotton', price: 149900 },
                   ].map((option) => (
                     <Button
                       key={option.id}
