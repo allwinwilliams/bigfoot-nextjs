@@ -10,7 +10,7 @@ import { emojiSketch } from '@/utils/sketches/emojiSketches';
 import { textSketch } from '@/utils/sketches/textSketches';
 import { dictionarySmallSketch, dictionaryCodeSketch, dictionaryBratSketch } from '@/utils/sketches/dictionarySketches';
 import { japaneseSmallSketch, japaneseBoldSketch, japaneseNeonSketch } from '@/utils/sketches/japaneseSketches';
-import { imageSketch } from '@/utils/sketches/imageSketches';
+import { woxsenSketch, imageSketch } from '@/utils/sketches/imageSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal', width = 4000, height = 2040 }) => {
   const sketchRef = useRef();
@@ -121,6 +121,9 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
         }
       }
       if(type == "woxsen"){
+        sketch = (p) => woxsenSketch(p, canvasRef, onP5Update, color, values, style);
+      }
+      if(type == "image"){
         sketch = (p) => imageSketch(p, canvasRef, onP5Update, color, values, style);
       }
 

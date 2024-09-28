@@ -351,7 +351,7 @@ const TextTshirtPage = () => {
                     // size={size}
                     style={style}
                     type="text"
-                    data={{text: textInput}}
+                    data={{}}
                     storage={storage}
                     db={db}
                     price={119900}

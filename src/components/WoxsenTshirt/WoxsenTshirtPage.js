@@ -11,14 +11,8 @@ import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 import ThreeScene from '../ThreeScene';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
-import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-import SizeChart from '../SizeChart';
 
 import CollectOrderButton from '../CollectOrderButton';
-
-
-import Razorpay from 'razorpay';
 
 const WoxsenTshirtPage = () => {
   const theme = useTheme();
