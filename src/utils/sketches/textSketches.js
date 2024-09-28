@@ -51,8 +51,11 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
       p.text(textInput.toUpperCase() || '', 0, 0); 
       p.pop(); 
     } else if (style == "serif") {
+      
       p.textFont(serifFont);
       p.textStyle(p.BOLD);
+      p.fill('#222222');
+      p.noStroke();
       let textSize = p.map(textInput.length, 0, 24, 160, 80)
       p.textSize(textSize);
       p.push();
