@@ -223,12 +223,12 @@ const TextTshirtPage = () => {
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 0 }}>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
                   <TextField
-                    label="Add a message (Optional - Max 16 characters)"
+                    label="Add a message (Optional - Max 24 characters)"
                     variant="outlined"
                     fullWidth
                     value={textInput}
                     onChange={handleTextInputChange}
-                    inputProps={{ maxLength: 16 }}
+                    inputProps={{ maxLength: 24 }}
                   />
                 </Box>
                 

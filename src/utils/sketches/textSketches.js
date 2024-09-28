@@ -36,13 +36,14 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
 
     // Apply different styles based on the `style` argument
     if (style == "small") {
-      p.textSize(48);
+      let textSize = p.map(textInput.length, 0, 24, 48, 36)
+      p.textSize(textSize);
       p.textStyle(p.BOLD);
       p.text(textInput || '', 750, 355);
     } else if (style == "bold") {
       p.textFont(montserratFont);
       p.textStyle(p.BOLD);
-      let textSize = p.map(textInput.length, 0, 16, 160, 90)
+      let textSize = p.map(textInput.length, 0, 24, 160, 80)
       p.textSize(textSize);
       p.push();
       p.translate(750, 400);
@@ -52,7 +53,7 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
     } else if (style == "serif") {
       p.textFont(serifFont);
       p.textStyle(p.BOLD);
-      let textSize = p.map(textInput.length, 0, 16, 160, 90)
+      let textSize = p.map(textInput.length, 0, 24, 160, 80)
       p.textSize(textSize);
       p.push();
       p.translate(750, 400);
@@ -61,7 +62,7 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
     }
      else if (style == "cursive") {
       p.textFont(handWrittenFont);
-      let textSize = p.map(textInput.length, 0, 16, 160, 100)
+      let textSize = p.map(textInput.length, 0, 24, 160, 90)
       p.textSize(textSize);
       p.text(textInput || '', 750, 400);
     } else if (style == "brat") {
@@ -69,7 +70,8 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
       p.noStroke();
       p.rect(500, 200, 500, 500);
       p.textStyle(p.BOLD);
-      p.textSize(48);
+      let textSize = p.map(textInput.length, 0, 24, 72, 32)
+      p.textSize(textSize);
       p.fill('#000000');
       p.text(textInput || '', 750, 450);
     }
