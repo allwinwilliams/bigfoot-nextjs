@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful dictionary assistant that provides word definitions with a funny and witty example in JSON format according to a specified schema.',
+            content: 'You are a helpful dictionary assistant that provides word definitions along with a short funny quote for children in JSON format according to a specified schema.',
           },
           {
             role: 'user',

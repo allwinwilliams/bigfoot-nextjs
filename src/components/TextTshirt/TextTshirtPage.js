@@ -240,6 +240,7 @@ const TextTshirtPage = () => {
                   { value: 'small', label: 'Small', imgSrc: '/product-page/text/small.png' },
                   { value: 'bold', label: 'Bold', imgSrc: '/product-page/text/large.png' },
                   { value: 'cursive', label: 'Cursive', imgSrc: '/product-page/text/cursive.png' },
+                  { value: 'serif', label: 'Serif', imgSrc: '/product-page/text/large.png' },
                   { value: 'brat', label: 'Brat', imgSrc: '/product-page/text/brat.png' },
                 ].map((option) => (
                   <Box

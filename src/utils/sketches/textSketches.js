@@ -2,12 +2,13 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
   const canvasWidth = 4000;
   const canvasHeight = 2060;
   const { textInput } = values;
-  let montserratFont, handWrittenFont;  // Declare a variable to store the loaded font
+  let montserratFont, handWrittenFont, serifFont;  // Declare a variable to store the loaded font
 
   p.preload = () => {
     // Load the Montserrat font during the preload phase
     montserratFont = p.loadFont('/fonts/Montserrat-Bold.ttf');
     handWrittenFont = p.loadFont('/fonts/Damion-Regular.ttf');
+    serifFont = p.loadFont('/fonts/Cormorant-Medium.ttf');
     
   };
 
@@ -46,9 +47,19 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
       p.push();
       p.translate(750, 400);
       p.scale(1, 0.7);
-      p.text(textInput.toUpperCase() || '', 0, 0);  // Draw the text
-      p.pop();  // Restore the original transformation matrix
-    } else if (style == "cursive") {
+      p.text(textInput.toUpperCase() || '', 0, 0); 
+      p.pop(); 
+    } else if (style == "serif") {
+      p.textFont(serifFont);
+      p.textStyle(p.BOLD);
+      let textSize = p.map(textInput.length, 0, 16, 160, 90)
+      p.textSize(textSize);
+      p.push();
+      p.translate(750, 400);
+      p.text(textInput.toUpperCase() || '', 0, 0); 
+      p.pop(); 
+    }
+     else if (style == "cursive") {
       p.textFont(handWrittenFont);
       let textSize = p.map(textInput.length, 0, 16, 160, 100)
       p.textSize(textSize);
