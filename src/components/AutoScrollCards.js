@@ -60,16 +60,16 @@ const AutoScrollCards = ({
 
   return (
     <Box>
-      <Box sx={{ marginX: 'auto', textAlign: 'center', paddingY: 16, backgroundColor: '#F7F7F7' }}>
+      <Box sx={{ marginX: 'auto', textAlign: 'center', paddingY: 8, backgroundColor: '#F7F7F7' }}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', marginTop: 8 }}>
           <strike>Thousands</strike><br/> Endless possibilities<br />
         </Typography>
-        <Typography variant="subtitle2" gutterBottom sx={{ marginBottom: 8 }}>
+        <Typography variant="subtitle2" gutterBottom sx={{ color: '#777777' }}>
           Create something that is truly YOU.
         </Typography>
         <Box
           sx={{
-            // mt: 4,
+            mt: 4,
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             // paddingTop: 4,

@@ -43,7 +43,7 @@ const theme = createTheme({
     },
     h5: {
       fontFamily: 'Outfit, Arial, sans-serif',
-      fontWeight: 600,
+      fontWeight: 500,
     },
     h6: {
       fontFamily: 'Outfit, Arial, sans-serif',

@@ -105,14 +105,14 @@ export default function HomePage() {
       width: '100%',
       aspectRatio: '50%',
     },
-    {
-      title: 'Express',
-      image: '/gallery/2.png',
-      url: '#the-range',
-      hoverImage: '/gallery/5.png',
-      width: '20%',
-      aspectRatio: '100%',
-    },
+    // {
+    //   title: 'Express',
+    //   image: '/gallery/2.png',
+    //   url: '#the-range',
+    //   hoverImage: '/gallery/5.png',
+    //   width: '20%',
+    //   aspectRatio: '100%',
+    // },
     {
       title: 'Music vibes',
       image: '/gallery/3.png',
@@ -137,24 +137,24 @@ export default function HomePage() {
       width: '25%',
       aspectRatio: '260%',
     },
-    {
-      title: '',
-      image: '',
-      url: '#the-range',
-      width: '25%',
-      aspectRatio: '200%',
-      isTextCard: true,
-      text: `Humans are artisans of their existence, shaping reality from sparks of thought and emotion. Our creativity flows freely, reflecting the unique worlds within. Each expression is personal, shaped by our untamed spirit. We are born to create
-—so go, be creative.`,
-    },
-    {
-      title: '',
-      image: '/gallery/6.png',
-      hoverImage: '/gallery/5.png',
-      url: '#the-range',
-      width: '35%',
-      aspectRatio: '160%',
-    },
+//     {
+//       title: '',
+//       image: '',
+//       url: '#the-range',
+//       width: '25%',
+//       aspectRatio: '200%',
+//       isTextCard: true,
+//       text: `Humans are artisans of their existence, shaping reality from sparks of thought and emotion. Our creativity flows freely, reflecting the unique worlds within. Each expression is personal, shaped by our untamed spirit. We are born to create
+// —so go, be creative.`,
+//     },
+    // {
+    //   title: '',
+    //   image: '/gallery/6.png',
+    //   hoverImage: '/gallery/5.png',
+    //   url: '#the-range',
+    //   width: '35%',
+    //   aspectRatio: '160%',
+    // },
   ];
   
 
@@ -339,11 +339,11 @@ export default function HomePage() {
       >
         <Typography variant="h4"
           sx={{
-            mb: 2,
+            mb: 1,
           }}>
           Explore the range
         </Typography>
-        <Grid container spacing={2} sx={{my: 8}}>
+        <Grid container spacing={2} sx={{my: 4}}>
           <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}

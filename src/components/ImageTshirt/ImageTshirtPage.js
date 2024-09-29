@@ -203,8 +203,8 @@ const ImageTshirtPage = () => {
             md={5}
           >
             <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise your Bigfoot basic
+              <Typography variant="h5" gutterBottom sx={{ }}>
+                Customise with any image
               </Typography>
               
 

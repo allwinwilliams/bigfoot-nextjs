@@ -202,7 +202,7 @@ const SongProductPage = () => {
               md={5}
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h5" gutterBottom sx={{ }}>
                   Customise with a song
                 </Typography>
                 <SpotifySearch

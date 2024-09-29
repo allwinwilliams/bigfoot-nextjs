@@ -35,7 +35,7 @@ const EmojiSelector = ({ emojis, onEmojiClick }) => {
 
   return (
     <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
-      <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+      <Typography variant="h5" gutterBottom sx={{ }}>
         Select an Emoji
       </Typography>
       <Tabs value={tabValue} onChange={handleTabChange} variant="scrollable" scrollButtons="auto">

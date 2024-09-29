@@ -267,7 +267,6 @@ const EmojiTshirtPage = () => {
                 alignItems: 'center' 
               }}
             >
-              
                 <ThreeScene
                   color={color}
                   type='emoji'
@@ -275,7 +274,6 @@ const EmojiTshirtPage = () => {
                   style={style}
                   loading={loading}
                 />
-              
             </Grid>
             <Grid
               item

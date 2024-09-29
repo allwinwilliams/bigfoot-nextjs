@@ -238,7 +238,7 @@ const RestrictedAiProductPage = () => {
                   border: '1px solid #dbdbdb', 
                   boxShadow: '0 0 8px rgba(0,0,0,0.06)',
                   }}>
-                  <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                  <Typography variant="h5" gutterBottom sx={{  }}>
                     Design with a prompt
                   </Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
