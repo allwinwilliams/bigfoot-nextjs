@@ -73,7 +73,7 @@ const AudioControl = React.forwardRef((props, ref) => {
         sx={{
           position: 'fixed',
           top: 16,
-          left: 16,
+          right: 64,
           zIndex: 1000,
           backgroundColor: 'rgba(255, 255, 255, 0.7)',
           '&:hover': {

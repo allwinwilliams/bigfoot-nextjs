@@ -10,7 +10,7 @@ const Footer = () => {
         textAlign: 'left',
         padding: 4,
         backgroundColor: '#FEFEFE',
-        borderRadius: 8,
+        borderRadius: 4,
         my: 4
       }}
     >
@@ -37,7 +37,7 @@ const Footer = () => {
               unlimited possibilities, made real
             </Typography>
           </Link>
-          <Typography variant="subtitle2" sx={{  }}>
+          <Typography variant="subtitle2" sx={{ mt: 2 }}>
             We are a fashion tech brand that enables people to express themselves through fashion.
           </Typography>
           <Typography variant="subtitle2" sx={{ mt: 2 }}>

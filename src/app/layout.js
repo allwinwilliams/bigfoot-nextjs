@@ -3,11 +3,12 @@
 import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
-import { Container } from '@mui/material';
+import { Container, IconButton } from '@mui/material';
+import HomeIcon from '@mui/icons-material/HomeRounded'
 import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { Analytics } from "@vercel/analytics/react";
-import Loader from '../components/Loader'; // Import Loader component
+import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
 
 export default function RootLayout({ children }) {
@@ -16,7 +17,7 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -57,6 +58,21 @@ export default function RootLayout({ children }) {
           </ClientThemeProvider>
         )}
         <AudioControl />
+        <IconButton
+        href='/'
+        sx={{
+          position: 'fixed',
+          top: 16,
+          left: 16,
+          zIndex: 1000,
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          },
+        }}
+      >
+        <HomeIcon />
+      </IconButton>
         <Analytics />
       </body>
     </html>

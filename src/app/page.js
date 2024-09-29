@@ -274,7 +274,6 @@ export default function HomePage() {
                 <Typography
                   variant="h4"
                   sx={{
-                    fontWeight: 'bold',
                     mb: 2,
                     textAlign: 'center',
                   }}
@@ -369,7 +368,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   Style with music
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -403,7 +402,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   Generate with prompt
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -437,7 +436,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   Dictionary of whatever
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -471,7 +470,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   😊 Express with emojis
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -505,7 +504,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   Japanese (ジャパニーズ)
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -540,7 +539,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   Any text
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -574,7 +573,7 @@ export default function HomePage() {
                 >
                   <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="h6" sx={{ color: '#444444' }}>
+                <Typography variant="h6">
                   Basics by Bigfoot
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -600,7 +599,7 @@ export default function HomePage() {
               >
                 <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px' }} />
               </Box>
-              <Typography variant="h6" sx={{ color: '#444444' }}>
+              <Typography variant="h6">
                 Launching soon
               </Typography>
               <Typography variant="subtitle2" sx={{ color: '#777777' }}>
