@@ -3,7 +3,7 @@
 import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
-import { Container, IconButton } from '@mui/material';
+import { Container, IconButton, Box } from '@mui/material';
 import HomeIcon from '@mui/icons-material/HomeRounded'
 import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -46,34 +46,38 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
+      <ClientThemeProvider>
         {isLoading ? (
           <Loader />
         ) : (
-          <ClientThemeProvider>
-            {children}
-            <Container>
-              <Footer />
-            </Container>
-            <LanguageSwitcher />
-          </ClientThemeProvider>
+            <Box>
+              {children}
+              <Container>
+                <Footer />
+              </Container>
+              <AudioControl />
+              <IconButton
+              href='/'
+              sx={{
+                position: 'absolute',
+                top: 16,
+                left: 16,
+                zIndex: 1000,
+                backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                },
+              }}
+              >
+            
+              <HomeIcon />
+            </IconButton>
+          </Box>           
+          /* <LanguageSwitcher /> */
         )}
-        <AudioControl />
-        <IconButton
-        href='/'
-        sx={{
-          position: 'fixed',
-          top: 16,
-          left: 16,
-          zIndex: 1000,
-          backgroundColor: 'rgba(255, 255, 255, 0.7)',
-          '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-          },
-        }}
-      >
-        <HomeIcon />
-      </IconButton>
+        
         <Analytics />
+        </ClientThemeProvider>
       </body>
     </html>
   );

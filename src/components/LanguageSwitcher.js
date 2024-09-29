@@ -37,7 +37,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div style={{ position: 'fixed', top: 16, right: 16, zIndex: 1000 }}>
+    <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 1000 }}>
       <IconButton
         onClick={handleClick}
         sx={{

@@ -71,9 +71,9 @@ const AudioControl = React.forwardRef((props, ref) => {
       <IconButton
         onClick={handlePlayPause}
         sx={{
-          position: 'fixed',
+          position: 'absolute',
           top: 16,
-          right: 64,
+          right: 16,
           zIndex: 1000,
           backgroundColor: 'rgba(255, 255, 255, 0.7)',
           '&:hover': {
