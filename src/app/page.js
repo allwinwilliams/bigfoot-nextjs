@@ -202,12 +202,10 @@ export default function HomePage() {
       >
         <Marquee gradient={false} speed={40}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mx: 2 }}>
-            {/* <WhatsAppIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               FOR MORE CUSTOMISATIONS AND GROUP ORDERS, CONTACT 87549 68346
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            {/* <PrintIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               EXPRESS YOURSELF
             </Typography>
@@ -216,7 +214,6 @@ export default function HomePage() {
               FREEDOM OF EXPRESSION
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            {/* <LocalShippingIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
             <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               PREMIUM CONCEPTUAL DESIGNS
             </Typography>
@@ -251,7 +248,7 @@ export default function HomePage() {
             <source src="/gallery/main.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <Paper elevation={4} sx={{
+          <Paper elevation={0} sx={{
             padding: {md: 8, xs: 4},
             borderRadius: 4,
             mt: 1,
@@ -259,7 +256,8 @@ export default function HomePage() {
             color: 'white',
             position: 'relative',
             overflow: 'hidden',
-            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            // backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 80%)',
             zIndex: 1,
           }}>
             <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: {md: 16, xs: 8} }}>

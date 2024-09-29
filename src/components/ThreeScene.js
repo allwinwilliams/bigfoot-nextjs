@@ -271,7 +271,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
       {showTooltip && (
         <div className="tooltip-container">
           <TouchAppIcon id="touch-icon" className="touch-icon" sx={{ fontSize: 36, color: 'white', animation: 'moveLeftRight 1s infinite alternate' }} />
-          <Typography variant="h6" color="white" sx={{ fontSize: '1rem', fontWeight: 'bold', textAlign: 'center', }}>
+          <Typography variant="h6" color="white" sx={{ textAlign: 'center', }}>
             Move around Tshirt in 3D
           </Typography>
         </div>

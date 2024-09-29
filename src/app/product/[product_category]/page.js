@@ -1,13 +1,15 @@
 "use client";
 
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { SongCustomiseProvider } from '../../../context/SongCustomiseProvider';
 import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 import { DictionaryContextProvider } from '../../../context/DictionaryContextProvider';
 import { JapaneseContextProvider } from '../../../context/JapaneseContextProvider';
+import Loader from '../../../components/Loader'; // Import Loader component
 
+// Dynamic imports for each product page
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
 const RestrictedAIProductPage = dynamic(() => import('../../../components/AITshirt/RestrictedAIProductPage'), { ssr: false });
@@ -19,9 +21,18 @@ const JapaneseProductPage = dynamic(() => import('../../../components/JapaneseTs
 const WoxsenTshirtPage = dynamic(() => import('../../../components/WoxsenTshirt/WoxsenTshirtPage'), { ssr: false });
 const ImageTshirtPage = dynamic(() => import('../../../components/ImageTshirt/ImageTshirtPage'), { ssr: false });
 
-
 export default function ProductType() {
   const { product_category } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+   
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   let ComponentToRender;
   if (product_category === 'song-tshirt') {
@@ -43,47 +54,38 @@ export default function ProductType() {
       </AiCustomiseProvider>
     );
   } else if (product_category === 'basic-tshirt') {
-    ComponentToRender = (
-        <BasicProductPage />
-    );
+    ComponentToRender = <BasicProductPage />;
   } else if (product_category === 'emoji-tshirt') {
-    ComponentToRender = (
-        <EmojiProductPage />
-    );
+    ComponentToRender = <EmojiProductPage />;
   } else if (product_category === 'text-tshirt') {
-    ComponentToRender = (
-        <TextProductPage />
-    );
+    ComponentToRender = <TextProductPage />;
   } else if (product_category === 'dictionary-tshirt') {
     ComponentToRender = (
       <DictionaryContextProvider>
         <DictionaryProductPage />
       </DictionaryContextProvider>
     );
-  }else if (product_category === 'japanese-tshirt') {
+  } else if (product_category === 'japanese-tshirt') {
     ComponentToRender = (
       <JapaneseContextProvider>
         <JapaneseProductPage />
       </JapaneseContextProvider>
     );
-  }
-  else if (product_category === 'woxsen-tshirt') {
-    ComponentToRender = (
-      <WoxsenTshirtPage />
-    );
-  }
-  else if (product_category === 'image-tshirt') {
-    ComponentToRender = (
-      <ImageTshirtPage />
-    );
-  }
-   else {
+  } else if (product_category === 'woxsen-tshirt') {
+    ComponentToRender = <WoxsenTshirtPage />;
+  } else if (product_category === 'image-tshirt') {
+    ComponentToRender = <ImageTshirtPage />;
+  } else {
     return <div>Invalid product category</div>; // Fallback for invalid product categories
   }
 
   return (
-    <Suspense fallback={<div>Something doesn't seem right</div>}>
-      {ComponentToRender}
-    </Suspense>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        ComponentToRender
+      )}
+    </>
   );
 }

@@ -228,10 +228,10 @@ const RestrictedAiProductPage = () => {
               xs={12}
               md={5}
             >
-              <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 1 }}>
+              <Box sx={{ paddingX: { xs: 0, md: 2 }, paddingY: 1 }}>
                 <Box sx={{ 
-                  paddingX: 4, 
-                  paddingY: 3, 
+                  paddingX: 2, 
+                  paddingY: 2, 
                   backgroundColor: '#fafafa', 
                   marginBottom: 2, 
                   borderRadius: 3, 
@@ -303,7 +303,7 @@ const RestrictedAiProductPage = () => {
                       <AutoAwesomeIcon sx={{ marginRight: '8px' }} />
                       <strong>{loading ? 'Generating... Please wait' : 'Generate'}</strong>
                   </Button>
-                  <Button
+                  {/* <Button
                     variant="outlined"
                     color="primary"
                     onClick={generate}
@@ -317,7 +317,7 @@ const RestrictedAiProductPage = () => {
                   >
                     <RefreshIcon sx={{ marginRight: '8px' }} />
                     <strong>Try Again</strong>
-                  </Button>
+                  </Button> */}
                 </Box>
                 
                 <Box sx={{ display: 'flex', alignItems: 'center'}}>

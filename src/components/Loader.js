@@ -26,7 +26,7 @@ export default function Loader() {
       >
         <CircularProgress sx={{ color: '#000000' }} />
         <Typography variant="subtitle2" sx={{ pt: 2 }}>
-          Loading
+            Hold up
         </Typography>
       </Box>
     </Box>

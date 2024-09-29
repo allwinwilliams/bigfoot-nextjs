@@ -8,18 +8,8 @@ import HomeIcon from '@mui/icons-material/HomeRounded'
 import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { Analytics } from "@vercel/analytics/react";
-import Loader from '../components/Loader';
-import { useEffect, useState } from 'react';
 
 export default function RootLayout({ children }) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <html lang="en">
@@ -47,9 +37,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
       <ClientThemeProvider>
-        {isLoading ? (
-          <Loader />
-        ) : (
+        
             <Box>
               {children}
               <Container>
@@ -73,8 +61,7 @@ export default function RootLayout({ children }) {
               <HomeIcon />
             </IconButton>
           </Box>           
-          /* <LanguageSwitcher /> */
-        )}
+          {/* <LanguageSwitcher />  */}
         
         <Analytics />
         </ClientThemeProvider>

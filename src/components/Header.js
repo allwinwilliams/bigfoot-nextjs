@@ -9,7 +9,7 @@ const Header = () => {
       <Box 
         sx={{
           paddingTop: 4,
-          paddingBottom: 0.5,
+          paddingBottom: 1,
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',

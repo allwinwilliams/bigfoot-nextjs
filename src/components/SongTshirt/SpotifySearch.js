@@ -204,7 +204,7 @@ const SpotifySearch = ({ color, size, style, songLoading, setSongLoading }) => {
                   {songData.details.name}
                 </Typography>
                 <Chip 
-                  label="Current Selection"
+                  label="Selected"
                   size="small"
                   color="secondary"
                   sx={{}}

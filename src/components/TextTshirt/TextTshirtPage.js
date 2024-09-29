@@ -216,7 +216,7 @@ const TextTshirtPage = () => {
               md={5}
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 0 }}>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h5" gutterBottom sx={{ }}>
                   Add any message
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
