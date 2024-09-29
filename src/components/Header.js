@@ -29,8 +29,8 @@ const Header = () => {
           bigfoot
         </Typography> */}
 
-        <Typography variant="subtitle2" gutterBottom sx={{color: '#777777'}}>
-          conceptual fashion
+        <Typography variant="subtitle2" gutterBottom sx={{color: '#666666'}}>
+          unlimited possibilities, made real
         </Typography>
       </Box>
     </>

@@ -58,7 +58,7 @@ const GallerySection = ({ cards }) => {
                 />
               ) : isTextCard ? (
                 <Typography
-                  variant="h2"
+                  variant="subtitle2"
                   sx={{
                     position: 'absolute',
                     top: '50%',
@@ -66,7 +66,7 @@ const GallerySection = ({ cards }) => {
                     width: '90%',
                     transform: 'translate(-80%, -50%)',
                     textAlign: 'left',
-                    fontSize: '1.4rem',
+                    // fontSize: '1rem',
                     lineHeight: '1',
                     fontWeight: 'bold',
                     background: `linear-gradient(90deg, #ff7a18, #af002d 25%, #319197 50%, #fbd72b 75%, #ff7a18)`,

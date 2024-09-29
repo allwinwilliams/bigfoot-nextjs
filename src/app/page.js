@@ -203,21 +203,21 @@ export default function HomePage() {
         <Marquee gradient={false} speed={40}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mx: 2 }}>
             {/* <WhatsAppIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
-            <Typography variant="h6" sx={{ color: '#fff' }}>
+            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               FOR MORE CUSTOMISATIONS AND GROUP ORDERS, CONTACT 87549 68346
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             {/* <PrintIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
-            <Typography variant="h6" sx={{ color: '#fff' }}>
+            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               EXPRESS YOURSELF
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            <Typography variant="h6" sx={{ color: '#fff' }}>
+            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               FREEDOM OF EXPRESSION
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             {/* <LocalShippingIcon sx={{ color: '#fff', marginRight: 1 }} /> */}
-            <Typography variant="h6" sx={{ color: '#fff' }}>
+            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               PREMIUM CONCEPTUAL DESIGNS
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
@@ -319,7 +319,7 @@ export default function HomePage() {
                       document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    Craft Yours Now
+                    Craft yours now
                   </Button>
               </Grid>
             </Grid>
@@ -337,15 +337,14 @@ export default function HomePage() {
           textAlign: 'center',
         }}
       >
-        <Typography variant="h3"
+        <Typography variant="h4"
           sx={{
-            mb: 4,
-            color: '#bbbbbb'
+            mb: 2,
           }}>
           Explore the range
         </Typography>
         <Grid container spacing={2} sx={{my: 8}}>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}
               href="/product/song-tshirt"
@@ -368,10 +367,10 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Style With Music
+                  Style with music
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Design with your favorite song
@@ -379,7 +378,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/prompt-generated-tshirt" 
@@ -402,10 +401,10 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Generate with Prompt
+                  Generate with prompt
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Your idea and style generated
@@ -413,7 +412,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/dictionary-tshirt" 
@@ -436,7 +435,7 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
                   Dictionary of whatever
@@ -447,7 +446,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}
               href="/product/emoji-tshirt"
@@ -470,10 +469,10 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  😊 Express with Emojis
+                  😊 Express with emojis
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Design with emoji and short text
@@ -481,7 +480,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/japanese-tshirt" 
@@ -504,7 +503,7 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
                   Japanese (ジャパニーズ)
@@ -516,7 +515,7 @@ export default function HomePage() {
             </Link>
           </Grid>
           
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink} 
               href="/product/text-tshirt" 
@@ -539,10 +538,10 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Any Text
+                  Any text
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   Write any word or short phrase
@@ -550,7 +549,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
               LinkComponent={NextLink}
               href="/product/basic-tshirt"
@@ -573,10 +572,10 @@ export default function HomePage() {
                     },
                   }}
                 >
-                  <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: '#444444' }}>
-                  Bigfoot Basics
+                  Basics by Bigfoot
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                   From Bigfoot The Brand
@@ -584,7 +583,7 @@ export default function HomePage() {
               </Box>
             </Link>
           </Grid>
-          <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Box>
               <Box
                 sx={{
@@ -599,7 +598,7 @@ export default function HomePage() {
                   handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
                 }}  
               >
-                <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px' }} />
               </Box>
               <Typography variant="h6" sx={{ color: '#444444' }}>
                 Launching soon
@@ -609,7 +608,7 @@ export default function HomePage() {
               </Typography>
             </Box>
           </Grid>
-          {/* <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
+          {/* <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
             <Box>
               <Box
                 sx={{
@@ -624,7 +623,7 @@ export default function HomePage() {
                   handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
                 }}  
               >
-                <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px' }} />
               </Box>
               <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                 More Coming Soon
@@ -643,234 +642,9 @@ export default function HomePage() {
       />
       
       <Container>
-      <Box>
-        <GallerySection cards={galleryCards} />
-      </Box>
-        
-      
-      <ProductStaticContent/>
-      {/* <HorizontalScrollSection /> */}
-      
-      <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, mt: 24 }}>
-        <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            borderRadius: 16,
-            zIndex: 0,
-          }}
-        >
-          
-          <source src="https://videos.pexels.com/video-files/4669695/4669695-uhd_2732_1440_25fps.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <Paper elevation={4} sx={{
-          padding: {md: 10, xs: 4},
-          borderRadius: 4,
-          mt: 4,
-          boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
-          color: 'white',
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 0,
-        }}>
-          <Grid container spacing={4} alignItems="righ" style={{zIndex: 999}}>
-            <Grid item xs={12} md={6} sx={{zIndex: 1000}}>
-              <img
-                src="/landing-page/song-banner.png"
-                alt="Custom T-shirt"
-                style={{ 
-                  width: '550px',
-                  borderRadius: '16px',
-                  // position: 'absolute',
-                  bottom: '-60px', left: '-40px'  
-                }}
-              />
-          </Grid>
-          <Grid item xs={12} md={6}
-            sx={{padding: 4}}>
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 'bold',
-                  my: 2,
-                }}
-              >
-                Customise with Music.< br/>
-                Choose from millions.
-              </Typography>
-              <Typography variant="subtitle2"
-              sx={{
-                color: 'rgba(255, 255, 255, 0.8)'
-              }}>
-                Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, album art, or any design that represents the music you love. Our high-quality printing ensures that your custom T-shirt looks amazing and lasts long. Create a unique piece of clothing that speaks to your musical tastes and personality.
-              </Typography>
-              
-              <Button 
-              variant="contained" 
-              color="primary" 
-              component={Link} 
-              href="/product/song-tshirt" 
-              startIcon={<CreateIcon />}
-              sx={{ 
-                mt: 4, 
-                padding: 2, 
-                fontWeight: 'bold', 
-                fontFamily: 'Inter', 
-                textTransform: 'none',
-                background: 'linear-gradient(45deg, #AD26FF 20%, #FF26CF 80%)',
-                backgroundSize: '400% 400%',
-                animation: 'backgroundMovement 4s ease infinite',  
-                borderRadius: 4,
-                width: '100%'
-              }} 
-            >
-              Craft with Music
-            </Button>
-            </Grid>
-          </Grid>
-        </Paper>        
-      </Box>    
-
-      <Box sx={{ position: 'relative', width: '100%', backgroundColor: '#000000', borderRadius: 8, marginTop: 8 }}>
-        <video
-          autoPlay
-          loop
-          muted
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            borderRadius: 16,
-            zIndex: 0,
-          }}
-        >
-          <source src="https://videos.pexels.com/video-files/18069235/18069235-uhd_2560_1440_24fps.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <Paper elevation={4} sx={{
-          padding: {md: 8, xs: 4},
-          paddingBottom: 1,
-          borderRadius: 4,
-          mt: 4,
-          boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
-          // color: 'white',
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          zIndex: 1,
-        }}>
-          <Grid container spacing={4} alignItems="center" style={{zIndex: 999}}>
-            <Grid item xs={12} md={6}
-            sx={{paddingX: 4}}>
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 'bold',
-                  mb: 2,
-                }}
-              >
-                Draw with a prompt.<br/>
-                Be imaginative.
-              </Typography>
-              <Typography variant="subtitle2"
-              sx={{
-                color: 'rgba(0, 0, 0, 0.8)'
-              }}>
-                Imagine anything. Make it alive with a simple prompt.
-              </Typography>
-              
-              <Button 
-              variant="contained" 
-              color="primary" 
-              component={Link} 
-              href="/product/prompt-generated-tshirt" 
-              startIcon={<CreateIcon />}
-              sx={{ 
-                mt: 4, 
-                padding: 2, 
-                fontWeight: 'bold', 
-                fontFamily: 'Inter', 
-                textTransform: 'none',
-                borderRadius: 4,
-                width: '100%'
-              }} 
-            >
-              Start Imagining
-            </Button>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <img
-                src="/landing-page/ai-banner.png"
-                alt="Custom T-shirt"
-                style={{ width: '100%', borderRadius: '16px' }}
-              />
-            </Grid>
-          </Grid>
-        </Paper>
-      </Box>  
-        <Paper elevation={1} sx={{ padding: 4, borderRadius: 4, mt: 4 }}>
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <img
-                src="/landing-page/song-banner.png"
-                alt="Custom T-shirt"
-                style={{ width: '100%', borderRadius: '16px' }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 'bold',
-                  mb: 2,
-                }}
-              >
-                You design.
-                We develop.<br/>
-                Take control of the design.<br/>
-              </Typography>
-              <Typography variant="subtitle2"
-              sx={{
-                color: 'rgba(0, 0, 0, 0.8)'
-              }}>
-                Imagine wearing your favorite song! Now you can customize your T-shirt with lyrics, or any design that represents the music you love.
-              </Typography>
-              <Button 
-                variant="contained" 
-                color="primary" 
-                component={Link} 
-                href="#the-range" 
-                startIcon={<CreateIcon />}
-                sx={{ 
-                  mt: 4, 
-                  padding: 2, 
-                  fontWeight: 'bold', 
-                  fontFamily: 'Inter', 
-                  textTransform: 'none',
-                  background: 'linear-gradient(45deg, #fd1f4f 20%, #FF8E53 80%)',
-                  backgroundSize: '400% 400%',
-                  animation: 'backgroundMovement 4s ease infinite',  
-                  borderRadius: 4,
-                  width: '100%'
-                }} 
-              >
-                Craft Your Own Tshirt
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
+        <Box>
+          <GallerySection cards={galleryCards} />
+        </Box>
       </Container>
     </Box>
   );

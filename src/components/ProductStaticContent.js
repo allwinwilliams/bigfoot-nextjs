@@ -244,7 +244,7 @@ export default function ProductStaticContent() {
                     }}
                 >
                     
-                    <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#BBBBBB' }}>
+                    <Typography variant="h4" sx={{  }}>
                         What bigfoot offers that others don't?
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
