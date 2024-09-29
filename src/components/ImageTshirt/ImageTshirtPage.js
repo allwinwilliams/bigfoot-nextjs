@@ -129,7 +129,7 @@ const ImageTshirtPage = () => {
     >
       <Box
         sx={{
-          paddingTop: 1,
+          py: 2,
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
@@ -141,9 +141,9 @@ const ImageTshirtPage = () => {
         href={'/'}
       >
         <img
-          src='/logo.png'
+          src='/wordmark.svg'
           alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
+          style={{ width: 96 }}
         />
       </Box>
       <Box sx={{ paddingY: 1, textAlign: 'center' }}>

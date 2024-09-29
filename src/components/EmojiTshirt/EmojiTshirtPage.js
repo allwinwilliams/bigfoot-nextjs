@@ -213,7 +213,7 @@ const EmojiTshirtPage = () => {
       >
         <Box 
           sx={{
-            paddingTop: 1,
+            py: 2,
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
@@ -225,12 +225,12 @@ const EmojiTshirtPage = () => {
           href={'/'}
         >
           <img
-            src='/logo.png'
+            src='/wordmark.svg'
             alt='Bigfoot Logo'
-            style={{ width: 48, marginBottom: 8 }}
+            style={{ width: 96 }}
           />
         </Box>
-        <Box sx={{ paddingY: 1, textAlign: 'center' }}>
+        {/* <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
             variant="h5"
             gutterBottom 
@@ -246,7 +246,7 @@ const EmojiTshirtPage = () => {
           >
             Pick your emoji. Build your T-Shirt.
           </Typography>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',

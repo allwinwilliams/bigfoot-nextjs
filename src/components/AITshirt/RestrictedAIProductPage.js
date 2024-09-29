@@ -155,7 +155,7 @@ const RestrictedAiProductPage = () => {
       >
         <Box 
           sx={{
-            paddingTop: 1,
+            py: 2,
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
@@ -167,12 +167,12 @@ const RestrictedAiProductPage = () => {
           href={'/'}
         >
           <img
-            src='/logo.png'
+            src='/wordmark.svg'
             alt='Bigfoot Logo'
-            style={{ width: 48, marginBottom: 8 }}
+            style={{ width: 96 }}
           />
         </Box>
-        <Box sx={{ paddingY: 1, textAlign: 'center' }}>
+        {/* <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
             variant="h5"
             gutterBottom 
@@ -188,7 +188,7 @@ const RestrictedAiProductPage = () => {
           >
             Personalise your T-Shirt based on a prompt. Enter a prompt and see the magic.
           </Typography>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
@@ -238,8 +238,8 @@ const RestrictedAiProductPage = () => {
                   border: '1px solid #dbdbdb', 
                   boxShadow: '0 0 8px rgba(0,0,0,0.06)',
                   }}>
-                  <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                    Construct your prompt
+                  <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                    Design with a prompt
                   </Typography>
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <Select value={subject} onChange={handleSubjectChange} displayEmpty>

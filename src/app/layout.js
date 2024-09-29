@@ -1,4 +1,4 @@
-// app/layout.js or RootLayout
+"use client";
 
 import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
@@ -6,9 +6,20 @@ import Footer from '../components/Footer';
 import { Container } from '@mui/material';
 import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import Loader from '../components/Loader'; // Import Loader component
+import { useEffect, useState } from 'react';
 
 export default function RootLayout({ children }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -31,39 +42,20 @@ export default function RootLayout({ children }) {
         <meta property="og:url" content="https://bigfoot.land" />
         <meta property="og:type" content="website" />
 
-        <script type="application/ld+json">
-          {/* {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            'url': 'https://www.bigfoot.land',
-            'logo': 'https://www.bigfoot.land/logo.png',
-            'image': 'https://www.bigfoot.land/brand-image.png',
-            'name': 'Bigfoot - Personlised Fashion',
-            'description': 'A fashion tech brand enabling people to express themselves through conceptual art and fashion. Personalise your oversized T-shirts with your favourite songs, AI prompt, Emojis and other unique designs. Made in India for the world.',
-            'contactPoint': {
-              '@type': 'ContactPoint',
-              'telephone': '+91 87549 68346',
-              'email': 'crew@bigfoot.land',
-              'contactType': 'Customer Service',
-              'areaServed': 'IN'
-            },
-            'sameAs': [
-              'https://www.linkedin.com/company/bigfoot-clothing/',
-              'https://www.instagram.com/bigfoot.land/'
-            ]
-          })} */}
-        </script>
-        
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <ClientThemeProvider>
-          {children}
-          <Container>
-            <Footer />
-          </Container>
-          <LanguageSwitcher />
-        </ClientThemeProvider>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ClientThemeProvider>
+            {children}
+            <Container>
+              <Footer />
+            </Container>
+            <LanguageSwitcher />
+          </ClientThemeProvider>
+        )}
         <AudioControl />
         <Analytics />
       </body>

@@ -150,7 +150,7 @@ const JapaneseTshirtPage = () => {
       >
         <Box 
           sx={{
-            paddingTop: 1,
+            py: 2,
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
@@ -162,12 +162,12 @@ const JapaneseTshirtPage = () => {
           href={'/'}
         >
           <img
-            src='/logo.png'
+            src='/wordmark.svg'
             alt='Bigfoot Logo'
-            style={{ width: 48, marginBottom: 8 }}
+            style={{ width: 96 }}
           />
         </Box>
-        <Box sx={{ paddingY: 1, textAlign: 'center' }}>
+        {/* <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
             variant="h5"
             gutterBottom 
@@ -188,7 +188,7 @@ const JapaneseTshirtPage = () => {
           >
             A T-Shirt that is designed with a japanese text in Katakana script of a word of your choice
           </Typography>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
@@ -228,6 +228,9 @@ const JapaneseTshirtPage = () => {
               md={5}
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 0 }}>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                  Turn you text to Japanese
+                </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
                   <Autocomplete
                     freeSolo

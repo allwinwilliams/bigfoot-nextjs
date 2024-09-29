@@ -103,7 +103,7 @@ const BasicTshirtPage = () => {
     >
       <Box 
         sx={{
-          paddingTop: 1,
+          py: 2,
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
@@ -115,12 +115,12 @@ const BasicTshirtPage = () => {
         href={'/'}
       >
         <img
-          src='/logo.png'
+          src='/wordmark.svg'
           alt='Bigfoot Logo'
-          style={{ width: 48, marginBottom: 8 }}
+          style={{ width: 96 }}
         />
       </Box>
-      <Box sx={{ paddingY: 1, textAlign: 'center' }}>
+      {/* <Box sx={{ paddingY: 1, textAlign: 'center' }}>
         <Typography 
           variant="h5"
           gutterBottom 
@@ -136,7 +136,7 @@ const BasicTshirtPage = () => {
         >
           Basics from Bigfoot. Create your basic.
         </Typography>
-      </Box>
+      </Box> */}
       <Box
         sx={{
           boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
@@ -176,8 +176,8 @@ const BasicTshirtPage = () => {
             md={5}
           >
             <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 3 }}>
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                Customise your Bigfoot basic
+              <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                Customise your basic
               </Typography>
               <Button
                 variant="outlined"

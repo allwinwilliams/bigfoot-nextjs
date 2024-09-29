@@ -34,14 +34,14 @@ const Footer = () => {
               bigfoot
             </Typography> */}
             <Typography variant="subtitle1">
-              Conceptual Art & Fashion
+              unlimited possibilities, made real
             </Typography>
           </Link>
-          <Typography variant="subtitle2" sx={{ color: '#999999' }}>
-            We are a fashion tech brand aimed to enabling people to express themselves through fashion.
+          <Typography variant="subtitle2" sx={{  }}>
+            We are a fashion tech brand that enables people to express themselves through fashion.
           </Typography>
-          <Typography variant="subtitle2" sx={{ mt: 2, color: '#999999' }}>
-            We do help on customised bulk orders for events and corporates, contact us at crew@bigfoot.land or +91 87549 68346.
+          <Typography variant="subtitle2" sx={{ mt: 2 }}>
+          For customisations and bulk orders, reach us at crew@bigfoot.land or +91 87549 68346.
           </Typography>
           <Typography variant="subtitle2" sx={{ mt: 2 }}>
             Made with ❤️ in India for the world

@@ -441,7 +441,7 @@ export default function HomePage() {
                   Dictionary of whatever
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Find meaning of anyword
+                  Find meaning of any word
                 </Typography>
               </Box>
             </Link>
@@ -578,7 +578,7 @@ export default function HomePage() {
                   Basics by Bigfoot
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  From Bigfoot The Brand
+                  Everyday basics for you
                 </Typography>
               </Box>
             </Link>
