@@ -17,13 +17,15 @@ export default async function handler(req, res) {
             content: `You are a helpful assistant that provides accurate and **popular** Japanese translations for English words. When translating, always prioritize commonly used, contextually appropriate translations in Japanese. If there is a well-known or widely used Japanese word (in Hiragana, Katakana, or Kanji), prefer that. Only use Katakana for phonetic transliteration **if no widely used equivalent exists**. 
       
             The goal is to provide translations that only include the Japanese word and its phonetics, without any additional context, brackets, or explanations.
+
+            If the input word is already in Japanese (in Hiragana, Katakana, or Kanji), return the exact same word(same characters) as the "japanese_word" and provide its phonetics in English.
       
             Return the response in JSON format strictly following this schema:
             {
-              "word": "original word in English",
+              "word": "original word in English or Japanese",
               "translation": {
                 "japanese_word": "the accurate and popular Japanese translation of the word. Use Hiragana, Kanji, or Katakana as appropriate",
-                "phonetics": "English pronunciation of the Japanese word using English letters with " · " in between sounds"
+                "phonetics": "English pronunciation of the Japanese word using English letters with ' · ' in between sounds"
               }
             }.
             

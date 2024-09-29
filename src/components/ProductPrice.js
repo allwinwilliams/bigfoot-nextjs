@@ -9,14 +9,18 @@ const ProductPrice = ({ priceInINR, priceInUSD }) => {
   useEffect(() => {
     const fetchUserLocation = async () => {
       const location = await getUserLocation();
-      if (location && location.countryCode === 'IN') {
+      if (location && location.countryCode === 'INR') {
         // User is from India, show INR price with ₹ symbol
         setCurrencySymbol('₹');
         setPrice(priceInINR);
-      } else {
-        // Default to USD symbol and price
+      }else if (location && location.countryCode === 'US') {
+        // User is from US, show USD
         setCurrencySymbol('$');
         setPrice(priceInUSD);
+      } else { 
+        // Default to USD symbol and price
+        setCurrencySymbol('₹');
+        setPrice(priceInINR);
       }
     };
     fetchUserLocation();
