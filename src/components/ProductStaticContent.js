@@ -370,7 +370,7 @@ export default function ProductStaticContent() {
                                 alt="Soft Touch Knitting"
                                 style={{ width: '100%', borderRadius: '16px' }}
                             />
-                            <Typography variant="h5" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                            <Typography variant="h5" sx={{ my: 2 }}>
                                 Soft Touch Knitted Cotton
                             </Typography>
                             <Typography variant="body1">
@@ -391,7 +391,7 @@ export default function ProductStaticContent() {
                                 alt="Direct To Garment"
                                 style={{ width: '100%', borderRadius: '16px' }}
                             />
-                            <Typography variant="h5" sx={{ fontWeight: '800', mt: 2, mb: 2 }}>
+                            <Typography variant="h5" sx={{ my: 2 }}>
                                 High Quality Customised Printing
                             </Typography>
                             <Typography variant="body1">

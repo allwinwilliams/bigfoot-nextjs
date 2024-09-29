@@ -232,21 +232,16 @@ const EmojiTshirtPage = () => {
         </Box>
         <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
-            variant="h4"
+            variant="h5"
             gutterBottom 
             sx={{
-              fontSize: {
-                xs: '1.25rem',
-                sm: '1.5rem',
-                md: '2rem',
-              },
-              fontWeight: 'bold'
+              
             }}
           >
             Emoji T-shirt
           </Typography>
           <Typography 
-            variant='subtitle1'
+            variant='subtitle2'
             sx={{color: '#777777', lineHeight: 1.25}}
           >
             Pick your emoji. Build your T-Shirt.

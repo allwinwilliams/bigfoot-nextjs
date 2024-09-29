@@ -24,26 +24,22 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Inter, Arial, sans-serif', // Set Inter as the default font
+    fontFamily: 'Inter, Arial, sans-serif',
     h1: {
       fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
-      textTransform: 'uppercase', // Capitalize h1
     },
     h2: {
       fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
-      textTransform: 'uppercase', // Capitalize h2
     },
     h3: {
       fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
-      textTransform: 'uppercase', // Capitalize h3
     },
     h4: {
       fontFamily: 'Outfit, Arial, sans-serif',
       fontWeight: 600,
-      textTransform: 'uppercase', // Capitalize h3
     },
     h5: {
       fontFamily: 'Outfit, Arial, sans-serif',
@@ -51,7 +47,7 @@ const theme = createTheme({
     },
     h6: {
       fontFamily: 'Outfit, Arial, sans-serif',
-      fontWeight: 600,
+      fontWeight: 500,
     },
   },
 });

@@ -162,15 +162,10 @@ const TextTshirtPage = () => {
         </Box>
         <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
-            variant="h4"
+            variant="h5"
             gutterBottom 
             sx={{
-              fontSize: {
-                xs: '1.25rem',
-                sm: '1.5rem',
-                md: '2rem',
-              },
-              fontWeight: 'bold'
+              
             }}
           >
             Write whatever

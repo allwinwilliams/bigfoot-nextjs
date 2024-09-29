@@ -169,7 +169,7 @@ const JapaneseTshirtPage = () => {
         </Box>
         <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
-            variant="h4"
+            variant="h5"
             gutterBottom 
             sx={{
               fontSize: {
@@ -183,7 +183,7 @@ const JapaneseTshirtPage = () => {
             Japanese(ジャパニーズ) on T-Shirt
           </Typography>
           <Typography 
-            variant='subtitle1'
+            variant='subtitle2'
             sx={{color: '#777777', lineHeight: 1.25}}
           >
             A T-Shirt that is designed with a japanese text in Katakana script of a word of your choice

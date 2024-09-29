@@ -169,21 +169,16 @@ const DictionaryTshirtPage = () => {
         </Box>
         <Box sx={{ paddingY: 1, textAlign: 'center' }}>
           <Typography 
-            variant="h4"
+            variant="h5"
             gutterBottom 
             sx={{
-              fontSize: {
-                xs: '1.25rem',
-                sm: '1.5rem',
-                md: '2rem',
-              },
-              fontWeight: 'bold'
+              
             }}
           >
             Dictionary on T-Shirt
           </Typography>
           <Typography 
-            variant='subtitle1'
+            variant='subtitle2'
             sx={{color: '#777777', lineHeight: 1.25}}
           >
             A T-Shirt that is designed based on a dictionary definition of a word of your choice
