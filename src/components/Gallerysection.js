@@ -38,6 +38,7 @@ const GallerySection = ({ cards }) => {
                 cursor: 'pointer',
                 backgroundColor: isTextCard ? 'black' : 'transparent', // Black background for text card
                 transition: 'transform 0.3s ease-in-out',
+                mt: 4,
               }}
             >
               {isVideo ? (

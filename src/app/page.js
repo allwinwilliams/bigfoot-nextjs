@@ -118,24 +118,24 @@ export default function HomePage() {
       image: '/gallery/3.png',
       hoverImage: '/gallery/4.png',
       url: '#the-range',
-      width: '20%',
-      aspectRatio: '250%',
+      width: '30%',
+      aspectRatio: '150%',
     },
     {
       title: 'The gang',
       image: '/gallery/8.png',
       hoverImage: '/gallery/6.png',
       url: '#the-range',
-      width: '50%',
-      aspectRatio: '80%',
+      width: '30%',
+      aspectRatio: '150%',
     },
     {
       title: '',
       image: '/gallery/7.png',
       hoverImage: '/gallery/7a.png',
       url: '#the-range',
-      width: '25%',
-      aspectRatio: '260%',
+      width: '30%',
+      aspectRatio: '150%',
     },
 //     {
 //       title: '',
@@ -328,10 +328,11 @@ export default function HomePage() {
         id="the-range"
         sx={{
           background: 'linear-gradient(to bottom, #f7f8fa, #F1F1F1)',
-          paddingX: { md: 12, xs: 4 },
+          paddingX: { md: 16, xs: 4 },
           paddingY: 16,
           marginX: 'auto',
           textAlign: 'center',
+          width: '100%'
         }}
       >
         <Typography variant="h4"
@@ -340,297 +341,299 @@ export default function HomePage() {
           }}>
           Explore the range
         </Typography>
-        <Grid container spacing={2} sx={{my: 4}}>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink}
-              href="/product/song-tshirt"
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/387/387533_3829977-lq.mp3');
-              }}  
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px' }} />
+        <Container>
+          <Grid container spacing={2} sx={{my: 4}}>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink}
+                href="/product/song-tshirt"
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/387/387533_3829977-lq.mp3');
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Style with music
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Design with your favorite song
+                  </Typography>
                 </Box>
-                <Typography variant="h6">
-                  Style with music
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Design with your favorite song
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink} 
-              href="/product/prompt-generated-tshirt" 
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-              }}  
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink} 
+                href="/product/prompt-generated-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Generate with prompt
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Your idea and style generated
+                  </Typography>
                 </Box>
-                <Typography variant="h6">
-                  Generate with prompt
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Your idea and style generated
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink} 
-              href="/product/dictionary-tshirt" 
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-              }}  
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink} 
+                href="/product/dictionary-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Dictionary of whatever
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Find meaning of any word
+                  </Typography>
                 </Box>
-                <Typography variant="h6">
-                  Dictionary of whatever
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Find meaning of any word
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink}
-              href="/product/emoji-tshirt"
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3', 0.4);
-              }}
-            >
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink}
+                href="/product/emoji-tshirt"
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3', 0.4);
+                }}
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.8s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    😊 Express with emojis
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Design with emoji and short text
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink} 
+                href="/product/japanese-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Japanese (ジャパニーズ)
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Turn any word into japanese
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink} 
+                href="/product/text-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Any text
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Write any word or short phrase
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink}
+                href="/product/basic-tshirt"
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
+                }}
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.8s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Basics by Bigfoot
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Everyday basics for you
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Box>
                 <Box
                   sx={{
                     transition: 'transform 0.8s',
-                    opacity: 0.98,
+                    opacity: 0.3,
                     '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
+                      transform: 'scaleX(-1)',
+                      opacity: 0.6,
                     },
                   }}
+                  onMouseEnter={() => {
+                    handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                  }}  
                 >
-                  <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px' }} />
+                  <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6">
-                  😊 Express with emojis
+                  Launching soon
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Design with emoji and short text
+                  Check within a few days
                 </Typography>
               </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink} 
-              href="/product/japanese-tshirt" 
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-              }}  
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
-                </Box>
-                <Typography variant="h6">
-                  Japanese (ジャパニーズ)
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Turn any word into japanese
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink} 
-              href="/product/text-tshirt" 
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-              }}  
-            >
-              <Box>
-                <Box
-                  sx={{
-                    transition: 'transform 0.9s, opacity 0.4s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
-                </Box>
-                <Typography variant="h6">
-                  Any text
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Write any word or short phrase
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Link
-              LinkComponent={NextLink}
-              href="/product/basic-tshirt"
-              underline="none"
-              onClick={(e) => {
-                handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-              }}
-              onMouseEnter={() => {
-                handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
-              }}
-            >
+            </Grid>
+            {/* <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Box>
                 <Box
                   sx={{
                     transition: 'transform 0.8s',
-                    opacity: 0.98,
-                    '&:hover': {
-                      transform: 'scale(1.2)',
-                      opacity: 1.0,
-                    },
-                  }}
-                >
-                  <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px' }} />
-                </Box>
-                <Typography variant="h6">
-                  Basics by Bigfoot
-                </Typography>
-                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Everyday basics for you
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Box>
-              <Box
-                sx={{
-                  transition: 'transform 0.8s',
-                  opacity: 0.3,
-                  '&:hover': {
-                    transform: 'scaleX(-1)',
                     opacity: 0.6,
-                  },
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
-                }}  
-              >
-                <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px' }} />
+                    '&:hover': {
+                      transform: 'scaleX(-1)',
+                      opacity: 1.0,
+                    },
+                  }}
+                  onMouseEnter={() => {
+                    handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                  }}  
+                >
+                  <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px' }} />
+                </Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                  More Coming Soon
+                </Typography>
+                <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                  Our lab is cooking 🧪...
+                </Typography>
               </Box>
-              <Typography variant="h6">
-                Launching soon
-              </Typography>
-              <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                Check within a few days
-              </Typography>
-            </Box>
+            </Grid> */}
           </Grid>
-          {/* <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-            <Box>
-              <Box
-                sx={{
-                  transition: 'transform 0.8s',
-                  opacity: 0.6,
-                  '&:hover': {
-                    transform: 'scaleX(-1)',
-                    opacity: 1.0,
-                  },
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
-                }}  
-              >
-                <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px' }} />
-              </Box>
-              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                More Coming Soon
-              </Typography>
-              <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                Our lab is cooking 🧪...
-              </Typography>
-            </Box>
-          </Grid> */}
-        </Grid>
+        </Container>
       </Box>
       <AutoScrollCards 
         itemsRow1={sampleData1}
@@ -641,6 +644,40 @@ export default function HomePage() {
       <Container>
         <Box>
           <GallerySection cards={galleryCards} />
+        </Box>
+        <Box sx={{ mx: 'auto', textAlign: 'center' }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            component={Link}
+            href="#the-range"
+            startIcon={<CreateIcon />}
+            sx={{
+              mt: 8,
+              padding: 2,
+              fontWeight: '600',
+              fontFamily: 'Inter',
+              textTransform: 'none',
+              borderRadius: 4,
+              width: {
+                xs: '100%', // 100% width for mobile screens
+                md: '50%',  // 50% width for desktop screens
+              },
+              background: 'linear-gradient(0deg, #222222 0%, #000000 100%)',
+              backgroundSize: '600% 600%',
+              animation: 'backgroundMovement 4s ease infinite',
+              color: 'white',
+              mx: 'auto',
+              justifyContent: 'center',
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePlayClick('https://cdn.freesound.org/previews/107/107789_1727136-lq.mp3');
+              document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Craft yours now
+          </Button>
         </Box>
       </Container>
     </Box>
