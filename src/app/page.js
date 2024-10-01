@@ -277,7 +277,15 @@ export default function HomePage() {
                     textAlign: 'center',
                   }}
                 >
-                  Express yourself with personalised fashion
+                  Express yourself with personalized fashion
+                </Typography>
+                <Typography variant="subtitle2"
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    textAlign: 'center',
+                    paddingX: {md: 8, xs: 2}
+                  }}>
+                  Customize your T-shirts with songs, emojis, Japanese, AI, and more.
                 </Typography>
                 <Typography variant="subtitle2"
                   sx={{
@@ -286,10 +294,9 @@ export default function HomePage() {
                     mb: 4,
                     paddingX: {md: 8, xs: 2}
                   }}>
-                  Exploring creativity with you!
-                  Bring your ideas to life
-                  Join our community!
+                  Bring your ideas to life by joining our community of creatives!
                 </Typography>
+                
                   <Button 
                     variant="contained" 
                     color="secondary" 
