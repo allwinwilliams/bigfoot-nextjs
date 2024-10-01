@@ -100,11 +100,41 @@ const FreeGiftComponent = () => {
           maxWidth: '600px',
           position: 'relative',
         }}
+        onClick={handlePayment}
       >
         <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
           Free gift delivered for ₹1
         </Typography>
-        <Typography variant="h1" sx={{ my: 2 }}>
+        <Typography
+          variant="h1"
+          sx={{
+            my: 2,
+            animation: 'shake 2s ease-in-out infinite',
+            '@keyframes shake': {
+              '0%': {
+                transform: 'translateY(0)',
+              },
+              '10%': {
+                transform: 'translateY(-10px)',
+              },
+              '20%, 40%, 60%': {
+                transform: 'rotate(-10deg) translateY(-5px)',
+              },
+              '30%, 50%, 70%': {
+                transform: 'rotate(10deg) translateY(-10px)',
+              },
+              '70%': {
+                transform: 'translateY(0px)',
+              },
+              '75%': {
+                transform: 'translateY(0)',
+              },
+              '100%': {
+                transform: 'translateY(0)',
+              },
+            },
+          }}
+        >
           🎁
         </Typography>
         <Typography variant="body1" sx={{ mb: 4, color: '#777777', textAlign: 'center' }}>
@@ -124,9 +154,10 @@ const FreeGiftComponent = () => {
             borderRadius: 2,
             paddingY: 2,
             background: 'linear-gradient(144deg,#833ab4,#fd1d1d,#fcb045)',
-            backgroundSize: '300% 300%',
+            backgroundSize: '200% 200%',
             boxShadow: 0,
-            animation: 'backgroundMovement 4s ease infinite',
+            animation: 'backgroundMovement 2s ease infinite',
+            cursor: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><text y="40" font-size="40">🎁</text></svg>'), auto`
           }}
         >
           {buyNowLoading ? (

@@ -217,7 +217,7 @@ export default function HomePage() {
         <Grid container spacing={2} sx={{my: 8}}>
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink}
+              // LinkComponent={NextLink}
               href="/product/song-tshirt"
               underline="none"
               onClick={(e) => {
@@ -251,7 +251,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink} 
+              // LinkComponent={NextLink} 
               href="/product/prompt-generated-tshirt" 
               underline="none"
               onClick={(e) => {
@@ -285,7 +285,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink} 
+              // LinkComponent={NextLink} 
               href="/product/dictionary-tshirt" 
               underline="none"
               onClick={(e) => {
@@ -319,7 +319,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink}
+              // LinkComponent={NextLink}
               href="/product/emoji-tshirt"
               underline="none"
               onClick={(e) => {
@@ -353,7 +353,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink} 
+              // LinkComponent={NextLink} 
               href="/product/japanese-tshirt" 
               underline="none"
               onClick={(e) => {
@@ -388,7 +388,7 @@ export default function HomePage() {
           
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink} 
+              // LinkComponent={NextLink} 
               href="/product/text-tshirt" 
               underline="none"
               onClick={(e) => {
@@ -422,7 +422,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={6} md={3} sx={{mx: 'auto', padding: 2}}>
             <Link
-              LinkComponent={NextLink}
+              // LinkComponent={NextLink}
               href="/product/basic-tshirt"
               underline="none"
               onClick={(e) => {
