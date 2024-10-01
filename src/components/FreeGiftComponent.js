@@ -88,7 +88,7 @@ const FreeGiftComponent = () => {
   };
 
   return (
-    <Box sx={{ textAlign: 'center', mt: 4 }}>
+    <Box sx={{ textAlign: 'center', mt: 4 }} id="free-gift">
       {/* Main Section with Button */}
       <Box
         sx={{
