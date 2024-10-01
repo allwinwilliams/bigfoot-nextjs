@@ -97,17 +97,18 @@ const FreeGiftComponent = () => {
           borderRadius: 4,
           textAlign: 'center',
           mt: 4,
+          maxWidth: '600px',
           position: 'relative',
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-          Free gift for ₹1
+          Free gift delivered for ₹1
         </Typography>
         <Typography variant="h1" sx={{ my: 2 }}>
           🎁
         </Typography>
-        <Typography variant="body1" sx={{ mb: 4, color: '#777777' }}>
-          Get a free gift from Bigfoot by only paying Rs. 1.
+        <Typography variant="body1" sx={{ mb: 4, color: '#777777', textAlign: 'center' }}>
+          Get a surprise gift sent to you by only paying Rs. 1. Hurry to get yours home delivered within the next few days. 
         </Typography>
         <Button
           variant="contained"
@@ -121,6 +122,7 @@ const FreeGiftComponent = () => {
               md: '50%',
             },
             borderRadius: 2,
+            paddingY: 2,
             background: 'linear-gradient(144deg,#833ab4,#fd1d1d,#fcb045)',
             backgroundSize: '300% 300%',
             boxShadow: 0,
