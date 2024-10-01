@@ -5,7 +5,7 @@ import { useRef, useEffect } from 'react';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid, Link } from '@mui/material';
 import ProductStaticContent from '../components/ProductStaticContent';
 import HorizontalScrollSection from '../components/HorizontalScrollSection';
-import CreateIcon from '@mui/icons-material/Create';
+import BrushIcon from '@mui/icons-material/Brush';
 import AutoScrollCards from '@/components/AutoScrollCards';
 import Header from '@/components/Header';
 import { AspectRatio, Margin, Opacity } from '@mui/icons-material';
@@ -18,6 +18,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Marquee from "react-fast-marquee";
 import GallerySection from '../components/Gallerysection';
+import FreeGiftComponent from '@/components/FreeGiftComponent';
 
 
 
@@ -294,12 +295,10 @@ export default function HomePage() {
                     color="secondary" 
                     component={Link} 
                     href="#the-range" 
-                    startIcon={<CreateIcon />}
+                    startIcon={<BrushIcon />}
                     sx={{ 
                       mt: 0, 
                       padding: 2, 
-                      fontWeight: '600', 
-                      fontFamily: 'Inter', 
                       textTransform: 'none',
                       borderRadius: 4,
                       width: '100%',
@@ -316,7 +315,7 @@ export default function HomePage() {
                       document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    Craft yours now
+                    <Typography variant='h6'>Craft yours now</Typography>
                   </Button>
               </Grid>
             </Grid>
@@ -414,6 +413,40 @@ export default function HomePage() {
             <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Link
                 LinkComponent={NextLink} 
+                href="/product/japanese-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Japanese (ジャパニーズ)
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Turn any word into japanese
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                LinkComponent={NextLink} 
                 href="/product/dictionary-tshirt" 
                 underline="none"
                 onClick={(e) => {
@@ -479,40 +512,7 @@ export default function HomePage() {
                 </Box>
               </Link>
             </Grid>
-            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
-              <Link
-                LinkComponent={NextLink} 
-                href="/product/japanese-tshirt" 
-                underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-                }}  
-              >
-                <Box>
-                  <Box
-                    sx={{
-                      transition: 'transform 0.9s, opacity 0.4s',
-                      opacity: 0.98,
-                      '&:hover': {
-                        transform: 'scale(1.2)',
-                        opacity: 1.0,
-                      },
-                    }}
-                  >
-                    <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
-                  </Box>
-                  <Typography variant="h6">
-                    Japanese (ジャパニーズ)
-                  </Typography>
-                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                    Turn any word into japanese
-                  </Typography>
-                </Box>
-              </Link>
-            </Grid>
+            
             
             <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Link
@@ -642,21 +642,19 @@ export default function HomePage() {
       />
       
       <Container>
-        <Box>
-          <GallerySection cards={galleryCards} />
-        </Box>
-        <Box sx={{ mx: 'auto', textAlign: 'center' }}>
+      <Box sx={{ mx: 'auto', textAlign: 'center', my: 8 }}>
+          <Typography variant='h5'>
+            Create your own expression
+          </Typography>
           <Button
             variant="contained"
             color="secondary"
             component={Link}
             href="#the-range"
-            startIcon={<CreateIcon />}
+            startIcon={<BrushIcon />}
             sx={{
-              mt: 8,
+              mt: 4,
               padding: 2,
-              fontWeight: '600',
-              fontFamily: 'Inter',
               textTransform: 'none',
               borderRadius: 4,
               width: {
@@ -676,10 +674,17 @@ export default function HomePage() {
               document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            Craft yours now
+            <Typography variant='h6'>Craft yours now</Typography>
           </Button>
         </Box>
+        <Box>
+          <GallerySection cards={galleryCards} />
+        </Box>
+        
+
+        <FreeGiftComponent />
       </Container>
+      
     </Box>
   );
 }
