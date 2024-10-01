@@ -106,7 +106,7 @@ const FreeGiftComponent = () => {
         <Typography variant="h1" sx={{ my: 2 }}>
           🎁
         </Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>
+        <Typography variant="body1" sx={{ mb: 4, color: '#777777' }}>
           Get a free gift from Bigfoot by only paying Rs. 1.
         </Typography>
         <Button
@@ -120,16 +120,17 @@ const FreeGiftComponent = () => {
               xs: '100%',
               md: '50%',
             },
-            borderRadius: 4,
+            borderRadius: 2,
             background: 'linear-gradient(144deg,#833ab4,#fd1d1d,#fcb045)',
             backgroundSize: '300% 300%',
+            boxShadow: 0,
             animation: 'backgroundMovement 4s ease infinite',
           }}
         >
           {buyNowLoading ? (
             <CircularProgress size={24} sx={{ color: 'white' }} />
           ) : (
-            <Typography variant="h6">Get a Gift for ₹1</Typography>
+            <Typography variant="h6">Get your gift</Typography>
           )}
         </Button>
       </Box>
