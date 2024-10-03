@@ -46,6 +46,10 @@ const Footer = () => {
           <Typography variant="subtitle2" sx={{ mt: 2 }}>
             Made with ❤️ in India for the world
           </Typography>
+          <Typography variant="subtitle2" sx={{ mt: 2, color: '#777777' }}>
+            © 2024 Boredom Technologies LLP
+          </Typography>
+          
         </Grid>
 
         {/* Right Side - Links (Quick Links, Policies, Products) */}
@@ -92,77 +96,6 @@ const Footer = () => {
               }}
             >
               Product
-            </Link>
-          </Grid>
-
-          <Grid item xs={6} sm={4}>
-            <Typography variant="h6" gutterBottom>
-              Policies
-            </Typography>
-            <Link
-              href="/static-pages/contactus"
-              variant="body2"
-              display="block"
-              sx={{
-                mb: 1,
-                textDecoration: 'none',
-                color: 'inherit',
-                fontWeight: 'medium'
-              }}
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="/static-pages/privacypolicy"
-              variant="body2"
-              display="block"
-              sx={{
-                mb: 1,
-                textDecoration: 'none',
-                color: 'inherit',
-                fontWeight: 'medium'
-              }}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/static-pages/returnspolicy"
-              variant="body2"
-              display="block"
-              sx={{
-                mb: 1,
-                textDecoration: 'none',
-                color: 'inherit',
-                fontWeight: 'medium'
-              }}
-            >
-              Returns Policy
-            </Link>
-            <Link
-              href="/static-pages/shippingdetails"
-              variant="body2"
-              display="block"
-              sx={{
-                mb: 1,
-                textDecoration: 'none',
-                color: 'inherit',
-                fontWeight: 'medium'
-              }}
-            >
-              Shipping Details
-            </Link>
-            <Link
-              href="/static-pages/termsandconditions"
-              variant="body2"
-              display="block"
-              sx={{
-                mb: 1,
-                textDecoration: 'none',
-                color: 'inherit',
-                fontWeight: 'medium'
-              }}
-            >
-              Terms and Conditions
             </Link>
           </Grid>
 
@@ -262,6 +195,78 @@ const Footer = () => {
               Bigfoot Basics
             </Link>
           </Grid>
+
+          <Grid item xs={6} sm={4}>
+            <Typography variant="h6" gutterBottom>
+              Policies
+            </Typography>
+            <Link
+              href="/static-pages/contactus"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/static-pages/privacypolicy"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/static-pages/returnspolicy"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Returns Policy
+            </Link>
+            <Link
+              href="/static-pages/shippingdetails"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Shipping Details
+            </Link>
+            <Link
+              href="/static-pages/termsandconditions"
+              variant="body2"
+              display="block"
+              sx={{
+                mb: 1,
+                textDecoration: 'none',
+                color: 'inherit',
+                fontWeight: 'medium'
+              }}
+            >
+              Terms and Conditions
+            </Link>
+          </Grid>
+
         </Grid>
       </Grid>
     </Box>

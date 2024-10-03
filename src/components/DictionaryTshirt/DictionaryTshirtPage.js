@@ -222,9 +222,9 @@ const DictionaryTshirtPage = () => {
               xs={12}
               md={5}
             >
-              <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 0 }}>
+              <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 2 }}>
                 <Typography variant="h5" gutterBottom sx={{  }}>
-                  Get definition for any word
+                  Type any word
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
                   <Autocomplete
