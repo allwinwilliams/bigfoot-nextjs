@@ -27,12 +27,12 @@ const JapaneseTshirtPage = () => {
   const [loading, setLoading] = useState(false);
   const [renderCount, setRenderCount] = useState(0);
 
-  const [color, setColor] = useState(searchParams.get('color') || 'black');
+  const [color, setColor] = useState(searchParams.get('color') || 'beige');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
-  const [style, setStyle] = useState(searchParams.get('style') || 'small');
+  const [style, setStyle] = useState(searchParams.get('style') || 'bold');
   const [tooltipOpen, setTooltipOpen] = useState(false);
   
-  const [textInput, setTextInput] = useState(searchParams.get('text') || '');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || 'hello');
 
   const initialLoad = useRef(true);
 
@@ -56,10 +56,10 @@ const JapaneseTshirtPage = () => {
 
   useEffect(() => {
     const defaultParams = {
-      color: 'black',
+      color: 'beige',
       size: 'M',
-      style: 'small',
-      text: '',
+      style: 'bold',
+      text: 'hello',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style') || !searchParams.get('text')) {
