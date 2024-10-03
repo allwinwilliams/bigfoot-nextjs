@@ -69,19 +69,25 @@ export default function ProductType() {
             textAlign: 'center',
           }}
         >
-          <Typography variant="h2"
-            sx={{
-              fontWeight: 'bold',
-              mb: 8,
-              color: '#ababab'
-            }}>
-            Select from our range of products
-          </Typography>
-          <Grid container spacing={2} sx={{my: 8}}>
-            <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+          <Typography variant="h4"
+          sx={{
+            mb: 1,
+          }}>
+          Explore the range
+        </Typography>
+        <Container>
+          <Grid container spacing={2} sx={{my: 4}}>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Link
+                // LinkComponent={NextLink}
                 href="/product/song-tshirt"
-                underline="none"  
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/387/387533_3829977-lq.mp3');
+                }}  
               >
                 <Box>
                   <Box
@@ -94,10 +100,10 @@ export default function ProductType() {
                       },
                     }}
                   >
-                    <img src="/landing-page/song.png" alt="Song customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                    <img src="/landing-page/song.png" alt="Song T-Shirt Product image. Customised T-Shirt with Songs." style={{ width: '100%', borderRadius: '8px' }} />
                   </Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    Style Your Song
+                  <Typography variant="h6">
+                    Style with music
                   </Typography>
                   <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                     Design with your favorite song
@@ -105,10 +111,17 @@ export default function ProductType() {
                 </Box>
               </Link>
             </Grid>
-            <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
-              <Link 
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                // LinkComponent={NextLink} 
                 href="/product/prompt-generated-tshirt" 
-                underline="none"  
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
               >
                 <Box>
                   <Box
@@ -121,10 +134,10 @@ export default function ProductType() {
                       },
                     }}
                   >
-                    <img src="/landing-page/ai.png" alt="AI customisation" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                    <img src="/landing-page/ai.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
                   </Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    Paint with Prompt
+                  <Typography variant="h6">
+                    Generate with prompt
                   </Typography>
                   <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                     Your idea and style generated
@@ -132,10 +145,85 @@ export default function ProductType() {
                 </Box>
               </Link>
             </Grid>
-            <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Link
+                // LinkComponent={NextLink} 
+                href="/product/japanese-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/japanese.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Japanese (ジャパニーズ)
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Turn any word into japanese
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                // LinkComponent={NextLink} 
+                href="/product/dictionary-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/dictionary.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Dictionary of whatever
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Find meaning of any word
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                // LinkComponent={NextLink}
                 href="/product/emoji-tshirt"
                 underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/528/528007_8033171-lq.mp3', 0.4);
+                }}
               >
                 <Box>
                   <Box
@@ -148,10 +236,10 @@ export default function ProductType() {
                       },
                     }}
                   >
-                    <img src="/landing-page/emoji.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                    <img src="/landing-page/emoji.png" alt="Emoji T-Shirt Product image. Customisable T-Shirts with Emojis." style={{ width: '100%', borderRadius: '8px' }} />
                   </Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    😊 Express with Emojis
+                  <Typography variant="h6">
+                    😊 Express with emojis
                   </Typography>
                   <Typography variant="subtitle2" sx={{ color: '#777777' }}>
                     Design with emoji and short text
@@ -159,10 +247,53 @@ export default function ProductType() {
                 </Box>
               </Link>
             </Grid>
-            <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+            
+            
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Link
+                // LinkComponent={NextLink} 
+                href="/product/text-tshirt" 
+                underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
+                }}  
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      transition: 'transform 0.9s, opacity 0.4s',
+                      opacity: 0.98,
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        opacity: 1.0,
+                      },
+                    }}
+                  >
+                    <img src="/landing-page/text.png" alt="AI generated T-Shirt Product image. Customised T-Shirt with AI prompt." style={{ width: '100%', borderRadius: '8px' }} />
+                  </Box>
+                  <Typography variant="h6">
+                    Any text
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ color: '#777777' }}>
+                    Write any word or short phrase
+                  </Typography>
+                </Box>
+              </Link>
+            </Grid>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
+              <Link
+                // LinkComponent={NextLink}
                 href="/product/basic-tshirt"
                 underline="none"
+                onClick={(e) => {
+                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
+                }}
+                onMouseEnter={() => {
+                  handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
+                }}
               >
                 <Box>
                   <Box
@@ -175,19 +306,18 @@ export default function ProductType() {
                       },
                     }}
                   >
-                    <img src="/landing-page/basic.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                    <img src="/landing-page/basic.png" alt="T-Shirt Product image. Customised T-Shirts." style={{ width: '100%', borderRadius: '8px' }} />
                   </Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                    Bigfoot Basics
+                  <Typography variant="h6">
+                    Basics by Bigfoot
                   </Typography>
                   <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                    From Bigfoot The Brand
+                    Everyday basics for you
                   </Typography>
                 </Box>
               </Link>
             </Grid>
-            
-            <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+            <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Box>
                 <Box
                   sx={{
@@ -202,9 +332,9 @@ export default function ProductType() {
                     handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
                   }}  
                 >
-                  <img src="/landing-page/launch.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h6">
                   Launching soon
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
@@ -212,7 +342,7 @@ export default function ProductType() {
                 </Typography>
               </Box>
             </Grid>
-            {/* <Grid item xs={6} md={2.4} sx={{mx: 'auto'}}>
+            {/* <Grid item xs={12} md={3} sx={{mx: 'auto', padding: 2}}>
               <Box>
                 <Box
                   sx={{
@@ -223,8 +353,11 @@ export default function ProductType() {
                       opacity: 1.0,
                     },
                   }}
+                  onMouseEnter={() => {
+                    handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                  }}  
                 >
-                  <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px', marginBottom: '16px' }} />
+                  <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   More Coming Soon
@@ -235,6 +368,7 @@ export default function ProductType() {
               </Box>
             </Grid> */}
           </Grid>
+        </Container>
         </Box>
         <AutoScrollCards 
         itemsRow1={sampleData1}
