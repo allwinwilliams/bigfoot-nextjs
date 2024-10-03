@@ -32,7 +32,7 @@ const JapaneseTshirtPage = () => {
   const [style, setStyle] = useState(searchParams.get('style') || 'small');
   const [tooltipOpen, setTooltipOpen] = useState(false);
   
-  const [textInput, setTextInput] = useState(searchParams.get('text') || ' ');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || '');
 
   const initialLoad = useRef(true);
 
@@ -229,7 +229,7 @@ const JapaneseTshirtPage = () => {
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 0 }}>
                 <Typography variant="h5" gutterBottom sx={{ }}>
-                  Turn you text to Japanese
+                  Turn your text to Japanese
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
                   <Autocomplete
@@ -241,7 +241,7 @@ const JapaneseTshirtPage = () => {
                         .filter((option) =>
                           option.toLowerCase().startsWith(state.inputValue.toLowerCase())
                         )
-                        .slice(0, 10)
+                        .slice(0, 5)
                     }
                     value={textInput}
                     onInputChange={(event, newInputValue) => {

@@ -4,13 +4,13 @@ import '../styles/globals.css';
 import ClientThemeProvider from './ClientThemeProvider';
 import Footer from '../components/Footer';
 import { Container, IconButton, Box } from '@mui/material';
-import HomeIcon from '@mui/icons-material/HomeRounded'
+import HomeIcon from '@mui/icons-material/HomeRounded';
 import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { Analytics } from "@vercel/analytics/react";
+import Script from 'next/script';
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <head>
@@ -36,15 +36,14 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-      <ClientThemeProvider>
-        
-            <Box>
-              {children}
-              <Container>
-                <Footer />
-              </Container>
-              <AudioControl />
-              <IconButton
+        <ClientThemeProvider>
+          <Box>
+            {children}
+            <Container>
+              <Footer />
+            </Container>
+            <AudioControl />
+            <IconButton
               href='/'
               sx={{
                 position: 'absolute',
@@ -56,15 +55,31 @@ export default function RootLayout({ children }) {
                   backgroundColor: 'rgba(255, 255, 255, 0.9)',
                 },
               }}
-              >
-            
+            >
               <HomeIcon />
             </IconButton>
           </Box>           
           {/* <LanguageSwitcher />  */}
-        
-        <Analytics />
+          <Analytics />
         </ClientThemeProvider>
+        
+        {/* Google Analytics Script */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-M1G9TEZ19C"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-M1G9TEZ19C');
+            `,
+          }}
+        />
       </body>
     </html>
   );
