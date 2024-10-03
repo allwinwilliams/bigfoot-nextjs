@@ -11,6 +11,7 @@ import Loader from '../../../components/Loader'; // Import Loader component
 
 // Dynamic imports for each product page
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });
+const NewSongProductPage = dynamic(() => import('../../../components/SongTshirt/SongNewUI'), { ssr: false });
 const AIProductPage = dynamic(() => import('../../../components/AITshirt/AIProductPage'), { ssr: false });
 const RestrictedAIProductPage = dynamic(() => import('../../../components/AITshirt/RestrictedAIProductPage'), { ssr: false });
 const BasicProductPage = dynamic(() => import('../../../components/BasicTshirt/BasicTshirtPage'), { ssr: false });
@@ -39,6 +40,12 @@ export default function ProductType() {
     ComponentToRender = (
       <SongCustomiseProvider>
         <SongProductPage />
+      </SongCustomiseProvider>
+    );
+  } else if (product_category === 'new-ui') {
+    ComponentToRender = (
+      <SongCustomiseProvider>
+        <NewSongProductPage />
       </SongCustomiseProvider>
     );
   } else if (product_category === 'ai-tshirt') {
