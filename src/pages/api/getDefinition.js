@@ -4,6 +4,20 @@ export default async function handler(req, res) {
   const { word } = req.body;
   const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 
+  // Generate a random seed value
+  const seed = Math.floor(Math.random() * 100000);
+
+  // Variants of the user prompt to reduce response repetition
+  const promptVariants = [
+    `Define the word "${word}".`,
+    `Can you provide a definition for the word "${word}"?`,
+    `What does the word "${word}" mean?`,
+    `Explain the meaning of the word "${word}".`,
+  ];
+
+  // Randomly select a prompt from the variants
+  const selectedPrompt = promptVariants[Math.floor(Math.random() * promptVariants.length)];
+
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -16,11 +30,11 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful dictionary assistant that provides word definitions along with a short funny quote for children in JSON format according to a specified schema.',
+            content: 'You are a helpful modern dictionary assistant that provides word definitions in JSON format according to a specified schema. Please avoid using the word itself to define it. Instead, provide a philosophical, academic and independent explanation. You also give an joke example with the word',
           },
           {
             role: 'user',
-            content: `Define the word "${word}".`,
+            content: selectedPrompt,
           },
         ],
         functions: [
@@ -60,11 +74,11 @@ export default async function handler(req, res) {
                     },
                     definition: {
                       type: "string",
-                      description: "The dictionary definition of the word",
+                      description: "The dictionary definition of the word without using the word itself",
                     },
                     example: {
                       type: "string",
-                      description: "An casual, funny and witty joke as example sentence using the word",
+                      description: "A funny, and witty example sentence using the word",
                     },
                   },
                   required: ["phonetics", "type", "definition", "example"],
@@ -77,7 +91,9 @@ export default async function handler(req, res) {
           },
         ],
         function_call: { "name": "get_word_definition" },
-        temperature: 0,
+        temperature: 0.5,
+        top_p: 0.9,
+        user: `user-${seed}`,
       }),
     });
 

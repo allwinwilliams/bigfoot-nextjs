@@ -9,8 +9,12 @@ import AudioControl from '../components/AudioControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { Analytics } from "@vercel/analytics/react";
 import Script from 'next/script';
+import { usePathname } from 'next/navigation';
+
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
       <head>
@@ -39,9 +43,11 @@ export default function RootLayout({ children }) {
         <ClientThemeProvider>
           <Box>
             {children}
-            <Container>
-              <Footer />
-            </Container>
+            {!pathname.startsWith('/product/') && (
+              <Container>
+                <Footer />
+              </Container>
+            )}
             <AudioControl />
             <IconButton
               href='/'
