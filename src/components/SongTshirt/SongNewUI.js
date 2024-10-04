@@ -40,6 +40,7 @@ const SongNewUI = () => {
   const initialLoad = useRef(true);
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [threeSceneHeight, setThreeSceneHeight] = useState(60);
 
   useEffect(() => {
     const defaultParams = {
@@ -125,6 +126,21 @@ const SongNewUI = () => {
     }
   };
 
+  const optionsContainerRef = useRef(null);
+
+  const handleScroll = (e) => {
+    if (isMobile) {
+      const scrollTop = e.target.scrollTop;
+      const maxScroll = e.target.scrollHeight - e.target.clientHeight;
+      const scrollFraction = scrollTop / maxScroll;
+      const newHeight = Math.max(
+        30,
+        Math.min(70, 70 - 40 * scrollFraction)
+      );
+      setThreeSceneHeight(newHeight);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -140,11 +156,10 @@ const SongNewUI = () => {
           top: 0,
           left: 0,
           width: '100%',
-          height: isMobile ? 'auto' : '100vh',
+          height: isMobile ? `${threeSceneHeight}vh` : '100vh',
           zIndex: 0,
         }}
       >
-        {/* Logo and Icons can be placed here if needed */}
         <ThreeScene
           color={color}
           type="song"
@@ -160,14 +175,22 @@ const SongNewUI = () => {
         <Box
           sx={{
             position: 'absolute',
-            top: '60vh', // Adjust this to control how much of the ThreeScene is initially visible
+            top: 0,
             left: 0,
             right: 0,
             bottom: 0,
             overflowY: 'auto',
             zIndex: 1,
           }}
+          onScroll={handleScroll}
+          ref={optionsContainerRef}
         >
+          {/* Spacer to push content below the visible ThreeScene */}
+          <Box
+            sx={{
+              height: `${threeSceneHeight}vh`,
+            }}
+          />
           {/* Options Content */}
           <Box
             sx={{
@@ -182,12 +205,12 @@ const SongNewUI = () => {
               NEW UI
             </Typography>
             <SpotifySearch
-              color={color}
-              size={size}
-              style={style}
-              songLoading={songLoading}
-              setSongLoading={setSongLoading}
-            />
+            color={color}
+            size={size}
+            style={style}
+            songLoading={songLoading}
+            setSongLoading={setSongLoading}
+          />
 
 
           <Typography
@@ -313,41 +336,38 @@ const SongNewUI = () => {
               />
             ))}
           </Box>
-
-          <Box sx={{ mt: 4 }}>
-            <BuyNowButton
-              color={color}
-              style={style}
-              type="song"
-              data={{
-                songId,
-                songData,
-                songName: songData?.details?.name || '',
-              }}
-              storage={storage}
-              db={db}
-              price={119900}
-            />
-            <Tooltip title="URL copied" open={tooltipOpen} arrow>
-              <Button
-                variant="outlined"
-                color="primary"
-                fullWidth
-                size="large"
-                sx={{
-                  padding: '12px',
-                  fontWeight: 'bold',
-                  borderRadius: '16px',
-                  textTransform: 'none',
+            <Box sx={{ mt: 4 }}>
+              <BuyNowButton
+                color={color}
+                style={style}
+                type="song"
+                data={{
+                  songId,
+                  songData,
+                  songName: songData?.details?.name || '',
                 }}
-                onClick={handleShare}
-              >
-                Share Now
-              </Button>
-            </Tooltip>
-          </Box>
-
-            {/* ... Rest of your options content ... */}
+                storage={storage}
+                db={db}
+                price={119900}
+              />
+              <Tooltip title="URL copied" open={tooltipOpen} arrow>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  fullWidth
+                  size="large"
+                  sx={{
+                    padding: '12px',
+                    fontWeight: 'bold',
+                    borderRadius: '16px',
+                    textTransform: 'none',
+                  }}
+                  onClick={handleShare}
+                >
+                  Share Now
+                </Button>
+              </Tooltip>
+            </Box>
           </Box>
         </Box>
       ) : (
