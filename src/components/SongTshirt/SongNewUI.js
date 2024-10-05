@@ -22,7 +22,6 @@ const SongNewUI = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [buyNowLoading, setBuyNowLoading] = useState(false);
   const [songLoading, setSongLoading] = useState(false);
 
   const [color, setColor] = useState(
@@ -377,9 +376,9 @@ const SongNewUI = () => {
             position: 'absolute',
             top: 16,
             right: 16,
-            width: '320px',
+            width: '360px',
             padding: 2,
-            backgroundColor: '#ffffffcc', // Slight transparency
+            backgroundColor: '#ffffffcc',
             borderRadius: '16px',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
             zIndex: 2,
