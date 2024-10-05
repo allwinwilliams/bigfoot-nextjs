@@ -15,7 +15,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import SizeChart from '../SizeChart';
 
-import BuyNowButton from '../BuyNowButton';
+import BuyNowButton from '../UIComponents/BuyNowButton';
 
 
 import Razorpay from 'razorpay';

@@ -13,8 +13,8 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import NotesIcon from '@mui/icons-material/Notes';
 import RefreshIcon from '@mui/icons-material/RefreshOutlined';
 
-import BuyNowButton from '../BuyNowButton';
-import AutoScrollCards from '../AutoScrollCards';
+import BuyNowButton from '../UIComponents/BuyNowButton';
+import AutoScrollCards from '../UIComponents/AutoScrollCards';
 
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 import { collection, addDoc } from 'firebase/firestore';

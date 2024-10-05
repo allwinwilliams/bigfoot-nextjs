@@ -13,7 +13,7 @@ import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
 import ThreeScene from '../ThreeScene';
 import SpotifySearch from './SpotifySearch';
 import { db, storage } from '../../utils/firebaseConfig';
-import BuyNowButton from '../BuyNowButton';
+import BuyNowButton from '../UIComponents/BuyNowButton';
 
 const SongNewUI = () => {
   const theme = useTheme();

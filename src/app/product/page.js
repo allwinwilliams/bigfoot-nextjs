@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { useParams } from 'next/navigation';
 import {Box, Typography, Grid, Link, Container} from '@mui/material';
-import AutoScrollCards from '@/components/AutoScrollCards';
-import Header from '@/components/Header';
+import AutoScrollCards from '@/components/UIComponents/AutoScrollCards';
+import Header from '@/components/UIComponents/Header';
 
 export default function ProductType() {
   const sampleData1 = [

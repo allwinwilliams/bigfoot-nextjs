@@ -7,7 +7,7 @@ import { SongCustomiseProvider } from '../../../context/SongCustomiseProvider';
 import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 import { DictionaryContextProvider } from '../../../context/DictionaryContextProvider';
 import { JapaneseContextProvider } from '../../../context/JapaneseContextProvider';
-import Loader from '../../../components/Loader'; // Import Loader component
+import Loader from '../../../components/UIComponents/Loader';
 
 // Dynamic imports for each product page
 const SongProductPage = dynamic(() => import('../../../components/SongTshirt/SongProductPage'), { ssr: false });

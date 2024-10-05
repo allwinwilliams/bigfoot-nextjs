@@ -12,7 +12,7 @@ import ThreeScene from '../ThreeScene';
 
 import { db, storage } from '../../utils/firebaseConfig';
 
-import BuyNowButton from '../BuyNowButton';
+import BuyNowButton from '../UIComponents/BuyNowButton';
 import ImageUploadButton from './ImageUploadButton';
 
 const ImageTshirtPage = () => {

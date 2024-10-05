@@ -6,8 +6,8 @@ import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent
 import ProductStaticContent from '../components/ProductStaticContent';
 import HorizontalScrollSection from '../components/HorizontalScrollSection';
 import BrushIcon from '@mui/icons-material/Brush';
-import AutoScrollCards from '@/components/AutoScrollCards';
-import Header from '@/components/Header';
+import AutoScrollCards from '@/components/UIComponents/AutoScrollCards';
+import Header from '@/components/UIComponents/Header';
 import { AspectRatio, Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
 import { keyframes } from '@mui/system';
@@ -58,7 +58,6 @@ export default function HomePage() {
     { imgUrl: '/samples/basic/2.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=beige&size=M&style=head' },
     { imgUrl: '/samples/song/3.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/song-tshirt?color=beige&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=drilldown' },
     { imgUrl: '/samples/ai/8.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
-    
     { imgUrl: '/samples/ai/6.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
     { imgUrl: '/samples/basic/7.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=black&size=M&style=pixel' },
     { imgUrl: '/samples/song/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/song-tshirt?color=black&size=M&songId=6l8GvAyoUZwWDgF1e4822w&style=analysis' },

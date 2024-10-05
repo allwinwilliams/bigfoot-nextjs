@@ -1,5 +1,5 @@
 import { Container, Box, Typography, Link } from "@mui/material";
-import Header from "@/components/Header";
+import Header from "@/components/UIComponents/Header";
 
 export default function ExplainMusic() {
     return (

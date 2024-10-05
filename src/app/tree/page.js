@@ -1,5 +1,5 @@
 import { Container, Box, Typography, Link, Card, CardContent, CardActionArea, Icon } from "@mui/material";
-import Header from "@/components/Header";
+import Header from "@/components/UIComponents/Header";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import YouTubeIcon from '@mui/icons-material/YouTube';

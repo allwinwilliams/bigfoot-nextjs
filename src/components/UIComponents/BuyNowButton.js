@@ -4,8 +4,8 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Button, CircularProgress, Box, Typography, Modal, Paper, Divider, Grid, IconButton, Chip, Select, MenuItem, ButtonGroup } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
-import SizeChart from './SizeChart';
-import ProductPrice from './ProductPrice';
+import SizeChart from '../SizeChart';
+import ProductPrice from '../ProductPrice';
 
 const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);

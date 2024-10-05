@@ -10,13 +10,13 @@ import {
 import ThreeScene from '../ThreeScene';
 import { db, storage } from '../../utils/firebaseConfig';
 
-import AutoScrollCards from '../AutoScrollCards';
+import AutoScrollCards from '../UIComponents/AutoScrollCards';
 
 import wordsList from '../DictionaryTshirt/words_dictionary.json';
 import { JapaneseContext } from '../../context/JapaneseContextProvider';
 
 import SizeChart from '../SizeChart';
-import BuyNowButton from '../BuyNowButton';
+import BuyNowButton from '../UIComponents/BuyNowButton';
 
 const JapaneseTshirtPage = () => {
   const theme = useTheme();

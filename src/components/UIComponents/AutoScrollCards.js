@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, Link } from '@mui/material';
 import { keyframes } from '@mui/system';
-import { handlePlayClick } from './AudioControl';
+import { handlePlayClick } from '../AudioControl';
 
 const AutoScrollCards = ({
   itemsRow1 = [

@@ -1,7 +1,7 @@
 "use client";
 
 import { Container, Box, Typography, Paper, Grid, Button, Link } from "@mui/material";
-import Header from "@/components/Header";
+import Header from "@/components/UIComponents/Header";
 import ProductStaticContent from '@/components/ProductStaticContent'
 import CreateIcon from '@mui/icons-material/Create';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';

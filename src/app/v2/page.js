@@ -6,8 +6,8 @@ import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent
 import ProductStaticContent from '@/components/ProductStaticContent';
 import HorizontalScrollSection from '@/components/HorizontalScrollSection';
 import CreateIcon from '@mui/icons-material/Create';
-import AutoScrollCards from '@/components/AutoScrollCards';
-import Header from '@/components/Header';
+import AutoScrollCards from '@/components/UIComponents/AutoScrollCards';
+import Header from '@/components/UIComponents/Header';
 import { AspectRatio, Margin, Opacity } from '@mui/icons-material';
 import zIndex from '@mui/material/styles/zIndex';
 import { keyframes } from '@mui/system';

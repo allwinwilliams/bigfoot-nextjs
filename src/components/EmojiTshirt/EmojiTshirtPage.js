@@ -10,10 +10,10 @@ import {
 import ThreeScene from '../ThreeScene';
 import { db, storage } from '../../utils/firebaseConfig'; // Ensure these are correctly imported
 
-import AutoScrollCards from '../AutoScrollCards';
+import AutoScrollCards from '../UIComponents/AutoScrollCards';
 
 import SizeChart from '../SizeChart';
-import BuyNowButton from '../BuyNowButton';
+import BuyNowButton from '../UIComponents/BuyNowButton';
 import debounce from 'lodash.debounce';
 
 import EmojiSelector from './EmojiSelector';
