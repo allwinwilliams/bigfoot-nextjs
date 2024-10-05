@@ -3,9 +3,8 @@ export const woxsenSketch = (p, canvasRef, onP5Update, color, values, style) => 
     const canvasHeight = 2060;
     let img;
     let imgLoaded = false;
-    let chaseFront;
-    let chaseBack;
-    let starFront;
+    
+    let chaseFront, chaseBack, starFront, skullFront, skullBack, gf1, gf2;
   
     p.preload = () => {
       starFront = p.loadImage('/product-page/woxsen/star-front.png', () => {
@@ -25,6 +24,34 @@ export const woxsenSketch = (p, canvasRef, onP5Update, color, values, style) => 
         p.redraw();
       }, () => {
         console.error('Failed to load image');
+      });
+
+      skullFront = p.loadImage('/product-page/woxsen/skull-front.png', () => {
+        imgLoaded = true;
+        p.redraw();
+      }, () => {
+        console.error('Failed to load image: skullFront');
+      });
+  
+      skullBack = p.loadImage('/product-page/woxsen/skull-back.png', () => {
+        imgLoaded = true;
+        p.redraw();
+      }, () => {
+        console.error('Failed to load image: skullBack');
+      });
+  
+      gf1 = p.loadImage('/product-page/woxsen/gf1-design.png', () => {
+        imgLoaded = true;
+        p.redraw();
+      }, () => {
+        console.error('Failed to load image: gf1');
+      });
+  
+      gf2 = p.loadImage('/product-page/woxsen/gf2-design.png', () => {
+        imgLoaded = true;
+        p.redraw();
+      }, () => {
+        console.error('Failed to load image: gf2');
       });
     };
   
@@ -50,17 +77,42 @@ export const woxsenSketch = (p, canvasRef, onP5Update, color, values, style) => 
             p.image(starFront, imgX, imgY, 1500, 1500);
           }
       } else if(style === 'chase'){
-        if (imgLoaded && chaseFront) {
+          if (imgLoaded && chaseFront) {
+              imgX = 0;
+              imgY = 0;
+              p.image(chaseFront, imgX, imgY, 1500, 1500);
+          } 
+          if (imgLoaded && chaseBack) {
+              imgX = 1400;
+              imgY = 50;
+              p.image(chaseBack, imgX, imgY, 1800, 1800);
+          } 
+      }
+      else if(style === 'skull'){
+        if (imgLoaded && skullFront) {
+            imgX = 210;
+            imgY = -300;
+            p.image(skullFront, imgX, imgY, 1200, 1200);
+        } 
+        if (imgLoaded && skullBack) {
+            imgX = 1400;
+            imgY = 250;
+            p.image(skullBack, imgX, imgY, 1600, 1600);
+        } 
+      } else if(style === 'gf1'){
+        if (imgLoaded && gf1) {
             imgX = 0;
             imgY = 0;
-            p.image(chaseFront, imgX, imgY, 1500, 1500);
+            p.image(gf1, imgX, imgY, 1500, 1500);
         } 
-        if (imgLoaded && chaseBack) {
-            imgX = 1400;
-            imgY = 50;
-            p.image(chaseBack, imgX, imgY, 1800, 1800);
+      }  else if(style === 'gf2'){
+        if (imgLoaded && gf2) {
+            imgX = 0;
+            imgY = 0;
+            p.image(gf2, imgX, imgY, 1500, 1500);
         } 
-      } else {
+      }  
+      else {
         if (color === 'black') {
           p.fill(255);
         } else if (color === 'grey') {
@@ -84,7 +136,7 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
   let imgFront, imgBack;
   let imgFrontLoaded = false;
   let imgBackLoaded = false;
-  let chaseFront, chaseBack, starFront;
+  let chaseFront, chaseBack, starFront, skullFront, skullBack, gf1, gf2;
 
   p.preload = () => {
     // Load predefined images
@@ -107,6 +159,34 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
       p.redraw();
     }, () => {
       console.error('Failed to load image: chaseBack');
+    });
+
+    skullFront = p.loadImage('/product-page/woxsen/skull-front.png', () => {
+      imgFrontLoaded = true;
+      p.redraw();
+    }, () => {
+      console.error('Failed to load image: skullFront');
+    });
+
+    skullBack = p.loadImage('/product-page/woxsen/skull-back.png', () => {
+      imgBackLoaded = true;
+      p.redraw();
+    }, () => {
+      console.error('Failed to load image: skullBack');
+    });
+
+    gf1 = p.loadImage('/product-page/woxsen/gf1.png', () => {
+      imgBackLoaded = true;
+      p.redraw();
+    }, () => {
+      console.error('Failed to load image: gf1');
+    });
+
+    gf2 = p.loadImage('/product-page/woxsen/gf2.png', () => {
+      imgBackLoaded = true;
+      p.redraw();
+    }, () => {
+      console.error('Failed to load image: gf2');
     });
 
     // Load user-uploaded images

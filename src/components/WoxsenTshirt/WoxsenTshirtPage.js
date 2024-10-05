@@ -174,8 +174,9 @@ const WoxsenTshirtPage = () => {
                 {[
                   { style: 'chase', color: 'black', label: 'Chase', image: '/product-page/woxsen/black.png', disabled: false },
                   { style: 'stars', color: 'beige', label: 'Stars', image: '/product-page/woxsen/beige.png', disabled: false },
-                  { style: 'another', color: 'black', label: 'Another', image: '/product-page/woxsen/black.png', disabled: false },
-                  { style: 'more', color: 'beige', label: 'One more', image: '/product-page/woxsen/beige.png', disabled: false },
+                  { style: 'skull', color: 'black', label: 'Skull', image: '/product-page/woxsen/skull.png', disabled: false },
+                  { style: 'gf1', color: 'beige', label: 'GF1', image: '/product-page/woxsen/gf1.png', disabled: false },
+                  { style: 'gf2', color: 'beige', label: 'GF2', image: '/product-page/woxsen/gf2.png', disabled: false },
                 ].map((option) => (
                   <Tooltip
                     key={option.style}
