@@ -19,7 +19,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Marquee from "react-fast-marquee";
 import GallerySection from '../components/Gallerysection';
 import FreeGiftComponent from '@/components/FreeGiftComponent';
-
+import TestimonialSection from '@/components/UIComponents/TestimonialSection';
 
 
 export default function HomePage() {
@@ -648,48 +648,50 @@ export default function HomePage() {
       />
       
       <Container>
-      <Box sx={{ mx: 'auto', textAlign: 'center', my: 8 }}>
-          <Typography variant='h5'>
-            Create your own expression
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            href="#the-range"
-            startIcon={<BrushIcon />}
-            sx={{
-              mt: 4,
-              padding: 2,
-              textTransform: 'none',
-              borderRadius: 4,
-              width: {
-                xs: '100%', // 100% width for mobile screens
-                md: '50%',  // 50% width for desktop screens
-              },
-              background: 'linear-gradient(0deg, #222222 0%, #000000 100%)',
-              backgroundSize: '600% 600%',
-              animation: 'backgroundMovement 4s ease infinite',
-              color: 'white',
-              mx: 'auto',
-              justifyContent: 'center',
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              handlePlayClick('https://cdn.freesound.org/previews/107/107789_1727136-lq.mp3');
-              document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <Typography variant='h6'>Craft yours now</Typography>
-          </Button>
-        </Box>
         <Box>
-          <GallerySection cards={galleryCards} />
-        </Box>
+            <GallerySection cards={galleryCards} />
+          </Box>
+        <Box sx={{ mx: 'auto', textAlign: 'center', my: 8 }}>
+            <Typography variant='h5'>
+              Create your own expression
+            </Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              href="#the-range"
+              startIcon={<BrushIcon />}
+              sx={{
+                mt: 4,
+                padding: 2,
+                textTransform: 'none',
+                borderRadius: 4,
+                width: {
+                  xs: '100%', // 100% width for mobile screens
+                  md: '50%',  // 50% width for desktop screens
+                },
+                background: 'linear-gradient(0deg, #222222 0%, #000000 100%)',
+                backgroundSize: '600% 600%',
+                animation: 'backgroundMovement 4s ease infinite',
+                color: 'white',
+                mx: 'auto',
+                justifyContent: 'center',
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                handlePlayClick('https://cdn.freesound.org/previews/107/107789_1727136-lq.mp3');
+                document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Typography variant='h6'>Craft yours now</Typography>
+            </Button>
+          </Box>
         
-        
-        <FreeGiftComponent />
-      </Container>
+        </Container>
+        <TestimonialSection />
+        <Container>  
+          <FreeGiftComponent />
+        </Container>
       
     </Box>
   );
