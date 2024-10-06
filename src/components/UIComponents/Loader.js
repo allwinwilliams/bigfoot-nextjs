@@ -1,7 +1,20 @@
 import React from 'react';
-import { CircularProgress, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { keyframes } from '@mui/system';
 
 export default function Loader() {
+  const frameWidth = 256;
+  const frameHeight = 300;
+  const frameCount = 31;
+  const animationDuration = frameCount * 100;
+  const totalSpriteWidth = frameWidth * frameCount;
+
+  // Define the keyframes for the animation
+  const playAnimation = keyframes`
+    from { background-position: 0 0; }
+    to { background-position: -${totalSpriteWidth - frameWidth}px 0; }
+  `;
+
   return (
     <Box
       sx={{
@@ -24,9 +37,19 @@ export default function Loader() {
           alignItems: 'center',
         }}
       >
-        <CircularProgress sx={{ color: '#000000' }} />
-        <Typography variant="subtitle2" sx={{ pt: 2 }}>
-            Hold up
+        <Box
+          sx={{
+            width: `${frameWidth}px`,
+            height: `${frameHeight}px`,
+            backgroundImage: 'url(/loading-sprite.png)', // Update the path to your sprite image
+            backgroundRepeat: 'no-repeat',
+            borderRadius: 4,
+            backgroundSize: `${totalSpriteWidth}px ${frameHeight}px`,
+            animation: `${playAnimation} ${animationDuration}ms steps(${frameCount - 1}) infinite`,
+          }}
+        />
+        <Typography variant="h6" sx={{ pt: 2 }}>
+          Crafting your experience
         </Typography>
       </Box>
     </Box>
