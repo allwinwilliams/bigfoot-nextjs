@@ -13,7 +13,7 @@ const testimonials_list = [
   {
     imgUrl: '/landing-page/testimonials/allwin.png',
     text: 'This is a nice concept and I got it within 2 days.',
-    name: 'Veda',
+    name: 'Ravi',
     location: 'Mumbai, India',
   },
   {
