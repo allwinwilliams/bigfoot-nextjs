@@ -63,6 +63,14 @@ export default async function handler(req, res) {
         value_type: "Fixed amount",
         description: "Rs. 600 off for Creatives"
       },
+      "CREATORS": {
+        reference_id: "CREATORS_OFFER",
+        type: "offer",
+        code: "CREATORS",
+        value: 70000,
+        value_type: "Fixed amount",
+        description: "Rs. 700 off for Creatives"
+      },
       "🌻": {
         reference_id: "FLOWER_OFFER",
         type: "offer",
