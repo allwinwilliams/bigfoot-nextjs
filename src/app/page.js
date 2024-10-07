@@ -21,7 +21,6 @@ import GallerySection from '../components/Gallerysection';
 import FreeGiftComponent from '@/components/FreeGiftComponent';
 import TestimonialSection from '@/components/UIComponents/TestimonialSection';
 
-
 export default function HomePage() {
 
   const audioControlRef = useRef(null);
@@ -202,9 +201,7 @@ export default function HomePage() {
       >
         <Marquee gradient={false} speed={40}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mx: 2 }}>
-            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
-              FOR MORE CUSTOMISATIONS AND GROUP ORDERS, CONTACT 87549 68346
-            </Typography>
+          
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             <Typography variant="subtitle2" sx={{ color: '#fff' }}>
               EXPRESS YOURSELF
@@ -215,9 +212,20 @@ export default function HomePage() {
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             <Typography variant="subtitle2" sx={{ color: '#fff' }}>
-              PREMIUM CONCEPTUAL DESIGNS
+              PREMIUM CONCEPTUAL FASHION
             </Typography>
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
+            <Typography variant="subtitle2" sx={{ color: '#fff', display: 'flex', alignItems: 'center' }}>
+            <Link
+              href="https://wa.me/+918754968346"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ display: 'flex', alignItems: 'center', color: '#fff', textDecoration: 'none' }}
+            >
+              <WhatsAppIcon sx={{ marginRight: 1 }} />
+              FOR ANY QUERIES, CONTACT +91 87549 68346
+            </Link>
+          </Typography>
           </Box>
         </Marquee>
       </Box>
@@ -321,7 +329,7 @@ export default function HomePage() {
                       document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    <Typography variant='h6'>Craft yours now</Typography>
+                    <Typography variant='h6'>Create yours now</Typography>
                   </Button>
               </Grid>
             </Grid>
@@ -683,7 +691,7 @@ export default function HomePage() {
                 document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              <Typography variant='h6'>Craft yours now</Typography>
+              <Typography variant='h6'>Create yours now</Typography>
             </Button>
           </Box>
         
