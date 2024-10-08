@@ -43,13 +43,6 @@ const Footer = () => {
           <Typography variant="subtitle2" sx={{ mt: 2 }}>
           For customisations and bulk orders, reach us at crew@bigfoot.land or +91 87549 68346.
           </Typography>
-          <Typography variant="subtitle2" sx={{ mt: 2 }}>
-            Made with ❤️ in India for the world
-          </Typography>
-          <Typography variant="subtitle2" sx={{ mt: 2, color: '#777777' }}>
-            © 2024 Boredom Technologies LLP
-          </Typography>
-          
         </Grid>
 
         {/* Right Side - Links (Quick Links, Policies, Products) */}
@@ -269,6 +262,14 @@ const Footer = () => {
 
         </Grid>
       </Grid>
+      <Box>
+          <Typography variant="subtitle2" sx={{ mt: 2 }}>
+            Made with ❤️ in India for the world
+          </Typography>
+          <Typography variant="subtitle2" sx={{ mt: 2, color: '#777777' }}>
+            © 2024 Boredom Technologies LLP
+          </Typography>
+      </Box>
     </Box>
   );
 };
