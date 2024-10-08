@@ -57,8 +57,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <noscript>
-          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57V54XDL"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-57V54XDL"
+            height="0"
+            width="0" 
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
         </noscript>
         <ClientThemeProvider>
           <Box>
