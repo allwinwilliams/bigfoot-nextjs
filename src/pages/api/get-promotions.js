@@ -15,8 +15,8 @@ export default async function handler(req, res) {
       const promotions = [
         // {
         //   code: 'WOXSEN',
-        //   summary: 'Rs. 400 instant discount for all orders',
-        //   description: 'Rs. 400 OFF - Woxsen Sale',
+        //   summary: 'Rs. 600 instant discount for all orders',
+        //   description: 'Rs. 600 OFF - Woxsen Sale',
         //   tnc: [
         //     'Valid only till September 27th'
         //   ]
