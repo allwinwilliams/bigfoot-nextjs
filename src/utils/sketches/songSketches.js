@@ -1081,7 +1081,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
       let qrColor;
       if (color === 'black') {
-        qrColor = '#777777';
+        qrColor = '#444444';
       } else if (color === 'beige') {
         qrColor = '#77301b'; // Dark grey
       } else {
@@ -1125,17 +1125,17 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     let fillColor, strokeColor, textColor;
 
     if (color === 'black') {
-      fillColor = p.color('#505050');
-      textColor = p.color('#505050');
-      strokeColor = p.color('#505050');
+      fillColor = p.color('#404040');
+      textColor = p.color('#404040');
+      strokeColor = p.color('#404040');
     } else if (color === 'beige') {
       fillColor = p.color('#77301b');
       textColor = p.color('#77301b'); 
       strokeColor = p.color('#77301b');
     } else if (color === 'navy') {
-      fillColor = p.color('#FF5733');
+      fillColor = p.color('#ff5733');
       textColor = p.color('#FFFFFF');
-      strokeColor = p.color('#FF5733');
+      strokeColor = p.color('#ff5733');
     } else if (color === 'maroon') {
       fillColor = p.color('#C0C0C0');
       textColor = p.color('#C0C0C0');

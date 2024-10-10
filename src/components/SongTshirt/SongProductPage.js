@@ -2,11 +2,11 @@
 
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import 
-{ Box, Typography, Grid, Chip, Button,
+import {
+  Box, Typography, Grid, Chip, Button,
   Tooltip, CircularProgress, Card, Link,
-  CardMedia, CardContent, useTheme, Container }
-from '@mui/material';
+  CardMedia, CardContent, useTheme, Container
+} from '@mui/material';
 import { CustomiseAppContext } from '../../context/SongCustomiseProvider';
 import ThreeScene from '../ThreeScene';
 import SpotifySearch from './SpotifySearch'; // Ensure correct import
@@ -79,13 +79,21 @@ const SongProductPage = () => {
   }, [searchParams, router]);
 
   const handleColorChange = (event) => {
-    setColor(event.target.value);
-    window.history.replaceState(null, '', `/product/song-tshirt?color=${event.target.value}&size=${size}&songId=${songId}&style=${style}`);
+    const newColor = event.target.value;
+    setColor(newColor);
+    window.history.replaceState(null, '', `/product/song-tshirt?color=${newColor}&size=${size}&songId=${songId}&style=${style}`);
   };
 
   const handleStyleChange = (event) => {
-    setStyle(event.target.value);
-    window.history.replaceState(null, '', `/product/song-tshirt?color=${color}&size=${size}&songId=${songId}&style=${event.target.value}`);
+    const newStyle = event.target.value;
+    setStyle(newStyle);
+
+    if (newStyle !== 'minimal' && (color === 'navy' || color === 'maroon')) {
+      setColor('black');
+      window.history.replaceState(null, '', `/product/song-tshirt?color=black&size=${size}&songId=${songId}&style=${newStyle}`);
+    } else {
+      window.history.replaceState(null, '', `/product/song-tshirt?color=${color}&size=${size}&songId=${songId}&style=${newStyle}`);
+    }
   };
 
   const handleSizeChange = (event) => {
@@ -113,7 +121,18 @@ const SongProductPage = () => {
     }
   };
 
-  
+  // Define color options based on the selected style
+  const colorOptions = [
+    { value: 'black', label: 'Black' },
+    { value: 'beige', label: 'Sand' },
+  ];
+
+  if (style === 'minimal') {
+    colorOptions.push(
+      { value: 'navy', label: 'Navy' },
+      { value: 'maroon', label: 'Maroon' },
+    );
+  }
 
   return (
     <Box>
@@ -138,30 +157,12 @@ const SongProductPage = () => {
           component={Link}
           href={'/'}
         >
-          
           <img
             src='/wordmark.svg'
             alt='Bigfoot Logo'
             style={{ width: 96 }}
           />
         </Box>
-        {/* <Box sx={{ paddingY: 1, textAlign: 'center' }}>
-          <Typography 
-            variant="h5"
-            gutterBottom 
-            sx={{
-              
-            }}
-          >
-            Style Your Song T-Shirt
-          </Typography>
-          <Typography 
-            variant='subtitle2'
-            sx={{color: '#777777', lineHeight: 1.25}}
-          >
-            Customise your T-Shirt design based on your favourite songs
-          </Typography>
-        </Box> */}
         <Box
           sx={{
             boxShadow: '0 0 32px rgba(0, 0, 0, 0.12)',
@@ -182,16 +183,13 @@ const SongProductPage = () => {
                 alignItems: 'center' 
               }}
             >
-              
-                <ThreeScene
-                  color={color}
-                  // data={{type: 'song', values: songData}}
-                  type='song'
-                  values={songData}
-                  style={style}
-                  loading={songLoading}
-                />
-              
+              <ThreeScene
+                color={color}
+                type='song'
+                values={songData}
+                style={style}
+                loading={songLoading}
+              />
             </Grid>
             <Grid
               item
@@ -265,12 +263,7 @@ const SongProductPage = () => {
                   Pick your color
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                  {[
-                    { value: 'black', label: 'Black' },
-                    { value: 'beige', label: 'Sand' },
-                    { value: 'navy', label: 'Navy' },
-                    { value: 'maroon', label: 'Maroon' },
-                  ].map((option) => (
+                  {colorOptions.map((option) => (
                     <Chip
                       key={option.value}
                       label={option.label}
@@ -293,48 +286,23 @@ const SongProductPage = () => {
                             border: '1px solid',
                             borderColor: color === option.value ? '#444444' : '#eaeaea',
                             borderRadius: '50%',
-                            mr: 1, // Add margin to the right to space out the circle and label
+                            mr: 1,
                           }}
                         />
                       }
                     />
                   ))}
                 </Box>
-                {/* <Box sx={{ marginBottom: 2 }}>
-                  <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
-                    Select your size
-                  </Typography>
-                  <SizeChart />
-                </Box>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                {['XS','S', 'M', 'L', 'XL', 'XXL'].map((option) => (
-                  <Chip
-                    key={option}
-                    label={option}
-                    clickable
-                    color={size === option ? 'primary' : 'default'}
-                    variant={size === option ? 'filled' : 'outlined'}
-                    onClick={() => handleSizeChange({ target: { value: option } })}
-                    sx={{
-                      padding: '24px 12px',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      borderRadius: '9999px',
-                    }}
-                  />
-                ))}
-                </Box> */}
                 <Box sx={{ mt: 4 }}>
-                <BuyNowButton
-                  color={color}
-                  // size={size}
-                  style={style}
-                  type="song"
-                  data={{songId, songData, songName: songData?.details?.name || ''}}
-                  storage={storage}
-                  db={db}
-                  price={119900}
-                />
+                  <BuyNowButton
+                    color={color}
+                    style={style}
+                    type="song"
+                    data={{songId, songData, songName: songData?.details?.name || ''}}
+                    storage={storage}
+                    db={db}
+                    price={119900}
+                  />
                   <Tooltip title="URL copied" open={tooltipOpen} arrow>
                     <Button
                       variant="outlined"
