@@ -7,6 +7,7 @@ import { SongCustomiseProvider } from '../../../context/SongCustomiseProvider';
 import { AiCustomiseProvider } from '../../../context/AiCustomiseProvider';
 import { DictionaryContextProvider } from '../../../context/DictionaryContextProvider';
 import { JapaneseContextProvider } from '../../../context/JapaneseContextProvider';
+import { LanguageContextProvider } from '../../../context/LanguageContextProvider';
 import Loader from '../../../components/UIComponents/Loader';
 
 // Dynamic imports for each product page
@@ -21,6 +22,7 @@ const DictionaryProductPage = dynamic(() => import('../../../components/Dictiona
 const JapaneseProductPage = dynamic(() => import('../../../components/JapaneseTshirt/JapaneseTshirtPage'), { ssr: false });
 const WoxsenTshirtPage = dynamic(() => import('../../../components/WoxsenTshirt/WoxsenTshirtPage'), { ssr: false });
 const ImageTshirtPage = dynamic(() => import('../../../components/ImageTshirt/ImageTshirtPage'), { ssr: false });
+const LanguagesTshirtPage = dynamic(() => import('../../../components/LanguagesTshirt/LanguagesTshirtPage'), { ssr: false });
 
 export default function ProductType() {
   const { product_category } = useParams();
@@ -78,7 +80,14 @@ export default function ProductType() {
         <JapaneseProductPage />
       </JapaneseContextProvider>
     );
-  } else if (product_category === 'woxsen-tshirt') {
+  }  else if (product_category === 'language-tshirt') {
+      ComponentToRender = (
+        <LanguageContextProvider>
+          <LanguagesTshirtPage />
+        </LanguageContextProvider>
+      );
+    }
+   else if (product_category === 'woxsen-tshirt') {
     ComponentToRender = <WoxsenTshirtPage />;
   } else if (product_category === 'image-tshirt') {
     ComponentToRender = <ImageTshirtPage />;

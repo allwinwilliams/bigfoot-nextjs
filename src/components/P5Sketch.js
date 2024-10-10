@@ -11,6 +11,7 @@ import { textSketch } from '@/utils/sketches/textSketches';
 import { dictionarySmallSketch, dictionaryCodeSketch, dictionaryBratSketch } from '@/utils/sketches/dictionarySketches';
 import { japaneseSmallSketch, japaneseBoldSketch, japaneseNeonSketch } from '@/utils/sketches/japaneseSketches';
 import { woxsenSketch, imageSketch } from '@/utils/sketches/imageSketches';
+import { languageSmallSketch, languageBoldSketch, languageNeonSketch } from '@/utils/sketches/languageSketches';
 
 const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal', width = 4000, height = 2040 }) => {
   const sketchRef = useRef();
@@ -117,6 +118,20 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
           case 'small':
           default:
             sketch = (p) => japaneseSmallSketch(p, canvasRef, onP5Update, color, values, style);
+            break;
+        }
+      }
+      if(type == "language"){
+        switch (style) {
+          case 'bold':
+            sketch = (p) => languageBoldSketch(p, canvasRef, onP5Update, color, values, style);
+            break;
+          case 'neon':
+            sketch = (p) => languageNeonSketch(p, canvasRef, onP5Update, color, values, style);
+            break;
+          case 'small':
+          default:
+            sketch = (p) => languageSmallSketch(p, canvasRef, onP5Update, color, values, style);
             break;
         }
       }
