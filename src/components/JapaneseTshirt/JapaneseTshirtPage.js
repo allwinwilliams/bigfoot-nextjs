@@ -307,6 +307,8 @@ const JapaneseTshirtPage = () => {
                   {[
                     { value: 'black', label: 'Black', disabled: false },
                     { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'navy', label: 'Navy', disabled: false },
+                    { value: 'maroon', label: 'Maroon', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
                     <Tooltip

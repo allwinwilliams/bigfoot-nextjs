@@ -32,9 +32,9 @@ const TshirtModel = ({ color, texture, triggerAnimation = false, animationDurati
             map: texture,
             normalMap: normalMap,
             roughness: 0.9,
-            metalness: 0.2,
+            metalness: 0.05,
             envMap: envMap,
-            envMapIntensity: 0.25,
+            envMapIntensity: 0.20,
           });
           child.material = material;
           child.material.needsUpdate = true;

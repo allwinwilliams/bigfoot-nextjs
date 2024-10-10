@@ -2,6 +2,8 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
     const canvasWidth = 4000;
     const canvasHeight = 2060;
     const { textInput, translation } = values;
+    let translationColor, phoneticColor;
+    let japaneseFont;
   
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -17,18 +19,25 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
       // Set background and text color based on the T-shirt color
       p.clear();
       if (color === 'black') {
-        
-        p.fill(255);
+        translationColor = p.color('#ffffff');
+        phoneticColor = p.color('#ffffff');
+      } else if (color === 'maroon') {
+        translationColor = p.color('#ffad99');
+        phoneticColor = p.color('#ffffff');
+      } else if (color === 'navy') {
+        translationColor = p.color('#ff5733');
+        phoneticColor = p.color('#ffffff');
       } else if (color === 'grey') {
-        
-        p.fill(0);
+        translationColor = p.color('#000000');
+        phoneticColor = p.color('#000000');
       } else if (color === 'beige' || color === 'white') {
-        
-        p.fill(0);
+        phoneticColor = p.color('#77301b');
+        translationColor = p.color('#77301b');
       } else {
-        
-        p.fill(0);
+        translationColor = p.color('#000000');
+        phoneticColor = p.color('#000000');
       }
+      
   
       // Text settings
       p.textAlign(p.LEFT, p.TOP);
@@ -39,6 +48,7 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
       const phonetics = translation?.translation?.phonetics || ''; // Pronunciation
   
       // Display the Japanese word (translated word)
+      p.fill(translationColor);
       let textSize = p.map(japaneseWord.length, 0, 32, 60, 18);
       p.textSize(textSize);
       
@@ -46,13 +56,14 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
       p.text(japaneseWord, 940, 180); // Display the translated word
   
       // Display phonetics (pronunciation)
+      p.fill(phoneticColor);
       p.textSize(textSize/1.5);
       p.textStyle(p.ITALIC);
       p.text(phonetics, 940, 280); // Display the pronunciation
   
       // Display the original word (textInput)
-      p.textSize(32);
-      p.textStyle(p.NORMAL);
+      // p.textSize(32);
+      // p.textStyle(p.NORMAL);
     //   p.text(word, 920, 300); // Display the original word
   
     };
@@ -62,7 +73,14 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 4000;
     const canvasHeight = 2060;
     const { textInput, translation } = values;
+    let translationColor, phoneticColor;
+    let japaneseFont;
+    //
   
+    p.preload = () => {
+      // Load the Montserrat font during the preload phase
+      japaneseFont = p.loadFont('/fonts/NotoSansJP-Black.ttf');
+    };
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
       canvas.id('p5-canvas');
@@ -78,19 +96,26 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       p.clear();
       // Set background and text color based on the T-shirt color
       if (color === 'black') {
-        
-        p.fill(255);
+        translationColor = p.color('#ffffff');
+        phoneticColor = p.color('#ffffff');
+      } else if (color === 'navy') {
+        translationColor = p.color('#ff5733');
+        phoneticColor = p.color('#ffffff');
+      } else if (color === 'maroon') {
+        translationColor = p.color('#ffad99');
+        phoneticColor = p.color('#ffffff');
       } else if (color === 'grey') {
-        
-        p.fill(0);
+        translationColor = p.color('#000000');
+        phoneticColor = p.color('#000000');
       } else if (color === 'beige' || color === 'white') {
-        
-        p.fill(0);
+        phoneticColor = p.color('#77301b');
+        translationColor = p.color('#77301b');
       } else {
-        
-        p.fill(0);
+        translationColor = p.color('#000000');
+        phoneticColor = p.color('#000000');
       }
   
+      p.textFont(japaneseFont);
       // Text settings
       p.textAlign(p.LEFT, p.TOP);
   
@@ -100,6 +125,7 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       const phonetics = translation?.translation?.phonetics || ''; // Pronunciation
   
       // Display the Japanese word (translated word)
+      p.fill(translationColor);
       let textSize = p.map(japaneseWord.length, 0, 32, 180, 24);
       p.textSize(textSize);
       p.textStyle(p.BOLD);
@@ -107,6 +133,8 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
       p.text(japaneseWord, 750, 180); // Display the translated word
   
       // Display phonetics (pronunciation)
+      p.textFont("Arial")
+      p.fill(phoneticColor);
       p.textSize(textSize/2.5);
       p.textStyle(p.ITALIC);
       p.text(phonetics, 750, 480); // Display the pronunciation
@@ -123,6 +151,13 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
     const canvasWidth = 4000;
     const canvasHeight = 2060;
     const { textInput, translation } = values;
+    let translationColor, phoneticColor;
+    let japaneseFont;
+  
+    p.preload = () => {
+      // Load the Montserrat font during the preload phase
+      japaneseFont = p.loadFont('/fonts/NotoSansJP-Black.ttf');
+    };
   
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -131,23 +166,35 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
       canvasRef.current = canvas.canvas;
       p.noLoop();
       onP5Update();
-      p.textFont("Impact");
+      
     };
   
     p.draw = () => {
       p.clear();
       // Set background and text color based on the T-shirt color
       if (color === 'black') {
-        p.fill(255);
+        translationColor = p.color('#ffffff');
+        phoneticColor = p.color('#ffffff');
+      } else if (color === 'navy') {
+        translationColor = p.color('#ff5733');
+        phoneticColor = p.color('#ffffff');
+      } else if (color === 'maroon') {
+        translationColor = p.color('#ffad99');
+        phoneticColor = p.color('#ffffff');
       } else if (color === 'grey') {
-        p.fill(0);
+        translationColor = p.color('#000000');
+        phoneticColor = p.color('#000000');
       } else if (color === 'beige' || color === 'white') {
-        p.fill(0);
+        phoneticColor = p.color('#000000');
+        translationColor = p.color('#77301b');
       } else {
-        p.fill(0);
+        translationColor = p.color('#000000');
+        phoneticColor = p.color('#000000');
       }
   
       // Text settings
+
+      p.textFont(japaneseFont);
       p.textAlign(p.CENTER, p.TOP);
   
       // Extract data from translation
@@ -181,15 +228,8 @@ export const japaneseNeonSketch = (p, canvasRef, onP5Update, color, values) => {
       }
       p.strokeWeight(0);
   
-      if (color === 'black') {
-        p.fill(255);
-      } else if (color === 'grey') {
-        p.fill(0);
-      } else if (color === 'beige' || color === 'white') {
-        p.fill(0);
-      } else {
-        p.fill(0);
-      }
+      p.textFont("Impact");
+      p.fill(p.color(phoneticColor));
       p.textSize(60);
       p.textStyle(p.ITALIC);
       p.text(phonetics, textX, 640); // Display the pronunciation below the Japanese word
