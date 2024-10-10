@@ -1122,16 +1122,27 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
 
     const totalDuration = analysisData.track.duration;
 
-    let fillColor, strokeColor;
+    let fillColor, strokeColor, textColor;
 
     if (color === 'black') {
-      fillColor = p.color('#707070');
-      strokeColor = p.color('#707070');
+      fillColor = p.color('#505050');
+      textColor = p.color('#505050');
+      strokeColor = p.color('#505050');
     } else if (color === 'beige') {
-      fillColor = p.color('#77301b'); 
+      fillColor = p.color('#77301b');
+      textColor = p.color('#77301b'); 
       strokeColor = p.color('#77301b');
-    } else {
+    } else if (color === 'navy') {
+      fillColor = p.color('#FF5733');
+      textColor = p.color('#FFFFFF');
+      strokeColor = p.color('#FF5733');
+    } else if (color === 'maroon') {
+      fillColor = p.color('#C0C0C0');
+      textColor = p.color('#C0C0C0');
+      strokeColor = p.color('#C0C0C0');
+    }else {
       fillColor = p.color(50);
+      textColor = p.color(50); 
       strokeColor = p.color(50);
     }
 
@@ -1181,6 +1192,12 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
     p.noStroke();
     p.textAlign(p.CENTER);
 
+    p.textSize(20);
+    p.textStyle(p.BOLD);
+    p.text(`0:00`, x - 40, y + drawingHeight / 2 + 7);
+    p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 7);
+
+    p.fill(textColor);
     p.textSize(32);
     p.textStyle(p.BOLD);
     nameLines.forEach((line, index) => {
@@ -1193,10 +1210,6 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       p.text(line, x + drawingWidth / 2, y + drawingHeight + 75 + nameLines.length * 40 + index * 30);
     });
 
-    p.textSize(20);
-    p.textStyle(p.BOLD);
-    p.text(`0:00`, x - 40, y + drawingHeight / 2 + 7);
-    p.text(`${durationFormatted}`, x + 55 + drawingWidth - 20, y + drawingHeight / 2 + 7);
 
     if (explicit && explicitImage) {
       p.image(explicitImage, x + drawingWidth / 2 - 50, y + drawingHeight + 150 + nameLines.length * 40 + artistLines.length * 30, 100, 63);

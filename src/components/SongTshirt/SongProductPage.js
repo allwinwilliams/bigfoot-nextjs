@@ -268,6 +268,8 @@ const SongProductPage = () => {
                   {[
                     { value: 'black', label: 'Black' },
                     { value: 'beige', label: 'Sand' },
+                    { value: 'navy', label: 'Navy' },
+                    { value: 'maroon', label: 'Maroon' },
                   ].map((option) => (
                     <Chip
                       key={option.value}

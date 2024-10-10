@@ -82,6 +82,8 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
     // Fill the background color
     const colorMap = {
       'red': '#FF0000',
+      'maroon': '#3C0008',
+      'navy': '#030B5D',
       'blue': '#0000FF',
       'grey': '#333333',
       'beige': '#E1C699',

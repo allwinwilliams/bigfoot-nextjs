@@ -50,7 +50,6 @@ export default async function handler(req, res) {
         
         try {
           const translation = JSON.parse(message);
-          console.log(translation);
           return res.status(200).json({ translation });
         } catch (parseError) {
           console.error('Error parsing translation response JSON:', parseError);
