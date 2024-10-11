@@ -38,7 +38,7 @@ const EmojiTshirtPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEmoji, setSelectedEmoji] = useState(searchParams.get('slug') || 'e0-6-grinning-face-with-big-eyes');
   const [emojiCharacter, setEmojiCharacter] = useState('');
-  const [textInput, setTextInput] = useState(searchParams.get('text') || ' ');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || '');
   const [tabValue, setTabValue] = useState(0);
 
   const initialLoad = useRef(true);
@@ -342,6 +342,8 @@ const EmojiTshirtPage = () => {
                   {[
                     { value: 'black', label: 'Black', disabled: false },
                     { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'maroon', label: 'Maroon', disabled: false },
+                    { value: 'navy', label: 'Navy', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
                     <Tooltip

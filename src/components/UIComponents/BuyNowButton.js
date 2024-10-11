@@ -311,7 +311,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
                 <ButtonGroup variant="outlined" color="primary" aria-label="outlined button group" fullWidth>
                   {[
                     { id: 'premium', label: 'Premium', description: '100% Cotton - Biowashed', price: 119900 },
-                    { id: 'luxury', label: 'Luxury', description: '100% Cotton - SoftTouch Knitted', price: 149900 },
+                    { id: 'luxury', label: 'Luxury', description: '100% Cotton - SoftTouch', price: 149900 },
                   ].map((option) => (
                     <Button
                       key={option.id}
