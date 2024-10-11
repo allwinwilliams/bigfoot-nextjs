@@ -32,7 +32,7 @@ const DictionaryTshirtPage = () => {
   const [style, setStyle] = useState(searchParams.get('style') || 'small');
   const [tooltipOpen, setTooltipOpen] = useState(false);
   
-  const [textInput, setTextInput] = useState(searchParams.get('text') || ' ');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || 'your word');
 
   const initialLoad = useRef(true);
 
@@ -302,6 +302,8 @@ const DictionaryTshirtPage = () => {
                   {[
                     { value: 'black', label: 'Black', disabled: false },
                     { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'navy', label: 'Navy', disabled: false },
+                    { value: 'maroon', label: 'Maroon', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
                     <Tooltip

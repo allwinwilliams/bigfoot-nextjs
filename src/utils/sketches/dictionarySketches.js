@@ -117,6 +117,7 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
     const canvasWidth = 4000;
     const canvasHeight = 2060;
     const { textInput, definition } = values;
+    let textColor;
   
     p.setup = () => {
       const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -133,18 +134,19 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
       p.clear();
       // Set background and text color based on the T-shirt color
       if (color === 'black') {
-        
-        p.fill(255);
-      } else if (color === 'grey') {
-        
-        p.fill(0);
-      } else if (color === 'beige' || color === 'white') {
-        
-        p.fill(0);
+        textColor = p.color('#ffffff');
+      } else if (color === 'navy') {
+        textColor = p.color('#ffffff');
+      } else if (color === 'maroon') {
+        textColor = p.color('#ffffff');
+      } else if (color === 'white') {
+        textColor = p.color('#000000');
+      } else if (color === 'beige') {
+        textColor = p.color('#000000');
       } else {
-        
-        p.fill(0);
+        textColor = p.color('#000000');
       }
+      p.fill(textColor);
       
   
       // Text settings
@@ -159,20 +161,20 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
       const example = definition?.details?.example || '';
   
       // Display the word
-      let textSize = p.map(word.length, 0, 32, 60, 32)
+      let textSize = p.map(word.length, 0, 32, 60, 24)
       p.textSize(textSize);
       p.textStyle(p.BOLD);
-      p.text(word, 900, 100);
+      p.text(word, 980, 160 - textSize);
   
       // Display phonetics
       p.textSize(textSize/2);
       p.textStyle(p.ITALIC);
-      p.text(phonetics, 900, 180);
+      p.text(phonetics, 980, 180);
   
       // Display type
       p.textSize(textSize/2);
       p.textStyle(p.NORMAL);
-      p.text(type, 900, 220);
+      p.text(type, 980, 220);
   
       // Function to split text into lines based on character count
       const splitText = (text, maxLength) => {
@@ -210,7 +212,7 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
       let yPosition = 300;
   
       definitionLines.forEach(line => {
-        p.text(line, 900, yPosition);
+        p.text(line, 980, yPosition);
         yPosition += p.textLeading();
       });
   
@@ -220,7 +222,7 @@ export const dictionarySmallSketch = (p, canvasRef, onP5Update, color, values) =
       p.textLeading(30);
   
       exampleLines.forEach(line => {
-        p.text(line, 900, yPosition);
+        p.text(line, 980, yPosition);
         yPosition += p.textLeading();
       });
     };
