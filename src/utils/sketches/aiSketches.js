@@ -285,7 +285,7 @@ export const aiVariantsSketch = (p, canvasRef, onP5Update, color, values, style)
     p.clear();
 
     if (isLoading) {
-      const startX = 500;
+      const startX = 600;
       const startY = 350;
       const endX = 1000;
       const endY = 950;

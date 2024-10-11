@@ -38,15 +38,14 @@ const P5Sketch = ({ canvasRef, onP5Update, color, type, values, style = 'minimal
       if(type == "ai"){
         sketch = (p) => aiBasicSketch(p, canvasRef, onP5Update, color, values, style);
         
-      } if (type == "prompt"){
+      } 
+      if (type == "prompt"){
         if(style == "small" || style == "large"){
           sketch = (p) => aiVariantsSketch(p, canvasRef, onP5Update, color, values, style);
         }
         if (style == "pixels"){
           sketch = (p) => aiPixelsSketch(p, canvasRef, onP5Update, color, values, style);
         }
-
-        
       }
       if(type == "basic"){
         switch (style) {

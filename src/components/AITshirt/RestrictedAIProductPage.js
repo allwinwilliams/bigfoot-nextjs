@@ -383,6 +383,8 @@ const RestrictedAiProductPage = () => {
                   {[
                     { value: 'black', label: 'Black', disabled: false },
                     { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'maroon', label: 'Maroon', disabled: false },
+                    { value: 'navy', label: 'Navy', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
                     <Tooltip
@@ -478,7 +480,7 @@ const RestrictedAiProductPage = () => {
                       <Box sx={{ textAlign: 'center' }}>
                           Share Now
                         <Typography variant="caption" sx={{ display: 'block', fontWeight: 'normal' }}>
-                          Exact designs are not saved for prompt generated. We are currently building this.
+                          Exacts designs are not currently saved till checkout
                         </Typography>
                       </Box>
                     </Button>
