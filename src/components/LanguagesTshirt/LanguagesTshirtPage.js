@@ -30,7 +30,7 @@ const LanguageTshirtPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'beige');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [style, setStyle] = useState(searchParams.get('style') || 'bold');
-  const [language, setLanguage] = useState(searchParams.get('language') || 'Japanese');
+  const [language, setLanguage] = useState(searchParams.get('language') || 'japanese');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const [textInput, setTextInput] = useState(searchParams.get('text') || 'hello');
@@ -61,7 +61,7 @@ const LanguageTshirtPage = () => {
       size: 'M',
       style: 'bold',
       text: 'hello',
-      language: 'Japanese',
+      language: 'japanese',
     };
 
     if (
@@ -158,13 +158,13 @@ const LanguageTshirtPage = () => {
   };
 
   const languageOptions = [
-    { value: 'English', label: 'English' },
-    { value: 'Hindi', label: 'हिन्दी (Hindi)' },
-    { value: 'Tamil', label: 'தமிழ் (Tamil)' },
-    { value: 'Malayalam', label: 'മലയാളം (Malayalam)' },
-    { value: 'Marathi', label: 'मराठी (Marathi)' },
-    { value: 'Telugu', label: 'తెలుగు (Telugu)' },
-    { value: 'Japanese', label: '日本語 (Japanese)' },
+    { value: 'english', label: 'English' },
+    { value: 'hindi', label: 'हिन्दी (Hindi)' },
+    { value: 'tamil', label: 'தமிழ் (Tamil)' },
+    { value: 'malayalam', label: 'മലയാളം (Malayalam)' },
+    { value: 'marathi', label: 'मराठी (Marathi)' },
+    { value: 'telugu', label: 'తెలుగు (Telugu)' },
+    { value: 'japanese', label: '日本語 (Japanese)' },
   ];
 
   return (
@@ -236,7 +236,7 @@ const LanguageTshirtPage = () => {
             >
               <Box sx={{ paddingX: { xs: 1, md: 2 }, paddingY: 0 }}>
                 <Typography variant="h5" gutterBottom sx={{}}>
-                  Turn your text into a unique design
+                  Write your text on your T-shirt
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
                   <Autocomplete
@@ -340,6 +340,8 @@ const LanguageTshirtPage = () => {
                   {[
                     { value: 'black', label: 'Black', disabled: false },
                     { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'maroon', label: 'Maroon', disabled: false },
+                    { value: 'navy', label: 'Navy', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
                     <Tooltip

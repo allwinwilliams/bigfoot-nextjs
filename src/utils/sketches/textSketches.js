@@ -3,6 +3,7 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
   const canvasHeight = 2060;
   const { textInput } = values;
   let montserratFont, handWrittenFont, serifFont;  // Declare a variable to store the loaded font
+  let textColor;
 
   p.preload = () => {
     // Load the Montserrat font during the preload phase
@@ -24,14 +25,20 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
 
   p.draw = () => {
     if (color === 'black') {
-      p.fill(255);
+      textColor = p.color('#ffffff');
+    } else if (color === 'navy') {
+      textColor = p.color('#ff5733');
+    } else if (color === 'maroon') {
+      textColor = p.color('#ffad99');
     } else if (color === 'grey') {
-      p.fill(5);
+      textColor = p.color('#000000');
     } else if (color === 'beige' || color === 'white') {
-      p.fill(p.color('#77301b'));
+      textColor = p.color('#77301b');
     } else {
-      p.fill(50);
+      textColor = p.color('#000000');
     }
+    p.fill(textColor);
+
     p.textAlign(p.CENTER, p.CENTER);
 
     // Apply different styles based on the `style` argument
@@ -54,7 +61,7 @@ export const textSketch = (p, canvasRef, onP5Update, color, values, style = "tin
       
       p.textFont(serifFont);
       p.textStyle(p.BOLD);
-      p.fill('#222222');
+      // p.fill('#222222');
       p.noStroke();
       let textSize = p.map(textInput.length, 0, 24, 160, 80)
       p.textSize(textSize);

@@ -2,6 +2,11 @@ export const languageSmallSketch = (p, canvasRef, onP5Update, color, values) => 
   const canvasWidth = 4000;
   const canvasHeight = 2060;
   const { textInput, translation } = values;
+  let translationColor, phoneticColor;
+  let fontFile;
+  p.preload = () => {
+    fontFile = p.loadFont('/fonts/NotoSans-variable.ttf');
+  }
 
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -15,13 +20,29 @@ export const languageSmallSketch = (p, canvasRef, onP5Update, color, values) => 
 
   p.draw = () => {
     p.clear();
+    // p.textFont(fontFile);
 
     // Set text color based on the T-shirt color
     if (color === 'black') {
-      p.fill(255);
+      translationColor = p.color('#ffffff');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'maroon') {
+      translationColor = p.color('#ffad99');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'navy') {
+      translationColor = p.color('#ff5733');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'grey') {
+      translationColor = p.color('#000000');
+      phoneticColor = p.color('#000000');
+    } else if (color === 'beige' || color === 'white') {
+      phoneticColor = p.color('#77301b');
+      translationColor = p.color('#77301b');
     } else {
-      p.fill(0);
+      translationColor = p.color('#000000');
+      phoneticColor = p.color('#000000');
     }
+    p.fill(translationColor);
 
     // Text settings
     p.textAlign(p.LEFT, p.TOP);
@@ -53,6 +74,11 @@ export const languageBoldSketch = (p, canvasRef, onP5Update, color, values) => {
   const canvasWidth = 4000;
   const canvasHeight = 2060;
   const { textInput, translation } = values;
+  let translationColor, phoneticColor;
+  let fontFile;
+  p.preload = () => {
+    fontFile = p.loadFont('/fonts/NotoSans-variable.ttf');
+  }
 
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -67,13 +93,28 @@ export const languageBoldSketch = (p, canvasRef, onP5Update, color, values) => {
 
   p.draw = () => {
     p.clear();
-
+    // p.textFont(fontFile);
     // Set text color based on the T-shirt color
     if (color === 'black') {
-      p.fill(255);
+      translationColor = p.color('#ffffff');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'maroon') {
+      translationColor = p.color('#ffad99');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'navy') {
+      translationColor = p.color('#ff5733');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'grey') {
+      translationColor = p.color('#000000');
+      phoneticColor = p.color('#000000');
+    } else if (color === 'beige' || color === 'white') {
+      phoneticColor = p.color('#77301b');
+      translationColor = p.color('#77301b');
     } else {
-      p.fill(0);
+      translationColor = p.color('#000000');
+      phoneticColor = p.color('#000000');
     }
+    p.fill(translationColor);
 
     // Text settings
     p.textAlign(p.CENTER, p.TOP);
@@ -105,6 +146,11 @@ export const languageNeonSketch = (p, canvasRef, onP5Update, color, values) => {
   const canvasWidth = 4000;
   const canvasHeight = 2060;
   const { textInput, translation } = values;
+  let translationColor, phoneticColor;
+  let fontFile;
+  p.preload = () => {
+    fontFile = p.loadFont('/fonts/NotoSans-variable.ttf');
+  }
 
   p.setup = () => {
     const canvas = p.createCanvas(canvasWidth, canvasHeight);
@@ -118,12 +164,27 @@ export const languageNeonSketch = (p, canvasRef, onP5Update, color, values) => {
 
   p.draw = () => {
     p.clear();
-
+    // p.textFont(fontFile);
+    
     // Set text color based on the T-shirt color
     if (color === 'black') {
-      p.fill(255);
+      translationColor = p.color('#ffffff');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'maroon') {
+      translationColor = p.color('#ffad99');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'navy') {
+      translationColor = p.color('#ff5733');
+      phoneticColor = p.color('#ffffff');
+    } else if (color === 'grey') {
+      translationColor = p.color('#000000');
+      phoneticColor = p.color('#000000');
+    } else if (color === 'beige' || color === 'white') {
+      phoneticColor = p.color('#000000');
+      translationColor = p.color('#77301b');
     } else {
-      p.fill(0);
+      translationColor = p.color('#000000');
+      phoneticColor = p.color('#000000');
     }
 
     // Text settings
@@ -161,11 +222,7 @@ export const languageNeonSketch = (p, canvasRef, onP5Update, color, values) => {
     p.strokeWeight(0);
 
     // Reset fill color for phonetics
-    if (color === 'black') {
-      p.fill(255);
-    } else {
-      p.fill(0);
-    }
+    p.fill(phoneticColor);
     p.textSize(60);
     p.textStyle(p.ITALIC);
     p.text(phonetics, textX, 640); // Display the pronunciation below the translated word

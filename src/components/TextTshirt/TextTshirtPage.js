@@ -32,7 +32,7 @@ const TextTshirtPage = () => {
   
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [textInput, setTextInput] = useState(searchParams.get('text') || ' ');
+  const [textInput, setTextInput] = useState(searchParams.get('text') || 'Your text');
   const [tabValue, setTabValue] = useState(0);
 
   const initialLoad = useRef(true);
@@ -52,7 +52,7 @@ const TextTshirtPage = () => {
       color: 'black',
       size: 'M',
       style: 'small',
-      text: '',
+      text: 'Your text',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style') || !searchParams.get('text')) {
@@ -278,6 +278,8 @@ const TextTshirtPage = () => {
                   {[
                     { value: 'black', label: 'Black', disabled: false },
                     { value: 'beige', label: 'Sand', disabled: false },
+                    { value: 'navy', label: 'Navy', disabled: false },
+                    { value: 'maroon', label: 'Maroon', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
                   ].map((option) => (
                     <Tooltip

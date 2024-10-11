@@ -59,7 +59,7 @@ const JapaneseTshirtPage = () => {
       color: 'beige',
       size: 'M',
       style: 'bold',
-      text: 'hello',
+      text: '',
     };
 
     if (!searchParams.get('color') || !searchParams.get('size') || !searchParams.get('style') || !searchParams.get('text')) {
@@ -232,11 +232,12 @@ const JapaneseTshirtPage = () => {
                   Turn your text to Japanese
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
-                  <Autocomplete
+                  {/* <Autocomplete
                     freeSolo
                     fullWidth
                     options={wordsArray}
-                    filterOptions={(options, state) =>
+                    filterOptions={
+                      (options, state) =>
                       options
                         .filter((option) =>
                           option.toLowerCase().startsWith(state.inputValue.toLowerCase())
@@ -258,6 +259,18 @@ const JapaneseTshirtPage = () => {
                         helperText="Max 16 characters"
                       />
                     )}
+                  /> */}
+                  <TextField
+                    label="Write your word"
+                    variant="outlined"
+                    fullWidth
+                    value={textInput}
+                    onChange={(e) => {
+                      setTextInput(e.target.value);
+                      updateUrlParams({ text: e.target.value });
+                    }}
+                    inputProps={{ maxLength: 16 }}
+                    helperText="Max 16 characters"
                   />
                 </Box>
                 
