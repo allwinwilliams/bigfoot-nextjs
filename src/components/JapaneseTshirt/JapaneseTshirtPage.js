@@ -136,10 +136,21 @@ const JapaneseTshirtPage = () => {
   return (
     <Box>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+        <title>Custom Japanese T-Shirts | Create Your Own Design from Japanese</title>
+        <meta name="description" content="Design your own Japanese T-shirt with custom text in Katakana, Hiragana, or Kanji. Choose colors, styles, and sizes to create a unique piece of apparel." />
+        <meta name="keywords" content="Japanese T-shirts, custom Japanese text, personalized T-shirts, Katakana designs, Hiragana shirts, Kanji T-shirts" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Create Custom Japanese T-Shirts | Unique Designs" />
+        <meta property="og:description" content="Express yourself with personalized Japanese T-shirts. Add your own text to translate in Katakana, Hiragana, or Kanji. Choose from multiple styles." />
+        <meta property="og:url" content="bigfoot.land/product/japanese-tshirt" />
+        <meta property="og:image" content="https://bigfoot.land/product-page/japanese/og-japanese.png" />
+        {/* <meta name="twitter:title" content="Custom Japanese T-Shirts" /> */}
+        {/* <meta name="twitter:description" content="Design your own Japanese T-shirt with personalized text. Add flair with custom fonts, colors, and sizes." /> */}
+        {/* <meta name="twitter:image" content="https://yourwebsite.com/images/japanese-tshirt.png" /> */}
+        {/* <meta name="twitter:card" content="summary_large_image" /> */}
+        <link rel="canonical" href="bigfoot.land/product/japanese-tshirt" />
       </Head>
+      
       <Box
         sx={{
           maxWidth: 1400,
