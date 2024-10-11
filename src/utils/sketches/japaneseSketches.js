@@ -25,14 +25,14 @@ export const japaneseSmallSketch = (p, canvasRef, onP5Update, color, values) => 
         translationColor = p.color('#ffad99');
         phoneticColor = p.color('#ffffff');
       } else if (color === 'navy') {
-        translationColor = p.color('#ff5733');
+        translationColor = p.color('#ffffff');
         phoneticColor = p.color('#ffffff');
       } else if (color === 'grey') {
         translationColor = p.color('#000000');
         phoneticColor = p.color('#000000');
       } else if (color === 'beige' || color === 'white') {
-        phoneticColor = p.color('#77301b');
-        translationColor = p.color('#77301b');
+        phoneticColor = p.color('#000000');
+        translationColor = p.color('#000000');
       } else {
         translationColor = p.color('#000000');
         phoneticColor = p.color('#000000');
