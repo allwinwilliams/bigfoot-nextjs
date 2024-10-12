@@ -292,7 +292,7 @@ export default function HomePage() {
                     textAlign: 'center',
                     paddingX: {md: 8, xs: 2}
                   }}>
-                  Customize your T-shirts with songs, emojis, Japanese, AI, and more.
+                  Customize your oversized T-shirts with songs, emojis, Japanese, AI, and more.
                 </Typography>
                 <Typography variant="subtitle2"
                   sx={{

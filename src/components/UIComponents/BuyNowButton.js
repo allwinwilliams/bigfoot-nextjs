@@ -277,7 +277,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
             <Box sx={{marginY: 4}}>
               <Box sx={{marginBottom: 2}}>
                 <Typography variant="subtitle1" sx={{fontWeight: 800}} >
-                  Select your size (Fits like Uniqlo)
+                  Select your size (Oversized Fit)
                 </Typography>
                 <SizeChart />
               </Box>
