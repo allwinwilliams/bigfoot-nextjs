@@ -108,8 +108,8 @@ export const japaneseBoldSketch = (p, canvasRef, onP5Update, color, values) => {
         translationColor = p.color('#000000');
         phoneticColor = p.color('#000000');
       } else if (color === 'beige' || color === 'white') {
-        phoneticColor = p.color('#77301b');
-        translationColor = p.color('#77301b');
+        translationColor = p.color('#672324');
+        phoneticColor = p.color('#3b3535');
       } else {
         translationColor = p.color('#000000');
         phoneticColor = p.color('#000000');
