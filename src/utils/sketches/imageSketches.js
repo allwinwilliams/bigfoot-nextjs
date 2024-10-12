@@ -280,15 +280,15 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
       switch (values.back.style) {
         case 'small':
           boundingBoxX = 2100;
-          boundingBoxY = 250;
+          boundingBoxY = 300;
           boundingBoxWidth = 400;
           boundingBoxHeight = 400;
           break;
         case 'large':
-          boundingBoxX = 1800;
-          boundingBoxY = 250;
-          boundingBoxWidth = 1000;
-          boundingBoxHeight = 1000;
+          boundingBoxX = 1700;
+          boundingBoxY = 300;
+          boundingBoxWidth = 1100;
+          boundingBoxHeight = 1700;
           break;
         default:
           boundingBoxX = 2400;
@@ -309,7 +309,7 @@ export const imageSketch = (p, canvasRef, onP5Update, color, values, style) => {
 
       // Calculate centered position within the bounding box
       const imgX = boundingBoxX + (boundingBoxWidth - finalWidth) / 2;
-      const imgY = boundingBoxY + (boundingBoxHeight - finalHeight) / 2;
+      const imgY = boundingBoxY;
 
       p.image(imgBack, imgX, imgY, finalWidth, finalHeight);
     }

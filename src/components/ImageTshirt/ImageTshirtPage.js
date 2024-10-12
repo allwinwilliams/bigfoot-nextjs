@@ -206,8 +206,6 @@ const ImageTshirtPage = () => {
               <Typography variant="h5" gutterBottom sx={{ }}>
                 Customise with any image
               </Typography>
-              
-
               <Typography variant="subtitle1" sx={{ fontWeight: 800, marginBottom: '4px' }} >
                 Front Image
               </Typography>
