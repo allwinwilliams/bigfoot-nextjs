@@ -50,8 +50,8 @@ export const dictionaryBratSketch = (p, canvasRef, onP5Update, color, values) =>
             return lines;
         };
 
-        const definitionMaxCharsPerLine = 32;
-        const exampleMaxCharsPerLine = 40;
+        const definitionMaxCharsPerLine = 48;
+        const exampleMaxCharsPerLine = 48;
 
         const definitionLines = splitText(definitionText, definitionMaxCharsPerLine);
         const exampleLines = splitText(`"${example}"`, exampleMaxCharsPerLine);
