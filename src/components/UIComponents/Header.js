@@ -23,15 +23,15 @@ const Header = () => {
         <img
           src='/logo.png'
           alt='Bigfoot Logo'
-          style={{ width: 72, marginBottom: 8 }}
+          style={{ width: 60, marginBottom: 8 }}
         />
         {/* <Typography variant="h5" gutterBottom>
           bigfoot
         </Typography> */}
 
-        <Typography variant="subtitle2" gutterBottom sx={{color: '#666666'}}>
+        {/* <Typography variant="subtitle2" gutterBottom sx={{color: '#666666'}}>
           unlimited possibilities, made real
-        </Typography>
+        </Typography> */}
       </Box>
     </>
   );

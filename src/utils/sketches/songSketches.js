@@ -1070,6 +1070,7 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
   const canvasHeight = 2060;
 
   let explicitImage, qrCodeImage;
+  let qrColor;
 
   p.preload = async () => {
     explicitImage = p.loadImage('/song-tshirt/parental_Advisory_label.svg');
@@ -1078,14 +1079,12 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       const { name, artists } = songData.details;
       const artistNames = artists.map(artist => artist.name).join(', ');
       const searchPhrase = `${name} ${artistNames}`;
-
-      let qrColor;
       if (color === 'black') {
-        qrColor = '#444444';
+        qrColor = '#FFFFFF';
       } else if (color === 'beige') {
         qrColor = '#77301b'; // Dark grey
       } else {
-        qrColor = '#323232'; // Default color
+        qrColor = '#FFFFFF'; // Default color
       }
 
       const qrCodeUrl = await generateQRCodeForGoogleSearch(searchPhrase, qrColor, 480); // Generate at larger size
@@ -1221,22 +1220,13 @@ export const minimalSketch = (p, canvasRef, onP5Update, color, songData) => {
       const imgX = x + (width - 240) / 2; // Center the scaled down image
       const imgY = y + (height - 240) / 2;
       p.image(qrCodeImage, imgX, imgY, 240, 240); // Scale down to 240
+      p.textSize(28);
+      p.textStyle(p.BOLD);
+      p.textAlign(p.CENTER);
+      p.text(`vibe to my jam`, x + width / 2, y + height - 80);
     }
 
-    let textColor;
-    if (color === 'black') {
-      textColor = p.color('#666666');
-    } else if (color === 'beige') {
-      textColor = p.color('#77301b');
-    } else {
-      textColor = p.color(50);
-    }
-
-    p.fill(textColor);
-    p.textSize(28);
-    p.textStyle(p.BOLD);
-    p.textAlign(p.CENTER);
-    p.text(`vibe to my jam`, x + width / 2, y + height - 80);
+    
   };
 
   p.draw = () => {

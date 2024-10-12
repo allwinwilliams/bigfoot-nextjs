@@ -3,9 +3,10 @@
 import NextLink from 'next/link';
 import { useRef, useEffect } from 'react';
 import { Container, Typography, Button, Box, Paper, Card, CardMedia, CardContent, Grid, Link } from '@mui/material';
-import ProductStaticContent from '../components/ProductStaticContent';
-import HorizontalScrollSection from '../components/HorizontalScrollSection';
+import ProductStaticContent from '@/components/ProductStaticContent';
+import HorizontalScrollSection from '@/components/HorizontalScrollSection';
 import BrushIcon from '@mui/icons-material/Brush';
+import VideoIcon from '@mui/icons-material/PlayCircleOutline';
 import AutoScrollCards from '@/components/UIComponents/AutoScrollCards';
 import Header from '@/components/UIComponents/Header';
 import { AspectRatio, Margin, Opacity } from '@mui/icons-material';
@@ -17,7 +18,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PrintIcon from '@mui/icons-material/Print';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Marquee from "react-fast-marquee";
-import GallerySection from '../components/Gallerysection';
+import GallerySection from '@/components/Gallerysection';
 import FreeGiftComponent from '@/components/FreeGiftComponent';
 import TestimonialSection from '@/components/UIComponents/TestimonialSection';
 
@@ -50,49 +51,52 @@ export default function HomePage() {
   `;
 
   const sampleData1 = [
-    { imgUrl: '/samples/song/5.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/song-tshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
-    { imgUrl: '/samples/ai/1.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&style=Van%20Gogh' },
-    { imgUrl: '/samples/song/6.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/song-tshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
-    { imgUrl: '/samples/emoji/1.png', title: '🍣', description: 'すし、ください。', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e0-6-sushi&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
-    { imgUrl: '/samples/basic/2.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=beige&size=M&style=head' },
-    { imgUrl: '/samples/song/3.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/song-tshirt?color=beige&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=drilldown' },
-    { imgUrl: '/samples/ai/8.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
-    { imgUrl: '/samples/ai/6.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
-    { imgUrl: '/samples/basic/7.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=black&size=M&style=pixel' },
-    { imgUrl: '/samples/song/1.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/song-tshirt?color=black&size=M&songId=6l8GvAyoUZwWDgF1e4822w&style=analysis' },
-    { imgUrl: '/samples/emoji/3.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
-    { imgUrl: '/samples/basic/4.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=beige&size=M&style=tip' },
-    { imgUrl: '/samples/song/12.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/song-tshirt?color=black&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=analysis' },
-    
+    { imgUrl: '/samples/mockups/song/minimal/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/song-tshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
+    { imgUrl: '/samples/mockups/song/minimal/2.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&style=Van%20Gogh' },
+    { imgUrl: '/samples/mockups/song/minimal/3.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/song-tshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
+    { imgUrl: '/samples/mockups/song/minimal/4.png', title: '🍣', description: 'すし、ください。', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e0-6-sushi&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
+    { imgUrl: '/samples/mockups/song/concert/1.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=beige&size=M&style=head' },
+    { imgUrl: '/samples/mockups/song/concert/2.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/song-tshirt?color=beige&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=drilldown' },
+    { imgUrl: '/samples/mockups/song/analysis/1.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
+    { imgUrl: '/samples/mockups/song/analysis/2.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
+    { imgUrl: '/samples/mockups/japanese/1.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=black&size=M&style=pixel' },
+    { imgUrl: '/samples/mockups/japanese/2.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/song-tshirt?color=black&size=M&songId=6l8GvAyoUZwWDgF1e4822w&style=analysis' },
+    { imgUrl: '/samples/mockups/japanese/3.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
+    { imgUrl: '/samples/mockups/japanese/4.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=beige&size=M&style=tip' },
+    { imgUrl: '/samples/mockups/japanese/5.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/song-tshirt?color=black&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=analysis' },
+    { imgUrl: '/samples/mockups/japanese/6.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/song-tshirt?color=black&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=analysis' },
   ];
   
   const sampleData2 = [
-    { imgUrl: '/samples/song/11.png', title: 'Billie Jean', description: 'Michael Jackson', link: '/product/song-tshirt?color=beige&size=M&songId=5ChkMS8OtdzJeqyybCc9R5&style=analysis' },
-    { imgUrl: '/samples/emoji/2.png', title: '🐮', description: 'moooooooooooooo', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-cow-face&text=moooooooooooooo' },
-    { imgUrl: '/samples/ai/3.png', title: 'Strawberry', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Strawberry&action=lying%20on%20a&location=a%20Forest&style=Comics' },
-    { imgUrl: '/samples/ai/4.png', title: 'A cat', description: 'lying in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20cat&action=lying%20on%20a&location=a%20Mountain&style=Monet' },
-    { imgUrl: '/samples/song/2.png', title: 'Dynamite', description: 'BTS', link: '/product/song-tshirt?color=black&size=M&songId=5QDLhrAOJJdNAmCTJ8xMyW&style=drilldown' },
-    { imgUrl: '/samples/emoji/4.png', title: '🇵🇸', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e2-0-flag-palestinian-territories&text=' },
-    { imgUrl: '/samples/emoji/6.png', title: '🍑', description: 'beach vacation', link: '/product/emoji-tshirt?color=beige&size=M&style=tiny&slug=e0-6-peach&text=beach+vacation' },
-    { imgUrl: '/samples/song/9.png', title: 'Sandstorm', description: 'Darude', link: '/product/song-tshirt?color=black&size=M&songId=6Sy9BUbgFse0n0LPA5lwy5&style=concert' },
-    { imgUrl: '/samples/emoji/7.png', title: '🛕', description: 'mandir yahi banega', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e12-0-hindu-temple&text=mandir+yahi+banega' },
-    { imgUrl: '/samples/basic/1.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=black&size=M&style=head' },
-    { imgUrl: '/samples/ai/7.png', title: 'A robot', description: ' painting in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Robot&action=painting&location=a%20Mountain&style=Comics' },
-    { imgUrl: '/samples/basic/5.png', title: 'Basic', description: 'Loading...', link: '/product/basic-tshirt?color=black&size=M&style=loading' },
+    { imgUrl: '/samples/mockups/text/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/song-tshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
+    { imgUrl: '/samples/mockups/text/2.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&style=Van%20Gogh' },
+    { imgUrl: '/samples/mockups/text/3.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/song-tshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
+    { imgUrl: '/samples/mockups/text/4.png', title: '🍣', description: 'すし、ください。', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e0-6-sushi&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
+    { imgUrl: '/samples/mockups/text/5.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=beige&size=M&style=head' },
+    { imgUrl: '/samples/mockups/text/6.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/song-tshirt?color=beige&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=drilldown' },
+    { imgUrl: '/samples/mockups/text/7.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
+    { imgUrl: '/samples/mockups/emoji/1.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
+    { imgUrl: '/samples/mockups/emoji/2.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=black&size=M&style=pixel' },
+    { imgUrl: '/samples/mockups/emoji/3.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/song-tshirt?color=black&size=M&songId=6l8GvAyoUZwWDgF1e4822w&style=analysis' },
+    { imgUrl: '/samples/mockups/emoji/4.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
+    { imgUrl: '/samples/mockups/emoji/5.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=beige&size=M&style=tip' },
+    { imgUrl: '/samples/mockups/emoji/6.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/song-tshirt?color=black&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=analysis' },
   ];
   
   const sampleData3 = [
-    { imgUrl: '/samples/song/7.png', title: 'Tum Hi Ho', description: 'Mithoon, Arijit Singh', link: '/product/song-tshirt?color=beige&size=M&songId=56zZ48jdyY2oDXHVnwg5Di&style=minimal' },
-    { imgUrl: '/samples/basic/6.png', title: 'Basic', description: 'Loading...', link: '/product/basic-tshirt?color=white&size=M&style=loading' },
-    { imgUrl: '/samples/song/10.png', title: 'In the End', description: 'Linkin Park', link: '/product/song-tshirt?color=black&size=M&songId=60a0Rd6pjrkxjPbaKzXjfq&style=minimal' },
-    { imgUrl: '/samples/basic/8.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=beige&size=M&style=pixel' },
-    { imgUrl: '/samples/emoji/5.png', title: '🌈', description: '', link: '/product/emoji-tshirt?color=black&size=M&style=badge&slug=e0-6-rainbow&text=' },
-    { imgUrl: '/samples/ai/2.png', title: 'Bigfoot', description: 'dancing in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=dancing&location=a%20Mountain&style=Madhubani%20Painting%20Art%20in%20bright%20colors%20from%20Bihar,%20India' },
-    { imgUrl: '/samples/song/8.png', title: 'Baby One More Time', description: 'Britney Spears', link: '/product/song-tshirt?color=beige&size=M&songId=3MjUtNVVq3C8Fn0MP3zhXa&style=concert' },
-    { imgUrl: '/samples/ai/5.png', title: 'Bigfoot', description: 'walking in Mumbai', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=walking%20on%20a&location=Mumbai&style=Comics' },
-    { imgUrl: '/samples/song/4.png', title: 'Enter Sandman', description: 'Metallica', link: '/product/song-tshirt?color=black&size=M&songId=3VqHuw0wFlIHcIPWkhIbdQ&style=concert' },
-    { imgUrl: '/samples/basic/3.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=black&size=M&style=tip' },
-    { imgUrl: '/samples/ai/9.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
+    { imgUrl: '/samples/mockups/dictionary/small/1.png', title: 'Love Story', description: 'Taylor Swift', link: '/product/song-tshirt?color=beige&size=M&songId=1vrd6UOGamcKNGnSHJQlSt&style=analysis' },
+    { imgUrl: '/samples/mockups/dictionary/small/2.png', title: 'Bigfoot', description: 'reading in a mountain', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=Bigfoot&action=reading%20a%20book&location=a%20Mountain&style=Van%20Gogh' },
+    { imgUrl: '/samples/mockups/dictionary/small/3.png', title: 'Lose Yourself', description: 'Eminem', link: '/product/song-tshirt?color=black&size=M&songId=5Z01UMMf7V1o0MzF86s6WJ&style=analysis' },
+    { imgUrl: '/samples/mockups/dictionary/small/4.png', title: '🍣', description: 'すし、ください。', link: '/product/emoji-tshirt?color=black&size=M&style=tiny&slug=e0-6-sushi&text=%E3%81%99%E3%81%97%E3%80%81%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82' },
+    { imgUrl: '/samples/mockups/dictionary/brat/1.png', title: 'Basic', description: 'Glass', link: '/product/basic-tshirt?color=beige&size=M&style=head' },
+    { imgUrl: '/samples/mockups/dictionary/brat/2.png', title: 'Chaiyya Chaiyya', description: 'Sukhwinder Singh, Sapna Awasthi', link: '/product/song-tshirt?color=beige&size=M&songId=5H4rKylLnO8KrmdXTRhj5s&style=drilldown' },
+    { imgUrl: '/samples/mockups/dictionary/brat/3.png', title: 'A dog', description: 'sitting in a beach', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20dog&action=sitting%20on%20a&location=a%20Beach&style=Hokusai%20Ukiyo-E' },
+    { imgUrl: '/samples/mockups/dictionary/brat/4.png', title: 'A sunflower', description: 'lying in a forest', link: '/product/prompt-generated-tshirt?color=black&size=M&subject=A%20Sunflower&action=lying%20on%20a&location=a%20Forest&style=Van%20Gogh' },
+    { imgUrl: '/samples/mockups/ai/1.png', title: 'Basic', description: '16X16', link: '/product/basic-tshirt?color=black&size=M&style=pixel' },
+    { imgUrl: '/samples/mockups/ai/2.png', title: 'Bohemian Rhapsody', description: 'Queen', link: '/product/song-tshirt?color=black&size=M&songId=6l8GvAyoUZwWDgF1e4822w&style=analysis' },
+    { imgUrl: '/samples/mockups/ai/3.png', title: '🚬', description: 'no smoking', link: '/product/emoji-tshirt?color=white&size=M&style=badge&slug=e0-6-cigarette&text=no+smoking' },
+    { imgUrl: '/samples/mockups/ai/4.png', title: 'Basic', description: 'Face', link: '/product/basic-tshirt?color=beige&size=M&style=tip' },
+    { imgUrl: '/samples/mockups/ai/5.png', title: 'Viva La Vida', description: 'Coldplay', link: '/product/song-tshirt?color=black&size=M&songId=1mea3bSkSGXuIRvnydlB5b&style=analysis' },
   ];
 
   const galleryCards = [
@@ -165,34 +169,10 @@ export default function HomePage() {
         minHeight: '100vh',
       }}
     >
-      <Box sx={{ position: 'fixed', bottom: '-40px', left: '50%', transform: 'translateX(-50%)', width: '100%', height: '50px', zIndex: 9999, pointerEvents: 'none' }}>
-        <Box
-          id="animated-light"
-          sx={{
-            width: '200%',
-            height: '50px',
-            borderRadius: '32px',
-            filter: 'blur(16px)',
-            position: 'absolute',
-            animation: `${colorChange} 7s infinite, ${moveLight} 9s infinite`,
-          }}
-        ></Box>
-        <Box
-          id="animated-light2"
-          sx={{
-            width: '120%',
-            height: '50px',
-            borderRadius: '50%',
-            filter: 'blur(24px)',
-            position: 'absolute',
-            animation: `${colorChange} 3s infinite, ${moveLight} 4s infinite`,
-          }}
-        ></Box>
-      </Box>
       <Box 
         sx={{
           width: '100%',
-          backgroundColor: '#000',
+          backgroundColor: '#CCCCCC',
           paddingY: 1.2,
           top: 0,
           left: 0,
@@ -201,26 +181,25 @@ export default function HomePage() {
       >
         <Marquee gradient={false} speed={40}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, mx: 2 }}>
-          
-            <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
+            <FiberManualRecordIcon sx={{ color: '#777', fontSize: 8, mx: 1 }} />
+            <Typography variant="subtitle2" sx={{ color: '#777' }}>
               EXPRESS YOURSELF
             </Typography>
-            <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
+            <FiberManualRecordIcon sx={{ color: '#777', fontSize: 8, mx: 1 }} />
+            <Typography variant="subtitle2" sx={{ color: '#777' }}>
               FREEDOM OF EXPRESSION
             </Typography>
-            <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            <Typography variant="subtitle2" sx={{ color: '#fff' }}>
+            <FiberManualRecordIcon sx={{ color: '#777', fontSize: 8, mx: 1 }} />
+            <Typography variant="subtitle2" sx={{ color: '#777' }}>
               PREMIUM CONCEPTUAL FASHION
             </Typography>
-            <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
-            <Typography variant="subtitle2" sx={{ color: '#fff', display: 'flex', alignItems: 'center' }}>
+            <FiberManualRecordIcon sx={{ color: '#777', fontSize: 8, mx: 1 }} />
+            <Typography variant="subtitle2" sx={{ color: '#777', display: 'flex', alignItems: 'center' }}>
             <Link
               href="https://wa.me/+918147536059"
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ display: 'flex', alignItems: 'center', color: '#fff', textDecoration: 'none' }}
+              sx={{ display: 'flex', alignItems: 'center', color: '#777', textDecoration: 'none' }}
             >
               <WhatsAppIcon sx={{ marginRight: 1 }} />
               FOR ANY QUERIES, CONTACT +91 814753 6059
@@ -229,53 +208,34 @@ export default function HomePage() {
           </Box>
         </Marquee>
       </Box>
-      <Header />
+      <Box 
+        sx={{
+          paddingTop: 4,
+          paddingBottom: 1,
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textDecoration: 'none',
+        }}
+        component={Link}
+        href={'/'}
+      >
+        <img
+          src='/logo/logo-face.png'
+          alt='Bigfoot Logo'
+          style={{ width: 60, marginBottom: 8 }}
+        />
+        
+      </Box>
       <Container>
         <Box sx={{
           position: 'relative',
           width: '100%',
-          backgroundColor: '#000000',
           borderRadius: 4
           }}>
-          <video
-            autoPlay
-            loop
-            muted
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              overflow: 'hidden',
-              borderRadius: 16,
-              zIndex: 0,
-            }}
-          >
-            <source src="/gallery/main.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <Paper elevation={0} sx={{
-            padding: {md: 8, xs: 4},
-            borderRadius: 4,
-            mt: 1,
-            boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
-            color: 'white',
-            position: 'relative',
-            overflow: 'hidden',
-            // backgroundColor: 'rgba(0, 0, 0, 0.3)',
-            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 80%)',
-            zIndex: 1,
-          }}>
-            <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ paddingTop: {md: 16, xs: 8} }}>
-              <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-                <img
-                  src="/landing-page/song-banner.png"
-                  alt="Custom T-shirt"
-                  style={{ width: '150px', borderRadius: '16px' }}
-                />
-              </Grid>
+         <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ padding: {md: 4, xs: 2} }}>
               <Grid item xs={12} md={8}>
                 <Typography
                   variant="h4"
@@ -288,20 +248,9 @@ export default function HomePage() {
                 </Typography>
                 <Typography variant="subtitle2"
                   sx={{
-                    color: 'rgba(255, 255, 255, 0.8)',
                     textAlign: 'center',
-                    paddingX: {md: 8, xs: 2}
                   }}>
-                  Customize your oversized T-shirts with songs, emojis, Japanese, AI, and more.
-                </Typography>
-                <Typography variant="subtitle2"
-                  sx={{
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    textAlign: 'center',
-                    mb: 4,
-                    paddingX: {md: 8, xs: 2}
-                  }}>
-                  Bring your ideas to life by joining our community of creatives!
+                  Personalize your t-shirt with music visuals, emojis, custom words or creative AI designs.
                 </Typography>
                   <Button 
                     variant="contained" 
@@ -310,10 +259,10 @@ export default function HomePage() {
                     href="#the-range" 
                     startIcon={<BrushIcon />}
                     sx={{ 
-                      mt: 0, 
+                      mt: 4, 
                       padding: 2, 
                       textTransform: 'none',
-                      borderRadius: 4,
+                      borderRadius: 0,
                       width: '100%',
                       background: 'black',
                       color: 'white',
@@ -322,17 +271,40 @@ export default function HomePage() {
                       backgroundSize: '600% 600%',
                       animation: 'backgroundMovement 4s ease infinite',  
                     }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePlayClick('https://cdn.freesound.org/previews/107/107789_1727136-lq.mp3');
-                      document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
-                    }}
                   >
                     <Typography variant='h6'>Start Designing</Typography>
                   </Button>
+                  <Button 
+                    variant="text"
+                    color="primary" 
+                    component={Link} 
+                    href="#the-range" 
+                    startIcon={<VideoIcon />}
+                    sx={{ 
+                        mt: 0, 
+                        padding: 2, 
+                        borderRadius: 0,
+                        width: '100%',
+                        justifyContent: 'center',
+                        textTransform: 'none',
+                        textDecoration: 'none',
+                        '&:hover': {
+                        backgroundColor: 'transparent',
+                        textDecoration: 'none',
+                        },
+                    }}
+                    >
+                    <Typography variant='h6'>How it works?</Typography>
+                    </Button>
+              </Grid>
+              <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <img
+                  src="/landing-page/song-banner.png"
+                  alt="Custom T-shirt"
+                  style={{ width: '450px', borderRadius: '16px' }}
+                />
               </Grid>
             </Grid>
-          </Paper>
         </Box>
       </Container>
       
@@ -359,13 +331,7 @@ export default function HomePage() {
               <Link
                 // LinkComponent={NextLink}
                 href="/product/song-tshirt"
-                underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/387/387533_3829977-lq.mp3');
-                }}  
+                underline="none"  
               >
                 <Box>
                   <Box
@@ -393,13 +359,7 @@ export default function HomePage() {
               <Link
                 // LinkComponent={NextLink} 
                 href="/product/prompt-generated-tshirt" 
-                underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-                }}  
+                underline="none" 
               >
                 <Box>
                   <Box
@@ -427,13 +387,7 @@ export default function HomePage() {
               <Link
                 // LinkComponent={NextLink} 
                 href="/product/japanese-tshirt" 
-                underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-                }}  
+                underline="none" 
               >
                 <Box>
                   <Box
@@ -461,13 +415,7 @@ export default function HomePage() {
               <Link
                 // LinkComponent={NextLink} 
                 href="/product/dictionary-tshirt" 
-                underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-                }}  
+                underline="none" 
               >
                 <Box>
                   <Box
@@ -531,13 +479,7 @@ export default function HomePage() {
               <Link
                 // LinkComponent={NextLink} 
                 href="/product/text-tshirt" 
-                underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/396/396757_5675578-lq.mp3', 0.3);
-                }}  
+                underline="none" 
               >
                 <Box>
                   <Box
@@ -566,12 +508,6 @@ export default function HomePage() {
                 // LinkComponent={NextLink}
                 href="/product/basic-tshirt"
                 underline="none"
-                onClick={(e) => {
-                  handlePlayClick('https://cdn.freesound.org/previews/198/198114_2155835-lq.mp3');
-                }}
-                onMouseEnter={() => {
-                  handlePlayClick('https://cdn.freesound.org/previews/335/335217_5899312-lq.mp3', 0.2);
-                }}
               >
                 <Box>
                   <Box
@@ -607,16 +543,16 @@ export default function HomePage() {
                     },
                   }}
                   onMouseEnter={() => {
-                    handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                    
                   }}  
                 >
                   <img src="/landing-page/launch.png" alt="T-Shirt Product image. More coming soon." style={{ width: '100%', borderRadius: '8px' }} />
                 </Box>
                 <Typography variant="h6">
-                  Launching soon
+                  Coming soon 🧪
                 </Typography>
                 <Typography variant="subtitle2" sx={{ color: '#777777' }}>
-                  Check within a few days
+                  More designs coming soon
                 </Typography>
               </Box>
             </Grid>
@@ -632,7 +568,7 @@ export default function HomePage() {
                     },
                   }}
                   onMouseEnter={() => {
-                    handlePlayClick('https://cdn.freesound.org/previews/394/394426_5121236-lq.mp3');
+                    
                   }}  
                 >
                   <img src="/landing-page/coming-soon.png" alt="Basics" style={{ width: '100%', borderRadius: '8px' }} />
@@ -686,7 +622,6 @@ export default function HomePage() {
               }}
               onClick={(e) => {
                 e.preventDefault();
-                handlePlayClick('https://cdn.freesound.org/previews/107/107789_1727136-lq.mp3');
                 document.querySelector('#the-range').scrollIntoView({ behavior: 'smooth' });
               }}
             >
@@ -697,9 +632,8 @@ export default function HomePage() {
         </Container>
         <TestimonialSection />
         <Container>  
-          <FreeGiftComponent />
+            <FreeGiftComponent />
         </Container>
-      
     </Box>
   );
 }
