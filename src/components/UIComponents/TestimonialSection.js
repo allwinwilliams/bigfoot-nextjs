@@ -2,7 +2,6 @@ import React from 'react';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Box, Typography, IconButton } from '@mui/material';
 
-// Dummy content array for the example
 const testimonials_list = [
   {
     imgUrl: '/landing-page/testimonials/ashin.jpeg',
@@ -18,7 +17,7 @@ const testimonials_list = [
   },
   {
     imgUrl: '/landing-page/testimonials/allwin.png',
-    text: 'Fun to create my own styles. It got delivered within 3 days.',
+    text: 'Fun to create my own style. The fit is great.',
     name: 'Ravi',
     location: 'Mumbai, India',
   },
@@ -30,7 +29,7 @@ const testimonials_list = [
   },
   {
     imgUrl: '/landing-page/testimonials/vishnu.jpeg',
-    text: 'I really like that songsong 🎶. Now I can wear it.',
+    text: 'I really like that song 🎶. Now I can wear it.',
     name: 'Vishnu',
     location: 'Chennai, India',
   },
