@@ -217,13 +217,13 @@ export default function HomePage() {
             <FiberManualRecordIcon sx={{ color: '#fff', fontSize: 8, mx: 1 }} />
             <Typography variant="subtitle2" sx={{ color: '#fff', display: 'flex', alignItems: 'center' }}>
             <Link
-              href="https://wa.me/+918754968346"
+              href="https://wa.me/+918147536059"
               target="_blank"
               rel="noopener noreferrer"
               sx={{ display: 'flex', alignItems: 'center', color: '#fff', textDecoration: 'none' }}
             >
               <WhatsAppIcon sx={{ marginRight: 1 }} />
-              FOR ANY QUERIES, CONTACT +91 87549 68346
+              FOR ANY QUERIES, CONTACT +91 814753 6059
             </Link>
           </Typography>
           </Box>

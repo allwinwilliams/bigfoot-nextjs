@@ -6,13 +6,19 @@ import { Box, Typography, IconButton } from '@mui/material';
 const testimonials_list = [
   {
     imgUrl: '/landing-page/testimonials/ashin.jpeg',
-    text: 'Super Cool.. Fabric is really soft and I can wear my song now.',
+    text: 'Super Cool.. Fabric is really soft and I love the concept.',
     name: 'Ashin',
     location: 'Bangalore, India',
   },
   {
+    imgUrl: '/landing-page/testimonials/sujith.png',
+    text: 'Now I can wear my favourite songs❤️. Fabric and print quality is great. ',
+    name: 'Sujith',
+    location: 'Bangalore, India',
+  },
+  {
     imgUrl: '/landing-page/testimonials/allwin.png',
-    text: 'This is a nice concept and I got it within 2 days.',
+    text: 'Fun to create my own styles. It got delivered within 3 days.',
     name: 'Ravi',
     location: 'Mumbai, India',
   },
@@ -24,10 +30,11 @@ const testimonials_list = [
   },
   {
     imgUrl: '/landing-page/testimonials/vishnu.jpeg',
-    text: 'The song I really love is something I can wear now for parties.',
+    text: 'I really like that songsong 🎶. Now I can wear it.',
     name: 'Vishnu',
     location: 'Chennai, India',
   },
+  
 ];
 
 const TestimonialSection = ({ testimonials = testimonials_list }) => {

@@ -15,7 +15,7 @@ export default function ExplainMusic() {
           </p>
           
           <p>
-            <b>For more, contact crew@bigfoot.land or + 91 87549 68346 </b>
+            <b>For more, contact crew@bigfoot.land or + 91 814753 6059 </b>
           </p>
         </Box>
     </Container>

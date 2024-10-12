@@ -41,7 +41,7 @@ const Footer = () => {
             We are a fashion tech brand that enables people to express themselves through fashion.
           </Typography>
           <Typography variant="subtitle2" sx={{ mt: 2 }}>
-          For customisations and bulk orders, reach us at crew@bigfoot.land or +91 87549 68346.
+          For customisations and bulk orders, reach us at crew@bigfoot.land or +91 814753 6059.
           </Typography>
         </Grid>
 
