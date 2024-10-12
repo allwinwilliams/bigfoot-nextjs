@@ -164,6 +164,11 @@ export default function HomePage() {
   return (
     <Box
       sx={{
+        backgroundColor: '#FFFFFF',
+      }}
+    >
+    <Box
+      sx={{
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
@@ -172,7 +177,7 @@ export default function HomePage() {
       <Box 
         sx={{
           width: '100%',
-          backgroundColor: '#CCCCCC',
+          backgroundColor: '#EEEEEE',
           paddingY: 1.2,
           top: 0,
           left: 0,
@@ -246,7 +251,7 @@ export default function HomePage() {
                 >
                   Personalized fashion,<br/>Designed by You
                 </Typography>
-                <Typography variant="subtitle2"
+                <Typography variant="subtitle1"
                   sx={{
                     textAlign: 'center',
                   }}>
@@ -259,7 +264,7 @@ export default function HomePage() {
                     href="#the-range" 
                     startIcon={<BrushIcon />}
                     sx={{ 
-                      mt: 4, 
+                      mt: 2, 
                       padding: 2, 
                       textTransform: 'none',
                       borderRadius: 0,
@@ -299,7 +304,7 @@ export default function HomePage() {
               </Grid>
               <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <img
-                  src="/landing-page/song-banner.png"
+                  src="/landing-page/banner.png"
                   alt="Custom T-shirt"
                   style={{ width: '450px', borderRadius: '16px' }}
                 />
@@ -634,6 +639,7 @@ export default function HomePage() {
         <Container>  
             <FreeGiftComponent />
         </Container>
+        </Box>
     </Box>
   );
 }

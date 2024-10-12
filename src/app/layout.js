@@ -72,22 +72,27 @@ export default function RootLayout({ children }) {
                 <Footer />
               </Container>
             )}
-            <AudioControl />
-            <IconButton
-              href='/'
-              sx={{
-                position: 'absolute',
-                top: 16,
-                left: 16,
-                zIndex: 1000,
-                backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                },
-              }}
-            >
-              <HomeIcon />
-            </IconButton>
+            {pathname.startsWith('/product/') && (
+              <>
+                <AudioControl />
+                <IconButton
+                  href='/'
+                  sx={{
+                    position: 'absolute',
+                    top: 16,
+                    left: 16,
+                    zIndex: 1000,
+                    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    },
+                  }}
+                >
+                  <HomeIcon />
+                </IconButton>
+              </>
+            )}
+            
           </Box>           
           {/* <LanguageSwitcher />  */}
           <Analytics />
