@@ -104,8 +104,6 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
         timestamp: new Date().toISOString(),
       };
 
-      
-
       const docRef = await addDoc(collection(db, 'orders'), dataToStore);
       const docId = docRef.id;
 

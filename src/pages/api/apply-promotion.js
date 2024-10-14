@@ -87,6 +87,14 @@ export default async function handler(req, res) {
         value_type: "Fixed amount",
         description: "Rs. 500 off for Woxsen"
       },
+      "FLAT300": {
+        reference_id: "FLAT300_OFFER",
+        type: "offer",
+        code: "FLAT300",
+        value: 30000,
+        value_type: "Fixed amount",
+        description: "Flat Rs. 300 off"
+      },
       "FAM1000": {
         reference_id: "PROMO2",
         type: "coupon",
