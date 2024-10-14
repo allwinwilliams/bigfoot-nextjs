@@ -227,7 +227,7 @@ const DictionaryTshirtPage = () => {
                   Type any word
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, my: 4 }}>
-                  <Autocomplete
+                  {/* <Autocomplete
                     freeSolo
                     fullWidth
                     options={wordsArray}
@@ -236,7 +236,7 @@ const DictionaryTshirtPage = () => {
                         .filter((option) =>
                           option.toLowerCase().startsWith(state.inputValue.toLowerCase())
                         )
-                        .slice(0, 10)
+                        .slice(0, 5)
                     }
                     value={textInput}
                     onInputChange={(event, newInputValue) => {
@@ -253,6 +253,18 @@ const DictionaryTshirtPage = () => {
                         helperText="Max 32 characters"
                       />
                     )}
+                  /> */}
+                  <TextField
+                    label="Write your word"
+                    variant="outlined"
+                    fullWidth
+                    value={textInput}
+                    onChange={(e) => {
+                      setTextInput(e.target.value);
+                      updateUrlParams({ text: e.target.value });
+                    }}
+                    inputProps={{ maxLength: 32 }}
+                    helperText="Max 32 characters"
                   />
                 </Box>
                 
