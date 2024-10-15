@@ -23,6 +23,14 @@ export default async function handler(req, res) {
         value_type: "Percentage",
         description: "Flat 50% off promotion for close friends"
       },
+      "SPECIALGIFT": {
+        reference_id: "SPECIALGIFT",
+        type: "offer",
+        code: "SPECIALGIFT",
+        value: 200000,
+        value_type: "Fixed amount",
+        description: "Rs. 2000 off as a gift"
+      },
       "VERYSPECIAL": {
         reference_id: "PROMOTERS",
         type: "offer",
