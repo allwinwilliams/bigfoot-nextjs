@@ -43,9 +43,9 @@ export default async function handler(req, res) {
         reference_id: "PARAM_OFFER",
         type: "offer",
         code: "PARAM",
-        value: 50000,
+        value: 70000,
         value_type: "Fixed amount",
-        description: "Rs. 500 off for PARAM"
+        description: "Rs. 700 off for PARAM"
       },
       "CLOSEFRIENDS": {
         reference_id: "CLOSE_FRIEND_OFFER",
