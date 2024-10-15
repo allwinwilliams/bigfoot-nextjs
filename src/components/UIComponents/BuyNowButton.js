@@ -238,7 +238,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
         <Modal
           open={openPrePaymentModal}
           onClose={() => setOpenPrePaymentModal(false)}
-          sx={{ top: "4%"}}
+          sx={{ top: "2%"}}
         >
           <Paper sx={{ padding: 4, margin: 'auto', maxWidth: '100%', width: '480px', borderRadius: 4, position: 'relative' }}>
             <IconButton
@@ -298,8 +298,15 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
                   ))}
                 </Select>
               </Box>
+              <Box sx={{ width: '100%', mt: 2 }}>
+                <img
+                  src="/product-page/fit-size.png"
+                  alt="A size chart denoting that the sizes are fitting larger than the regular fit."
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              </Box>
             </Box>
-            <Box sx={{marginY: 4}}>
+            <Box sx={{marginY: 2}}>
               <Box sx={{ marginBottom: 2 }}>
                 <Typography variant="subtitle1" sx={{fontWeight: 800, marginBottom: '4px'}} >
                   Choose your fabric
