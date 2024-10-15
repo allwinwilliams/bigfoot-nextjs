@@ -6,6 +6,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import SizeChart from '../SizeChart';
 import ProductPrice from '../ProductPrice';
+import PercentIcon from '@mui/icons-material/Percent';
+import Avatar from '@mui/material/Avatar';
+
 
 const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 }) => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
@@ -275,7 +278,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
             <Box sx={{marginY: 4}}>
               <Box sx={{marginBottom: 2}}>
                 <Typography variant="subtitle1" sx={{fontWeight: 800}} >
-                  Select your size (Oversized Fit)
+                  Select your size (Unisex Oversized Fit)
                 </Typography>
                 <SizeChart />
               </Box>
@@ -361,9 +364,30 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
                     {`Buy Now @ `}
                     <ProductPrice priceInINR={`${Math.ceil(dynamicPrice / 100)}`}  priceInUSD={`${Math.ceil(dynamicPrice / 2000)}`}/>
                   </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold', textTransform: 'none', color: '#AAAAAA' }}>
-                    Offers available in next step
-                  </Typography>
+                  <Chip
+                    avatar={
+                      <Avatar sx={{ backgroundColor: 'white', color: 'green' }}>
+                        <PercentIcon sx={{fontSize: 16}}/>
+                      </Avatar>
+                    }
+                    label={
+                      <Typography 
+                        variant="subtitle2" 
+                        sx={{ 
+                          fontWeight: 'bold', 
+                          textTransform: 'none', 
+                          color: '#FFFFFF' 
+                        }}
+                      >
+                        Offers available in next step
+                      </Typography>
+                    }
+                    sx={{ 
+                      backgroundColor: '#00ff0040', 
+                      borderRadius: '50px', 
+                      padding: '8px 16px'
+                    }}
+                  />
                 </Box>
               )}
             </Button>
