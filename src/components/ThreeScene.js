@@ -199,6 +199,7 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3, 
         id="three-canvas"
         shadows={{ type: THREE.PCFSoftShadowMap }}
         style={{ height: '100%', width: '100%', background: '#F8F8F8', cursor: 'grab' }}
+        background="#FFFFFF"
       >
         <PerspectiveCamera makeDefault {...{position:cameraPositions[cameraPositionIndex], fov: 60, near: 0.01, far: 100}}>
           {/* <pointLight position={[1, 3, 3]} intensity={2} /> */}
