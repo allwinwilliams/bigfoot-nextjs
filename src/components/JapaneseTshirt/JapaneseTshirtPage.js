@@ -113,13 +113,28 @@ const JapaneseTshirtPage = () => {
     updateUrlParams({ text: newText }); 
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
+    const canvas = document.querySelector('#three-canvas canvas');
+    
+    if (!canvas) {
+      console.error('Canvas not found');
+      return;
+    }
+  
+    const dataUrl = canvas.toDataURL('image/png');
+    
+    const response = await fetch(dataUrl);
+    const blob = await response.blob();
+  
+    const file = new File([blob], 'custom-tshirt.png', { type: 'image/png' });
+  
     const shareData = {
       title: 'Check out this T-Shirt',
       text: 'I customised this T-Shirt with an Emoji!! Check it out:',
       url: window.location.href,
+      files: [file],
     };
-
+  
     if (navigator.share) {
       navigator.share(shareData).then(() => {
         console.log('Thanks for sharing!');
@@ -334,6 +349,8 @@ const JapaneseTshirtPage = () => {
                     { value: 'navy', label: 'Navy', disabled: false },
                     { value: 'maroon', label: 'Maroon', disabled: false },
                     { value: 'white', label: 'White', disabled: true },
+                    { value: 'lavendar', label: 'Lavendar', disabled: true },
+                    { value: 'teal', label: 'Teal', disabled: true },
                   ].map((option) => (
                     <Tooltip
                       key={option.value}

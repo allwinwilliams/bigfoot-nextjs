@@ -89,6 +89,8 @@ const ThreeScene = ({ color, type, values, style, loading, loadingDuration = 3 }
       'beige': '#E1C699',
       'black': '#070707',
       'white': '#FFFFFF',
+      'lavendar': '#D0D0E6',
+      'teal': '#90E4D1',
     };
     const fillColor = colorMap[color] || '#FFFFFF';
     ctx.fillStyle = fillColor;
