@@ -227,6 +227,7 @@ const LanguageTshirtPage = () => {
                 values={{ textInput, translation: translationDetails }}
                 style={style}
                 loading={loading}
+                preserveDrawingBuffer={true}
               />
             </Grid>
             <Grid

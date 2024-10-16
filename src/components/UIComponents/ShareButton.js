@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Tooltip, CircularProgress } from '@mui/material';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import ShareIcon from '@mui/icons-material/IosShare';
 
 const ShareButton = ({ canvasId = 'three-canvas', storage }) => {
@@ -11,56 +11,46 @@ const ShareButton = ({ canvasId = 'three-canvas', storage }) => {
     setShareLoading(true);
     try {
       const canvas = document.querySelector(`#${canvasId} canvas`);
-      
+
       if (!canvas) {
         console.error('Canvas not found');
-        setShareLoading(false);
         return;
       }
 
-      // Ensure we have the WebGL2 rendering context, not 2D
-      const context = canvas.getContext('webgl2');
-      if (!context) {
-        console.error('Failed to get WebGL2 context. Ensure three.js is using WebGL.');
-        setShareLoading(false);
-        return;
-      }
-
-      // Use toDataURL to capture the current frame of the WebGL canvas
+      // Ensure the WebGL context is preserved
       const dataUrl = canvas.toDataURL('image/png');
+      if (!dataUrl) {
+        throw new Error('Failed to get canvas data');
+      }
 
-      // Convert the data URL to a blob for sharing as a file
       const response = await fetch(dataUrl);
       const blob = await response.blob();
-
-      // Create a file object from the blob
       const file = new File([blob], 'custom-tshirt.png', { type: 'image/png' });
 
       // Upload to Firebase Storage
       const timestamp = Date.now();
       const storageRef = ref(storage, `shared-tshirts/tshirt-${timestamp}.png`);
-      await uploadBytes(storageRef, file); // Using uploadBytes for file uploads
+      await uploadString(storageRef, dataUrl, 'data_url');
       const imageUrl = await getDownloadURL(storageRef);
 
-      // Prepare share data with file and URL (current page URL)
+      // Prepare share data
       const shareData = {
         title: 'Check out this T-Shirt',
         text: 'I customised this T-Shirt!! Check it out:',
-        url: window.location.href, // Use the current page URL
-        files: [file], // Include the captured file
+        url: imageUrl,
+        files: [file], // Include the captured file for mobile sharing
       };
 
-      // Use navigator.share if available (mobile sharing)
+      // Use navigator.share if available
       if (navigator.share && navigator.canShare({ files: [file] })) {
         await navigator.share(shareData);
         console.log('Thanks for sharing!');
       } else {
         // Fallback: copy the image URL to the clipboard
-        navigator.clipboard.writeText(imageUrl); // Copy the image URL to clipboard
+        navigator.clipboard.writeText(imageUrl);
         setTooltipOpen(true);
         setTimeout(() => setTooltipOpen(false), 2000);
       }
-
     } catch (error) {
       console.error('Error sharing:', error);
     } finally {
