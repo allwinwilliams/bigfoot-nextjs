@@ -17,6 +17,7 @@ import { LanguageContext } from '../../context/LanguageContextProvider';
 
 import SizeChart from '../SizeChart';
 import BuyNowButton from '../UIComponents/BuyNowButton';
+import ShareButton from '../UIComponents/ShareButton';
 
 const LanguageTshirtPage = () => {
   const theme = useTheme();
@@ -30,7 +31,7 @@ const LanguageTshirtPage = () => {
   const [color, setColor] = useState(searchParams.get('color') || 'beige');
   const [size, setSize] = useState(searchParams.get('size') || 'M');
   const [style, setStyle] = useState(searchParams.get('style') || 'bold');
-  const [language, setLanguage] = useState(searchParams.get('language') || 'japanese');
+  const [language, setLanguage] = useState(searchParams.get('language') || 'hindi');
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const [textInput, setTextInput] = useState(searchParams.get('text') || 'hello');
@@ -61,7 +62,7 @@ const LanguageTshirtPage = () => {
       size: 'M',
       style: 'bold',
       text: 'hello',
-      language: 'japanese',
+      language: 'hindi',
     };
 
     if (
@@ -291,7 +292,6 @@ const LanguageTshirtPage = () => {
                     />
                   ))}
                 </Box>
-
                 <Typography variant="subtitle1" sx={{ fontWeight: 800, marginBottom: '4px' }}>
                   Choose your style
                 </Typography>
@@ -400,7 +400,7 @@ const LanguageTshirtPage = () => {
                     db={db}
                     price={119900}
                   />
-                  <Tooltip title="URL copied" open={tooltipOpen} arrow>
+                  {/* <Tooltip title="URL copied" open={tooltipOpen} arrow>
                     <Button
                       variant="outlined"
                       color="primary"
@@ -416,7 +416,8 @@ const LanguageTshirtPage = () => {
                     >
                       Share Now
                     </Button>
-                  </Tooltip>
+                  </Tooltip> */}
+                  <ShareButton canvasId="three-canvas" storage={storage} />
                 </Box>
               </Box>
             </Grid>
