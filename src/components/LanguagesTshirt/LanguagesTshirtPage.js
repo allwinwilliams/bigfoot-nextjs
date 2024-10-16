@@ -165,7 +165,8 @@ const LanguageTshirtPage = () => {
     { value: 'marathi', label: 'मराठी (Marathi)' },
     { value: 'telugu', label: 'తెలుగు (Telugu)' },
     { value: 'urdu', label: 'اُردُو (Urdu)' },
-    { value: 'tibetan', label: 'བོད་ཡིག (Tibetan)' }
+    { value: 'tibetan', label: 'བོད་ཡིག (Tibetan)' },
+    { value: 'korean', label: '한국어 (Korean)' }
   ];
 
   return (
