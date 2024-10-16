@@ -95,6 +95,14 @@ export default async function handler(req, res) {
         value_type: "Fixed amount",
         description: "Rs. 500 off for Woxsen"
       },
+      "DIWALI": {
+        reference_id: "DIWALI_OFFER",
+        type: "offer",
+        code: "DIWALI",
+        value: 40000,
+        value_type: "Fixed amount",
+        description: "Rs. 400 off for DIWALI"
+      },
       "FANCY300": {
         reference_id: "FANCY300_OFFER",
         type: "offer",

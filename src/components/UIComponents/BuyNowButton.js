@@ -379,7 +379,7 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
                           color: '#FFFFFF' 
                         }}
                       >
-                        Offers available in next step
+                        Use code "DIWALI" for Rs. 400 off
                       </Typography>
                     }
                     sx={{ 
