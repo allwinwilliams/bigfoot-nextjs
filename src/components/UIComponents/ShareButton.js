@@ -50,7 +50,7 @@ const ShareButton = ({ canvasId = 'three-canvas', storage }) => {
       const shareData = {
         title: 'Check out this T-Shirt',
         text: 'I customised this T-Shirt!! Check it out:',
-        url: imageUrl,
+        url: window.location.href,
         files: [file], // Include the captured file for mobile sharing
       };
   
@@ -73,7 +73,7 @@ const ShareButton = ({ canvasId = 'three-canvas', storage }) => {
         console.log('Share without image!');
       } else {
         // Fallback: copy the image URL to the clipboard
-        navigator.clipboard.writeText(imageUrl);
+        navigator.clipboard.writeText(`Check out this T-Shirt I customised myself: ${imageUrl}`);
         setTooltipOpen(true);
         setTimeout(() => setTooltipOpen(false), 2000);
       }

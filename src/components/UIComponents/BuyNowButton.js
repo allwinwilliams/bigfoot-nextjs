@@ -233,8 +233,8 @@ const BuyNowButton = ({ color, style, type, data, storage, db, price = 119900 })
 
       <Box
         sx={{
-          maxHeight: '80vh',  // Adjust the maximum height as needed
-          overflowY: 'auto',   // Enable vertical scrolling
+          maxHeight: '80vh', 
+          overflowY: 'auto', 
           padding: 1,
         }}
       >
