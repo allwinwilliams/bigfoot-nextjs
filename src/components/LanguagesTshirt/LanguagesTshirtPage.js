@@ -61,7 +61,7 @@ const LanguageTshirtPage = () => {
       color: 'beige',
       size: 'M',
       style: 'bold',
-      text: 'hello',
+      text: '',
       language: 'hindi',
     };
 
