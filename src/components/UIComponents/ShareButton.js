@@ -60,8 +60,8 @@ const ShareButton = ({ canvasId = 'three-canvas', storage }) => {
         console.log('Thanks for sharing!');
       } else if (navigator.share) {
         navigator.share({
-          title: 'Check out this T-Shirt',
-          text: 'I customised this T-Shirt!! Check it out:',
+          title: 'Check out this T-Shirt that I designed',
+          text: 'I customised T-Shirt with Bigfoot',
           url: window.location.href,
         })
           .then(() => {
